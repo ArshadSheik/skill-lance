@@ -1,0 +1,1851 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SKILLLANCE — Complete Design System
+   Theme: Dark default with light toggle
+   Fonts: Syne (display) · DM Sans (body) · Fira Code (mono)
+   Palette: Warm indigo accent with amber highlights
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Design Tokens ──────────────────────────────────────────────────── */
+:root {
+  /* Dark Theme (Default) */
+  --bg:             #0d0f17;
+  --bg-alt:         #141620;
+  --surface:        #181a24;
+  --surface-2:      #22253a;
+  --surface-3:      #2a2d45;
+  --border:         #2c2f44;
+  --border-2:       #3d4160;
+  --text:           #e8eaf6;
+  --text-2:         #9095b8;
+  --text-3:         #5c6190;
+  --accent:         #818cf8;
+  --accent-hover:   #a5b4fc;
+  --accent-bg:      rgba(129, 140, 248, 0.12);
+  --accent-txt:     #a5b4fc;
+  --green:          #22c55e;
+  --green-bg:       rgba(34, 197, 94, 0.12);
+  --coral:          #f87171;
+  --coral-bg:       rgba(248, 113, 113, 0.12);
+  --amber:          #fbbf24;
+  --amber-bg:       rgba(251, 191, 36, 0.12);
+  --code-bg:        #0d0e1a;
+  --code-text:      #cdd6f4;
+  --nav-bg:         rgba(13, 15, 23, 0.92);
+  --shadow:         0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg:      0 12px 48px rgba(0, 0, 0, 0.4);
+  --glass:          rgba(24, 26, 36, 0.75);
+  --glass-border:   rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] {
+  --bg:             #f7f6f3;
+  --bg-alt:         #ffffff;
+  --surface:        #ffffff;
+  --surface-2:      #f0efe9;
+  --surface-3:      #e8e6df;
+  --border:         #e2ddd7;
+  --border-2:       #ccc8c0;
+  --text:           #1a1714;
+  --text-2:         #5a544e;
+  --text-3:         #a09890;
+  --accent:         #5c5ff5;
+  --accent-hover:   #4547d4;
+  --accent-bg:      rgba(92, 95, 245, 0.08);
+  --accent-txt:     #4547d4;
+  --green:          #16a34a;
+  --green-bg:       rgba(22, 163, 74, 0.1);
+  --coral:          #dc2626;
+  --coral-bg:       rgba(220, 38, 38, 0.08);
+  --amber:          #d97706;
+  --amber-bg:       rgba(217, 119, 6, 0.1);
+  --code-bg:        #1e1e2e;
+  --code-text:      #cdd6f4;
+  --nav-bg:         rgba(247, 246, 243, 0.92);
+  --shadow:         0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg:      0 12px 48px rgba(0, 0, 0, 0.1);
+  --glass:          rgba(255, 255, 255, 0.8);
+  --glass-border:   rgba(0, 0, 0, 0.06);
+}
+
+/* ── 2. Reset & Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+  font-size: 16px; 
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+a { 
+  color: var(--accent); 
+  text-decoration: none; 
+  transition: color 0.2s ease;
+}
+
+a:hover { 
+  color: var(--accent-hover); 
+}
+
+ul, ol { 
+  list-style: none; 
+}
+
+img { 
+  max-width: 100%; 
+  display: block; 
+}
+
+button, input, select, textarea { 
+  font: inherit; 
+}
+
+/* ── 3. Accessibility ──────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── 4. Layout Utilities ───────────────────────────────────────────────── */
+.container {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+}
+
+/* ── 5. Navigation ─────────────────────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 70px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-family: 'SpaceSpace Grotesk', sans-serif;
+  font-weight: 750;
+  font-size: 1.25rem;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.logo-badge {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.nav-links a.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--text-2);
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+/* ── 6. Typography ─────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+code, .mono {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+  background: var(--surface-2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+pre {
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ── 7. Buttons ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover {
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(129, 140, 248, 0.35);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.btn-ghost:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+/* ── 8. Cards ──────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--border-2);
+  box-shadow: var(--shadow);
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+}
+
+.card-highlight {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* ── 9. Hero Section ───────────────────────────────────────────────────── */
+.hero {
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-bg) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  margin-bottom: 1.25rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-card {
+  position: relative;
+}
+
+.hero-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-card ol {
+  counter-reset: steps;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-card li {
+  counter-increment: steps;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hero-card li::before {
+  content: counter(steps);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ── 10. Section Layouts ───────────────────────────────────────────────── */
+.section-grid {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.section-heading h2 {
+  position: sticky;
+  top: 100px;
+}
+
+.content-card {
+  padding: 2rem;
+}
+
+.content-card p {
+  color: var(--text-2);
+  margin-bottom: 1.5rem;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.two-col h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.two-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.two-col li {
+  color: var(--text-2);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.two-col li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ── 11. Demo Cards ────────────────────────────────────────────────────── */
+.demo-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--surface-2);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.demo-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-card > p {
+  color: var(--text-2);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Chips / Tags */
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.chip {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.chip.active {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.demo-output {
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  min-height: 60px;
+}
+
+.demo-output strong {
+  color: var(--accent);
+}
+
+/* Style Themes for CSS Demo */
+.style-demo {
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.style-demo h4 {
+  margin-bottom: 0.5rem;
+}
+
+.style-demo p {
+  color: var(--text-2);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.theme-a {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(34, 197, 94, 0.1));
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.theme-b {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(248, 113, 113, 0.1));
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.theme-c {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(96, 165, 250, 0.1));
+  border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+/* Counter Demo */
+.counter-demo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.counter-value {
+  font-size: 1.1rem;
+  color: var(--text-2);
+}
+
+.counter-value span {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-family: 'Fira Code', monospace;
+}
+
+/* ── 12. Callout Section ───────────────────────────────────────────────── */
+.callout-section {
+  background: linear-gradient(135deg, var(--accent-bg), transparent);
+}
+
+.callout-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+}
+
+.callout-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.callout-card p {
+  color: var(--text-2);
+  max-width: 500px;
+  margin: 0;
+}
+
+/* ── 13. Quiz Page ─────────────────────────────────────────────────────── */
+.quiz-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.quiz-intro h1 {
+  margin-bottom: 1rem;
+}
+
+.quiz-controls {
+  margin-top: 1.5rem;
+}
+
+.quiz-controls p {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+}
+
+.quiz-controls p:last-child {
+  border-bottom: none;
+}
+
+.quiz-controls strong {
+  color: var(--text);
+}
+
+.status-banner {
+  padding: 1rem 1.25rem;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.question-card:hover {
+  border-color: var(--border-2);
+}
+
+.question-card legend {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.question-card legend strong {
+  color: var(--accent);
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.option-item input[type="radio"] {
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Results Panel */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 90px;
+}
+
+.result-metric {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.metric-box {
+  padding: 1rem;
+  background: var(--surface-2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.metric-box span {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.metric-box strong {
+  font-size: 1.35rem;
+  color: var(--text);
+  font-family: 'Fira Code', monospace;
+}
+
+.pass { color: var(--green) !important; }
+.fail { color: var(--coral) !important; }
+
+.attempt-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.attempt-history li {
+  padding: 0.875rem 1rem;
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.attempt-history li strong {
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.attempt-history li span {
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+
+/* ── 14. Reflection Page ───────────────────────────────────────────────── */
+.prose-layout {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prose-layout h1 {
+  margin-bottom: 1rem;
+}
+
+.prose-layout > .lead {
+  margin-bottom: 3rem;
+}
+
+.reflection-block {
+  margin-bottom: 3rem;
+}
+
+.reflection-block h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.reflection-block p {
+  color: var(--text-2);
+  margin-bottom: 1rem;
+  line-height: 1.85;
+}
+
+.prompt-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.prompt-grid article h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.prompt-grid .mono {
+  display: block;
+  padding: 1rem;
+  background: var(--surface-2);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prompt-grid article > p:last-child {
+  color: var(--text-2);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ── 15. CV Page ───────────────────────────────────────────────────────── */
+.cv-hero {
+  padding-bottom: 3rem;
+}
+
+.cv-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.portrait-card {
+  position: sticky;
+  top: 90px;
+}
+
+.portrait-card img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.cv-info h1 {
+  margin-bottom: 1rem;
+}
+
+.cv-info .lead {
+  margin-bottom: 1.5rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.contact-row span {
+  padding: 0.5rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.cv-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cv-sections article h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cv-sections article p {
+  color: var(--text-2);
+  margin-bottom: 0.75rem;
+}
+
+.skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.skill-pill {
+  padding: 0.5rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: var(--text-2);
+  transition: all 0.2s ease;
+}
+
+.skill-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.highlighted {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+
+/* AJAX Demo Box */
+.ajax-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ajax-box div h2 {
+  margin-bottom: 0.5rem;
+}
+
+.ajax-box div p {
+  color: var(--text-2);
+  margin: 0;
+}
+
+.quote-output {
+  min-height: 80px;
+}
+
+.quote-output .glass-card {
+  padding: 1.5rem;
+}
+
+.quote-output p {
+  color: var(--text-2);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.quote-output p:last-child {
+  font-style: normal;
+  color: var(--text);
+  margin: 0;
+}
+
+/* References */
+.references-card {
+  margin-top: 2rem;
+}
+
+.references-card h2 {
+  margin-bottom: 1.5rem;
+}
+
+.references-list {
+  counter-reset: refs;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.references-list li {
+  counter-increment: refs;
+  display: flex;
+  gap: 0.75rem;
+  color: var(--text-2);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.references-list li::before {
+  content: '[' counter(refs) ']';
+  color: var(--accent);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* ── 16. Footer ────────────────────────────────────────────────────────── */
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-3);
+  font-size: 0.9rem;
+}
+
+/* ── 17. Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-grid,
+  .cv-grid,
+  .quiz-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .cv-grid {
+    gap: 2rem;
+  }
+  
+  .portrait-card {
+    position: static;
+    max-width: 280px;
+  }
+  
+  .side-panel {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .side-panel > * {
+    flex: 1;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .section-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .section-heading h2 {
+    position: static;
+  }
+  
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .callout-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .result-metric {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  /* Mobile Menu */
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+  
+  .quiz-actions {
+    flex-direction: column;
+  }
+  
+  .quiz-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ── 18. Animations ────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero,
+.section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.card,
+.glass-card {
+  transition: all 0.25s ease;
+}
+
+/* Smooth scroll-margin for anchor links */
+[id] {
+  scroll-margin-top: 90px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TUTORIAL PAGE — Extended Styles
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Eyebrow Pill (Course Badge) ──────────────────────────────────────────── */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-txt);
+  background: var(--accent-bg);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--accent);
+}
+
+/* ── Learning Path Cards (Hero Sidebar) ───────────────────────────────────── */
+.learning-path-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.path-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.5rem;
+}
+
+.path-grid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.path-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s ease;
+  min-width: 90px;
+}
+
+.path-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.path-card-quiz {
+  border-color: var(--accent);
+}
+
+.path-icon {
+  font-size: 1.25rem;
+}
+
+.path-chip {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.path-chip-html { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+.path-chip-css { background: var(--accent-bg); color: var(--accent-txt); }
+.path-chip-js { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+.path-chip-quiz { background: var(--green-bg); color: var(--green); }
+
+.path-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.path-time {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: var(--text-3);
+}
+
+.path-arrow {
+  color: var(--accent);
+  font-size: 1.1rem;
+  animation: arrowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(3px); }
+}
+
+/* ── Learning Path Section (Home Page) ────────────────────────────────────── */
+.learning-path-section {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+}
+
+.section-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.section-intro h2 {
+  margin-bottom: 0.75rem;
+}
+
+.section-intro .lead {
+  max-width: none;
+}
+
+.learning-path-full {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.path-card-large {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.path-card-large:hover {
+  border-color: var(--accent);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.path-card-quiz-lg {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.path-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.path-icon-lg {
+  font-size: 1.75rem;
+}
+
+.path-card-large h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.path-card-large p {
+  color: var(--text-2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.path-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+}
+
+.path-topics li {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.path-topics li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.path-time-lg {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  margin-top: auto;
+}
+
+.path-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.path-arrow-lg {
+  font-size: 1.5rem;
+  color: var(--accent);
+  animation: arrowPulse 1.5s ease-in-out infinite;
+}
+
+/* ── Info Block ───────────────────────────────────────────────────────────── */
+.info-block {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--surface-2);
+  border-radius: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+.info-block h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-block p {
+  color: var(--text-2);
+  margin-bottom: 1rem;
+}
+
+.info-block pre {
+  margin-top: 1rem;
+}
+
+.text-muted {
+  color: var(--text-3);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem !important;
+}
+
+/* ── Box Model Visual ─────────────────────────────────────────────────────── */
+.box-model-visual {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.bm-margin {
+  background: rgba(251, 191, 36, 0.12);
+  border: 2px dashed var(--amber);
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.bm-border {
+  background: rgba(248, 113, 113, 0.12);
+  border: 4px solid var(--coral);
+  padding: 16px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.bm-padding {
+  background: rgba(34, 197, 94, 0.12);
+  border: 2px dashed var(--green);
+  padding: 16px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.bm-content {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  padding: 16px 24px;
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-txt);
+  font-weight: 600;
+  text-align: center;
+}
+
+.bm-label {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--amber);
+  opacity: 0.9;
+}
+
+.bm-label-border { color: var(--coral); }
+.bm-label-padding { color: var(--green); }
+
+/* ── Try It Editor ────────────────────────────────────────────────────────── */
+.tryit-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tryit-editor,
+.tryit-preview {
+  background: var(--code-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.tryit-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.tryit-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tryit-dot.red { background: #ff5f56; }
+.tryit-dot.yellow { background: #ffbd2e; }
+.tryit-dot.green { background: #27c93f; }
+
+.tryit-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  margin-left: auto;
+}
+
+.tryit-editor textarea {
+  width: 100%;
+  min-height: 220px;
+  background: transparent;
+  color: var(--code-text);
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  padding: 1rem;
+}
+
+.tryit-run {
+  margin: 0.75rem;
+  width: calc(100% - 1.5rem);
+}
+
+.tryit-preview iframe {
+  width: 100%;
+  height: 280px;
+  border: none;
+  background: #fff;
+}
+
+/* ── CSS Playground ───────────────────────────────────────────────────────── */
+.css-playground {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.playground-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.control-group label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.control-group label span {
+  color: var(--accent);
+}
+
+.control-group input[type="color"] {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.playground-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.css-preview-box {
+  width: 120px;
+  height: 120px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* ── Counter Demo (Full) ──────────────────────────────────────────────────── */
+.counter-demo-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.counter-display {
+  font-family: 'Syne', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.counter-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-counter {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.btn-dec {
+  background: var(--coral-bg);
+  color: var(--coral);
+  border: 1px solid var(--coral);
+}
+
+.btn-dec:hover {
+  background: var(--coral);
+  color: #fff;
+}
+
+.btn-inc {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.btn-inc:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.btn-rst {
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+
+.btn-rst:hover {
+  background: var(--border);
+}
+
+.counter-code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  background: var(--code-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.counter-code span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Event Demo ───────────────────────────────────────────────────────────── */
+.event-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.event-log {
+  background: var(--code-bg);
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 120px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+.log-line {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--code-text);
+}
+
+.log-line:last-child {
+  border-bottom: none;
+}
+
+.log-ts {
+  color: var(--text-3);
+  margin-right: 0.75rem;
+}
+
+.log-type {
+  color: var(--amber);
+  margin-right: 0.5rem;
+}
+
+/* ── Responsive for Tutorial ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .learning-path-full {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .path-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .path-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .path-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .tryit-container,
+  .css-playground {
+    grid-template-columns: 1fr;
+  }
+  
+  .learning-path-full {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .counter-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-counter {
+    width: 100%;
+  }
+}
