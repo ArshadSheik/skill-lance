@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
+  <title>SkillLance - Home</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script defer src="./assets/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a href="./index.html" class="nav-logo">
+        <span class="logo-badge"></span>
+        SkillLance
+      </a>
+      
+      <div class="nav-links">
+        <a href="./index.html" class="active">Home</a>
+        <a href="./tutorial.html">Tutorial</a>
+        <a href="./quiz.html">Quiz</a>
+        <a href="./reflection.html">AI Reflection</a>
+        <a href="./cv.html">CV</a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- CV Hero Section -->
+    <section class="hero cv-hero">
+      <div class="container cv-grid">
+        <div class="portrait-card glass-card">
+          <img 
+            src="https://picsum.photos/seed/skilllance-portrait/720/900" 
+            alt="Professional portrait placeholder" 
+            width="720" 
+            height="900" 
+            loading="lazy" 
+          />
+        </div>
+        
+        <div class="cv-info">
+          <p class="eyebrow">Curriculum Vitae</p>
+          <h1>Your Name Here</h1>
+          <p class="lead">
+            Aspiring web developer and problem solver focused on building thoughtful, 
+            accessible, and user-friendly digital experiences. This sample CV page presents 
+            the author as a candidate for entry-level software and web development roles 
+            while demonstrating advanced HTML, CSS, and JavaScript techniques.
+          </p>
+          
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="highlight-skills">
+              Highlight Strengths
+            </button>
+            <a href="#references" class="btn btn-secondary">Jump to References</a>
+          </div>
+          
+          <div class="contact-row">
+            <span>📍 Perth, Western Australia</span>
+            <span>📞 +61 XXX XXX XXX</span>
+            <span>✉️ email@example.com</span>
+            <span>🔗 linkedin.com/in/yourname</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CV Sections -->
+    <section class="section">
+      <div class="container cv-sections">
+        <!-- Professional Profile -->
+        <article class="glass-card skill-highlight-target">
+          <h2>Professional Profile</h2>
+          <p>
+            I am a motivated computing student with a strong interest in front-end development, 
+            interaction design, and practical software engineering. My work is shaped by two 
+            priorities: first, solving real user problems with clear and maintainable code; 
+            second, presenting information in a way that feels polished, accessible, and easy 
+            to understand.
+          </p>
+          <p>
+            Through university projects and personal experimentation, I have developed experience 
+            using HTML5, CSS3, and JavaScript to transform requirements into interactive interfaces 
+            that feel consistent across pages and screen sizes.
+          </p>
+        </article>
+        
+        <!-- Education -->
+        <article class="glass-card skill-highlight-target">
+          <h2>Education</h2>
+          <p>
+            <strong>Bachelor of Computer Science</strong> — University of Western Australia
+          </p>
+          <p>
+            Relevant coursework includes programming fundamentals, databases, web development, 
+            software design, and user interface principles. Key learning areas encompass semantic 
+            HTML, responsive CSS, JavaScript programming, version control with Git, and 
+            collaborative development practices.
+          </p>
+          <p>
+            Alongside formal coursework, I regularly reinforce concepts by rebuilding small 
+            interfaces, analysing existing websites, and experimenting with interactive patterns.
+          </p>
+        </article>
+        
+        <!-- Technical Skills -->
+        <article class="glass-card skill-highlight-target">
+          <h2>Technical Skills</h2>
+          <div class="skills-wrap">
+            <span class="skill-pill">HTML5 Semantics</span>
+            <span class="skill-pill">CSS3 & Flexbox</span>
+            <span class="skill-pill">CSS Grid</span>
+            <span class="skill-pill">Responsive Design</span>
+            <span class="skill-pill">JavaScript ES6+</span>
+            <span class="skill-pill">DOM Manipulation</span>
+            <span class="skill-pill">AJAX & Fetch API</span>
+            <span class="skill-pill">Git & GitHub</span>
+            <span class="skill-pill">Accessibility (a11y)</span>
+            <span class="skill-pill">UI/UX Principles</span>
+            <span class="skill-pill">Testing & Debugging</span>
+            <span class="skill-pill">VS Code</span>
+          </div>
+          <p>
+            I am especially interested in the intersection of technical implementation and user 
+            experience. I pay attention to naming conventions, code readability, visual hierarchy, 
+            colour contrast, navigation clarity, and feedback states.
+          </p>
+        </article>
+        
+        <!-- Project Strengths -->
+        <article class="glass-card skill-highlight-target">
+          <h2>Project Strengths</h2>
+          <p>
+            My strongest project qualities are reliability, organisation, and adaptability. 
+            I break larger tasks into logical components, keep interface patterns consistent 
+            across multiple pages, and revise early drafts when they do not fully meet the brief.
+          </p>
+          <p>
+            I also communicate technical ideas clearly. Whether I am documenting a design choice, 
+            writing a tutorial, or reflecting on AI-assisted coding, I try to explain what was 
+            built, why it was built that way, and what trade-offs were involved.
+          </p>
+        </article>
+      </div>
+    </section>
+    
+    <!-- AJAX Demo Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="ajax-box glass-card">
+          <div>
+            <p class="eyebrow">Interactive Element</p>
+            <h2>Career Motivation</h2>
+            <p>
+              This panel uses AJAX to fetch a motivational quote from a public API, 
+              demonstrating client-side data retrieval on the CV page.
+            </p>
+          </div>
+          <button type="button" class="btn btn-primary" id="load-quote">
+            Load Motivation
+          </button>
+        </div>
+        
+        <div id="quote-output" class="quote-output">
+          <!-- Quote will be loaded here -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- References Section -->
+    <section id="references" class="section">
+      <div class="container">
+        <div class="references-card glass-card">
+          <p class="eyebrow">References</p>
+          <h2>Sources Consulted</h2>
+          
+          <ol class="references-list">
+            <li>
+              The University of Western Australia Library. <em>An Introduction to Referencing at UWA</em>. 
+              Available at: <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener">
+              https://guides.library.uwa.edu.au/referencinguwa</a> (Accessed: April 2026).
+            </li>
+            <li>
+              UWA CITS5505 unit materials and assessment description. 
+              Available at: <a href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener">
+              https://teaching.csse.uwa.edu.au/units/CITS5505/</a> (Accessed: April 2026).
+            </li>
+            <li>
+              MDN Web Docs. HTML, CSS and JavaScript guides. 
+              Available at: <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">
+              https://developer.mozilla.org/</a> (Accessed: April 2026).
+            </li>
+            <li>
+              Compliments API. Random compliment endpoint used for quiz rewards. 
+              Available at: <a href="https://compliments-api.vercel.app/random" target="_blank" rel="noopener">
+              https://compliments-api.vercel.app/random</a> (Accessed: April 2026).
+            </li>
+            <li>
+              Quotable API. Random quote endpoint used for CV motivation feature. 
+              Available at: <a href="https://api.quotable.io/" target="_blank" rel="noopener">
+              https://api.quotable.io/</a> (Accessed: April 2026).
+            </li>
+            <li>
+              AI assistance (Claude by Anthropic) used for brainstorming layout ideas, reviewing quiz logic, 
+              drafting tutorial wording, and reflecting on risks and limitations. All outputs were checked, 
+              edited, and adapted before inclusion.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 SkillLance — A CITS5505 Web Technologies Project</p>
+    </div>
+  </footer>
+</body>
+</html>

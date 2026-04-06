@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
+  <title>SkillLance - Home</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script defer src="./assets/main.js"></script>
+</head>
+<body data-page="quiz">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a href="./index.html" class="nav-logo">
+        <span class="logo-badge"></span>
+        SkillLance
+      </a>
+      
+      <div class="nav-links">
+        <a href="./index.html" class="active">Home</a>
+        <a href="./tutorial.html">Tutorial</a>
+        <a href="./quiz.html">Quiz</a>
+        <a href="./reflection.html">AI Reflection</a>
+        <a href="./cv.html">CV</a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main id="main-content" class="section">
+    <div class="container quiz-layout">
+      <!-- Quiz Section -->
+      <section class="quiz-intro">
+        <p class="eyebrow">Dynamic Assessment</p>
+        <h1>HTML, CSS &amp; JavaScript Quiz</h1>
+        <p class="lead">
+          Questions are loaded using AJAX from a local JSON file. The order is shuffled 
+          every time the page loads, and the quiz warns you before leaving if you haven't submitted.
+        </p>
+        
+        <div class="quiz-controls card">
+          <p><span>Pass mark</span> <strong>70%</strong></p>
+          <p><span>Questions</span> <strong>10</strong></p>
+          <p><span>Storage</span> <strong>Local browser history</strong></p>
+        </div>
+        
+        <form id="quiz-form" novalidate>
+          <div id="quiz-status" class="status-banner" aria-live="polite">
+            Loading questions…
+          </div>
+          
+          <div id="quiz-container">
+            <!-- Questions will be rendered here -->
+          </div>
+          
+          <div class="quiz-actions">
+            <button type="submit" class="btn btn-primary btn-lg">Submit Quiz</button>
+            <button type="button" class="btn btn-secondary" id="reload-quiz">Reload &amp; Reshuffle</button>
+          </div>
+        </form>
+      </section>
+      
+      <!-- Results Sidebar -->
+      <aside class="side-panel">
+        <section class="glass-card">
+          <h2>Current Result</h2>
+          <div id="result-content">
+            <p>Your score will appear here after submission.</p>
+          </div>
+        </section>
+        
+        <section class="glass-card">
+          <h2>Reward</h2>
+          <div id="reward-content">
+            <p>Pass the quiz to unlock a special message!</p>
+          </div>
+        </section>
+        
+        <section class="glass-card">
+          <h2>Attempt History</h2>
+          <ul id="attempt-history" class="attempt-history">
+            <!-- History will be rendered here -->
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 SkillLance — A CITS5505 Web Technologies Project</p>
+    </div>
+  </footer>
+</body>
+</html>

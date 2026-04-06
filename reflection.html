@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
+  <title>SkillLance - Home</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script defer src="./assets/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a href="./index.html" class="nav-logo">
+        <span class="logo-badge"></span>
+        SkillLance
+      </a>
+      
+      <div class="nav-links">
+        <a href="./index.html" class="active">Home</a>
+        <a href="./tutorial.html">Tutorial</a>
+        <a href="./quiz.html">Quiz</a>
+        <a href="./reflection.html">AI Reflection</a>
+        <a href="./cv.html">CV</a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main id="main-content" class="section">
+    <div class="container prose-layout">
+      <p class="eyebrow">Critical Evaluation</p>
+      <h1>AI Reflection Log</h1>
+      <p class="lead">
+        This page records how AI tools were used during planning, coding, and editing. 
+        The goal is not only to describe help received, but also to judge its reliability, 
+        limitations, and ethical implications in a university coding project.
+      </p>
+      
+      <!-- Section 1: How AI Was Used -->
+      <section class="reflection-block">
+        <h2>How AI Was Used</h2>
+        <p>
+          I used AI primarily as a drafting and explanation assistant. It helped brainstorm 
+          page layouts, propose quiz logic, suggest wording for the tutorial, and review 
+          whether all assignment requirements had been addressed. I treated the output as 
+          a starting point rather than a finished solution.
+        </p>
+        <p>
+          For example, I asked for ideas on how to connect four pages into a single learning 
+          journey and how to implement a browser navigation warning on an unfinished quiz. 
+          The suggestions were useful for structure, but they still needed testing, 
+          simplification, and adaptation to my own coding style.
+        </p>
+      </section>
+      
+      <!-- Section 2: Example Prompts -->
+      <section class="reflection-block">
+        <h2>Example Prompts and Outputs</h2>
+        
+        <div class="prompt-grid">
+          <article class="glass-card">
+            <h3>Prompt 1</h3>
+            <p class="mono">
+              "Design a four-page educational web app about HTML, CSS and JavaScript with a consistent theme."
+            </p>
+            <p>
+              The AI produced a site structure with a tutorial, quiz, reflection page, and CV page. 
+              This was useful because it mirrored the assignment brief and suggested a clearer navigation flow.
+            </p>
+          </article>
+          
+          <article class="glass-card">
+            <h3>Prompt 2</h3>
+            <p class="mono">
+              "Show JavaScript that loads quiz questions from JSON, shuffles them, and scores the answers."
+            </p>
+            <p>
+              The output included fetch logic, randomisation, dynamic rendering, and answer checking. 
+              I used the general pattern but rewrote parts of it so the code matched my page structure 
+              and naming conventions.
+            </p>
+          </article>
+          
+          <article class="glass-card">
+            <h3>Prompt 3</h3>
+            <p class="mono">
+              "What risks should I discuss in an AI reflection for a university web development task?"
+            </p>
+            <p>
+              The AI highlighted hallucinated code, hidden plagiarism, insecure snippets, and 
+              over-reliance. That helped me move beyond description and produce a more critical reflection.
+            </p>
+          </article>
+        </div>
+      </section>
+      
+      <!-- Section 3: Corrections -->
+      <section class="reflection-block">
+        <h2>Corrections and Changes</h2>
+        <p>
+          Several AI-generated suggestions were incomplete or slightly wrong. One early draft 
+          used hard-coded quiz questions inside JavaScript, which would have failed the 
+          requirement for AJAX-loaded local data. I corrected this by moving the question 
+          set into a separate JSON file and fetching it at runtime.
+        </p>
+        <p>
+          Another suggestion proposed using browser storage without checking support or error 
+          handling. I added defensive code to avoid crashes, made the history rendering clearer, 
+          and ensured the unload warning is removed after successful submission.
+        </p>
+      </section>
+      
+      <!-- Section 4: Limitations -->
+      <section class="reflection-block">
+        <h2>Limitations and Reliability</h2>
+        <p>
+          AI was strongest when explaining common web concepts and offering starter code patterns. 
+          It was weaker when handling assignment-specific details, because it sometimes ignored 
+          small but important constraints such as using a public API for rewards or including 
+          a clear references section on the CV page.
+        </p>
+        <p>
+          Because of this, every significant suggestion had to be cross-checked against the 
+          assignment brief and tested in the browser. The biggest limitation was confidence 
+          without certainty: the output often sounded correct even when it needed revision.
+        </p>
+      </section>
+      
+      <!-- Section 5: Ethics -->
+      <section class="reflection-block">
+        <h2>Ethical Considerations</h2>
+        <p>
+          Using AI in coursework creates both opportunities and risks. It can improve productivity 
+          and reduce frustration, but it may also tempt students to submit work they do not fully 
+          understand. That would undermine learning outcomes and make it difficult to explain or 
+          maintain the final code.
+        </p>
+        <p>
+          To use AI responsibly, I needed to remain the author of the final work, verify claims, 
+          rewrite unclear code, and acknowledge where AI contributed ideas or drafts. I also 
+          needed to avoid copying code blindly, especially where privacy, accessibility, or 
+          academic integrity could be affected.
+        </p>
+      </section>
+      
+      <!-- Section 6: Key Takeaways -->
+      <section class="reflection-block">
+        <h2>Key Takeaways</h2>
+        <p>
+          Working with AI tools taught me several important lessons:
+        </p>
+        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-2);">
+          <li style="margin-bottom: 0.5rem;">AI is a powerful starting point, not a final solution</li>
+          <li style="margin-bottom: 0.5rem;">Always verify generated code against requirements</li>
+          <li style="margin-bottom: 0.5rem;">Testing in real browsers reveals issues AI cannot predict</li>
+          <li style="margin-bottom: 0.5rem;">Understanding code is essential for debugging and maintenance</li>
+          <li style="margin-bottom: 0.5rem;">Transparent attribution builds trust and academic integrity</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 SkillLance — A CITS5505 Web Technologies Project</p>
+    </div>
+  </footer>
+</body>
+</html>
