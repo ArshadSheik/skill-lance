@@ -1,188 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
-  <title>SkillLance - Home</title>
-  
+  <meta name="description" content="SkillLance — AI Reflection Log documenting how AI tools were used during the project." />
+  <title>SkillLance - AI Reflection</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  
-  <!-- Navigation -->
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <span class="logo-badge"></span>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
         SkillLance
       </a>
-      
       <div class="nav-links">
-        <a href="./index.html" class="active">Home</a>
+        <a href="./index.html">Home</a>
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
-        <a href="./reflection.html">AI Reflection</a>
+        <a href="./reflection.html" class="active">AI Reflection</a>
         <a href="./cv.html">CV</a>
       </div>
-      
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
-  
-  <!-- Main Content -->
+
   <main id="main-content" class="section">
     <div class="container prose-layout">
       <p class="eyebrow">Critical Evaluation</p>
       <h1>AI Reflection Log</h1>
       <p class="lead">
-        This page records how AI tools were used during planning, coding, and editing. 
-        The goal is not only to describe help received, but also to judge its reliability, 
-        limitations, and ethical implications in a university coding project.
+        This page documents how AI (Claude by Anthropic) was used during the development of SkillLance.
+        Each use case includes the actual prompt given, a summary of the AI output, changes I made, and
+        a critical evaluation of the AI's reliability.
       </p>
-      
-      <!-- Section 1: How AI Was Used -->
+
+      <!-- Use Case 1 -->
       <section class="reflection-block">
-        <h2>How AI Was Used</h2>
-        <p>
-          I used AI primarily as a drafting and explanation assistant. It helped brainstorm 
-          page layouts, propose quiz logic, suggest wording for the tutorial, and review 
-          whether all assignment requirements had been addressed. I treated the output as 
-          a starting point rather than a finished solution.
-        </p>
-        <p>
-          For example, I asked for ideas on how to connect four pages into a single learning 
-          journey and how to implement a browser navigation warning on an unfinished quiz. 
-          The suggestions were useful for structure, but they still needed testing, 
-          simplification, and adaptation to my own coding style.
-        </p>
-      </section>
-      
-      <!-- Section 2: Example Prompts -->
-      <section class="reflection-block">
-        <h2>Example Prompts and Outputs</h2>
-        
+        <h2>Use Case 1: Debugging the Quiz AJAX Loading</h2>
+
         <div class="prompt-grid">
           <article class="glass-card">
-            <h3>Prompt 1</h3>
+            <h3>Prompt</h3>
             <p class="mono">
-              "Design a four-page educational web app about HTML, CSS and JavaScript with a consistent theme."
+              "My quiz page shows 'Loading questions…' but the questions never appear. I'm using
+              fetch('questions.json') to load them. The file is at data/questions.json relative to the
+              project root. The HTML page is in the root. What's wrong?"
             </p>
+            <h3>AI Output Summary</h3>
             <p>
-              The AI produced a site structure with a tutorial, quiz, reflection page, and CV page. 
-              This was useful because it mirrored the assignment brief and suggested a clearer navigation flow.
+              The AI correctly identified that the fetch path was wrong — it should be
+              <code>./data/questions.json</code> instead of just <code>questions.json</code>. It also
+              suggested adding error handling with <code>.catch()</code> and checking the Network tab
+              in DevTools to verify the 404 error.
             </p>
-          </article>
-          
-          <article class="glass-card">
-            <h3>Prompt 2</h3>
-            <p class="mono">
-              "Show JavaScript that loads quiz questions from JSON, shuffles them, and scores the answers."
-            </p>
+            <h3>Changes I Made</h3>
             <p>
-              The output included fetch logic, randomisation, dynamic rendering, and answer checking. 
-              I used the general pattern but rewrote parts of it so the code matched my page structure 
-              and naming conventions.
-            </p>
-          </article>
-          
-          <article class="glass-card">
-            <h3>Prompt 3</h3>
-            <p class="mono">
-              "What risks should I discuss in an AI reflection for a university web development task?"
-            </p>
-            <p>
-              The AI highlighted hallucinated code, hidden plagiarism, insecure snippets, and 
-              over-reliance. That helped me move beyond description and produce a more critical reflection.
+              I adopted the path fix directly. I also added <code>if (!response.ok) throw new Error()</code>
+              to catch HTTP errors more explicitly, and added a loading skeleton UI that the AI did not suggest.
             </p>
           </article>
         </div>
       </section>
-      
-      <!-- Section 3: Corrections -->
+
+      <!-- Use Case 2 -->
       <section class="reflection-block">
-        <h2>Corrections and Changes</h2>
+        <h2>Use Case 2: Creating CSS Animations for 3D Card Hover</h2>
+
+        <div class="prompt-grid">
+          <article class="glass-card">
+            <h3>Prompt</h3>
+            <p class="mono">
+              "Write CSS for a card component that has a 3D tilt effect on hover using CSS transforms.
+              It should use perspective and rotateX/rotateY, feel smooth, and work without JavaScript."
+            </p>
+            <h3>AI Output Summary</h3>
+            <p>
+              The AI provided a CSS-only solution using <code>transform-style: preserve-3d</code> and
+              <code>perspective: 800px</code> with hover transforms like <code>rotateX(5deg) rotateY(-3deg)</code>.
+              However, the CSS-only version could only produce a fixed tilt direction — it couldn't follow the mouse.
+            </p>
+            <h3>Changes I Made</h3>
+            <p>
+              I kept the CSS as a base hover effect but also added a JavaScript <code>mousemove</code> listener
+              that calculates tilt based on cursor position within the card. The JS dynamically sets
+              <code>rotateX</code> and <code>rotateY</code> based on the mouse offset from centre, producing a
+              much more natural feel. On <code>mouseleave</code>, the card resets smoothly.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Use Case 3 -->
+      <section class="reflection-block">
+        <h2>Use Case 3: Implementing the beforeunload Warning</h2>
+
+        <div class="prompt-grid">
+          <article class="glass-card">
+            <h3>Prompt</h3>
+            <p class="mono">
+              "How do I show a browser warning when the user tries to close or navigate away from a quiz page,
+              but only after they've started answering? And how do I remove the warning after they submit?"
+            </p>
+            <h3>AI Output Summary</h3>
+            <p>
+              The AI explained the <code>beforeunload</code> event and showed a handler that sets
+              <code>e.returnValue = ''</code>. It suggested using a boolean flag (<code>quizStarted</code>)
+              set to true on the first radio button change, and clearing the listener with
+              <code>removeEventListener</code> after form submission.
+            </p>
+            <h3>Changes I Made</h3>
+            <p>
+              The AI's initial code attached the listener immediately on page load. I changed this so
+              <code>addEventListener('beforeunload', ...)</code> is only called after the "Start Quiz"
+              button is clicked and the first answer is selected. This avoids false warnings when the user
+              is just viewing the quiz page without starting.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Use Case 4 -->
+      <section class="reflection-block">
+        <h2>Use Case 4: Particle Canvas Background Animation</h2>
+
+        <div class="prompt-grid">
+          <article class="glass-card">
+            <h3>Prompt</h3>
+            <p class="mono">
+              "Create a subtle particle background effect using HTML5 canvas. Small dots should float
+              slowly and connect with faint lines when near each other. Keep it performant and not distracting."
+            </p>
+            <h3>AI Output Summary</h3>
+            <p>
+              The AI produced a working canvas animation with particles and connection lines. However,
+              it used 120 particles with a 200px connection radius, which caused visible performance
+              issues on smaller screens and made the background too busy.
+            </p>
+            <h3>Changes I Made</h3>
+            <p>
+              I reduced the particle count to scale with screen area (capped at 60), lowered the
+              connection radius to 150px, reduced opacity values, and added a <code>resize</code>
+              listener that recreates particles on window resize. I also made the particle color
+              adapt to the current theme (dark vs light) by reading the <code>data-theme</code> attribute.
+            </p>
+          </article>
+        </div>
+      </section>
+      <!-- Use Case 5: Rebuilding with AI -->
+      <section class="reflection-block">
+        <h2>Use Case 5: Deepening Interactivity & Rebuilding the CV Page</h2>
+
+        <div class="prompt-grid">
+          <article class="glass-card">
+            <h3>Prompt</h3>
+            <p class="mono">
+              "Rebuild my CV page completely. Change it from a simple top-down list to a modern 2-column Grid layout with a sidebar. Add an 'Experience' section. Also, update my Quiz engine so that if the user fails, it triggers an AJAX fetch to a public Dad Joke API as a 'penalty'."
+            </p>
+            <h3>AI Output Summary</h3>
+            <p>
+              The AI provided a comprehensive overhaul plan. It generated HTML utilizing <code>display: grid</code> for a <code>.cv-layout</code>, styling the sticky sidebar and timeline elements with custom CSS. It also accurately wrote the <code>fetch()</code> block for the <em>icanhazdadjoke</em> API to trigger only when the score was below the 70% threshold.
+            </p>
+            <h3>Changes I Made & Critical Evaluation</h3>
+            <p>
+              While the layout generated by the AI was visually stunning, it overwrote some of my original color variables. I had to manually merge the AI's 2-column CSS into my existing <code>style.css</code> to ensure the custom Light/Dark mode toggle (which I had already perfected) wasn't broken by the new CSS classes. The AI's code for the Dad Joke API was flawless, correctly demonstrating how to pass the <code>Accept: application/json</code> header to receive JSON instead of HTML.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Identifying an AI Error -->
+      <section class="reflection-block">
+        <h2>Identifying a Subtle AI Error</h2>
         <p>
-          Several AI-generated suggestions were incomplete or slightly wrong. One early draft 
-          used hard-coded quiz questions inside JavaScript, which would have failed the 
-          requirement for AJAX-loaded local data. I corrected this by moving the question 
-          set into a separate JSON file and fetching it at runtime.
+          When I asked the AI to implement array shuffling for quiz randomisation, it initially suggested
+          <code>[...arr].sort(() => Math.random() - 0.5)</code>. This looks correct but produces a
+          <strong>biased shuffle</strong> — some orderings are more likely than others because
+          <code>sort()</code> comparison functions must be consistent, but <code>Math.random()</code>
+          is not.
         </p>
         <p>
-          Another suggestion proposed using browser storage without checking support or error 
-          handling. I added defensive code to avoid crashes, made the history rendering clearer, 
-          and ensured the unload warning is removed after successful submission.
+          I detected this by researching shuffle algorithms on MDN and Stack Overflow after noticing
+          certain questions seemed to cluster together. I replaced it with the Fisher-Yates algorithm,
+          which swaps elements from the end of the array backwards, producing a truly uniform random
+          permutation. The AI did not flag the bias in its own suggestion, which demonstrates how
+          generated code can be syntactically correct but semantically flawed.
         </p>
       </section>
-      
-      <!-- Section 4: Limitations -->
+
+      <!-- Limitations & Ethics -->
       <section class="reflection-block">
         <h2>Limitations and Reliability</h2>
         <p>
-          AI was strongest when explaining common web concepts and offering starter code patterns. 
-          It was weaker when handling assignment-specific details, because it sometimes ignored 
-          small but important constraints such as using a public API for rewards or including 
-          a clear references section on the CV page.
+          AI was strongest at explaining standard web APIs (fetch, localStorage, DOM methods) and
+          generating boilerplate CSS. It was weakest when dealing with project-specific constraints —
+          file paths, assignment requirements, and integration with existing code. Every AI suggestion
+          required manual testing in the browser before I could trust it.
         </p>
         <p>
-          Because of this, every significant suggestion had to be cross-checked against the 
-          assignment brief and tested in the browser. The biggest limitation was confidence 
-          without certainty: the output often sounded correct even when it needed revision.
+          The biggest risk was <strong>confidence without accuracy</strong>: the AI's output always
+          sounded authoritative, even when it contained errors (wrong paths, biased shuffles,
+          over-heavy animations). Without critical evaluation, these errors would have been submitted as-is.
         </p>
       </section>
-      
-      <!-- Section 5: Ethics -->
+
       <section class="reflection-block">
         <h2>Ethical Considerations</h2>
         <p>
-          Using AI in coursework creates both opportunities and risks. It can improve productivity 
-          and reduce frustration, but it may also tempt students to submit work they do not fully 
-          understand. That would undermine learning outcomes and make it difficult to explain or 
-          maintain the final code.
+          Using AI in coursework requires maintaining genuine authorship. I ensured this by treating
+          AI output as draft material — always testing, modifying, and sometimes rejecting suggestions.
+          The final code reflects my understanding because I can explain every function, debug issues
+          independently, and adapt the code to new requirements.
         </p>
         <p>
-          To use AI responsibly, I needed to remain the author of the final work, verify claims, 
-          rewrite unclear code, and acknowledge where AI contributed ideas or drafts. I also 
-          needed to avoid copying code blindly, especially where privacy, accessibility, or 
-          academic integrity could be affected.
+          Transparency matters: all AI usage is documented here and in the references section of the
+          CV page. Students who submit AI output without understanding it risk failing the demo session,
+          where they must explain their code. More fundamentally, uncritical reliance undermines the
+          learning outcomes the assessment is designed to measure.
         </p>
       </section>
-      
-      <!-- Section 6: Key Takeaways -->
+
       <section class="reflection-block">
         <h2>Key Takeaways</h2>
-        <p>
-          Working with AI tools taught me several important lessons:
-        </p>
         <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-2);">
-          <li style="margin-bottom: 0.5rem;">AI is a powerful starting point, not a final solution</li>
-          <li style="margin-bottom: 0.5rem;">Always verify generated code against requirements</li>
-          <li style="margin-bottom: 0.5rem;">Testing in real browsers reveals issues AI cannot predict</li>
-          <li style="margin-bottom: 0.5rem;">Understanding code is essential for debugging and maintenance</li>
-          <li style="margin-bottom: 0.5rem;">Transparent attribution builds trust and academic integrity</li>
+          <li style="margin-bottom: 0.5rem;">AI is most useful for explaining APIs and generating starter patterns, not for project-specific integration</li>
+          <li style="margin-bottom: 0.5rem;">Always test AI-generated code in a real browser — file paths, API responses, and edge cases often fail</li>
+          <li style="margin-bottom: 0.5rem;">Seemingly correct algorithms (like sort-based shuffle) can have subtle mathematical biases</li>
+          <li style="margin-bottom: 0.5rem;">Performance tuning (particle counts, animation intensity) requires human judgement, not just code generation</li>
+          <li style="margin-bottom: 0.5rem;">Understanding the code is essential — for debugging, for the demo, and for genuine learning</li>
         </ul>
       </section>
     </div>
   </main>
-  
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 SkillLance — A CITS5505 Web Technologies Project</p>
+
+    <footer class="site-footer">
+    <div class="footer-glow"></div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="./index.html" class="footer-logo">
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <span>SkillLance</span>
+        </a>
+      </div>
+      <div class="footer-copy">
+        <p>\&copy; 2026 SkillLance \&mdash; CITS5505 Web Technologies \&middot; The University of Western Australia</p>
+      </div>
+      <div class="footer-code-float" aria-hidden="true">
+        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span>color: #818cf8; display: flex;</span>
+        <span>const app = () =&gt; { ... }</span>
+      </div>
     </div>
   </footer>
 </body>

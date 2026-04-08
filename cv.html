@@ -1,241 +1,229 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
-  <title>SkillLance - Home</title>
-  
+  <meta name="description" content="SkillLance — Portfolio and CV page." />
+  <title>SkillLance - CV &amp; Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  
-  <!-- Navigation -->
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <span class="logo-badge"></span>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
         SkillLance
       </a>
-      
       <div class="nav-links">
-        <a href="./index.html" class="active">Home</a>
+        <a href="./index.html">Home</a>
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
-        <a href="./cv.html">CV</a>
+        <a href="./cv.html" class="active">CV</a>
       </div>
-      
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
-  
-  <!-- Main Content -->
-  <main id="main-content">
-    <!-- CV Hero Section -->
-    <section class="hero cv-hero">
-      <div class="container cv-grid">
-        <div class="portrait-card glass-card">
-          <img 
-            src="https://picsum.photos/seed/skilllance-portrait/720/900" 
-            alt="Professional portrait placeholder" 
-            width="720" 
-            height="900" 
-            loading="lazy" 
-          />
+
+  <main id="main-content" style="padding-top: 3rem; padding-bottom: 5rem;">
+    <div class="container cv-layout">
+      
+      <!-- LEFT COLUMN: Sticky Sidebar -->
+      <aside class="cv-sidebar">
+        <div class="glass-card cv-profile-card skill-highlight-target">
+          <div class="cv-avatar-wrap">
+            <img src="https://picsum.photos/seed/skilllance-avatar/400/400" alt="Professional portrait" width="400" height="400" loading="lazy" />
+          </div>
+          <h1>Your Name</h1>
+          <p class="cv-headline">Aspiring Web Developer &amp; Computer Science Student at UWA</p>
+          
+          <div class="cv-contact-list">
+            <div class="contact-item">
+              <span class="c-icon">📍</span> <span class="c-text">Perth, WA</span>
+            </div>
+            <div class="contact-item">
+              <span class="c-icon">📞</span> <span class="c-text">+61 XXX XXX XXX</span>
+            </div>
+            <div class="contact-item">
+              <span class="c-icon">✉️</span> <a href="mailto:email@example.com" class="c-text">email@example.com</a>
+            </div>
+            <div class="contact-item">
+              <span class="c-icon">🔗</span> <a href="#" class="c-text">linkedin.com/in/yourname</a>
+            </div>
+            <div class="contact-item">
+              <span class="c-icon">🐙</span> <a href="#" class="c-text">github.com/yourname</a>
+            </div>
+          </div>
+          
+          <button type="button" class="btn btn-primary" id="highlight-skills" style="width:100%; margin-top:1.5rem;">Highlight Strengths</button>
         </div>
+
+        <div class="glass-card cv-sidebar-card skill-highlight-target" style="margin-top:2rem;">
+          <h3>Education</h3>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <h4>Bachelor of Computer Science</h4>
+            <p class="tl-org">University of Western Australia</p>
+            <p class="tl-date">2023 – 2026 (expected)</p>
+          </div>
+        </div>
+
+        <div class="glass-card cv-sidebar-card skill-highlight-target" style="margin-top:2rem;">
+          <h3>Technical Skills</h3>
+          <div class="skills-wrap">
+            <span class="skill-pill">HTML5</span>
+            <span class="skill-pill">CSS3 &amp; Grid</span>
+            <span class="skill-pill">Vanilla JavaScript</span>
+            <span class="skill-pill">AJAX &amp; Fetch</span>
+            <span class="skill-pill">DOM Manipulation</span>
+            <span class="skill-pill">Canvas Animations</span>
+            <span class="skill-pill">Web Accessibility</span>
+            <span class="skill-pill">Git</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: Main Content -->
+      <div class="cv-main-content">
         
-        <div class="cv-info">
-          <p class="eyebrow">Curriculum Vitae</p>
-          <h1>Your Name Here</h1>
-          <p class="lead">
-            Aspiring web developer and problem solver focused on building thoughtful, 
-            accessible, and user-friendly digital experiences. This sample CV page presents 
-            the author as a candidate for entry-level software and web development roles 
-            while demonstrating advanced HTML, CSS, and JavaScript techniques.
-          </p>
-          
-          <div class="hero-actions">
-            <button type="button" class="btn btn-primary" id="highlight-skills">
-              Highlight Strengths
-            </button>
-            <a href="#references" class="btn btn-secondary">Jump to References</a>
-          </div>
-          
-          <div class="contact-row">
-            <span>📍 Perth, Western Australia</span>
-            <span>📞 +61 XXX XXX XXX</span>
-            <span>✉️ email@example.com</span>
-            <span>🔗 linkedin.com/in/yourname</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- CV Sections -->
-    <section class="section">
-      <div class="container cv-sections">
-        <!-- Professional Profile -->
-        <article class="glass-card skill-highlight-target">
+        <section class="cv-section glass-card skill-highlight-target">
+          <p class="eyebrow">About Me</p>
           <h2>Professional Profile</h2>
-          <p>
-            I am a motivated computing student with a strong interest in front-end development, 
-            interaction design, and practical software engineering. My work is shaped by two 
-            priorities: first, solving real user problems with clear and maintainable code; 
-            second, presenting information in a way that feels polished, accessible, and easy 
+          <p style="color:var(--text-2);line-height:1.85;margin-bottom:1rem">
+            I am a motivated computing student with a strong interest in front-end development,
+            interaction design, and practical software engineering. My work is shaped by two
+            priorities: first, solving real user problems with clear and maintainable code;
+            second, presenting information in a way that feels polished, accessible, and easy
             to understand.
           </p>
-          <p>
-            Through university projects and personal experimentation, I have developed experience 
-            using HTML5, CSS3, and JavaScript to transform requirements into interactive interfaces 
-            that feel consistent across pages and screen sizes.
+          <p style="color:var(--text-2);line-height:1.85">
+            Through university projects and personal experimentation, I have developed experience
+            using HTML5, CSS3, and JavaScript to transform requirements into interactive interfaces
+            that feel consistent across pages and screen sizes. I thrive in environments that value
+            code quality, visual attention to detail, and a thoughtful user experience.
           </p>
-        </article>
-        
-        <!-- Education -->
-        <article class="glass-card skill-highlight-target">
-          <h2>Education</h2>
-          <p>
-            <strong>Bachelor of Computer Science</strong> — University of Western Australia
-          </p>
-          <p>
-            Relevant coursework includes programming fundamentals, databases, web development, 
-            software design, and user interface principles. Key learning areas encompass semantic 
-            HTML, responsive CSS, JavaScript programming, version control with Git, and 
-            collaborative development practices.
-          </p>
-          <p>
-            Alongside formal coursework, I regularly reinforce concepts by rebuilding small 
-            interfaces, analysing existing websites, and experimenting with interactive patterns.
-          </p>
-        </article>
-        
-        <!-- Technical Skills -->
-        <article class="glass-card skill-highlight-target">
-          <h2>Technical Skills</h2>
-          <div class="skills-wrap">
-            <span class="skill-pill">HTML5 Semantics</span>
-            <span class="skill-pill">CSS3 & Flexbox</span>
-            <span class="skill-pill">CSS Grid</span>
-            <span class="skill-pill">Responsive Design</span>
-            <span class="skill-pill">JavaScript ES6+</span>
-            <span class="skill-pill">DOM Manipulation</span>
-            <span class="skill-pill">AJAX & Fetch API</span>
-            <span class="skill-pill">Git & GitHub</span>
-            <span class="skill-pill">Accessibility (a11y)</span>
-            <span class="skill-pill">UI/UX Principles</span>
-            <span class="skill-pill">Testing & Debugging</span>
-            <span class="skill-pill">VS Code</span>
+        </section>
+
+        <section class="cv-section glass-card skill-highlight-target">
+          <p class="eyebrow">Timeline</p>
+          <h2>Professional Experience</h2>
+          
+          <div class="experience-timeline">
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3>Frontend Developer Intern</h3>
+                <span class="exp-date">Nov 2025 – Feb 2026</span>
+              </div>
+              <p class="exp-org">TechNova Solutions, Perth</p>
+              <ul class="exp-bullets">
+                <li>Collaborated with the design team to implement responsive landing pages using Vanilla JS and CSS Grid.</li>
+                <li>Improved website accessibility scores from 78 to 99 on Google Lighthouse by enforcing semantic HTML5.</li>
+                <li>Participated in daily agile stand-ups and managed version control via Git.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3>Peer Mentor (Computer Science)</h3>
+                <span class="exp-date">Feb 2025 – Nov 2025</span>
+              </div>
+              <p class="exp-org">University of Western Australia</p>
+              <ul class="exp-bullets">
+                <li>Guided first-year students through introductory programming units (Python/Java).</li>
+                <li>Organized weekly study sessions focusing on algorithm fundamentals and debugging techniques.</li>
+                <li>Received a 95% positive feedback rating from mentored students for clear technical communication.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3>Freelance Web Designer</h3>
+                <span class="exp-date">Jan 2024 – Present</span>
+              </div>
+              <p class="exp-org">Self-Employed</p>
+              <ul class="exp-bullets">
+                <li>Designed and deployed custom portfolio websites for local freelance artists and photographers.</li>
+                <li>Built dynamic contact forms and galleries fetching data natively without front-end frameworks.</li>
+              </ul>
+            </div>
           </div>
-          <p>
-            I am especially interested in the intersection of technical implementation and user 
-            experience. I pay attention to naming conventions, code readability, visual hierarchy, 
-            colour contrast, navigation clarity, and feedback states.
+        </section>
+
+        <section class="cv-section glass-card skill-highlight-target">
+          <p class="eyebrow">Portfolio</p>
+          <h2>Featured Project: SkillLance</h2>
+          <p style="color:var(--text-2);line-height:1.85;margin-bottom:1rem">
+            This website itself demonstrates my capabilities. Built for CITS5505 Web Technologies,
+            it is a four-page interactive web application featuring:
           </p>
-        </article>
-        
-        <!-- Project Strengths -->
-        <article class="glass-card skill-highlight-target">
-          <h2>Project Strengths</h2>
-          <p>
-            My strongest project qualities are reliability, organisation, and adaptability. 
-            I break larger tasks into logical components, keep interface patterns consistent 
-            across multiple pages, and revise early drafts when they do not fully meet the brief.
-          </p>
-          <p>
-            I also communicate technical ideas clearly. Whether I am documenting a design choice, 
-            writing a tutorial, or reflecting on AI-assisted coding, I try to explain what was 
-            built, why it was built that way, and what trade-offs were involved.
-          </p>
-        </article>
-      </div>
-    </section>
-    
-    <!-- AJAX Demo Section -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="ajax-box glass-card">
-          <div>
-            <p class="eyebrow">Interactive Element</p>
-            <h2>Career Motivation</h2>
-            <p>
-              This panel uses AJAX to fetch a motivational quote from a public API, 
-              demonstrating client-side data retrieval on the CV page.
-            </p>
+          <div class="project-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem">
+            <div class="feature-box">📖 Interactive live code editors</div>
+            <div class="feature-box">🎯 AJAX-loaded quiz with saving</div>
+            <div class="feature-box">🤖 Critical AI reflection logging</div>
+            <div class="feature-box">✨ Dynamic 3D tilt &amp; Canvas particles</div>
           </div>
-          <button type="button" class="btn btn-primary" id="load-quote">
-            Load Motivation
-          </button>
-        </div>
-        
-        <div id="quote-output" class="quote-output">
-          <!-- Quote will be loaded here -->
-        </div>
-      </div>
-    </section>
-    
-    <!-- References Section -->
-    <section id="references" class="section">
-      <div class="container">
-        <div class="references-card glass-card">
+          <p style="color:var(--text-2);line-height:1.85">
+            <strong style="color:var(--text)">Technologies:</strong> HTML5, CSS3 (custom variables, Grid/Flexbox, keyframes),
+            vanilla JavaScript (Fetch API, DOM manipulation, localStorage, IntersectionObserver).
+          </p>
+        </section>
+
+        <!-- AJAX Demo -->
+        <section class="cv-section section-alt" style="border-radius:16px; padding:2rem;">
+          <div class="ajax-box">
+            <div>
+              <p class="eyebrow" style="margin-bottom:0.2rem">Interactive AJAX Display</p>
+              <h2 style="margin-bottom:0.5rem;font-size:1.5rem">Career Motivation</h2>
+              <p style="color:var(--text-2)">Fetches a daily motivational quote directly from a public API.</p>
+            </div>
+            <button type="button" class="btn btn-primary" id="load-quote" style="margin-top:1rem;margin-bottom:1.5rem">Load Motivation API</button>
+          </div>
+          <div id="quote-output" class="quote-output"></div>
+        </section>
+
+        <!-- References -->
+        <section id="references" class="cv-section glass-card" style="margin-top:2rem">
           <p class="eyebrow">References</p>
           <h2>Sources Consulted</h2>
-          
-          <ol class="references-list">
-            <li>
-              The University of Western Australia Library. <em>An Introduction to Referencing at UWA</em>. 
-              Available at: <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener">
-              https://guides.library.uwa.edu.au/referencinguwa</a> (Accessed: April 2026).
-            </li>
-            <li>
-              UWA CITS5505 unit materials and assessment description. 
-              Available at: <a href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener">
-              https://teaching.csse.uwa.edu.au/units/CITS5505/</a> (Accessed: April 2026).
-            </li>
-            <li>
-              MDN Web Docs. HTML, CSS and JavaScript guides. 
-              Available at: <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">
-              https://developer.mozilla.org/</a> (Accessed: April 2026).
-            </li>
-            <li>
-              Compliments API. Random compliment endpoint used for quiz rewards. 
-              Available at: <a href="https://compliments-api.vercel.app/random" target="_blank" rel="noopener">
-              https://compliments-api.vercel.app/random</a> (Accessed: April 2026).
-            </li>
-            <li>
-              Quotable API. Random quote endpoint used for CV motivation feature. 
-              Available at: <a href="https://api.quotable.io/" target="_blank" rel="noopener">
-              https://api.quotable.io/</a> (Accessed: April 2026).
-            </li>
-            <li>
-              AI assistance (Claude by Anthropic) used for brainstorming layout ideas, reviewing quiz logic, 
-              drafting tutorial wording, and reflecting on risks and limitations. All outputs were checked, 
-              edited, and adapted before inclusion.
-            </li>
+          <ol class="references-list" style="margin-left: 1.5rem; color: var(--text-2); display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+            <li>The University of Western Australia Library. <em>An Introduction to Referencing at UWA</em>. Available at: <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>UWA CITS5505 unit materials and assessment description. Available at: <a href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>MDN Web Docs. HTML, CSS and JavaScript guides. Available at: <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>Advice Slip API. Random advice endpoint. Available at: <a href="https://api.adviceslip.com/" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>Quotable API. Random quote endpoint. Available at: <a href="https://api.quotable.io/" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>I Can Haz Dad Joke API. Random joke endpoint. Available at: <a href="https://icanhazdadjoke.com/" target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
+            <li>AI assistance (Claude / Anthropic) used for code generation & debugging. Outputs critically evaluated.</li>
           </ol>
-        </div>
+        </section>
+
       </div>
-    </section>
+    </div>
   </main>
-  
-  <!-- Footer -->
+
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 SkillLance — A CITS5505 Web Technologies Project</p>
+    <div class="footer-glow"></div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="./index.html" class="footer-logo">
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbgc)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbgc)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbgc" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <span>SkillLance</span>
+        </a>
+      </div>
+      <div class="footer-copy"><p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p></div>
+      <div class="footer-code-float" aria-hidden="true">
+        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span>color: #818cf8; display: flex;</span>
+        <span>const app = () =&gt; { ... }</span>
+      </div>
     </div>
   </footer>
 </body>
