@@ -1,77 +1,152 @@
 [
   {
     "question": "What is the main purpose of HTML in a webpage?",
-    "options": ["To style the page", "To structure content", "To store data permanently", "To connect to a database"],
+    "options": [
+      "To style the page",
+      "To structure content",
+      "To store data permanently",
+      "To connect to a database"
+    ],
     "answer": "To structure content"
   },
   {
     "question": "Which HTML element is most suitable for primary page navigation?",
-    "options": ["<nav>", "<aside>", "<figure>", "<mark>"],
+    "options": [
+      "<nav>",
+      "<aside>",
+      "<figure>",
+      "<mark>"
+    ],
     "answer": "<nav>"
   },
   {
     "question": "What does CSS primarily control?",
-    "options": ["Visual presentation", "Server configuration", "Database queries", "File compression"],
+    "options": [
+      "Visual presentation",
+      "Server configuration",
+      "Database queries",
+      "File compression"
+    ],
     "answer": "Visual presentation"
   },
   {
     "question": "Which CSS property adds space inside an element's border?",
-    "options": ["margin", "padding", "outline", "display"],
+    "options": [
+      "margin",
+      "padding",
+      "outline",
+      "display"
+    ],
     "answer": "padding"
   },
   {
     "question": "What does JavaScript commonly do in the browser?",
-    "options": ["Adds interactivity", "Compiles CSS into HTML", "Replaces all HTML", "Creates hardware drivers"],
+    "options": [
+      "Adds interactivity",
+      "Compiles CSS into HTML",
+      "Replaces all HTML",
+      "Creates hardware drivers"
+    ],
     "answer": "Adds interactivity"
   },
   {
     "question": "Which JavaScript method is commonly used to react to a click?",
-    "options": ["querySelectorAll", "addEventListener", "parseInt", "setAttribute"],
+    "options": [
+      "querySelectorAll",
+      "addEventListener",
+      "parseInt",
+      "setAttribute"
+    ],
     "answer": "addEventListener"
   },
   {
     "question": "Why is semantic HTML useful?",
-    "options": ["It makes the internet faster by itself", "It improves structure and accessibility", "It removes the need for CSS", "It prevents all bugs"],
+    "options": [
+      "It makes the internet faster by itself",
+      "It improves structure and accessibility",
+      "It removes the need for CSS",
+      "It prevents all bugs"
+    ],
     "answer": "It improves structure and accessibility"
   },
   {
     "question": "What does AJAX allow a webpage to do?",
-    "options": ["Print paper forms", "Reload the operating system", "Fetch data without a full page reload", "Disable JavaScript"],
+    "options": [
+      "Print paper forms",
+      "Reload the operating system",
+      "Fetch data without a full page reload",
+      "Disable JavaScript"
+    ],
     "answer": "Fetch data without a full page reload"
   },
   {
     "question": "If a quiz app stores previous attempts in local storage, what kind of data can it keep?",
-    "options": ["Small text-based values in the browser", "Unlimited video files", "Only passwords", "Only CSS files"],
+    "options": [
+      "Small text-based values in the browser",
+      "Unlimited video files",
+      "Only passwords",
+      "Only CSS files"
+    ],
     "answer": "Small text-based values in the browser"
   },
   {
     "question": "Which statement best describes the relationship between HTML, CSS and JavaScript?",
-    "options": ["HTML styles, CSS calculates, JavaScript stores hardware settings", "HTML structures, CSS styles, JavaScript adds behaviour", "HTML runs databases, CSS writes servers, JavaScript prints pages", "HTML and CSS are identical"],
+    "options": [
+      "HTML styles, CSS calculates, JavaScript stores hardware settings",
+      "HTML structures, CSS styles, JavaScript adds behaviour",
+      "HTML runs databases, CSS writes servers, JavaScript prints pages",
+      "HTML and CSS are identical"
+    ],
     "answer": "HTML structures, CSS styles, JavaScript adds behaviour"
   },
   {
     "question": "What is the purpose of the alt attribute in an <img> tag?",
-    "options": ["To add a tooltip on hover", "To provide alternative text for accessibility", "To set the image size", "To link to another page"],
+    "options": [
+      "To add a tooltip on hover",
+      "To provide alternative text for accessibility",
+      "To set the image size",
+      "To link to another page"
+    ],
     "answer": "To provide alternative text for accessibility"
   },
   {
     "question": "Which CSS unit is relative to the font-size of the root element?",
-    "options": ["px", "em", "rem", "%"],
+    "options": [
+      "px",
+      "em",
+      "rem",
+      "%"
+    ],
     "answer": "rem"
   },
   {
     "question": "What does the DOM stand for?",
-    "options": ["Document Object Model", "Data Output Method", "Direct Object Manipulation", "Digital Outline Mode"],
+    "options": [
+      "Document Object Model",
+      "Data Output Method",
+      "Direct Object Manipulation",
+      "Digital Outline Mode"
+    ],
     "answer": "Document Object Model"
   },
   {
     "question": "Which CSS property is used to create flexible layouts?",
-    "options": ["float", "flexbox", "position", "display: flex"],
+    "options": [
+      "float",
+      "flexbox",
+      "position",
+      "display: flex"
+    ],
     "answer": "display: flex"
   },
   {
     "question": "What is the correct way to declare a JavaScript variable that can be reassigned?",
-    "options": ["const x = 5", "let x = 5", "var x = 5", "Both let and var"],
+    "options": [
+      "const x = 5",
+      "let x = 5",
+      "var x = 5",
+      "Both let and var"
+    ],
     "answer": "Both let and var"
   }
 ]

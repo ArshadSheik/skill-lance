@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
   <title>SkillLance - Home</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  
+
   <!-- Navigation -->
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <span class="logo-badge"></span>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
         SkillLance
       </a>
-      
       <div class="nav-links">
         <a href="./index.html" class="active">Home</a>
         <a href="./tutorial.html">Tutorial</a>
@@ -32,36 +29,36 @@
         <a href="./reflection.html">AI Reflection</a>
         <a href="./cv.html">CV</a>
       </div>
-      
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
-  
+
   <!-- Main Content -->
   <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
+      <div class="dot-pattern"></div>
       <div class="container hero-grid">
         <div>
           <p class="eyebrow-pill">✦ Learn → Practice → Reflect → Grow</p>
-          <h1>Master the foundations of <em>Web Development</em> with HTML, CSS and JavaScript</h1>
+          <h1>
+            Master the foundations of
+            <em>Web Development</em>
+            with HTML, CSS and JavaScript
+          </h1>
           <p class="lead">
-            Build confidence with HTML, CSS, and JavaScript through plain-language explanations, 
-            interactive demos, and a quiz that tests your understanding.
+            Learn HTML, CSS, and JavaScript through clear explanations, hands-on practice, and interactive challenges designed to build real understanding.
           </p>
           <div class="hero-actions">
-            <a href="tutorial.html" class="btn btn-primary btn-lg">Start Learning</a>
-            
+            <a href="tutorial.html" class="btn btn-primary btn-lg">Let's Start Learning!</a>
           </div>
         </div>
-        
+
         <aside class="hero-card glass-card">
           <h2>How this site works</h2>
           <ol>
@@ -73,122 +70,117 @@
         </aside>
       </div>
     </section>
-    
+
     <!-- Learning Path Section -->
     <section class="section learning-path-section">
+      <div class="path-section-bg"></div>
       <div class="container">
         <div class="section-intro">
-          <p class="eyebrow">Your Learning Journey</p>
+          <p class="eyebrow typing">Your Learning Journey</p>
           <h2>Follow the path to web mastery</h2>
           <p class="lead">Start with structure, add style, then bring it to life with behaviour.</p>
         </div>
-        
-        <div class="learning-path-full">
-          <a href="tutorial.html#html-section" class="path-card-large">
-            <div class="path-card-header">
-              <span class="path-icon-lg">🧱</span>
-              <span class="path-chip path-chip-html">HTML</span>
-            </div>
-            <h3>Structure</h3>
-            <p>Learn how HTML gives meaning to content with elements, tags, and semantic markup.</p>
-            <ul class="path-topics">
-              <li>Document structure</li>
-              <li>Semantic elements</li>
-              <li>Forms &amp; inputs</li>
-              <li>Links &amp; images</li>
-            </ul>
-            <span class="path-time-lg">~15 min</span>
-          </a>
-          
-          <div class="path-connector">
-            <span class="path-arrow-lg">→</span>
+
+        <div class="journey-timeline">
+          <div class="timeline-line" aria-hidden="true"></div>
+          <div class="learning-path-full">
+            <a href="tutorial.html#html" class="path-card-large path-glow-html">
+              <div class="path-card-header">
+                <span class="path-icon-lg">🧱</span>
+                <span class="path-chip path-chip-html">HTML</span>
+              </div>
+              <h3>Structure</h3>
+              <p>Learn how HTML gives meaning to content with elements, tags, and semantic markup.</p>
+              <ul class="path-topics">
+                <li>Document structure</li>
+                <li>Semantic elements</li>
+                <li>Forms &amp; inputs</li>
+                <li>Links &amp; images</li>
+              </ul>
+              <span class="path-time-lg">~15 min</span>
+            </a>
+
+            <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+            <a href="tutorial.html#css" class="path-card-large path-glow-css">
+              <div class="path-card-header">
+                <span class="path-icon-lg">🎨</span>
+                <span class="path-chip path-chip-css">CSS</span>
+              </div>
+              <h3>Style</h3>
+              <p>Control colours, fonts, spacing, and layout to make pages look professional.</p>
+              <ul class="path-topics">
+                <li>Selectors &amp; rules</li>
+                <li>Box model</li>
+                <li>Flexbox &amp; Grid</li>
+                <li>Responsive design</li>
+              </ul>
+              <span class="path-time-lg">~20 min</span>
+            </a>
+
+            <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+            <a href="tutorial.html#js" class="path-card-large path-glow-js">
+              <div class="path-card-header">
+                <span class="path-icon-lg">⚡</span>
+                <span class="path-chip path-chip-js">JS</span>
+              </div>
+              <h3>Behaviour</h3>
+              <p>Add interactivity with events, DOM manipulation, and data fetching.</p>
+              <ul class="path-topics">
+                <li>Variables &amp; functions</li>
+                <li>DOM manipulation</li>
+                <li>Event handling</li>
+                <li>AJAX &amp; localStorage</li>
+              </ul>
+              <span class="path-time-lg">~20 min</span>
+            </a>
+
+            <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+            <a href="quiz.html" class="path-card-large path-card-quiz-lg path-glow-quiz">
+              <div class="path-card-header">
+                <span class="path-icon-lg">🎯</span>
+                <span class="path-chip path-chip-quiz">Quiz</span>
+              </div>
+              <h3>Test</h3>
+              <p>Prove your understanding with a randomized 10-question quiz.</p>
+              <ul class="path-topics">
+                <li>10 random questions</li>
+                <li>70% to pass</li>
+                <li>Instant feedback</li>
+                <li>Score history saved</li>
+              </ul>
+              <span class="path-time-lg">~10 min</span>
+            </a>
           </div>
-          
-          <a href="tutorial.html#css-section" class="path-card-large">
-            <div class="path-card-header">
-              <span class="path-icon-lg">🎨</span>
-              <span class="path-chip path-chip-css">CSS</span>
-            </div>
-            <h3>Style</h3>
-            <p>Control colours, fonts, spacing, and layout to make pages look professional.</p>
-            <ul class="path-topics">
-              <li>Selectors &amp; rules</li>
-              <li>Box model</li>
-              <li>Flexbox &amp; Grid</li>
-              <li>Responsive design</li>
-            </ul>
-            <span class="path-time-lg">~20 min</span>
-          </a>
-          
-          <div class="path-connector">
-            <span class="path-arrow-lg">→</span>
-          </div>
-          
-          <a href="tutorial.html#js-section" class="path-card-large">
-            <div class="path-card-header">
-              <span class="path-icon-lg">⚡</span>
-              <span class="path-chip path-chip-js">JS</span>
-            </div>
-            <h3>Behaviour</h3>
-            <p>Add interactivity with events, DOM manipulation, and data fetching.</p>
-            <ul class="path-topics">
-              <li>Variables &amp; functions</li>
-              <li>DOM manipulation</li>
-              <li>Event handling</li>
-              <li>AJAX &amp; localStorage</li>
-            </ul>
-            <span class="path-time-lg">~20 min</span>
-          </a>
-          
-          <div class="path-connector">
-            <span class="path-arrow-lg">→</span>
-          </div>
-          
-          <a href="quiz.html" class="path-card-large path-card-quiz-lg">
-            <div class="path-card-header">
-              <span class="path-icon-lg">🎯</span>
-              <span class="path-chip path-chip-quiz">Quiz</span>
-            </div>
-            <h3>Test</h3>
-            <p>Prove your understanding with a randomized 10-question quiz.</p>
-            <ul class="path-topics">
-              <li>10 random questions</li>
-              <li>70% to pass</li>
-              <li>Instant feedback</li>
-              <li>Score history saved</li>
-            </ul>
-            <span class="path-time-lg">~10 min</span>
-          </a>
         </div>
       </div>
     </section>
-    
+
     <!-- Features Section -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-grid">
           <div class="section-heading">
-            <p class="eyebrow">What You'll Learn</p>
+            <p class="eyebrow typing">What You'll Learn</p>
             <h2>Three core technologies that power the web</h2>
           </div>
-          
+
           <div class="content-card card">
             <div class="two-col">
               <article>
                 <h3>📄 HTML</h3>
                 <p>Structure your content with semantic elements that browsers understand. Learn about headings, links, images, and forms.</p>
               </article>
-              
               <article>
                 <h3>🎨 CSS</h3>
                 <p>Style your pages with colors, layouts, and responsive design. Make your websites look polished and professional.</p>
               </article>
-              
               <article>
                 <h3>⚡ JavaScript</h3>
                 <p>Add interactivity with event handling, DOM manipulation, and asynchronous data fetching with AJAX.</p>
               </article>
-              
               <article>
                 <h3>🧪 Practice</h3>
                 <p>Apply what you learn with interactive demos and a quiz that loads questions dynamically from JSON.</p>
@@ -198,29 +190,60 @@
         </div>
       </div>
     </section>
-    
-    <!-- CTA Section -->
+
+    <!-- CTA Section — Climbing Steps -->
     <section class="section callout-section">
       <div class="container">
-        <div class="callout-card glass-card">
-          <div>
-            <p class="eyebrow">Ready to begin?</p>
-            <h2>Jump into the tutorial</h2>
-            <p>
-              Start with the basics and work your way up. Each concept builds on the previous one, 
-              giving you a solid foundation in web development.
-            </p>
+        <div class="climbing-cta">
+          <div class="steps-container">
+            <div class="step-block">
+              <div class="step-platform step-html">
+                <span class="step-icon">🧱</span>
+                HTML
+              </div>
+            </div>
+            <div class="step-block">
+              <div class="step-platform step-css">
+                <span class="step-icon">🎨</span>
+                CSS
+              </div>
+            </div>
+            <div class="step-block">
+              <div class="step-platform step-js">
+                <span class="step-icon">⚡</span>
+                JS
+              </div>
+            </div>
+            <div class="climber">🧑‍💻</div>
           </div>
-          <a href="tutorial.html" class="btn btn-primary btn-lg">Open Tutorial</a>
+          <div class="climbing-cta-text">
+            <h2>Climb the web dev ladder</h2>
+            <p>Each skill you master lifts you higher. Start with HTML structure, add CSS style, then power it all with JavaScript.</p>
+            <a href="tutorial.html" class="btn btn-primary btn-lg">Start Climbing →</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
-  
+
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 SkillLance — A CITS5505 Web Technologies Project · The University of Western Australia</p>
+    <footer class="site-footer">
+    <div class="footer-glow"></div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="./index.html" class="footer-logo">
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <span>SkillLance</span>
+        </a>
+      </div>
+      <div class="footer-copy">
+        <p>\&copy; 2026 SkillLance \&mdash; CITS5505 Web Technologies \&middot; The University of Western Australia</p>
+      </div>
+      <div class="footer-code-float" aria-hidden="true">
+        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span>color: #818cf8; display: flex;</span>
+        <span>const app = () =&gt; { ... }</span>
+      </div>
     </div>
   </footer>
 </body>

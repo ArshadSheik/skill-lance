@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
-  <title>SkillLance - Home</title>
+  <title>SkillLance - Tutorial</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,20 +14,19 @@
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
-<body>
+<body data-page="tutorial">
   <a class="skip-link" href="#main-content">Skip to content</a>
   
-  <!-- Navigation -->
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <span class="logo-badge"></span>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
         SkillLance
       </a>
       
       <div class="nav-links">
-        <a href="./index.html" class="active">Home</a>
-        <a href="./tutorial.html">Tutorial</a>
+        <a href="./index.html">Home</a>
+        <a href="./tutorial.html" class="active">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
         <a href="./cv.html">CV</a>
@@ -44,528 +43,682 @@
     </div>
   </nav>
   
-  <!-- Main Content -->
-  <main id="main-content">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow-pill">✦ CITS5505 · Web Technologies · UWA</p>
-          <h1>Learn the Web. <em>One Skill at a Time.</em></h1>
-          <p class="lead">
-            A structured, interactive guide to <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong> — 
-            the three technologies behind every website. Edit live code, see instant results.
-          </p>
-          <div class="hero-actions">
-            <a href="#html-section" class="btn btn-primary btn-lg">Start with HTML</a>
-            <a href="quiz.html" class="btn btn-secondary btn-lg">Take the Quiz</a>
-          </div>
-        </div>
-        
-        <!-- Learning Path Cards -->
-        <aside class="learning-path-cards">
-          <p class="path-label">Your learning path</p>
-          <div class="path-grid">
-            <a href="#html-section" class="path-card">
+  <header class="hero tutorial-hero" role="banner"><div class="dot-pattern"></div>
+    <div class="container">
+      <div class="hero-pill">✦ CITS5505 · Web Technologies · UWA</div>
+      <h1>Learn the Web.<br><em>One Skill at a Time.</em></h1>
+      <p class="lead">A structured, interactive guide to <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong> — the three technologies behind every website on the internet. Edit live code, see instant results.</p>
+      
+      <div class="learning-path" aria-label="Course learning path">
+        <p class="path-label">Your learning path</p>
+        <div class="path-cards">
+          
+          <a href="#html" class="path-card" aria-label="HTML section">
+            <div class="path-card-top">
               <span class="path-icon">🧱</span>
               <span class="path-chip path-chip-html">HTML</span>
-              <span class="path-title">Structure</span>
-              <span class="path-time">~15 min</span>
-            </a>
-            <span class="path-arrow">→</span>
-            <a href="#css-section" class="path-card">
+            </div>
+            <div class="path-card-title">Structure</div>
+            <ul class="path-topics">
+              <li>Document structure</li>
+              <li>Semantic elements</li>
+              <li>Forms &amp; inputs</li>
+              <li>✏️ Try it editor</li>
+            </ul>
+            <div class="path-time">~15 min</div>
+          </a>
+          
+          <div class="path-arrow" aria-hidden="true">→</div>
+          
+          <a href="#css" class="path-card" aria-label="CSS section">
+            <div class="path-card-top">
               <span class="path-icon">🎨</span>
               <span class="path-chip path-chip-css">CSS</span>
-              <span class="path-title">Style</span>
-              <span class="path-time">~20 min</span>
-            </a>
-            <span class="path-arrow">→</span>
-            <a href="#js-section" class="path-card">
+            </div>
+            <div class="path-card-title">Style</div>
+            <ul class="path-topics">
+              <li>Box model &amp; selectors</li>
+              <li>Flexbox &amp; Grid</li>
+              <li>🎛 2× live playgrounds</li>
+            </ul>
+            <div class="path-time">~20 min</div>
+          </a>
+          
+          <div class="path-arrow" aria-hidden="true">→</div>
+          
+          <a href="#js" class="path-card" aria-label="JavaScript section">
+            <div class="path-card-top">
               <span class="path-icon">⚡</span>
               <span class="path-chip path-chip-js">JS</span>
-              <span class="path-title">Behaviour</span>
-              <span class="path-time">~20 min</span>
-            </a>
-            <span class="path-arrow">→</span>
-            <a href="quiz.html" class="path-card path-card-quiz">
+            </div>
+            <div class="path-card-title">Behaviour</div>
+            <ul class="path-topics">
+              <li>DOM Manipulation</li>
+              <li>Event handling</li>
+              <li>🔴 3× live demos</li>
+            </ul>
+            <div class="path-time">~20 min</div>
+          </a>
+          
+          <div class="path-arrow" aria-hidden="true">→</div>
+          
+          <a href="quiz.html" class="path-card path-card-quiz" aria-label="Quiz">
+            <div class="path-card-top">
               <span class="path-icon">🎯</span>
               <span class="path-chip path-chip-quiz">Quiz</span>
-              <span class="path-title">Test</span>
-              <span class="path-time">10 Q's</span>
-            </a>
-          </div>
-        </aside>
-      </div>
-    </section>
-    
-    <!-- ═══ HTML SECTION ═══ -->
-    <section id="html-section" class="section">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <p class="eyebrow">🧱 HTML</p>
-          <h2>HTML gives structure and meaning to content</h2>
-        </div>
-        
-        <div class="content-card card">
-          <p>
-            <strong>HTML (HyperText Markup Language)</strong> is the foundation of every web page. It uses a system of 
-            <strong>elements</strong> — made up of opening and closing tags — to give content meaning and structure. 
-            Every website you've ever visited began as HTML.
-          </p>
-          
-          <div class="two-col">
-            <article>
-              <h3>Document Structure</h3>
-              <p class="text-muted">Every valid HTML document follows this required structure:</p>
-              <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8" /&gt;
-    &lt;title&gt;Page Title&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;!-- Content goes here --&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-            </article>
-            
-            <article>
-              <h3>Common Elements</h3>
-              <ul>
-                <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> — headings (h1 is most important)</li>
-                <li><code>&lt;p&gt;</code> — paragraphs of text</li>
-                <li><code>&lt;a href="..."&gt;</code> — links to other pages</li>
-                <li><code>&lt;img src="..." alt="..."&gt;</code> — images</li>
-                <li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code> — lists</li>
-                <li><code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> — generic containers</li>
-              </ul>
-            </article>
-          </div>
-          
-          <!-- Semantic HTML -->
-          <div class="info-block">
-            <h3>Semantic HTML</h3>
-            <p>
-              Semantic elements describe their purpose: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, 
-              <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, 
-              <code>&lt;footer&gt;</code>. They improve accessibility (screen readers understand them) and SEO.
-            </p>
-          </div>
-          
-          <!-- HTML Demo -->
-          <div class="demo-card">
-            <h3>🧪 Interactive: Semantic Element Explorer</h3>
-            <p>Click an element to learn what role it plays on a page.</p>
-            
-            <div class="chips" data-html-demo>
-              <button type="button" class="chip active" data-concept="header">header</button>
-              <button type="button" class="chip" data-concept="nav">nav</button>
-              <button type="button" class="chip" data-concept="main">main</button>
-              <button type="button" class="chip" data-concept="section">section</button>
-              <button type="button" class="chip" data-concept="article">article</button>
-              <button type="button" class="chip" data-concept="aside">aside</button>
-              <button type="button" class="chip" data-concept="footer">footer</button>
-              <button type="button" class="chip" data-concept="form">form</button>
             </div>
-            
-            <div class="demo-output" data-html-output>
-              <strong>&lt;header&gt;</strong> introduces a page or section with branding, navigation, or a title. It helps users orient themselves.
-            </div>
-          </div>
+            <div class="path-card-title">Test Yourself</div>
+            <ul class="path-topics">
+              <li>10 questions</li>
+              <li>Auto-graded</li>
+              <li>Pass at 70%</li>
+              <li>🏆 Earn a reward</li>
+            </ul>
+            <div class="path-time">~10 min</div>
+          </a>
           
-          <!-- Forms Section -->
-          <div class="info-block">
-            <h3>HTML Forms</h3>
-            <p>
-              Forms collect user input using elements like <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, 
-              <code>&lt;select&gt;</code>, and <code>&lt;button&gt;</code>. Each input needs a <code>&lt;label&gt;</code> 
-              for accessibility.
-            </p>
-            <pre><code>&lt;form action="/submit" method="POST"&gt;
-  &lt;label for="email"&gt;Email:&lt;/label&gt;
-  &lt;input type="email" id="email" name="email" required /&gt;
-  
-  &lt;label for="message"&gt;Message:&lt;/label&gt;
-  &lt;textarea id="message" name="message"&gt;&lt;/textarea&gt;
-  
-  &lt;button type="submit"&gt;Send&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-          </div>
-          
-          <!-- Try It Yourself -->
-          <div class="demo-card">
-            <h3>✏️ Try It Yourself: HTML Editor</h3>
-            <p>Edit the HTML below and click <strong>Run</strong> to see the result.</p>
-            
-            <div class="tryit-container">
-              <div class="tryit-editor">
-                <div class="tryit-header">
-                  <span class="tryit-dot red"></span>
-                  <span class="tryit-dot yellow"></span>
-                  <span class="tryit-dot green"></span>
-                  <span class="tryit-title">index.html</span>
-                </div>
-                <textarea id="html-editor" spellcheck="false">&lt;h1&gt;Hello, World! 🚀&lt;/h1&gt;
-&lt;p&gt;This is my first paragraph.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTML provides structure&lt;/li&gt;
-  &lt;li&gt;CSS adds style&lt;/li&gt;
-  &lt;li&gt;JavaScript adds behaviour&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;a href="#"&gt;Click me!&lt;/a&gt;</textarea>
-                <button type="button" class="btn btn-primary tryit-run" id="html-run">▶ Run</button>
-              </div>
-              <div class="tryit-preview">
-                <div class="tryit-header">
-                  <span class="tryit-title">Preview</span>
-                </div>
-                <iframe id="html-preview" title="HTML preview"></iframe>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-    
-    <!-- ═══ CSS SECTION ═══ -->
-    <section id="css-section" class="section section-alt">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <p class="eyebrow">🎨 CSS</p>
-          <h2>CSS controls presentation and layout</h2>
-        </div>
-        
-        <div class="content-card card">
-          <p>
-            <strong>CSS (Cascading Style Sheets)</strong> controls how your HTML looks — colours, fonts, sizes, spacing, 
-            layout, and animations. Without CSS, the web would be plain black text on a white background.
-          </p>
-          
-          <div class="two-col">
-            <article>
-              <h3>CSS Syntax</h3>
-              <p class="text-muted">A CSS rule has a selector and declaration block:</p>
-              <pre><code>selector {
-  property: value;
-  property: value;
-}
+    </div>
+  </header>
 
-/* Example */
-.card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}</code></pre>
-            </article>
-            
-            <article>
-              <h3>Selectors</h3>
-              <ul>
-                <li><code>p</code> — element selector (all paragraphs)</li>
-                <li><code>.card</code> — class selector (class="card")</li>
-                <li><code>#hero</code> — ID selector (id="hero")</li>
-                <li><code>nav a</code> — descendant (links inside nav)</li>
-                <li><code>a:hover</code> — pseudo-class (on hover)</li>
-                <li><code>h2::before</code> — pseudo-element</li>
-              </ul>
-            </article>
+  <div class="page-wrap container">
+    
+    <aside class="toc-sidebar" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <nav class="toc-links">
+        <a href="#html"           id="toc-html">🌐 HTML</a>
+        <a href="#html-structure" id="toc-html-structure" class="sub">Document Structure</a>
+        <a href="#html-elements"  id="toc-html-elements"  class="sub">Elements & Tags</a>
+        <a href="#html-semantic"  id="toc-html-semantic"  class="sub">Semantic HTML</a>
+        <a href="#html-tryit"     id="toc-html-tryit"     class="sub">▶ Try it Yourself</a>
+        <a href="#html-forms"     id="toc-html-forms"     class="sub">Forms & Input</a>
+        <div class="toc-divider"></div>
+        <a href="#css"            id="toc-css">🎨 CSS</a>
+        <a href="#css-selectors"  id="toc-css-selectors"  class="sub">Selectors</a>
+        <a href="#css-boxmodel"   id="toc-css-boxmodel"   class="sub">Box Model</a>
+        <a href="#css-playground" id="toc-css-playground" class="sub">▶ Box Model Explorer</a>
+        <a href="#css-properties" id="toc-css-properties" class="sub">▶ Property Playground</a>
+        <a href="#css-flexbox"    id="toc-css-flexbox"    class="sub">Flexbox</a>
+        <a href="#css-grid"       id="toc-css-grid"       class="sub">CSS Grid</a>
+        <div class="toc-divider"></div>
+        <a href="#js"             id="toc-js">⚡ JavaScript</a>
+        <a href="#js-vars"        id="toc-js-vars"        class="sub">Variables & Functions</a>
+        <a href="#js-dom"         id="toc-js-dom"         class="sub">DOM Manipulation</a>
+        <a href="#js-events"      id="toc-js-events"      class="sub">Events</a>
+        <a href="#js-demos"       id="toc-js-demos"       class="sub">▶ Live Demos</a>
+        <div class="toc-divider"></div>
+        <a href="#quiz-cta"       id="toc-quiz-cta">🎯 Take the Quiz</a>
+      </nav>
+    </aside>
+
+    <main id="main-content" class="tutorial-main">
+
+      <section class="content-section" id="html" aria-labelledby="html-h2">
+        <div class="section-head">
+          <div class="section-icon icon-html" aria-hidden="true">🧱</div>
+          <h2 id="html-h2">HTML — Structure</h2>
+        </div>
+
+        <p>
+          <strong>HTML (HyperText Markup Language)</strong> is the foundation of every web page. It uses a system of <strong>elements</strong> — made up of opening and closing tags — to give content meaning and structure. Every website you've ever visited began as HTML.
+        </p>
+        <p>
+          HTML tells the browser <em>what</em> the content is: a heading, a paragraph, a link, an image. CSS then decides how it <em>looks</em>, and JavaScript makes it <em>behave</em>.
+        </p>
+
+        <h3 id="html-structure">Document Structure</h3>
+        <p>Every valid HTML document follows a required structure. Missing any of these pieces can cause browsers to render your page incorrectly.</p>
+
+        <div class="code-window" role="region" aria-label="HTML document structure code example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">index.html</span>
           </div>
-          
-          <!-- Box Model -->
-          <div class="info-block">
-            <h3>The Box Model</h3>
-            <p>
-              Every HTML element is a rectangular box with four layers: <strong>content</strong> (the actual text/image), 
-              <strong>padding</strong> (space inside the border), <strong>border</strong> (the edge), and 
-              <strong>margin</strong> (space outside the border).
-            </p>
-            <div class="box-model-visual">
-              <div class="bm-margin">
-                <span class="bm-label">margin</span>
-                <div class="bm-border">
-                  <span class="bm-label bm-label-border">border</span>
-                  <div class="bm-padding">
-                    <span class="bm-label bm-label-padding">padding</span>
-                    <div class="bm-content">content</div>
+          <pre><code><span class="cm">&lt;!-- DOCTYPE tells the browser this is HTML5 --&gt;</span>
+<span class="t">&lt;!DOCTYPE html&gt;</span>
+
+<span class="t">&lt;html</span> <span class="at">lang</span>=<span class="vl">"en"</span><span class="t">&gt;</span>          <span class="cm">&lt;!-- lang attr aids screen readers &amp; SEO --&gt;</span>
+  <span class="t">&lt;head&gt;</span>             <span class="cm">&lt;!-- Metadata: not shown on page --&gt;</span>
+    <span class="t">&lt;meta</span> <span class="at">charset</span>=<span class="vl">"UTF-8"</span> <span class="t">/&gt;</span>
+    <span class="t">&lt;meta</span> <span class="at">name</span>=<span class="vl">"viewport"</span> <span class="at">content</span>=<span class="vl">"width=device-width, initial-scale=1.0"</span> <span class="t">/&gt;</span>
+    <span class="t">&lt;title&gt;</span>My First Page<span class="t">&lt;/title&gt;</span>    <span class="cm">&lt;!-- Appears in browser tab --&gt;</span>
+    <span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"stylesheet"</span> <span class="at">href</span>=<span class="vl">"style.css"</span> <span class="t">/&gt;</span>
+  <span class="t">&lt;/head&gt;</span>
+  <span class="t">&lt;body&gt;</span>             <span class="cm">&lt;!-- Everything visible goes here --&gt;</span>
+    <span class="t">&lt;h1&gt;</span>Hello, World!<span class="t">&lt;/h1&gt;</span>
+    <span class="t">&lt;p&gt;</span>My first web page.<span class="t">&lt;/p&gt;</span>
+    <span class="t">&lt;script</span> <span class="at">defer</span> <span class="at">src</span>=<span class="vl">"script.js"</span><span class="t">&gt;&lt;/script&gt;</span>
+  <span class="t">&lt;/body&gt;</span>
+<span class="t">&lt;/html&gt;</span></code></pre>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>💡 Key rule:</strong> Always include <code>lang</code> on <code>&lt;html&gt;</code> and a <code>viewport</code> meta tag. These two lines improve accessibility and ensure your site works correctly on mobile devices.
+        </div>
+
+        <h3 id="html-elements">Common HTML Elements</h3>
+        <p>HTML has over 100 elements. These are the most important ones you'll use every day:</p>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;h1&gt; → &lt;h6&gt;</div>
+            <div class="card-desc">Headings ranked by importance. Use only one <code>&lt;h1&gt;</code> per page.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;p&gt;</div>
+            <div class="card-desc">Paragraph of text. Block-level — browsers add spacing above and below.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;a href=""&gt;</div>
+            <div class="card-desc">Hyperlink. The <code>href</code> attribute sets the destination URL.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;img src="" alt=""&gt;</div>
+            <div class="card-desc">Embeds an image. Always write descriptive <code>alt</code> text for accessibility.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;ul&gt; &lt;ol&gt;</div>
+            <div class="card-desc">Unordered (bullets) and ordered (numbered) lists. Children must be <code>&lt;li&gt;</code>.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;button&gt;</div>
+            <div class="card-desc">A clickable button. Always prefer <code>&lt;button&gt;</code> over <code>&lt;div onclick&gt;</code>.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;input&gt;</div>
+            <div class="card-desc">Form input field. Use <code>type</code> attribute: text, email, checkbox, range, etc.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;div&gt; &lt;span&gt;</div>
+            <div class="card-desc">Generic containers with no semantic meaning. Used for grouping and styling.</div>
+          </div>
+        </div>
+
+        <h3 id="html-semantic">Semantic HTML5</h3>
+        <p>
+          HTML5 introduced <strong>semantic elements</strong> — tags that describe the <em>purpose</em> of their content, not just its appearance. Search engines, screen readers, and other tools use these to understand your page.
+        </p>
+
+        <ul class="info-list" aria-label="Semantic HTML5 elements">
+          <li><span class="tag">&lt;header&gt;</span><span>Introductory content, site logo, or navigation. Appears at the top of a page or section.</span></li>
+          <li><span class="tag">&lt;nav&gt;</span><span>Primary navigation links. Screen readers use this to help users skip to navigation.</span></li>
+          <li><span class="tag">&lt;main&gt;</span><span>The primary content of the document. Only one <code>&lt;main&gt;</code> per page.</span></li>
+          <li><span class="tag">&lt;section&gt;</span><span>A thematic grouping of content, typically with a heading. More meaningful than <code>&lt;div&gt;</code>.</span></li>
+          <li><span class="tag">&lt;article&gt;</span><span>Self-contained content that makes sense standalone — a blog post, news story, or comment.</span></li>
+          <li><span class="tag">&lt;aside&gt;</span><span>Content tangentially related to the main content — sidebars, pull quotes, or related links.</span></li>
+          <li><span class="tag">&lt;footer&gt;</span><span>Footer information: copyright, authorship, site links. Can appear on a page or within a section.</span></li>
+        </ul>
+
+        <div class="alert alert-success">
+          <strong>✅ Best practice:</strong> Use semantic elements instead of generic <code>&lt;div&gt;</code> wherever possible. A page built with <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, and <code>&lt;footer&gt;</code> is more accessible and SEO-friendly than one built entirely with <code>&lt;div&gt;</code> tags.
+        </div>
+
+        <h3 id="html-tryit">▶ Try it Yourself — HTML Editor</h3>
+        <p>Edit the HTML code on the left and click <strong>Run</strong> to see your changes instantly in the preview panel. This is how browsers work — they read your HTML and render it.</p>
+
+        <div class="tryit-wrap" role="region" aria-label="Interactive HTML editor">
+          <div class="tryit-header">
+            <span><span class="live-dot" aria-hidden="true"></span>Interactive HTML Editor</span>
+            <button class="tryit-run" id="html-run" aria-label="Run HTML code">▶ Run</button>
+          </div>
+          <div class="tryit-body">
+            <div class="tryit-editor">
+              <textarea id="html-editor" aria-label="HTML code editor" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; padding: 16px; }
+    h1 { color: #818cf8; }
+    .card {
+      background: #f1f5f9;
+      border: 2px solid #818cf8;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      color: #1e293b;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, SkillLance! 🚀&lt;/h1&gt;
+  &lt;p&gt;Edit this code and click &lt;strong&gt;Run&lt;/strong&gt;.&lt;/p&gt;
+  &lt;div class="card"&gt;
+    &lt;p&gt;Try adding more elements below:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;A link: &lt;a href="#"&gt;Click me&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Bold: &lt;strong&gt;important&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Italic: &lt;em&gt;emphasis&lt;/em&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;button onclick="alert('You clicked a button!')"&gt;
+    Click Me
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+            </div>
+            <div class="tryit-preview">
+              <iframe id="html-preview" title="HTML preview" aria-label="Live HTML preview"></iframe>
+            </div>
+          </div>
+          <div class="tryit-footer">💡 Tip: Try changing the heading text, the colour in the style, or adding a new &lt;p&gt; element.</div>
+        </div>
+
+        <h3 id="html-forms">Forms & User Input</h3>
+        <p>
+          <strong>Forms</strong> collect user input and send it to a server. They're essential for login pages, search bars, contact forms, surveys, and any interactive data collection. Every <code>&lt;input&gt;</code> should have a <code>&lt;label&gt;</code> for accessibility.
+        </p>
+
+        <div class="code-window" role="region" aria-label="HTML forms code example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">forms.html</span>
+          </div>
+          <pre><code><span class="t">&lt;form</span> <span class="at">action</span>=<span class="vl">"/submit"</span> <span class="at">method</span>=<span class="vl">"POST"</span><span class="t">&gt;</span>
+  <span class="cm">&lt;!-- Text input with associated label --&gt;</span>
+  <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"username"</span><span class="t">&gt;</span>Username:<span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"text"</span> <span class="at">id</span>=<span class="vl">"username"</span> <span class="at">name</span>=<span class="vl">"username"</span> <span class="at">required</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Password input (dots hide text) --&gt;</span>
+  <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"password"</span><span class="t">&gt;</span>Password:<span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"password"</span> <span class="at">id</span>=<span class="vl">"password"</span> <span class="at">name</span>=<span class="vl">"password"</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Email input (browser validates format) --&gt;</span>
+  <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"email"</span><span class="t">&gt;</span>Email:<span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"email"</span> <span class="at">id</span>=<span class="vl">"email"</span> <span class="at">name</span>=<span class="vl">"email"</span> <span class="at">placeholder</span>=<span class="vl">"you@example.com"</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Dropdown select --&gt;</span>
+  <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"country"</span><span class="t">&gt;</span>Country:<span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;select</span> <span class="at">id</span>=<span class="vl">"country"</span> <span class="at">name</span>=<span class="vl">"country"</span><span class="t">&gt;</span>
+    <span class="t">&lt;option</span> <span class="at">value</span>=<span class="vl">""</span><span class="t">&gt;</span>Select...<span class="t">&lt;/option&gt;</span>
+    <span class="t">&lt;option</span> <span class="at">value</span>=<span class="vl">"au"</span><span class="t">&gt;</span>Australia<span class="t">&lt;/option&gt;</span>
+    <span class="t">&lt;option</span> <span class="at">value</span>=<span class="vl">"uk"</span><span class="t">&gt;</span>United Kingdom<span class="t">&lt;/option&gt;</span>
+  <span class="t">&lt;/select&gt;</span>
+
+  <span class="cm">&lt;!-- Submit button --&gt;</span>
+  <span class="t">&lt;button</span> <span class="at">type</span>=<span class="vl">"submit"</span><span class="t">&gt;</span>Sign Up<span class="t">&lt;/button&gt;</span>
+<span class="t">&lt;/form&gt;</span></code></pre>
+        </div>
+
+      </section>
+
+
+      <section class="content-section" id="css" aria-labelledby="css-h2">
+        <div class="section-head">
+          <div class="section-icon icon-css" aria-hidden="true">🎨</div>
+          <h2 id="css-h2">CSS — Presentation</h2>
+        </div>
+
+        <p>
+          <strong>CSS (Cascading Style Sheets)</strong> controls how your HTML looks — colours, fonts, sizes, spacing, layout, and animations. Without CSS, the web would be plain text.
+        </p>
+        <p>
+          The word <em>cascading</em> refers to how multiple rules can apply to one element, with a specific order of priority (specificity) determining which wins.
+        </p>
+
+        <h3 id="css-selectors">Selectors & Rules</h3>
+        <p>A CSS rule has two parts: a <strong>selector</strong> (which elements to target) and a <strong>declaration block</strong> (the styles to apply).</p>
+
+        <div class="selector-demo" role="list" aria-label="CSS selector types">
+          <div class="sel-row" role="listitem"><div class="sel-syntax">p { }</div><div class="sel-desc">Targets all <code>&lt;p&gt;</code> elements. Lowest specificity — easy to override.</div></div>
+          <div class="sel-row" role="listitem"><div class="sel-syntax">.card { }</div><div class="sel-desc">Targets all elements with <code>class="card"</code>. Can apply to many elements.</div></div>
+          <div class="sel-row" role="listitem"><div class="sel-syntax">#hero { }</div><div class="sel-desc">Targets the single element with <code>id="hero"</code>. High specificity.</div></div>
+          <div class="sel-row" role="listitem"><div class="sel-syntax">nav a { }</div><div class="sel-desc">Descendant — all <code>&lt;a&gt;</code> links <em>inside</em> any <code>&lt;nav&gt;</code> element.</div></div>
+          <div class="sel-row" role="listitem"><div class="sel-syntax">a:hover { }</div><div class="sel-desc">Pseudo-class — applies only when the user hovers their mouse over the link.</div></div>
+        </div>
+
+        <h3 id="css-boxmodel">The CSS Box Model</h3>
+        <p>
+          Every HTML element is rendered as a rectangular box. The <strong>box model</strong> describes four layers that surround every element. Understanding this is the single most important concept in CSS layout.
+        </p>
+
+        <ul class="info-list" aria-label="Box model layer descriptions">
+          <li><span class="tag">content</span><span>The actual text, image, or other content inside the element. Width and height set the size of this layer.</span></li>
+          <li><span class="tag">padding</span><span>Transparent space <em>inside</em> the border. Adds breathing room between content and border. Has the element's background colour.</span></li>
+          <li><span class="tag">border</span><span>A visible (or invisible) line around the padding. Can be styled with width, colour, and style.</span></li>
+          <li><span class="tag">margin</span><span>Transparent space <em>outside</em> the border. Creates distance between adjacent elements. Always transparent.</span></li>
+        </ul>
+
+        <div class="alert alert-warn">
+          <strong>⚠️ Common pitfall:</strong> By default, <code>width</code> only sets the <strong>content</strong> width. Add <code>box-sizing: border-box</code> to your CSS reset so that padding and border are included in the element's declared width.
+        </div>
+
+        <h3 id="css-playground">▶ Interactive: Box Model Explorer</h3>
+        <p>Drag the sliders to change <strong>padding</strong>, <strong>border</strong>, and <strong>margin</strong>. Watch how each layer expands around the content.</p>
+
+        <div class="demo-box">
+          <div class="demo-header">
+            <span class="demo-dot" aria-hidden="true"></span>
+            Box Model — Adjust each layer live
+          </div>
+          <div class="demo-body">
+            <div class="bm-interactive">
+              <div class="bm-controls">
+                <div class="ctrl">
+                  <label>Margin <span id="bmi-mg-v" style="color:var(--amber)">20px</span></label>
+                  <input type="range" id="bmi-mg" min="0" max="50" value="20" aria-label="Margin">
+                </div>
+                <div class="ctrl">
+                  <label>Border <span id="bmi-bd-v" style="color:var(--coral)">4px</span></label>
+                  <input type="range" id="bmi-bd" min="0" max="20" value="4" aria-label="Border width">
+                </div>
+                <div class="ctrl">
+                  <label>Padding <span id="bmi-pd-v" style="color:var(--green)">20px</span></label>
+                  <input type="range" id="bmi-pd" min="0" max="50" value="20" aria-label="Padding">
+                </div>
+              </div>
+              <div class="bm-live-area" aria-live="polite">
+                <div class="bm-live-margin" id="bmi-margin-el">
+                  <span class="bm-live-label" style="color:var(--amber)">margin</span>
+                  <div class="bm-live-border" id="bmi-border-el">
+                    <span class="bm-live-label" style="color:var(--coral)">border</span>
+                    <div class="bm-live-padding" id="bmi-padding-el">
+                      <span class="bm-live-label" style="color:var(--green)">padding</span>
+                      <div class="bm-live-content">
+                        <span style="font-family:'Fira Code',monospace;font-size:.78rem;color:var(--accent-txt)">content</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <!-- Flexbox & Grid -->
-          <div class="two-col">
-            <article>
-              <h3>Flexbox Layout</h3>
-              <p class="text-muted">One-dimensional layout (row or column):</p>
-              <pre><code>.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}</code></pre>
-            </article>
-            
-            <article>
-              <h3>CSS Grid Layout</h3>
-              <p class="text-muted">Two-dimensional layout (rows and columns):</p>
-              <pre><code>.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}</code></pre>
-            </article>
-          </div>
-          
-          <!-- CSS Theme Demo -->
-          <div class="demo-card">
-            <h3>🎨 Interactive: Theme Switcher</h3>
-            <p>Click the buttons to change the preview card's style using CSS classes.</p>
-            
-            <div class="chips">
-              <button type="button" class="chip active" data-style="theme-a">Indigo &amp; Green</button>
-              <button type="button" class="chip" data-style="theme-b">Amber &amp; Coral</button>
-              <button type="button" class="chip" data-style="theme-c">Purple &amp; Blue</button>
-            </div>
-            
-            <div class="style-demo theme-a" data-style-demo>
-              <h4>Preview Card</h4>
-              <p>The same HTML can look completely different when CSS changes.</p>
-            </div>
-          </div>
-          
-          <!-- CSS Playground -->
-          <div class="demo-card">
-            <h3>🎛️ Interactive: CSS Property Playground</h3>
-            <p>Adjust the sliders to see how CSS properties affect the box below.</p>
-            
-            <div class="css-playground">
-              <div class="playground-controls">
-                <div class="control-group">
-                  <label>background-color</label>
-                  <input type="color" id="css-bg" value="#818cf8" />
-                </div>
-                <div class="control-group">
-                  <label>border-radius: <span id="css-radius-val">8px</span></label>
-                  <input type="range" id="css-radius" min="0" max="50" value="8" />
-                </div>
-                <div class="control-group">
-                  <label>padding: <span id="css-padding-val">20px</span></label>
-                  <input type="range" id="css-padding" min="0" max="60" value="20" />
-                </div>
-                <div class="control-group">
-                  <label>opacity: <span id="css-opacity-val">1</span></label>
-                  <input type="range" id="css-opacity" min="0.1" max="1" step="0.1" value="1" />
-                </div>
+            <div class="code-window" style="margin-top:1rem">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">box-model.css</span>
               </div>
-              <div class="playground-preview">
-                <div id="css-box" class="css-preview-box">div.box</div>
-              </div>
+              <pre style="padding:.85rem 1.25rem"><code id="bmi-code" style="font-family:'Fira Code',monospace;font-size:.8rem;line-height:1.8;color:var(--code-text)"></code></pre>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    
-    <!-- ═══ JAVASCRIPT SECTION ═══ -->
-    <section id="js-section" class="section">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <p class="eyebrow">⚡ JavaScript</p>
-          <h2>JavaScript adds behaviour and interactivity</h2>
-        </div>
-        
-        <div class="content-card card">
-          <p>
-            <strong>JavaScript</strong> is the programming language of the web. It runs directly in your browser and can 
-            respond to user actions, update the page content, fetch data from servers, store information locally, and 
-            much more — all without reloading the page.
-          </p>
-          
-          <div class="two-col">
-            <article>
-              <h3>Variables & Data Types</h3>
-              <pre><code>// Variables
-const siteName = "SkillLance";  // constant
-let count = 0;                   // can change
 
-// Data types
-const text = "Hello";            // string
-const num = 42;                  // number
-const active = true;             // boolean
-const tags = ["html", "css"];    // array
-const user = { name: "Alex" };   // object</code></pre>
-            </article>
-            
-            <article>
-              <h3>Functions</h3>
-              <pre><code>// Regular function
-function greet(name) {
-  return "Hello, " + name + "!";
+        <h3 id="css-properties">▶ CSS Property Playground</h3>
+        <p>Adjust the controls below to change the CSS properties applied to the <code>.box</code> element. See the result and the generated code instantly.</p>
+
+        <div class="html-css-connect" aria-label="HTML and CSS connection diagram">
+          <div class="connect-side">
+            <div class="connect-label connect-label-html">HTML</div>
+            <div class="code-window" style="margin:0">
+              <div class="code-bar" style="padding:.4rem .85rem">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">index.html</span>
+              </div>
+              <pre style="padding:.85rem 1rem;font-size:.8rem"><code><span class="t">&lt;div</span> <span class="at">class</span>=<span class="vl">"box"</span><span class="t">&gt;</span>
+  I'm the box!
+<span class="t">&lt;/div&gt;</span></code></pre>
+            </div>
+          </div>
+          <div class="connect-arrow" aria-hidden="true">
+            <span>🎯 .box targets<br>this element</span>
+            <span style="font-size:1.5rem">⟷</span>
+          </div>
+          <div class="connect-side">
+            <div class="connect-label connect-label-css">CSS</div>
+            <div class="code-window" style="margin:0">
+              <div class="code-bar" style="padding:.4rem .85rem">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">style.css</span>
+              </div>
+              <pre style="padding:.85rem 1rem;font-size:.8rem"><code><span class="at">.box</span> {
+  <span class="at">background</span>: <span class="vl">#818cf8</span>;
+  <span class="at">color</span>: <span class="vl">white</span>;
+  <span class="cm">/* your styles here */</span>
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-box" style="margin-top:1.25rem">
+          <div class="demo-header">
+            <span class="demo-dot" aria-hidden="true"></span>
+            CSS Property Explorer — adjust &amp; see live
+          </div>
+          <div class="demo-body">
+            <div style="display:grid;grid-template-columns:1fr 200px;gap:1rem;align-items:start">
+              <div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem">
+                  <div class="ctrl">
+                    <label>background-color <span id="bg-v">#818cf8</span></label>
+                    <input type="color" id="bg-c" value="#818cf8" aria-label="Box background colour">
+                  </div>
+                  <div class="ctrl">
+                    <label>color <span id="tc-v">#ffffff</span></label>
+                    <input type="color" id="tc-c" value="#ffffff" aria-label="Box text colour">
+                  </div>
+                  <div class="ctrl">
+                    <label>border-radius <span id="br-v">8px</span></label>
+                    <input type="range" id="br-r" min="0" max="80" value="8">
+                  </div>
+                  <div class="ctrl">
+                    <label>width / height <span id="sz-v">180px</span></label>
+                    <input type="range" id="sz-r" min="60" max="300" value="180">
+                  </div>
+                  <div class="ctrl">
+                    <label>border-width <span id="bw-v">0px</span></label>
+                    <input type="range" id="bw-r" min="0" max="16" value="0">
+                  </div>
+                  <div class="ctrl">
+                    <label>border-color <span id="bc-v">#1a1714</span></label>
+                    <input type="color" id="bc-c" value="#1a1714">
+                  </div>
+                  <div class="ctrl">
+                    <label>opacity <span id="op-v">1</span></label>
+                    <input type="range" id="op-r" min="0.1" max="1" step="0.1" value="1">
+                  </div>
+                  <div class="ctrl">
+                    <label>rotate <span id="rt-v">0°</span></label>
+                    <input type="range" id="rt-r" min="0" max="360" value="0">
+                  </div>
+                </div>
+                <div class="code-window" style="margin-top:0.75rem">
+                  <div class="code-bar" style="padding:0.4rem 0.85rem">
+                    <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                    <span class="code-title">generated CSS</span>
+                  </div>
+                  <pre style="padding:0.6rem 1rem;max-height:140px;overflow-y:auto"><code id="css-generated" style="font-family:'Fira Code',monospace;font-size:.72rem;line-height:1.6;color:var(--code-text)"></code></pre>
+                </div>
+              </div>
+              <div class="preview-panel" style="min-height:200px;aspect-ratio:1">
+                <div id="css-box" role="img" aria-label="Live CSS preview box" style="width:120px;height:120px">div.box</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="css-flexbox">Flexbox & Grid Layouts</h3>
+        <p>
+          <strong>Flexbox</strong> is a one-dimensional layout method for arranging items in rows or columns. It's perfect for navigation bars, card layouts, centering content, and distributing space between elements.
+          <strong>CSS Grid</strong> is a two-dimensional layout system — it handles both rows <em>and</em> columns simultaneously.
+        </p>
+
+        <div class="card-grid" style="grid-template-columns: 1fr 1fr;" role="list" aria-label="Flexbox vs Grid comparison">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Flexbox</div>
+            <div class="card-desc">One-dimensional (row OR column). Best for components: navbars, buttons, centering content.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Grid</div>
+            <div class="card-desc">Two-dimensional (rows AND columns). Best for page layouts, galleries, complex structures.</div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <section class="content-section" id="js" aria-labelledby="js-h2">
+        <div class="section-head">
+          <div class="section-icon icon-js" aria-hidden="true">⚡</div>
+          <h2 id="js-h2">JavaScript — Behaviour</h2>
+        </div>
+
+        <p>
+          <strong>JavaScript</strong> is the programming language of the web. It runs directly in your browser and can respond to user actions, update the page content, fetch data from servers, and much more — all without reloading the page.
+        </p>
+        <p>
+          While HTML provides structure and CSS provides style, JavaScript provides <em>behaviour</em> — making pages interactive and dynamic.
+        </p>
+
+        <h3 id="js-vars">Variables, Functions & Data Types</h3>
+        <p>
+          Modern JavaScript uses <code>const</code> for values that don't change, and <code>let</code> for values that do. Avoid <code>var</code> — it has unintuitive scoping behaviour.
+        </p>
+
+        <div class="code-window" role="region" aria-label="JavaScript variables and functions code example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">script.js</span>
+          </div>
+          <pre><code><span class="cm">// ── Variables ───────────────────────────────</span>
+<span class="kw">const</span> siteName = <span class="st">"SkillLance"</span>;     <span class="cm">// string — immutable reference</span>
+<span class="kw">let</span>   count    = <span class="nm">0</span>;              <span class="cm">// number — can be reassigned</span>
+<span class="kw">const</span> isReady  = <span class="kw">true</span>;           <span class="cm">// boolean</span>
+
+<span class="cm">// ── Functions ───────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">greet</span>(name) {
+  <span class="kw">return</span> <span class="st">`Hello, ${name}!`</span>;    <span class="cm">// template literal</span>
 }
 
-// Arrow function (ES6+)
-const double = (n) => n * 2;
+<span class="cm">// Arrow function (ES6+) — concise syntax</span>
+<span class="kw">const</span> <span class="fn">double</span> = (n) => n * <span class="nm">2</span>;</code></pre>
+        </div>
 
-// Call the function
-greet("Alex");  // "Hello, Alex!"
-double(5);      // 10</code></pre>
-            </article>
+        <h3 id="js-dom">DOM Manipulation</h3>
+        <p>
+          The <strong>Document Object Model (DOM)</strong> is a tree-like representation of your HTML that JavaScript can read and modify. When you select an element and change its text or style with JavaScript, you are manipulating the DOM — and the browser updates the page instantly.
+        </p>
+
+        <div class="code-window" role="region" aria-label="JavaScript DOM manipulation code example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">dom.js</span>
           </div>
-          
-          <!-- DOM Manipulation -->
-          <div class="info-block">
-            <h3>DOM Manipulation</h3>
-            <p>
-              The <strong>Document Object Model (DOM)</strong> is a tree representation of your HTML. JavaScript can 
-              select, read, and modify any element on the page.
-            </p>
-            <pre><code>// Select elements
-const heading = document.getElementById("title");
-const cards = document.querySelectorAll(".card");
+          <pre><code><span class="cm">// ── Selecting elements ──────────────────────</span>
+<span class="kw">const</span> heading = document.<span class="fn">getElementById</span>(<span class="st">"main-title"</span>);
+<span class="kw">const</span> btn     = document.<span class="fn">querySelector</span>(<span class="st">"button"</span>);
 
-// Change content
-heading.textContent = "New Title";
-heading.innerHTML = "&lt;em&gt;Styled&lt;/em&gt; Title";
+<span class="cm">// ── Reading and writing content ─────────────</span>
+<span class="fn">console</span>.log(heading.textContent); <span class="cm">// read</span>
+heading.textContent = <span class="st">"New Title"</span>;  <span class="cm">// write — safer than innerHTML</span>
+heading.style.color = <span class="st">"#818cf8"</span>;   <span class="cm">// change CSS</span>
 
-// Change styles
-heading.style.color = "#818cf8";
+<span class="cm">// ── Changing classes ─────────────────────────</span>
+heading.classList.<span class="fn">add</span>(<span class="st">"highlight"</span>);     <span class="cm">// add class</span>
+heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span>);    <span class="cm">// toggle on/off</span></code></pre>
+        </div>
 
-// Add/remove classes
-heading.classList.add("highlight");
-heading.classList.remove("hidden");
-heading.classList.toggle("active");</code></pre>
+        <h3 id="js-events">Events</h3>
+        <p>
+          JavaScript responds to user interactions through <strong>events</strong>. An event listener is a function that runs when a specific event happens — a click, a keypress, scrolling, loading, and hundreds more.
+        </p>
+
+        <h3 id="js-demos">▶ Live Demos</h3>
+
+        <p><strong>Demo 1 — Counter:</strong> A classic DOM manipulation example. Each button click updates the number and the live code display below it.</p>
+
+        <div class="demo-box" role="region" aria-label="JavaScript counter demo">
+          <div class="demo-header">
+            <span class="demo-dot" aria-hidden="true"></span>Counter — DOM Manipulation
           </div>
-          
-          <!-- Events -->
-          <div class="info-block">
-            <h3>Event Handling</h3>
-            <p>
-              JavaScript responds to user interactions through <strong>events</strong>. An event listener runs a 
-              function when a specific event happens — a click, keypress, form submission, etc.
-            </p>
-            <pre><code>const button = document.getElementById("my-btn");
-
-button.addEventListener("click", function(event) {
-  console.log("Button clicked!");
-  event.target.textContent = "Clicked ✓";
-});
-
-// Common events: click, input, submit, keydown,
-// mouseover, mouseout, focus, blur, load</code></pre>
-          </div>
-          
-          <!-- Counter Demo -->
-          <div class="demo-card">
-            <h3>⚡ Interactive: Counter Demo</h3>
-            <p>Press the buttons to increment, decrement, or reset the counter. This demonstrates DOM manipulation and event handling.</p>
-            
-            <div class="counter-demo-full">
-              <div class="counter-display" id="counter-display">0</div>
-              <div class="counter-buttons">
-                <button type="button" class="btn btn-counter btn-dec" id="btn-dec">− Decrement</button>
-                <button type="button" class="btn btn-counter btn-inc" id="btn-inc">+ Increment</button>
-                <button type="button" class="btn btn-counter btn-rst" id="btn-rst">Reset</button>
-              </div>
-              <div class="counter-code">
-                <code>count = <span id="counter-code-val">0</span>;</code>
-              </div>
+          <div class="demo-body">
+            <div class="counter-num" id="counter-num" aria-live="polite" aria-label="Current count: 0">0</div>
+            <div class="counter-btns" role="group" aria-label="Counter controls">
+              <button class="counter-btn btn-dec" id="btn-dec" aria-label="Decrement counter">− Decrement</button>
+              <button class="counter-btn btn-inc" id="btn-inc" aria-label="Increment counter">+ Increment</button>
+              <button class="counter-btn btn-rst" id="btn-rst" aria-label="Reset counter">Reset</button>
+            </div>
+            <div class="console-line" aria-live="polite" aria-label="Live code output">
+              <span class="console-prompt">// count =</span>
+              <span class="console-val" id="console-val">0</span>
+              <span class="console-prompt">; display.textContent = count;</span>
             </div>
           </div>
-          
-          <!-- AJAX / Fetch -->
-          <div class="info-block">
-            <h3>AJAX &amp; the Fetch API</h3>
-            <p>
-              <strong>AJAX</strong> lets you fetch data from a server <em>without reloading the page</em>. Modern 
-              JavaScript uses the <code>fetch()</code> API. This is how the quiz page loads questions from a JSON file!
-            </p>
-            <pre><code>// Fetch data from a URL
-fetch("data/questions.json")
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);  // Use the data
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
+        </div>
 
-// Modern async/await syntax
-async function loadQuestions() {
-  const response = await fetch("data/questions.json");
-  const questions = await response.json();
-  return questions;
-}</code></pre>
+        <p style="margin-top:1.5rem"><strong>Demo 2 — Live Text Mirror:</strong> Type in the input and watch the DOM update in real time. This same pattern — listening to <code>input</code> events and updating the DOM — is how modern web apps work.</p>
+
+        <div class="demo-box" role="region" aria-label="Live text mirror demo">
+          <div class="demo-header">
+            <span class="demo-dot" aria-hidden="true"></span>DOM Mirror — input event
           </div>
-          
-          <!-- localStorage -->
-          <div class="info-block">
-            <h3>Local Storage</h3>
-            <p>
-              <code>localStorage</code> stores key-value pairs in the browser that persist even after the page closes. 
-              The quiz page uses this to save your previous attempts.
-            </p>
-            <pre><code>// Save data
-localStorage.setItem("theme", "dark");
-localStorage.setItem("score", "8");
-
-// Read data
-const theme = localStorage.getItem("theme");  // "dark"
-
-// Remove data
-localStorage.removeItem("score");
-
-// Store objects (must stringify)
-const user = { name: "Alex", score: 8 };
-localStorage.setItem("user", JSON.stringify(user));
-const saved = JSON.parse(localStorage.getItem("user"));</code></pre>
+          <div class="demo-body">
+            <div class="mirror-grid">
+              <div>
+                <p style="font-size:.8rem;color:var(--text-3);margin-bottom:.4rem;font-family:'Fira Code',monospace">// input element</p>
+                <input class="mirror-input" id="mirror-in" type="text" placeholder="Type something…" aria-label="Text input to mirror" />
+              </div>
+              <div>
+                <p style="font-size:.8rem;color:var(--text-3);margin-bottom:.4rem;font-family:'Fira Code',monospace">// output element (live DOM)</p>
+                <div class="mirror-output" id="mirror-out" aria-live="polite" aria-label="Live DOM output">your text here</div>
+              </div>
+            </div>
+            <div class="console-line" style="margin-top:1rem">
+              <span class="console-prompt">output.textContent =</span>
+              <span class="console-val" id="mirror-code">"your text here"</span>
+            </div>
           </div>
-          
-          <!-- Event Logger Demo -->
-          <div class="demo-card">
-            <h3>🔴 Interactive: Event Logger</h3>
-            <p>Interact with the buttons below to see events fire in real time.</p>
-            
+        </div>
+
+        <p style="margin-top:1.5rem"><strong>Demo 3 — Event Logger:</strong> Click or hover the buttons below to see events being recorded in real time. Notice how different interactions fire different event types.</p>
+
+        <div class="demo-box" role="region" aria-label="JavaScript event logger demo">
+          <div class="demo-header">
+            <span class="demo-dot" aria-hidden="true"></span>Event Logger — addEventListener
+          </div>
+          <div class="demo-body">
             <div class="event-demo">
-              <div class="event-buttons">
-                <button type="button" class="btn btn-secondary" id="ev-click">👆 Click me</button>
-                <button type="button" class="btn btn-secondary" id="ev-hover">🖱️ Hover me</button>
-                <button type="button" class="btn btn-secondary" id="ev-dbl">👆👆 Double-click</button>
-              </div>
-              <div class="event-log" id="event-log">
-                <div class="log-line"><span class="log-ts">--:--:--</span> <span class="log-type">system</span> Event log ready. Try the buttons above…</div>
+              <button class="event-btn" id="ev-click">👆 Click me — fires "click" event</button>
+              <button class="event-btn" id="ev-hover">🖱️ Hover over me — fires "mouseenter" event</button>
+              <button class="event-btn" id="ev-dbl">👆👆 Double-click me — fires "dblclick" event</button>
+              <div class="event-log" id="event-log" aria-live="polite" aria-label="Event log">
+                <div class="log-line"><span class="log-ts">--:--:--</span><span class="log-ev">system </span><span class="log-msg">Event log ready. Try the buttons above…</span></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    
-    <!-- ═══ QUIZ CTA ═══ -->
-    <section class="section callout-section">
-      <div class="container">
-        <div class="callout-card glass-card">
-          <div>
-            <p class="eyebrow">Ready to test yourself?</p>
-            <h2>Take the Quiz</h2>
-            <p>
-              You've covered HTML, CSS, and JavaScript. The quiz loads 10 random questions from a JSON file, 
-              tracks your score, and saves your attempts using localStorage. You need 70% to pass!
-            </p>
+
+      </section>
+
+      <section class="content-section" id="quiz-cta" style="border-bottom:none">
+        <div class="cta-banner" style="position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.12),transparent 60%);pointer-events:none"></div>
+          <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;border:3px dashed rgba(255,255,255,0.15);border-radius:50%;animation:geoSpin 15s linear infinite;pointer-events:none"></div>
+          <div style="position:absolute;bottom:-30px;left:-10px;width:80px;height:80px;border:2px dashed rgba(255,255,255,0.1);border-radius:30%;animation:geoSpin 20s linear infinite reverse;pointer-events:none"></div>
+          <div style="position:relative;text-align:center">
+            <div style="font-size:3rem;margin-bottom:1rem;animation:iconFloat 3s ease-in-out infinite">🎯</div>
+            <h2 style="color:#fff;margin-bottom:0.75rem;font-size:clamp(1.5rem,3vw,2rem)">Ready to prove your skills?</h2>
+            <p style="color:rgba(255,255,255,0.85);max-width:480px;margin:0 auto 1.5rem;line-height:1.7">You\'ve covered HTML, CSS, and JavaScript. Take the quiz — 10 randomised questions, score 70% to pass, and unlock a reward fetched from a live API.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+              <a href="quiz.html" class="btn-white" style="font-size:1.1rem;padding:1rem 2.5rem">Take the Quiz →</a>
+            </div>
+            <div style="display:flex;gap:2rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap">
+              <span style="color:rgba(255,255,255,0.7);font-size:0.85rem;font-family:Fira Code,monospace">🔀 Randomised</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:0.85rem;font-family:Fira Code,monospace">📊 70% to pass</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:0.85rem;font-family:Fira Code,monospace">🏆 Earn a reward</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:0.85rem;font-family:Fira Code,monospace">💾 Progress saved</span>
+            </div>
           </div>
-          <a href="quiz.html" class="btn btn-primary btn-lg">Open Quiz →</a>
         </div>
+      </section>
+
+    </main>
+  </div>  <!-- Footer -->
+    <footer class="site-footer">
+    <div class="footer-glow"></div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="./index.html" class="footer-logo">
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg2)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg2)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg2" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <span>SkillLance</span>
+        </a>
       </div>
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 SkillLance — A CITS5505 Web Technologies Project · The University of Western Australia</p>
+      <div class="footer-copy">
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
+      </div>
+      <div class="footer-code-float" aria-hidden="true">
+        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span>color: #818cf8; display: flex;</span>
+        <span>const app = () =&gt; { ... }</span>
+      </div>
     </div>
   </footer>
 </body>
