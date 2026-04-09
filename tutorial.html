@@ -664,56 +664,58 @@
             <span class="demo-dot" aria-hidden="true"></span>
             CSS Property Explorer — adjust &amp; see live
           </div>
-          <div class="demo-body">
-            <div style="display:grid;grid-template-columns:1fr 200px;gap:1rem;align-items:start">
-              <div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem">
-                  <div class="ctrl">
-                    <label>background-color <span id="bg-v">#818cf8</span></label>
-                    <input type="color" id="bg-c" value="#818cf8" aria-label="Box background colour">
-                  </div>
-                  <div class="ctrl">
-                    <label>color <span id="tc-v">#ffffff</span></label>
-                    <input type="color" id="tc-c" value="#ffffff" aria-label="Box text colour">
-                  </div>
-                  <div class="ctrl">
-                    <label>border-radius <span id="br-v">8px</span></label>
-                    <input type="range" id="br-r" min="0" max="80" value="8">
-                  </div>
-                  <div class="ctrl">
-                    <label>width / height <span id="sz-v">180px</span></label>
-                    <input type="range" id="sz-r" min="60" max="300" value="180">
-                  </div>
-                  <div class="ctrl">
-                    <label>border-width <span id="bw-v">0px</span></label>
-                    <input type="range" id="bw-r" min="0" max="16" value="0">
-                  </div>
-                  <div class="ctrl">
-                    <label>border-color <span id="bc-v">#1a1714</span></label>
-                    <input type="color" id="bc-c" value="#1a1714">
-                  </div>
-                  <div class="ctrl">
-                    <label>opacity <span id="op-v">1</span></label>
-                    <input type="range" id="op-r" min="0.1" max="1" step="0.1" value="1">
-                  </div>
-                  <div class="ctrl">
-                    <label>rotate <span id="rt-v">0°</span></label>
-                    <input type="range" id="rt-r" min="0" max="360" value="0">
-                  </div>
+          <div class="demo-body css-explorer-body">
+            <!-- Top row: controls + preview side by side -->
+            <div class="css-explorer-top">
+              <!-- Controls grid -->
+              <div class="css-explorer-controls">
+                <div class="ctrl">
+                  <label>background-color <span id="bg-v">#818cf8</span></label>
+                  <input type="color" id="bg-c" value="#818cf8" aria-label="Box background colour">
                 </div>
-                <div class="code-window"
-                  style="margin-top:0.75rem; height: 180px; display: flex; flex-direction: column;">
-                  <div class="code-bar" style="padding:0.4rem 0.85rem; flex-shrink: 0;">
-                    <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
-                    <span class="code-title">generated CSS</span>
-                  </div>
-                  <pre
-                    style="padding:0.6rem 1rem; flex: 1; overflow-y:auto; margin: 0; border-radius: 0 0 12px 12px; border: none;"><code id="css-generated" style="font-family:'Fira Code',monospace;font-size:.78rem;line-height:1.6;color:var(--code-text)"></code></pre>
+                <div class="ctrl">
+                  <label>color <span id="tc-v">#ffffff</span></label>
+                  <input type="color" id="tc-c" value="#ffffff" aria-label="Box text colour">
+                </div>
+                <div class="ctrl">
+                  <label>border-radius <span id="br-v">8px</span></label>
+                  <input type="range" id="br-r" min="0" max="80" value="8">
+                </div>
+                <div class="ctrl">
+                  <label>width / height <span id="sz-v">160px</span></label>
+                  <input type="range" id="sz-r" min="40" max="200" value="160">
+                </div>
+                <div class="ctrl">
+                  <label>border-width <span id="bw-v">0px</span></label>
+                  <input type="range" id="bw-r" min="0" max="16" value="0">
+                </div>
+                <div class="ctrl">
+                  <label>border-color <span id="bc-v">#1a1714</span></label>
+                  <input type="color" id="bc-c" value="#1a1714">
+                </div>
+                <div class="ctrl">
+                  <label>opacity <span id="op-v">1</span></label>
+                  <input type="range" id="op-r" min="0.1" max="1" step="0.1" value="1">
+                </div>
+                <div class="ctrl">
+                  <label>rotate <span id="rt-v">0°</span></label>
+                  <input type="range" id="rt-r" min="0" max="360" value="0">
                 </div>
               </div>
-              <div class="preview-panel preview-panel-3d">
+              <!-- Live preview panel -->
+              <div class="preview-panel preview-panel-3d css-explorer-preview">
                 <div class="preview-decor-grid"></div>
                 <div id="css-box" role="img" aria-label="Live CSS preview box">div.box</div>
+              </div>
+            </div>
+            <!-- Bottom row: generated code, full width -->
+            <div class="css-explorer-code">
+              <div class="code-window" style="margin:0;">
+                <div class="code-bar" style="padding:0.4rem 0.85rem;">
+                  <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                  <span class="code-title">generated CSS</span>
+                </div>
+                <pre style="padding:0.75rem 1.1rem; margin:0; border-radius:0 0 12px 12px; border:none; overflow-x:auto;"><code id="css-generated" style="font-family:'Fira Code',monospace;font-size:.8rem;line-height:1.8;color:var(--code-text)"></code></pre>
               </div>
             </div>
           </div>
