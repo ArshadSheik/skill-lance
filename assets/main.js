@@ -75,7 +75,7 @@ function initMobileNav() {
 
 // ── 3D Card Tilt Effect ────────────────────────────────────────────────────
 function init3DTilt() {
-  document.querySelectorAll('.path-card-large, .info-card, .path-card').forEach(card => {
+  document.querySelectorAll('.path-card-large, .info-card, .path-card, .feature-card-3d').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -87,6 +87,36 @@ function init3DTilt() {
       card.style.transform = '';
     });
   });
+
+  // Hero card 3D parallax — deeper tilt effect
+  const heroCard = document.getElementById('hero-how-card');
+  if (heroCard) {
+    heroCard.addEventListener('mousemove', (e) => {
+      const rect = heroCard.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      heroCard.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px) scale(1.02)`;
+      heroCard.style.boxShadow = `${-x * 20}px ${y * 20}px 50px rgba(129,140,248,0.15), 0 0 40px rgba(129,140,248,0.08)`;
+    });
+    heroCard.addEventListener('mouseleave', () => {
+      heroCard.style.transform = '';
+      heroCard.style.boxShadow = '';
+    });
+  }
+
+  // Hero title subtle 3D effect on hover
+  const heroTitle = document.querySelector('.hero-title-3d');
+  if (heroTitle) {
+    heroTitle.addEventListener('mousemove', (e) => {
+      const rect = heroTitle.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      heroTitle.style.transform = `perspective(1200px) rotateY(${x * 4}deg) rotateX(${-y * 3}deg) translateZ(8px)`;
+    });
+    heroTitle.addEventListener('mouseleave', () => {
+      heroTitle.style.transform = '';
+    });
+  }
 }
 
 // ── Floating Decorative Buttons (Tutorial) ─────────────────────────────────
@@ -113,13 +143,55 @@ function initFloatingDecor() {
 
 // ── TOC Active State Tracker ───────────────────────────────────────────────
 function initTocTracker() {
-  const tocLinks = document.querySelectorAll('.toc-links a');
+  if (document.body.dataset.page !== 'tutorial') return;
+
+  // ── Sidebar toggle ──────────────────────────────────────────────────────
+  const sidebar = document.querySelector('.toc-sidebar');
+  const pageWrap = document.querySelector('.page-wrap');
+  const toggleBtn = document.getElementById('toc-toggle');
+
+  if (sidebar && toggleBtn) {
+    // Restore collapse state from localStorage
+    const isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+    if (isCollapsed) {
+      sidebar.classList.add('collapsed');
+      pageWrap?.classList.add('sidebar-collapsed');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const collapsed = sidebar.classList.toggle('collapsed');
+      pageWrap?.classList.toggle('sidebar-collapsed', collapsed);
+      toggleBtn.setAttribute('aria-expanded', String(!collapsed));
+      localStorage.setItem('toc-collapsed', collapsed);
+    });
+  }
+
+  // ── Scroll progress bar ─────────────────────────────────────────────────
+  const progressFill = document.getElementById('toc-progress-fill');
+  const progressPct  = document.getElementById('toc-progress-pct');
+
+  function updateProgress() {
+    const docH    = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = docH > 0 ? Math.min(100, Math.round((window.scrollY / docH) * 100)) : 0;
+    if (progressFill) progressFill.style.width = scrolled + '%';
+    if (progressPct)  progressPct.textContent  = scrolled + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ── Active section highlighting ─────────────────────────────────────────
+  const tocLinks = document.querySelectorAll('.toc-links a, .toc-section-link, .toc-quiz-link');
   if (!tocLinks.length) return;
 
+  // Build map of anchor id → link element
   const sections = [];
   tocLinks.forEach(link => {
-    const id = link.getAttribute('href')?.replace('#', '');
-    const el = id ? document.getElementById(id) : null;
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    const id = href.replace('#', '');
+    const el = document.getElementById(id);
     if (el) sections.push({ el, link });
   });
 
@@ -131,7 +203,7 @@ function initTocTracker() {
         if (match) match.link.classList.add('active');
       }
     });
-  }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+  }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
 
   sections.forEach(s => observer.observe(s.el));
 }
@@ -827,9 +899,18 @@ function initScrollReveal() {
 
   if (!revealElements.length) return;
 
+  // Snapshot viewport size once at init
+  const viewportHeight = window.innerHeight;
+
   revealElements.forEach(el => {
     if (!el.classList.contains('reveal') && !el.classList.contains('reveal-left') && !el.classList.contains('reveal-right')) {
-      el.classList.add('reveal');
+      const rect = el.getBoundingClientRect();
+      // Elements already in the viewport on page load get marked visible immediately — no delayed fade
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        el.classList.add('reveal', 'visible');
+      } else {
+        el.classList.add('reveal');
+      }
     }
   });
 
@@ -837,12 +918,17 @@ function initScrollReveal() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // Stop watching once it has appeared — avoids re-triggering
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-    observer.observe(el);
+    // Only observe elements that aren't already visible
+    if (!el.classList.contains('visible')) {
+      observer.observe(el);
+    }
   });
 }
 

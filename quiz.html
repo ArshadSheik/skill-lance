@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance Quiz — Test your HTML, CSS, and JavaScript knowledge with a randomized, AJAX-loaded quiz." />
+  <meta name="description"
+    content="SkillLance Quiz — Test your HTML, CSS, and JavaScript knowledge with a randomized, AJAX-loaded quiz." />
   <title>SkillLance - Quiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
+
 <body data-page="quiz">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#818cf8" />
+              <stop offset="1" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+        </svg>
         SkillLance
       </a>
       <div class="nav-links">
@@ -29,7 +50,8 @@
       </div>
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle menu"
+          aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
@@ -40,7 +62,8 @@
         <p class="eyebrow">Dynamic Assessment</p>
         <h1>HTML, CSS &amp; JavaScript Quiz</h1>
         <p class="lead">
-          Test your web development knowledge with 10 randomised questions loaded dynamically from a JSON data file via AJAX. Score 70% or higher to pass and unlock a reward!
+          Test your web development knowledge with 10 randomised questions loaded dynamically from a JSON data file via
+          AJAX. Score 70% or higher to pass and unlock a reward!
         </p>
 
         <div class="quiz-controls card">
@@ -70,11 +93,15 @@
       <aside class="side-panel">
         <section class="glass-card">
           <h2>Current Result</h2>
-          <div id="result-content"><p>Start the quiz to see your score here.</p></div>
+          <div id="result-content">
+            <p>Start the quiz to see your score here.</p>
+          </div>
         </section>
         <section class="glass-card">
           <h2>Reward</h2>
-          <div id="reward-content"><p>Pass the quiz to unlock a special reward!</p></div>
+          <div id="reward-content">
+            <p>Pass the quiz to unlock a special reward!</p>
+          </div>
         </section>
         <section class="glass-card">
           <h2>Attempt History</h2>
@@ -85,24 +112,47 @@
     </div>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-glow"></div>
+    <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="./index.html" class="footer-logo">
-          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
+            <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
+            <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#818cf8" />
+                <stop offset="1" stop-color="#06b6d4" />
+              </linearGradient>
+            </defs>
+          </svg>
           <span>SkillLance</span>
         </a>
       </div>
       <div class="footer-copy">
-        <p>\&copy; 2026 SkillLance \&mdash; CITS5505 Web Technologies \&middot; The University of Western Australia</p>
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
       </div>
-      <div class="footer-code-float" aria-hidden="true">
-        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
-        <span>color: #818cf8; display: flex;</span>
-        <span>const app = () =&gt; { ... }</span>
+      <div class="footer-code-float-enhanced" aria-hidden="true">
+        <span class="fce fce-html">&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span class="fce fce-css">color: #818cf8; display: flex;</span>
+        <span class="fce fce-js">const app = () =&gt; { ... }</span>
+        <span class="fce fce-tag">&lt;/div&gt; &lt;/section&gt;</span>
       </div>
+    </div>
+    <div class="footer-particles" aria-hidden="true">
+      <span class="fp fp-1"></span><span class="fp fp-2"></span>
+      <span class="fp fp-3"></span><span class="fp fp-4"></span>
+      <span class="fp fp-5"></span><span class="fp fp-6"></span>
+      <span class="fp fp-7"></span><span class="fp fp-8"></span>
     </div>
   </footer>
 </body>
+
 </html>
