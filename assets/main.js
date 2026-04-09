@@ -332,7 +332,7 @@ function initTutorialDemos() {
     const bg = document.getElementById('bg-c')?.value || '#818cf8';
     const tc = document.getElementById('tc-c')?.value || '#ffffff';
     const br = document.getElementById('br-r')?.value || '8';
-    const sz = document.getElementById('sz-r')?.value || '180';
+    const sz = document.getElementById('sz-r')?.value || '160';
     const pd = document.getElementById('pd-r')?.value || '16';
     const bw = document.getElementById('bw-r')?.value || '0';
     const bc = document.getElementById('bc-c')?.value || '#1a1714';

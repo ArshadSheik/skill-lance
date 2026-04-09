@@ -1920,8 +1920,8 @@ pre code {
 }
 
 #css-box {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   background: var(--accent);
   border-radius: 8px;
   display: flex;
@@ -6760,32 +6760,15 @@ pre code {
   }
 }
 
-/* ── 3. Creative Section Dividers ──────────────────────────────────────── */
+/* ── 3. Section Dividers — clean rule, no flowing dots animation ─────────── */
 .content-section+.content-section::before {
   content: '';
   display: block;
-  height: 50px;
+  height: 1px;
   margin: 0 auto 3rem;
   width: 100%;
-  background:
-    linear-gradient(90deg, transparent 40%, var(--accent) 50%, transparent 60%) center / 100% 2px no-repeat,
-    radial-gradient(circle at center, var(--accent) 0%, transparent 4px) center / 30px 10px repeat-x;
-  opacity: 0.3;
-  animation: dividerFlow 10s linear infinite;
-}
-
-[data-theme="light"] .content-section+.content-section::before {
-  opacity: 0.2;
-}
-
-@keyframes dividerFlow {
-  0% {
-    background-position: center 0, 0 center;
-  }
-
-  100% {
-    background-position: center 0, 300px center;
-  }
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  opacity: 0.6;
 }
 
 /* Override previous simple line divider */
@@ -6833,9 +6816,103 @@ pre code {
 #css-box {
   z-index: 1;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
 }
 
-/* ── 5. Ready to prove your skills 3D Portal ───────────────────────────── */
+/* ── 5. CSS Property Explorer — responsive layout ──────────────────────── */
+
+/* Outer body padding */
+.css-explorer-body {
+  padding: 1.5rem;
+}
+
+/* Top row: controls (left) + preview (right) */
+.css-explorer-top {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 1.25rem;
+}
+
+/* Controls: 2-column grid of ctrl items */
+.css-explorer-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1.25rem;
+  align-content: start;
+}
+
+/* Preview panel — large, fills the column height */
+.css-explorer-preview {
+  min-height: 320px;
+  height: 100%;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Code block — full width below top row, compact single-scroll strip */
+.css-explorer-code {
+  width: 100%;
+}
+
+.css-explorer-code .code-window pre {
+  overflow-x: auto;
+  white-space: pre;
+  max-height: none;
+}
+
+/* Tablet 768–1024px: narrower preview */
+@media (max-width: 1024px) {
+  .css-explorer-top {
+    grid-template-columns: 1fr 260px;
+    gap: 1.25rem;
+  }
+  .css-explorer-preview {
+    min-height: 280px;
+  }
+}
+
+/* Small tablet / large mobile: stack vertically */
+@media (max-width: 720px) {
+  .css-explorer-body {
+    padding: 1rem;
+  }
+  .css-explorer-top {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .css-explorer-controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 0.75rem;
+  }
+  .css-explorer-preview {
+    min-height: 260px;
+    height: 260px;
+    width: 100%;
+  }
+}
+
+/* Very small screens: single column controls */
+@media (max-width: 400px) {
+  .css-explorer-controls {
+    grid-template-columns: 1fr;
+  }
+  .css-explorer-preview {
+    min-height: 220px;
+    height: 220px;
+  }
+}
+
+/* ── 6. Ready to prove your skills 3D Portal ───────────────────────────── */
 /* ── Tutorial "What's Next" / Quiz CTA ─────────────────────────────────── */
 .tutorial-next-section {
   padding-top: 0.5rem;
