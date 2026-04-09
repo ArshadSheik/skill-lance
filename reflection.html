@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance — AI Reflection Log documenting how AI tools were used during the project." />
+  <meta name="description"
+    content="SkillLance — AI Reflection Log documenting how AI tools were used during the project." />
   <title>SkillLance - AI Reflection</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
+
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#818cf8" />
+              <stop offset="1" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+        </svg>
         SkillLance
       </a>
       <div class="nav-links">
@@ -29,7 +50,8 @@
       </div>
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle menu"
+          aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
@@ -164,15 +186,24 @@
           <article class="glass-card">
             <h3>Prompt</h3>
             <p class="mono">
-              "Rebuild my CV page completely. Change it from a simple top-down list to a modern 2-column Grid layout with a sidebar. Add an 'Experience' section. Also, update my Quiz engine so that if the user fails, it triggers an AJAX fetch to a public Dad Joke API as a 'penalty'."
+              "Rebuild my CV page completely. Change it from a simple top-down list to a modern 2-column Grid layout
+              with a sidebar. Add an 'Experience' section. Also, update my Quiz engine so that if the user fails, it
+              triggers an AJAX fetch to a public Dad Joke API as a 'penalty'."
             </p>
             <h3>AI Output Summary</h3>
             <p>
-              The AI provided a comprehensive overhaul plan. It generated HTML utilizing <code>display: grid</code> for a <code>.cv-layout</code>, styling the sticky sidebar and timeline elements with custom CSS. It also accurately wrote the <code>fetch()</code> block for the <em>icanhazdadjoke</em> API to trigger only when the score was below the 70% threshold.
+              The AI provided a comprehensive overhaul plan. It generated HTML utilizing <code>display: grid</code> for
+              a <code>.cv-layout</code>, styling the sticky sidebar and timeline elements with custom CSS. It also
+              accurately wrote the <code>fetch()</code> block for the <em>icanhazdadjoke</em> API to trigger only when
+              the score was below the 70% threshold.
             </p>
             <h3>Changes I Made & Critical Evaluation</h3>
             <p>
-              While the layout generated by the AI was visually stunning, it overwrote some of my original color variables. I had to manually merge the AI's 2-column CSS into my existing <code>style.css</code> to ensure the custom Light/Dark mode toggle (which I had already perfected) wasn't broken by the new CSS classes. The AI's code for the Dad Joke API was flawless, correctly demonstrating how to pass the <code>Accept: application/json</code> header to receive JSON instead of HTML.
+              While the layout generated by the AI was visually stunning, it overwrote some of my original color
+              variables. I had to manually merge the AI's 2-column CSS into my existing <code>style.css</code> to ensure
+              the custom Light/Dark mode toggle (which I had already perfected) wasn't broken by the new CSS classes.
+              The AI's code for the Dad Joke API was flawless, correctly demonstrating how to pass the
+              <code>Accept: application/json</code> header to receive JSON instead of HTML.
             </p>
           </article>
         </div>
@@ -232,34 +263,62 @@
       <section class="reflection-block">
         <h2>Key Takeaways</h2>
         <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-2);">
-          <li style="margin-bottom: 0.5rem;">AI is most useful for explaining APIs and generating starter patterns, not for project-specific integration</li>
-          <li style="margin-bottom: 0.5rem;">Always test AI-generated code in a real browser — file paths, API responses, and edge cases often fail</li>
-          <li style="margin-bottom: 0.5rem;">Seemingly correct algorithms (like sort-based shuffle) can have subtle mathematical biases</li>
-          <li style="margin-bottom: 0.5rem;">Performance tuning (particle counts, animation intensity) requires human judgement, not just code generation</li>
-          <li style="margin-bottom: 0.5rem;">Understanding the code is essential — for debugging, for the demo, and for genuine learning</li>
+          <li style="margin-bottom: 0.5rem;">AI is most useful for explaining APIs and generating starter patterns, not
+            for project-specific integration</li>
+          <li style="margin-bottom: 0.5rem;">Always test AI-generated code in a real browser — file paths, API
+            responses, and edge cases often fail</li>
+          <li style="margin-bottom: 0.5rem;">Seemingly correct algorithms (like sort-based shuffle) can have subtle
+            mathematical biases</li>
+          <li style="margin-bottom: 0.5rem;">Performance tuning (particle counts, animation intensity) requires human
+            judgement, not just code generation</li>
+          <li style="margin-bottom: 0.5rem;">Understanding the code is essential — for debugging, for the demo, and for
+            genuine learning</li>
         </ul>
       </section>
     </div>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-glow"></div>
+    <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="./index.html" class="footer-logo">
-          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
+            <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
+            <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#818cf8" />
+                <stop offset="1" stop-color="#06b6d4" />
+              </linearGradient>
+            </defs>
+          </svg>
           <span>SkillLance</span>
         </a>
       </div>
       <div class="footer-copy">
-        <p>\&copy; 2026 SkillLance \&mdash; CITS5505 Web Technologies \&middot; The University of Western Australia</p>
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
       </div>
-      <div class="footer-code-float" aria-hidden="true">
-        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
-        <span>color: #818cf8; display: flex;</span>
-        <span>const app = () =&gt; { ... }</span>
+      <div class="footer-code-float-enhanced" aria-hidden="true">
+        <span class="fce fce-html">&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span class="fce fce-css">color: #818cf8; display: flex;</span>
+        <span class="fce fce-js">const app = () =&gt; { ... }</span>
+        <span class="fce fce-tag">&lt;/div&gt; &lt;/section&gt;</span>
       </div>
+    </div>
+    <div class="footer-particles" aria-hidden="true">
+      <span class="fp fp-1"></span><span class="fp fp-2"></span>
+      <span class="fp fp-3"></span><span class="fp fp-4"></span>
+      <span class="fp fp-5"></span><span class="fp fp-6"></span>
+      <span class="fp fp-7"></span><span class="fp fp-8"></span>
     </div>
   </footer>
 </body>
+
 </html>

@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
+  <meta name="description"
+    content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
   <title>SkillLance - Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
+
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -19,7 +26,21 @@
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
-        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+        <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#818cf8" />
+              <stop offset="1" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+        </svg>
         SkillLance
       </a>
       <div class="nav-links">
@@ -45,35 +66,74 @@
       <div class="dot-pattern"></div>
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow-pill">✦ Learn → Practice → Reflect → Grow</p>
-          <h1>
+          <div class="eyebrow-pill-3d">
+            <span class="pill-icon-3d">✦</span>
+            <span class="pill-word" style="--i:0">Learn</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:1">Practice</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:2">Reflect</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:3">Grow</span>
+            <span class="pill-shimmer" aria-hidden="true"></span>
+          </div>
+          <h1 class="hero-title-3d">
             Master the foundations of
-            <em>Web Development</em>
-            with HTML, CSS and JavaScript
+            <em>Web Development</em><span class="hero-code-cursor" aria-hidden="true">&lt;/&gt;</span>
+            <br>with HTML, CSS and JavaScript
           </h1>
           <p class="lead">
-            Learn HTML, CSS, and JavaScript through clear explanations, hands-on practice, and interactive challenges designed to build real understanding.
+            Learn HTML, CSS, and JavaScript through clear explanations, hands-on practice, and interactive challenges
+            designed to build real understanding.
           </p>
           <div class="hero-actions">
             <a href="tutorial.html" class="btn btn-primary btn-lg">Let's Start Learning!</a>
           </div>
         </div>
 
-        <aside class="hero-card glass-card">
-          <h2>How this site works</h2>
-          <ol>
-            <li>Study the fundamentals in the Tutorial section</li>
-            <li>Test your knowledge with the randomized Quiz</li>
-            <li>Review the AI Reflection log for insights</li>
-            <li>Check out the CV page and references</li>
-          </ol>
+        <aside class="hero-card glass-card" id="hero-how-card">
+          <div class="hero-card-inner">
+            <h2><span class="hc-icon">🚀</span> How this site works</h2>
+            <ol>
+              <li>
+                <span class="step-emoji">📖</span>
+                <div><strong>Study</strong> the fundamentals through interactive tutorials</div>
+              </li>
+              <li>
+                <span class="step-emoji">🧪</span>
+                <div><strong>Test</strong> your knowledge with a randomised quiz</div>
+              </li>
+              <li>
+                <span class="step-emoji">🤖</span>
+                <div><strong>Review</strong> the AI Reflection log for insights</div>
+              </li>
+              <li>
+                <span class="step-emoji">📄</span>
+                <div><strong>Explore</strong> the CV page and references</div>
+              </li>
+            </ol>
+          </div>
+          <div class="hero-card-particles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
         </aside>
       </div>
     </section>
 
     <!-- Learning Path Section -->
     <section class="section learning-path-section">
-      <div class="path-section-bg"></div>
+      <div class="floating-code-bg" aria-hidden="true">
+        <span class="float-code fc-1">&lt;div class="hero"&gt;</span>
+        <span class="float-code fc-2">color: #818cf8;</span>
+        <span class="float-code fc-3">const app = () =&gt; {}</span>
+        <span class="float-code fc-4">&lt;section id="main"&gt;</span>
+        <span class="float-code fc-5">display: flex;</span>
+        <span class="float-code fc-6">function init() {}</span>
+        <span class="float-code fc-7">&lt;/html&gt;</span>
+        <span class="float-code fc-8">margin: 0 auto;</span>
+        <span class="float-code fc-9">padding: 2rem;</span>
+        <span class="float-code fc-10">border-radius: 12px;</span>
+      </div>
       <div class="container">
         <div class="section-intro">
           <p class="eyebrow typing">Your Learning Journey</p>
@@ -159,67 +219,187 @@
     </section>
 
     <!-- Features Section -->
-    <section class="section section-alt">
+    <section class="section features-section">
+      <div class="floating-code-bg" aria-hidden="true">
+        <span class="float-code fc-1">&lt;head&gt; &lt;body&gt;</span>
+        <span class="float-code fc-2">font-size: 1rem;</span>
+        <span class="float-code fc-3">addEventListener("click")</span>
+        <span class="float-code fc-4">&lt;footer&gt;&lt;/footer&gt;</span>
+        <span class="float-code fc-5">transform: rotate(45deg);</span>
+        <span class="float-code fc-6">document.querySelector()</span>
+      </div>
       <div class="container">
-        <div class="section-grid">
-          <div class="section-heading">
-            <p class="eyebrow typing">What You'll Learn</p>
-            <h2>Three core technologies that power the web</h2>
-          </div>
+        <div class="section-intro">
+          <p class="eyebrow typing">What You'll Learn</p>
+          <h2>Three core technologies that power the web</h2>
+        </div>
 
-          <div class="content-card card">
-            <div class="two-col">
-              <article>
-                <h3>📄 HTML</h3>
-                <p>Structure your content with semantic elements that browsers understand. Learn about headings, links, images, and forms.</p>
-              </article>
-              <article>
-                <h3>🎨 CSS</h3>
-                <p>Style your pages with colors, layouts, and responsive design. Make your websites look polished and professional.</p>
-              </article>
-              <article>
-                <h3>⚡ JavaScript</h3>
-                <p>Add interactivity with event handling, DOM manipulation, and asynchronous data fetching with AJAX.</p>
-              </article>
-              <article>
-                <h3>🧪 Practice</h3>
-                <p>Apply what you learn with interactive demos and a quiz that loads questions dynamically from JSON.</p>
-              </article>
+        <div class="features-grid-3d">
+          <a href="tutorial.html#html" class="feature-card-3d fc-html" style="text-decoration:none; color:inherit;">
+            <div class="fc-icon-wrap">
+              <svg viewBox="0 0 48 48" width="48" height="48">
+                <rect x="4" y="4" width="40" height="40" rx="10" fill="rgba(249,115,22,0.12)" stroke="#fb923c"
+                  stroke-width="2" /><text x="24" y="31" text-anchor="middle" fill="#fb923c" font-size="15"
+                  font-weight="bold" font-family="monospace">&lt;/&gt;</text>
+              </svg>
             </div>
-          </div>
+            <h3>HTML</h3>
+            <p>Structure your content with semantic elements that browsers understand. Learn about headings, links,
+              images, and forms.</p>
+            <div class="fc-tags"><span>Semantic</span><span>Forms</span><span>Accessibility</span></div>
+            <div class="fc-float-obj" aria-hidden="true">&lt;div&gt;</div>
+          </a>
+          <a href="tutorial.html#css" class="feature-card-3d fc-css" style="text-decoration:none; color:inherit;">
+            <div class="fc-icon-wrap">
+              <svg viewBox="0 0 48 48" width="48" height="48">
+                <rect x="4" y="4" width="40" height="40" rx="10" fill="rgba(99,102,241,0.12)" stroke="#818cf8"
+                  stroke-width="2" /><text x="24" y="31" text-anchor="middle" fill="#818cf8" font-size="15"
+                  font-weight="bold" font-family="monospace">{ }</text>
+              </svg>
+            </div>
+            <h3>CSS</h3>
+            <p>Style your pages with colours, layouts, and responsive design. Make your websites look polished and
+              professional.</p>
+            <div class="fc-tags"><span>Flexbox</span><span>Grid</span><span>Responsive</span></div>
+            <div class="fc-float-obj" aria-hidden="true">:root</div>
+          </a>
+          <a href="tutorial.html#js" class="feature-card-3d fc-js" style="text-decoration:none; color:inherit;">
+            <div class="fc-icon-wrap">
+              <svg viewBox="0 0 48 48" width="48" height="48">
+                <rect x="4" y="4" width="40" height="40" rx="10" fill="rgba(251,191,36,0.12)" stroke="#fbbf24"
+                  stroke-width="2" /><text x="24" y="31" text-anchor="middle" fill="#fbbf24" font-size="15"
+                  font-weight="bold" font-family="monospace">JS</text>
+              </svg>
+            </div>
+            <h3>JavaScript</h3>
+            <p>Add interactivity with event handling, DOM manipulation, and asynchronous data fetching with AJAX.</p>
+            <div class="fc-tags"><span>DOM</span><span>Events</span><span>AJAX</span></div>
+            <div class="fc-float-obj" aria-hidden="true">( )=&gt;</div>
+          </a>
+          <a href="quiz.html" class="feature-card-3d fc-practice" style="text-decoration:none; color:inherit;">
+            <div class="fc-icon-wrap">
+              <svg viewBox="0 0 48 48" width="48" height="48">
+                <rect x="4" y="4" width="40" height="40" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e"
+                  stroke-width="2" /><text x="24" y="31" text-anchor="middle" fill="#22c55e" font-size="18"
+                  font-weight="bold" font-family="monospace">▶</text>
+              </svg>
+            </div>
+            <h3>Practice Quiz</h3>
+            <p>Apply what you learn with interactive demos and a quiz that loads questions dynamically from JSON.</p>
+            <div class="fc-tags"><span>Live Code</span><span>Quiz</span><span>Demos</span></div>
+            <div class="fc-float-obj" aria-hidden="true">run()</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section — Climbing Steps -->
-    <section class="section callout-section">
-      <div class="container">
-        <div class="climbing-cta">
-          <div class="steps-container">
-            <div class="step-block">
-              <div class="step-platform step-html">
-                <span class="step-icon">🧱</span>
-                HTML
-              </div>
-            </div>
-            <div class="step-block">
-              <div class="step-platform step-css">
-                <span class="step-icon">🎨</span>
-                CSS
-              </div>
-            </div>
-            <div class="step-block">
-              <div class="step-platform step-js">
-                <span class="step-icon">⚡</span>
-                JS
-              </div>
-            </div>
-            <div class="climber">🧑‍💻</div>
+    <!-- CTA Section -->
+    <section class="section callout-section" style="position: relative; overflow: hidden; padding: 5rem 0;">
+      <div class="cta-floating-bg" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none;">
+        <div class="c-float cf-cube" style="top: 15%; left: 10%; animation: floatY 15s ease-in-out infinite alternate;">
+          <div class="mini-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
           </div>
-          <div class="climbing-cta-text">
-            <h2>Climb the web dev ladder</h2>
-            <p>Each skill you master lifts you higher. Start with HTML structure, add CSS style, then power it all with JavaScript.</p>
-            <a href="tutorial.html" class="btn btn-primary btn-lg">Start Climbing →</a>
+        </div>
+        <div class="c-float cf-cube"
+          style="bottom: 15%; right: 10%; animation: floatY 25s ease-in-out infinite alternate-reverse; animation-delay: -3s; transform: scale(1.2);">
+          <div class="mini-cube" style="--hue: 280;">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
+        <div class="c-float cf-cube"
+          style="top: 25%; right: 20%; animation: floatY 18s ease-in-out infinite alternate; animation-delay: -7s; transform: scale(0.8);">
+          <div class="mini-cube" style="--hue: 45;">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
+        <div class="c-float cf-cube"
+          style="bottom: 20%; left: 20%; animation: floatY 22s ease-in-out infinite alternate-reverse; animation-delay: -11s; transform: scale(0.6);">
+          <div class="mini-cube" style="--hue: 150;">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container" style="position: relative; z-index: 2; width: 100%;">
+        <div class="cta-layout-grid">
+          <!-- Left Side 3D Animation -->
+          <div class="cta-side-anim"
+            style="perspective: 1000px; display: flex; justify-content: center; align-items: center;">
+            <div class="ide-composition-3d">
+              <div class="mini-ide-3d">
+                <div class="ide-header">
+                  <span class="dot" style="color:#f87171"></span>
+                  <span class="dot" style="color:#fbbf24"></span>
+                  <span class="dot" style="color:#34d399"></span>
+                </div>
+                <div class="ide-body">
+                  <div class="ide-line l-1"><span class="sy">&lt;div</span> <span class="pr">id=</span><span
+                      class="v">"app"</span><span class="sy">&gt;&lt;/div&gt;</span></div>
+                  <div class="ide-line l-2"><span class="tag">.hero</span> { <span class="pr">color:</span> <span
+                      class="v">#fff;</span> }</div>
+                  <div class="ide-line l-3"><span class="sy">let</span> ready <span class="sy">=</span> <span
+                      class="v">true;</span><span class="ide-cursor"></span></div>
+                </div>
+              </div>
+              <div class="ide-float-item float-html" aria-hidden="true">&lt;html&gt;</div>
+              <div class="ide-float-item float-css" aria-hidden="true">{...}</div>
+              <div class="ide-float-item float-js" aria-hidden="true">();</div>
+            </div>
+          </div>
+
+          <!-- Center Content -->
+          <div class="cta-content"
+            style="display: flex; flex-direction: column; align-items: center; gap: 1.25rem; text-align: center;">
+            <p class="eyebrow-pill-3d" style="margin: 0 auto;">
+              <span class="pill-icon-3d">🚀</span>
+              <span class="pill-word" style="--i:0">Web Dev</span>
+              <span class="pill-sep">→</span>
+              <span class="pill-word" style="--i:1">Mastery</span>
+            </p>
+            <h2 class="heading-glow-effect"
+              style="font-size: clamp(1.75rem, 4vw, 3rem); margin: 0; line-height: 1.2; letter-spacing: -0.02em;">Ready
+              to build the web?</h2>
+            <p style="font-size: 1.125rem; opacity: 0.9; margin: 0; max-width: 500px; line-height: 1.6;">
+              Start your journey today. Learn HTML structure, master CSS styling, and build interactive web apps with
+              JavaScript.
+            </p>
+            <a href="tutorial.html" class="btn btn-primary btn-lg" style="margin-top: 1rem;">Start Learning Now →</a>
+          </div>
+
+          <!-- Right Side 3D Animation -->
+          <div class="cta-side-anim"
+            style="perspective: 1000px; display: flex; justify-content: center; align-items: center;">
+            <div class="stack-3d">
+              <div class="stack-layer layer-js">
+                <span class="layer-icon">⚡</span> JS
+              </div>
+              <div class="stack-layer layer-css">
+                <span class="layer-icon">🎨</span> CSS
+              </div>
+              <div class="stack-layer layer-html">
+                <span class="layer-icon">🧱</span> HTML
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -227,24 +407,47 @@
   </main>
 
   <!-- Footer -->
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-glow"></div>
+    <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="./index.html" class="footer-logo">
-          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12"/><rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5"/><path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
+            <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
+            <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#818cf8" />
+                <stop offset="1" stop-color="#06b6d4" />
+              </linearGradient>
+            </defs>
+          </svg>
           <span>SkillLance</span>
         </a>
       </div>
       <div class="footer-copy">
-        <p>\&copy; 2026 SkillLance \&mdash; CITS5505 Web Technologies \&middot; The University of Western Australia</p>
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
       </div>
-      <div class="footer-code-float" aria-hidden="true">
-        <span>&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
-        <span>color: #818cf8; display: flex;</span>
-        <span>const app = () =&gt; { ... }</span>
+      <div class="footer-code-float-enhanced" aria-hidden="true">
+        <span class="fce fce-html">&lt;html&gt; &lt;head&gt; &lt;body&gt;</span>
+        <span class="fce fce-css">color: #818cf8; display: flex;</span>
+        <span class="fce fce-js">const app = () =&gt; { ... }</span>
+        <span class="fce fce-tag">&lt;/div&gt; &lt;/section&gt;</span>
       </div>
+    </div>
+    <div class="footer-particles" aria-hidden="true">
+      <span class="fp fp-1"></span><span class="fp fp-2"></span>
+      <span class="fp fp-3"></span><span class="fp fp-4"></span>
+      <span class="fp fp-5"></span><span class="fp fp-6"></span>
+      <span class="fp fp-7"></span><span class="fp fp-8"></span>
     </div>
   </footer>
 </body>
+
 </html>
