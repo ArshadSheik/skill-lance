@@ -1176,10 +1176,10 @@ pre code {
 
 /* Collapsed sidebar state */
 .page-wrap.sidebar-collapsed {
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: 44px 1fr;
 }
 
-/* ── TOC Sidebar — transparent, integrated, no card ───────────────────── */
+/* ── TOC Sidebar ───────────────────────────────────────────────────────── */
 .toc-sidebar {
   position: sticky;
   top: 84px;
@@ -1188,7 +1188,6 @@ pre code {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* No background, no border, no shadow — blends into page */
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1199,8 +1198,8 @@ pre code {
 
 /* Collapsed sidebar */
 .toc-sidebar.collapsed {
-  width: 32px;
-  min-width: 32px;
+  width: 44px;
+  min-width: 44px;
 }
 
 .toc-sidebar.collapsed .toc-inner {
@@ -1209,7 +1208,7 @@ pre code {
   visibility: hidden;
 }
 
-/* Toggle button — small pill flush with content */
+/* Toggle button */
 .toc-toggle-btn {
   position: absolute;
   top: 0;
@@ -1252,6 +1251,88 @@ pre code {
 
 .toc-inner::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Mobile TOC Floating Button ─────────────────────────────────────────── */
+.mobile-toc-btn {
+  display: none;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 300;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1.1rem 0.6rem 0.9rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 4px 20px rgba(129,140,248,0.4);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.mobile-toc-btn:hover {
+  background: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(129,140,248,0.5);
+}
+
+/* ── TOC Backdrop Overlay ────────────────────────────────────────────────── */
+.toc-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 299;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.toc-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+/* ── TOC Drawer Close Button (mobile only) ──────────────────────────────── */
+.toc-close-btn {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  align-items: center;
+  gap: 6px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: var(--surface-2, rgba(255,255,255,0.06));
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.toc-close-btn:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .toc-close-btn {
+    display: flex;
+  }
 }
 
 /* TOC label */
@@ -2768,7 +2849,7 @@ pre code {
   }
 
   .page-wrap.sidebar-collapsed {
-    grid-template-columns: 32px 1fr;
+    grid-template-columns: 44px 1fr;
   }
 
   .toc-sidebar {
@@ -2777,8 +2858,8 @@ pre code {
   }
 
   .toc-sidebar.collapsed {
-    width: 32px;
-    min-width: 32px;
+    width: 44px;
+    min-width: 44px;
   }
 
   .floating-decor {
@@ -2786,6 +2867,7 @@ pre code {
   }
 }
 
+/* ── Tablet: sidebar becomes a slide-in drawer ───────────────────────────── */
 @media (max-width: 900px) {
   .page-wrap {
     grid-template-columns: 1fr;
@@ -2795,9 +2877,56 @@ pre code {
     grid-template-columns: 1fr;
   }
 
+  /* Sidebar becomes a fixed slide-in drawer from the left */
   .toc-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px !important;
+    min-width: 280px !important;
+    max-height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    box-shadow: 4px 0 32px rgba(0,0,0,0.18);
+    z-index: 300;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    border-radius: 0;
+  }
+
+  .toc-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Show inner when mobile drawer is open */
+  .toc-sidebar.mobile-open .toc-inner {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  /* Hide the desktop collapse toggle on mobile — we use the FAB instead */
+  .toc-toggle-btn {
     display: none;
   }
+
+  /* Show the mobile FAB button */
+  .mobile-toc-btn {
+    display: flex;
+  }
+
+  /* Show the overlay */
+  .toc-overlay {
+    display: block;
+  }
+
+  /* Inner padding for mobile drawer */
+  .toc-inner {
+    padding: 5rem 1rem 2rem 1rem;
+    max-height: 100vh;
+  }
+
 }
 
 @media (max-width: 1024px) {
@@ -2895,9 +3024,7 @@ pre code {
     grid-template-columns: 1fr;
   }
 
-  .toc-sidebar {
-    display: none;
-  }
+  /* sidebar handled by 900px drawer rule — no override needed */
 
   .tryit-body {
     grid-template-columns: 1fr;

@@ -17,8 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initCvInteractions();
   initFloatingDecor();
   init3DTilt();
-  // Scroll reveal after a tiny delay so elements are painted
-  requestAnimationFrame(() => initScrollReveal());
+  // Scroll reveal — run synchronously so above-fold content is never hidden
+  initScrollReveal();
+});
+
+// Also re-check on full load (fonts/images may shift layout)
+window.addEventListener('load', () => {
+  initScrollReveal();
 });
 
 // ── Floating Background Orbs ───────────────────────────────────────────────
@@ -149,6 +154,52 @@ function initTocTracker() {
   const sidebar = document.querySelector('.toc-sidebar');
   const pageWrap = document.querySelector('.page-wrap');
   const toggleBtn = document.getElementById('toc-toggle');
+
+  // Mobile sidebar open button (injected by this script if not present)
+  let mobileSidebarBtn = document.getElementById('mobile-toc-btn');
+  if (!mobileSidebarBtn) {
+    mobileSidebarBtn = document.createElement('button');
+    mobileSidebarBtn.id = 'mobile-toc-btn';
+    mobileSidebarBtn.className = 'mobile-toc-btn';
+    mobileSidebarBtn.setAttribute('aria-label', 'Open table of contents');
+    mobileSidebarBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg><span>Contents</span>`;
+    document.body.appendChild(mobileSidebarBtn);
+  }
+
+  // Overlay backdrop
+  let overlay = document.getElementById('toc-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'toc-overlay';
+    overlay.className = 'toc-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  function openMobileSidebar() {
+    sidebar?.classList.add('mobile-open');
+    overlay.classList.add('active');
+    document.body.classList.add('toc-open');
+  }
+
+  function closeMobileSidebar() {
+    sidebar?.classList.remove('mobile-open');
+    overlay.classList.remove('active');
+    document.body.classList.remove('toc-open');
+  }
+
+  mobileSidebarBtn.addEventListener('click', openMobileSidebar);
+  overlay.addEventListener('click', closeMobileSidebar);
+
+  // Close button inside the drawer
+  const closeBtn = document.getElementById('toc-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeMobileSidebar);
+
+  // Close on sidebar link click (mobile)
+  sidebar?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth < 900) closeMobileSidebar();
+    });
+  });
 
   if (sidebar && toggleBtn) {
     // Restore collapse state from localStorage
@@ -899,14 +950,19 @@ function initScrollReveal() {
 
   if (!revealElements.length) return;
 
-  // Snapshot viewport size once at init
+  // Use a generous viewport extension so elements near the fold are visible immediately
   const viewportHeight = window.innerHeight;
+  const BUFFER = 120; // px of extra buffer below fold
 
   revealElements.forEach(el => {
+    // Skip if already processed
+    if (el.dataset.revealInit) return;
+    el.dataset.revealInit = '1';
+
     if (!el.classList.contains('reveal') && !el.classList.contains('reveal-left') && !el.classList.contains('reveal-right')) {
       const rect = el.getBoundingClientRect();
-      // Elements already in the viewport on page load get marked visible immediately — no delayed fade
-      if (rect.top < viewportHeight && rect.bottom > 0) {
+      // Immediately show anything in viewport + buffer zone
+      if (rect.top < viewportHeight + BUFFER && rect.bottom > 0) {
         el.classList.add('reveal', 'visible');
       } else {
         el.classList.add('reveal');
@@ -914,18 +970,17 @@ function initScrollReveal() {
     }
   });
 
+  // rootMargin: pre-reveal elements 100px before they enter view (no bottom cut-off)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // Stop watching once it has appeared — avoids re-triggering
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+  }, { threshold: 0.01, rootMargin: '0px 0px 0px 0px' });
 
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-    // Only observe elements that aren't already visible
     if (!el.classList.contains('visible')) {
       observer.observe(el);
     }
