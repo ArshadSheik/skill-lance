@@ -522,9 +522,6 @@ function initQuizPage() {
       // Render questions dynamically using JavaScript (not hard-coded in HTML)
       renderQuestions(questions);
       status.textContent = `${questions.length} questions loaded and shuffled. Answer all, then submit.`;
-
-      // Enable beforeunload only now
-      window.addEventListener('beforeunload', beforeUnloadHandler);
     } catch (error) {
       status.textContent = 'Could not load questions. Please try again.';
       status.style.borderColor = 'var(--coral)';
@@ -555,10 +552,17 @@ function initQuizPage() {
   startBtn?.addEventListener('click', startQuiz);
 
   // Track when user starts answering (for beforeunload)
+  // beforeunload is attached HERE — only after first answer selected, per spec
+  let beforeUnloadAttached = false;
   form?.addEventListener('change', (e) => {
     if (e.target.matches('input[type="radio"]')) {
       quizStarted = true;
       quizSubmitted = false;
+      // Attach beforeunload only on the very first answer selection
+      if (!beforeUnloadAttached) {
+        window.addEventListener('beforeunload', beforeUnloadHandler);
+        beforeUnloadAttached = true;
+      }
       status.textContent = 'Quiz in progress. Submit when you have answered all questions.';
       status.style.borderColor = '';
       status.style.background = '';
@@ -662,6 +666,7 @@ function initQuizPage() {
       form.querySelectorAll('input[type="radio"]').forEach(r => { r.disabled = false; r.checked = false; });
       container.innerHTML = '';
       document.querySelectorAll('.question-card').forEach(c => c.className = 'question-card');
+      beforeUnloadAttached = false;
     });
 
     if (passed && typeof window.launchConfetti === 'function') window.launchConfetti();
@@ -674,10 +679,23 @@ function initQuizPage() {
     if (passed) {
       rewardContent.innerHTML = '<p>🎉 Fetching your reward…</p>';
       try {
-        // Fetch motivational content from a public API
-        const res = await fetch('https://api.adviceslip.com/advice');
-        const data = await res.json();
-        const advice = data.slip ? data.slip.advice : 'You are amazing!';
+        // Fetch motivational content — cache-bust adviceslip + fallback to quotable mirror
+        let advice = null;
+        try {
+          const res = await fetch('https://api.adviceslip.com/advice?t=' + Date.now(), { cache: 'no-store' });
+          if (!res.ok) throw new Error('adviceslip ' + res.status);
+          const data = await res.json();
+          advice = (data.slip && data.slip.advice) ? data.slip.advice : null;
+        } catch {
+          // fallback: forismatic inspirational quotes (JSONP-free endpoint via allorigins)
+          try {
+            const fb = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'), { cache: 'no-store' });
+            const fbData = await fb.json();
+            const parsed = JSON.parse(fbData.contents);
+            if (parsed && parsed.quoteText) advice = parsed.quoteText.trim();
+          } catch { /* ignore */ }
+        }
+        if (!advice) advice = 'Keep pushing forward — every expert was once a beginner!';
         rewardContent.innerHTML = `
           <div class="reward-trophy">
             <span class="trophy-icon">🏆</span>
@@ -699,7 +717,9 @@ function initQuizPage() {
         const res = await fetch('https://icanhazdadjoke.com/', {
           headers: { 'Accept': 'application/json' }
         });
+        if (!res.ok) throw new Error('Joke API returned ' + res.status);
         const data = await res.json();
+        const joke = (data && data.joke) ? data.joke : 'Why do programmers prefer dark mode? Because light attracts bugs!';
         rewardContent.innerHTML = `
         <div class="reward-fail-anim">
           <span class="fail-icon">📚</span>
@@ -707,7 +727,7 @@ function initQuizPage() {
           <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:0.5rem">You need ${PASS_THRESHOLD}% to pass. Review the <a href="tutorial.html">tutorial</a> and try again!</p>
           <div style="margin-top:1rem;padding:1rem;background:var(--surface-2);border-left:4px solid var(--coral);border-radius:0 8px 8px 0;">
             <p style="font-size:0.85rem;color:var(--coral);margin-bottom:0.5rem;font-weight:bold;">YOUR PENALTY (A terrible joke):</p>
-            <p style="color:var(--text);font-style:italic;">"${escapeHtml(data.joke)}"</p>
+            <p style="color:var(--text);font-style:italic;">"${escapeHtml(joke)}"</p>
           </div>
         </div>`;
       } catch {
@@ -742,10 +762,16 @@ function initQuizPage() {
         historyList.innerHTML = '<li>No attempts saved yet.</li>';
         return;
       }
-      historyList.innerHTML = attempts.map(a => `
-        <li><strong>${a.score || 0}/${a.total || 10} (${a.percentage || 0}%)</strong>
-        <span>${a.passed ? '✓ Passed' : '✗ Failed'} — ${a.date || 'Unknown'}</span></li>
-      `).join('');
+      historyList.innerHTML = attempts.map(a => {
+        // Validate each field — guard against malformed/missing data
+        const score      = (typeof a.score      === 'number') ? a.score      : '?';
+        const total      = (typeof a.total      === 'number') ? a.total      : 10;
+        const percentage = (typeof a.percentage === 'number') ? a.percentage : '?';
+        const passed     = (typeof a.passed     === 'boolean') ? a.passed    : false;
+        const date       = (typeof a.date       === 'string' && a.date) ? a.date : 'Unknown';
+        return `<li><strong>${score}/${total} (${percentage}%)</strong>
+        <span>${passed ? '✓ Passed' : '✗ Failed'} — ${date}</span></li>`;
+      }).join('');
     } catch { historyList.innerHTML = '<li>Could not load history.</li>'; }
   }
 
@@ -989,35 +1015,62 @@ function initScrollReveal() {
 
 // ── Confetti Celebration (Quiz Pass) ───────────────────────────────────────
 function launchConfetti() {
-  const colors = ['#818cf8', '#06b6d4', '#22c55e', '#fbbf24', '#f87171', '#a78bfa', '#fb923c'];
-  const shapes = ['circle', 'square', 'triangle'];
+  const colors = ['#818cf8', '#06b6d4', '#22c55e', '#fbbf24', '#f87171', '#a78bfa', '#fb923c', '#f472b6', '#34d399'];
+  const shapes = ['circle', 'square', 'triangle', 'rect'];
+  const TOTAL = 160;
 
-  for (let i = 0; i < 80; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const size = Math.random() * 10 + 5;
+  // Launch in two waves for a burst effect
+  spawnBatch(TOTAL * 0.6, 0);
+  spawnBatch(TOTAL * 0.4, 600);
 
-    piece.style.left = Math.random() * 100 + 'vw';
-    piece.style.width = size + 'px';
-    piece.style.height = size + 'px';
-    piece.style.background = color;
-    piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
-    piece.style.animationDelay = Math.random() * 1.5 + 's';
+  function spawnBatch(count, delayOffset) {
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = Math.random() * 12 + 6;
+      const duration = (Math.random() * 2.5 + 2.5).toFixed(2);
+      const delay = (Math.random() * 1.8 + delayOffset / 1000).toFixed(2);
+      const startRotation = Math.floor(Math.random() * 360);
+      const drift = (Math.random() * 120 - 60).toFixed(1); // horizontal drift in px
 
-    if (shape === 'circle') piece.style.borderRadius = '50%';
-    else if (shape === 'triangle') {
-      piece.style.width = '0';
-      piece.style.height = '0';
-      piece.style.background = 'transparent';
-      piece.style.borderLeft = size / 2 + 'px solid transparent';
-      piece.style.borderRight = size / 2 + 'px solid transparent';
-      piece.style.borderBottom = size + 'px solid ' + color;
+      // Critical fix: set top so translateY(-100vh) starts from visible top
+      piece.style.position = 'fixed';
+      piece.style.top = '0';
+      piece.style.left = (Math.random() * 105 - 2.5) + 'vw';
+      piece.style.width = size + 'px';
+      piece.style.height = shape === 'rect' ? size * 0.45 + 'px' : size + 'px';
+      piece.style.background = color;
+      piece.style.zIndex = '99999';
+      piece.style.pointerEvents = 'none';
+      piece.style.animationDuration = duration + 's';
+      piece.style.animationDelay = delay + 's';
+      piece.style.animationFillMode = 'both';
+      piece.style.animationTimingFunction = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      piece.style.setProperty('--drift', drift + 'px');
+      piece.style.setProperty('--start-rot', startRotation + 'deg');
+
+      if (shape === 'circle') {
+        piece.style.borderRadius = '50%';
+        piece.style.animationName = 'confettiFall';
+      } else if (shape === 'triangle') {
+        piece.style.width = '0';
+        piece.style.height = '0';
+        piece.style.background = 'transparent';
+        piece.style.borderLeft = size / 2 + 'px solid transparent';
+        piece.style.borderRight = size / 2 + 'px solid transparent';
+        piece.style.borderBottom = size + 'px solid ' + color;
+        piece.style.animationName = 'confettiFallTriangle';
+      } else {
+        piece.style.borderRadius = shape === 'rect' ? '2px' : '2px';
+        piece.style.animationName = 'confettiFall';
+      }
+
+      document.body.appendChild(piece);
+      const lifetime = (parseFloat(duration) + parseFloat(delay) + 0.5) * 1000;
+      setTimeout(() => piece.remove(), lifetime);
     }
-
-    document.body.appendChild(piece);
-    setTimeout(() => piece.remove(), 5000);
   }
 }
 
