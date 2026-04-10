@@ -3644,23 +3644,40 @@ pre code {
 /* ── Reward Celebration Confetti Effect ─────────────────────────────────── */
 @keyframes confettiFall {
   0% {
-    transform: translateY(-100vh) rotate(0deg);
+    transform: translateY(-120px) translateX(0) rotate(var(--start-rot, 0deg));
     opacity: 1;
   }
-
+  60% {
+    opacity: 1;
+  }
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    transform: translateY(105vh) translateX(var(--drift, 0px)) rotate(calc(var(--start-rot, 0deg) + 900deg));
+    opacity: 0;
+  }
+}
+
+@keyframes confettiFallTriangle {
+  0% {
+    transform: translateY(-120px) translateX(0) rotate(var(--start-rot, 0deg)) scale(1);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) translateX(var(--drift, 0px)) rotate(calc(var(--start-rot, 0deg) + 720deg)) scale(0.8);
     opacity: 0;
   }
 }
 
 .confetti-piece {
   position: fixed;
+  top: 0;
   width: 10px;
   height: 10px;
-  z-index: 1000;
+  z-index: 99999;
   pointer-events: none;
-  animation: confettiFall 3s ease-out forwards;
+  will-change: transform, opacity;
 }
 
 /* ── Glow effect on CTA banner ─────────────────────────────────────────── */
