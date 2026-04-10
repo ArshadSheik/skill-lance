@@ -1519,8 +1519,8 @@ pre code {
 }
 
 .content-section {
-  margin-bottom: 1.75rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -4304,17 +4304,6 @@ pre code {
   padding-left: 0;
 }
 
-.content-section+.content-section::before {
-  content: '';
-  display: block;
-  height: 40px;
-  margin: 0 auto;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--border), var(--accent), var(--border));
-  margin-bottom: 2rem;
-  border-radius: 1px;
-}
-
 /* ── 10. Fix Question Legend Alignment ──────────────────────────────────── */
 .question-card {
   padding: 1.75rem;
@@ -6445,9 +6434,10 @@ pre code {
 
 .t-path-card {
   position: relative;
-  display: flex;
-  align-items: stretch;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 1rem;
   padding: 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -6493,6 +6483,9 @@ pre code {
   flex-shrink: 0;
   position: relative;
   z-index: 1;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -6508,6 +6501,8 @@ pre code {
   z-index: 1;
   flex: 1;
   gap: 0.25rem;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .t-path-card a.tpc-main-title {
@@ -6523,31 +6518,30 @@ pre code {
   flex-direction: column;
   gap: 0.4rem;
   margin-top: 0.85rem;
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 .tpc-sublinks a {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-2);
   text-decoration: none;
   transition: all 0.2s;
-  padding-left: 0.75rem;
-  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
 }
 .tpc-sublinks a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--border);
-  border-radius: 2px;
-  transition: background 0.2s;
+  content: '›';
+  color: var(--accent);
+  font-weight: 700;
+  transition: color 0.2s;
+  flex-shrink: 0;
 }
 .tpc-sublinks a:hover {
   color: var(--accent);
 }
 .tpc-sublinks a:hover::before {
-  background: var(--accent);
+  color: var(--accent);
 }
 
 .tpc-title {
@@ -6765,7 +6759,7 @@ pre code {
   content: '';
   display: block;
   height: 1px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 1rem;
   width: 100%;
   background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
   opacity: 0.6;
