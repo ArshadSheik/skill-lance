@@ -78,13 +78,14 @@
       <div>
         <div class="eyebrow-pill-3d">
           <span class="pill-icon-3d">✦</span>
-          <span class="pill-word" style="--i:1">CITS5505</span>
-          <span class="pill-sep" style="--i:1">•</span>
-          <span class="pill-word" style="--i:2">Web</span>
-          <span class="pill-word" style="--i:3">Technologies</span>
-          <span class="pill-sep" style="--i:2">•</span>
-          <span class="pill-word" style="--i:4">UWA</span>
-          <div class="pill-shimmer"></div>
+            <span class="pill-word" style="--i:0">Learn</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:1">Practice</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:2">Reflect</span>
+            <span class="pill-sep">→</span>
+            <span class="pill-word" style="--i:3">Grow</span>
+            <span class="pill-shimmer" aria-hidden="true"></span>
         </div>
         <h1 class="hero-title-3d">Learn the Web.<br><em>One Skill at a Time.<span
               class="hero-code-cursor">&lt;/&gt;</span></em></h1>
@@ -134,13 +135,6 @@
                 <div class="tpc-title">HTML <span class="tpc-time">~15 min</span></div>
               </a>
               <div class="tpc-desc">Structure &amp; Semantics</div>
-              <div class="tpc-sublinks">
-                <a href="#html-structure">Document Structure</a>
-                <a href="#html-elements">Elements & Tags</a>
-                <a href="#html-semantic">Semantic HTML</a>
-                <a href="#html-tryit">▶ Try it Yourself</a>
-                <a href="#html-forms">Forms & Input</a>
-              </div>
             </div>
           </div>
 
@@ -153,13 +147,6 @@
                 <div class="tpc-title">CSS <span class="tpc-time">~20 min</span></div>
               </a>
               <div class="tpc-desc">Style &amp; Layout</div>
-              <div class="tpc-sublinks">
-                <a href="#css-selectors">Selectors</a>
-                <a href="#css-boxmodel">Box Model</a>
-                <a href="#css-playground">▶ Box Model Explorer</a>
-                <a href="#css-properties">▶ Property Playground</a>
-                <a href="#css-flexbox">Flexbox & Grid</a>
-              </div>
             </div>
           </div>
 
@@ -172,12 +159,6 @@
                 <div class="tpc-title">JavaScript <span class="tpc-time">~20 min</span></div>
               </a>
               <div class="tpc-desc">Logic &amp; Behaviour</div>
-              <div class="tpc-sublinks">
-                <a href="#js-vars">Variables & Functions</a>
-                <a href="#js-dom">DOM Manipulation</a>
-                <a href="#js-events">Events</a>
-                <a href="#js-demos">▶ Live Demos</a>
-              </div>
             </div>
           </div>
 
@@ -210,7 +191,7 @@
       </button>
 
       <div class="toc-inner">
-        <div class="toc-label">// Web Foundations</div>
+        <div class="toc-label">IN THIS TUTORIAL</div>
 
         <nav class="toc-links" aria-label="Tutorial sections">
           <a href="#html" class="toc-section-link">
@@ -219,7 +200,11 @@
             <span class="toc-badge toc-badge-orange">~15 min</span>
           </a>
           <a href="#html-structure" class="sub">Document Structure</a>
-          <a href="#html-elements" class="sub">Elements & Tags</a>
+          <a href="#html-doctype" class="sub">DOCTYPE Declaration</a>
+          <a href="#html-tags" class="sub">Tags &amp; Attributes</a>
+          <a href="#html-head" class="sub">The &lt;head&gt; Element</a>
+          <a href="#html-body" class="sub">The &lt;body&gt; Element</a>
+          <a href="#html-elements" class="sub">Common Elements</a>
           <a href="#html-semantic" class="sub">Semantic HTML</a>
           <a href="#html-tryit" class="sub toc-interactive">▶ Try it Yourself</a>
           <a href="#html-forms" class="sub">Forms & Input</a>
@@ -231,6 +216,9 @@
             <span>CSS</span>
             <span class="toc-badge toc-badge-purple">~20 min</span>
           </a>
+          <a href="#css-how" class="sub">How CSS Works</a>
+          <a href="#css-syntax" class="sub">CSS Syntax</a>
+          <a href="#css-values" class="sub">Colours &amp; Units</a>
           <a href="#css-selectors" class="sub">Selectors & Rules</a>
           <a href="#css-boxmodel" class="sub">Box Model</a>
           <a href="#css-playground" class="sub toc-interactive">▶ Box Model Explorer</a>
@@ -244,6 +232,8 @@
             <span>JavaScript</span>
             <span class="toc-badge toc-badge-yellow">~20 min</span>
           </a>
+          <a href="#js-how" class="sub">How JS Runs</a>
+          <a href="#js-datatypes" class="sub">Data Types</a>
           <a href="#js-vars" class="sub">Variables & Functions</a>
           <a href="#js-dom" class="sub">DOM Manipulation</a>
           <a href="#js-events" class="sub">Events</a>
@@ -334,6 +324,176 @@
           mobile devices.
         </div>
 
+        <!-- DOCTYPE -->
+        <h3 id="html-doctype">The DOCTYPE Declaration</h3>
+        <p>
+          The very first line of every HTML file must be the <strong>DOCTYPE declaration</strong>. It is not an HTML tag
+          — it is an instruction to the browser telling it which version of HTML the page uses.
+        </p>
+
+        <div class="code-window" role="region" aria-label="DOCTYPE declaration example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">doctype.html</span>
+          </div>
+          <pre><code><span class="cm">&lt;!-- Always the very first line — before anything else --&gt;</span>
+<span class="t">&lt;!DOCTYPE html&gt;</span>
+
+<span class="cm">&lt;!-- Without this, browsers enter "quirks mode" and render inconsistently --&gt;</span></code></pre>
+        </div>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">What it does</div>
+            <div class="card-desc">Tells the browser: "render this page using the modern HTML5 standard." Without it, the browser falls back to <strong>quirks mode</strong> — an old compatibility mode that mimics buggy 1990s behaviour.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Is it an HTML tag?</div>
+            <div class="card-desc">No. It starts with <code>&lt;!</code> not <code>&lt;</code>, so it is a <strong>declaration</strong>, not an element. It has no closing tag and no attributes.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">HTML5 vs older versions</div>
+            <div class="card-desc">Older HTML versions (HTML 4, XHTML) required long complex DOCTYPE strings. HTML5 simplified it to just <code>&lt;!DOCTYPE html&gt;</code> — short and easy to remember.</div>
+          </div>
+        </div>
+
+        <!-- Tags & Attributes -->
+        <h3 id="html-tags">Tags &amp; Attributes</h3>
+        <p>
+          HTML is written using <strong>tags</strong>. Most elements have an <strong>opening tag</strong> and a
+          <strong>closing tag</strong> with content in between. Some elements are <strong>void elements</strong> —
+          they have no content and no closing tag.
+        </p>
+
+        <div class="code-window" role="region" aria-label="HTML tags and attributes example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">tags.html</span>
+          </div>
+          <pre><code><span class="cm">&lt;!-- Opening + closing tag (most elements work this way) --&gt;</span>
+<span class="t">&lt;p&gt;</span>This is a paragraph.<span class="t">&lt;/p&gt;</span>
+
+<span class="cm">&lt;!-- Attributes go inside the opening tag: name="value" --&gt;</span>
+<span class="t">&lt;a</span> <span class="at">href</span>=<span class="vl">"https://example.com"</span> <span class="at">target</span>=<span class="vl">"_blank"</span><span class="t">&gt;</span>Visit Example<span class="t">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Void elements — self-closing, no content, no closing tag --&gt;</span>
+<span class="t">&lt;img</span> <span class="at">src</span>=<span class="vl">"photo.jpg"</span> <span class="at">alt</span>=<span class="vl">"A mountain landscape"</span> <span class="t">/&gt;</span>
+<span class="t">&lt;br</span> <span class="t">/&gt;</span>          <span class="cm">&lt;!-- Line break --&gt;</span>
+<span class="t">&lt;hr</span> <span class="t">/&gt;</span>          <span class="cm">&lt;!-- Horizontal rule (divider line) --&gt;</span>
+<span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"text"</span> <span class="at">placeholder</span>=<span class="vl">"Type here…"</span> <span class="t">/&gt;</span>
+
+<span class="cm">&lt;!-- Boolean attributes — presence = true, no value needed --&gt;</span>
+<span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"checkbox"</span> <span class="at">checked</span> <span class="t">/&gt;</span>
+<span class="t">&lt;button</span> <span class="at">disabled</span><span class="t">&gt;</span>Can't click me<span class="t">&lt;/button&gt;</span></code></pre>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>💡 Nesting rule:</strong> Tags must be properly nested — always close the innermost tag first.
+          <code>&lt;p&gt;&lt;strong&gt;correct&lt;/strong&gt;&lt;/p&gt;</code> ✅ &nbsp;
+          <code>&lt;p&gt;&lt;strong&gt;wrong&lt;/p&gt;&lt;/strong&gt;</code> ❌
+        </div>
+
+        <!-- The HEAD element -->
+        <h3 id="html-head">The &lt;head&gt; Element</h3>
+        <p>
+          The <code>&lt;head&gt;</code> contains <strong>metadata</strong> — information <em>about</em> the page that
+          the browser needs but does not display on screen. Think of it as the page's configuration block.
+        </p>
+
+        <div class="code-window" role="region" aria-label="HTML head element example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">head.html</span>
+          </div>
+          <pre><code><span class="t">&lt;head&gt;</span>
+  <span class="cm">&lt;!-- Character encoding — always UTF-8 --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="at">charset</span>=<span class="vl">"UTF-8"</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Responsive viewport — essential for mobile --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="at">name</span>=<span class="vl">"viewport"</span> <span class="at">content</span>=<span class="vl">"width=device-width, initial-scale=1.0"</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Page title shown in browser tab and search results --&gt;</span>
+  <span class="t">&lt;title&gt;</span>My Page Title<span class="t">&lt;/title&gt;</span>
+
+  <span class="cm">&lt;!-- SEO description shown in Google search results --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="at">name</span>=<span class="vl">"description"</span> <span class="at">content</span>=<span class="vl">"A short summary of the page (under 160 chars)."</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Link to an external CSS stylesheet --&gt;</span>
+  <span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"stylesheet"</span> <span class="at">href</span>=<span class="vl">"style.css"</span> <span class="t">/&gt;</span>
+
+  <span class="cm">&lt;!-- Favicon (the small icon in the browser tab) --&gt;</span>
+  <span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"icon"</span> <span class="at">href</span>=<span class="vl">"favicon.ico"</span> <span class="t">/&gt;</span>
+<span class="t">&lt;/head&gt;</span></code></pre>
+        </div>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;meta charset&gt;</div>
+            <div class="card-desc">Tells the browser to use <strong>UTF-8</strong> encoding — supports every character, symbol, and emoji from all languages. Always the first tag inside <code>&lt;head&gt;</code>.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;meta viewport&gt;</div>
+            <div class="card-desc">Without this, mobile browsers zoom out to show a desktop-sized view. This tag tells them to match the device's screen width and start at 1× zoom.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;title&gt;</div>
+            <div class="card-desc">The text shown in the browser tab, bookmarks, and Google search results. Keep it descriptive and under 60 characters.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;link rel="stylesheet"&gt;</div>
+            <div class="card-desc">Loads an external CSS file. The browser fetches and applies it before rendering the page, so styling is ready immediately.</div>
+          </div>
+        </div>
+
+        <!-- The BODY element -->
+        <h3 id="html-body">The &lt;body&gt; Element</h3>
+        <p>
+          Everything <strong>visible</strong> on the page lives inside the <code>&lt;body&gt;</code>. Text, images,
+          buttons, videos, forms — if the user can see or interact with it, it belongs in the body.
+          JavaScript <code>&lt;script&gt;</code> tags also go here, placed at the <strong>bottom</strong> so the
+          visible content loads first.
+        </p>
+
+        <div class="code-window" role="region" aria-label="HTML body element example">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">body.html</span>
+          </div>
+          <pre><code><span class="t">&lt;body&gt;</span>
+
+  <span class="cm">&lt;!-- Page header with navigation --&gt;</span>
+  <span class="t">&lt;header&gt;</span>
+    <span class="t">&lt;nav&gt;</span>
+      <span class="t">&lt;a</span> <span class="at">href</span>=<span class="vl">"/"</span><span class="t">&gt;</span>Home<span class="t">&lt;/a&gt;</span>
+      <span class="t">&lt;a</span> <span class="at">href</span>=<span class="vl">"/about"</span><span class="t">&gt;</span>About<span class="t">&lt;/a&gt;</span>
+    <span class="t">&lt;/nav&gt;</span>
+  <span class="t">&lt;/header&gt;</span>
+
+  <span class="cm">&lt;!-- Main visible content --&gt;</span>
+  <span class="t">&lt;main&gt;</span>
+    <span class="t">&lt;h1&gt;</span>Welcome to My Site<span class="t">&lt;/h1&gt;</span>
+    <span class="t">&lt;p&gt;</span>This text is visible to the user.<span class="t">&lt;/p&gt;</span>
+    <span class="t">&lt;img</span> <span class="at">src</span>=<span class="vl">"hero.jpg"</span> <span class="at">alt</span>=<span class="vl">"Hero banner"</span> <span class="t">/&gt;</span>
+  <span class="t">&lt;/main&gt;</span>
+
+  <span class="cm">&lt;!-- Footer --&gt;</span>
+  <span class="t">&lt;footer&gt;</span>
+    <span class="t">&lt;p&gt;</span>&amp;copy; 2026 My Website<span class="t">&lt;/p&gt;</span>
+  <span class="t">&lt;/footer&gt;</span>
+
+  <span class="cm">&lt;!-- Scripts go last — page content loads before JavaScript runs --&gt;</span>
+  <span class="t">&lt;script</span> <span class="at">defer</span> <span class="at">src</span>=<span class="vl">"script.js"</span><span class="t">&gt;&lt;/script&gt;</span>
+
+<span class="t">&lt;/body&gt;</span></code></pre>
+        </div>
+
+        <div class="alert alert-success">
+          <strong>✅ Why scripts go at the bottom:</strong> If you put <code>&lt;script&gt;</code> in the
+          <code>&lt;head&gt;</code> without <code>defer</code>, the browser pauses rendering while it downloads and
+          runs your JS. Placing scripts before <code>&lt;/body&gt;</code> (or using <code>defer</code>) ensures the
+          HTML is fully parsed and visible first, giving users a faster perceived load time.
+        </div>
+
         <h3 id="html-elements">Common HTML Elements</h3>
         <p>HTML has over 100 elements. These are the most important ones you'll use every day:</p>
 
@@ -375,6 +535,10 @@
           <div class="info-card" role="listitem">
             <div class="card-tag">&lt;div&gt; &lt;span&gt;</div>
             <div class="card-desc">Generic containers with no semantic meaning. Used for grouping and styling.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">&lt;form&gt;</div>
+            <div class="card-desc">Groups user input fields such as text boxes, buttons, checkboxes, and dropdowns for form submissions.</div>
           </div>
         </div>
 
@@ -516,6 +680,112 @@
           The word <em>cascading</em> refers to how multiple rules can apply to one element, with a specific order of
           priority (specificity) determining which wins.
         </p>
+
+        <h3 id="css-how">How CSS Works</h3>
+        <p>CSS is written as <strong>rules</strong>. Each rule targets one or more HTML elements and declares what styles to apply. There are three ways to add CSS to a page:</p>
+
+        <div class="code-window" role="region" aria-label="Three ways to write CSS">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">adding-css.html</span>
+          </div>
+          <pre><code><span class="cm">&lt;!-- 1. External stylesheet (recommended) — keeps CSS in a separate file --&gt;</span>
+<span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"stylesheet"</span> <span class="at">href</span>=<span class="vl">"style.css"</span> <span class="t">/&gt;</span>
+
+<span class="cm">&lt;!-- 2. Internal &lt;style&gt; block — CSS lives inside the HTML file --&gt;</span>
+<span class="t">&lt;style&gt;</span>
+  <span class="at">h1</span> { <span class="at">color</span>: <span class="vl">red</span>; }
+<span class="t">&lt;/style&gt;</span>
+
+<span class="cm">&lt;!-- 3. Inline style — applied directly to one element (avoid for large projects) --&gt;</span>
+<span class="t">&lt;p</span> <span class="at">style</span>=<span class="vl">"color: blue; font-size: 18px;"</span><span class="t">&gt;</span>Inline styled text<span class="t">&lt;/p&gt;</span></code></pre>
+        </div>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">External (recommended)</div>
+            <div class="card-desc">A <code>.css</code> file linked with <code>&lt;link&gt;</code>. One file can style the whole site — change one rule and it updates every page.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Internal &lt;style&gt;</div>
+            <div class="card-desc">CSS written inside a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code>. Useful for single-page projects or quick prototypes.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Inline style</div>
+            <div class="card-desc">Written directly on the element with the <code>style</code> attribute. Highest specificity — overrides everything. Hard to maintain at scale.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">The Cascade</div>
+            <div class="card-desc">When multiple rules target the same element, CSS uses <strong>specificity</strong> and <strong>source order</strong> to decide which wins. Inline &gt; ID &gt; class &gt; element.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Selectors</div>
+            <div class="card-desc">Used to target HTML elements for styling. Common selectors include element, class (<code>.class</code>), ID (<code>#id</code>), and descendant selectors (<code>div p</code>).</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Box Model</div>
+            <div class="card-desc">Every element is a box made of content, padding, border, and margin. Understanding spacing is essential for layout design.</div>
+          </div>
+        </div>
+
+        <h3 id="css-syntax">CSS Syntax</h3>
+        <p>Every CSS rule follows the same pattern: a <strong>selector</strong> picks which elements to style, and a <strong>declaration block</strong> contains one or more <code>property: value;</code> pairs.</p>
+
+        <div class="code-window" role="region" aria-label="CSS syntax breakdown">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">syntax.css</span>
+          </div>
+          <pre><code><span class="cm">/*  selector  {  property: value;  }  */</span>
+
+<span class="at">h1</span> {
+  <span class="at">color</span>:       <span class="vl">#818cf8</span>;    <span class="cm">/* hex colour */</span>
+  <span class="at">font-size</span>:   <span class="vl">2rem</span>;       <span class="cm">/* relative unit */</span>
+  <span class="at">font-weight</span>: <span class="vl">700</span>;        <span class="cm">/* bold */</span>
+  <span class="at">margin</span>:      <span class="vl">0 0 1rem</span>;   <span class="cm">/* top right bottom left shorthand */</span>
+}
+
+<span class="cm">/* Multiple selectors — same rule applies to both */</span>
+<span class="at">h1</span>, <span class="at">h2</span> {
+  <span class="at">font-family</span>: <span class="vl">'Syne', sans-serif</span>;
+}
+
+<span class="cm">/* Comments in CSS use slash-star notation */</span></code></pre>
+        </div>
+
+        <h3 id="css-values">Colours &amp; Units</h3>
+        <p>CSS supports many ways to express colours and measurements. Choosing the right unit matters — some scale with the user's browser settings, others don't.</p>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Hex colours</div>
+            <div class="card-desc"><code>#818cf8</code> — six hex digits encoding red, green, blue. Short form: <code>#fff</code> = <code>#ffffff</code>. Most common in web design.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">RGB &amp; RGBA</div>
+            <div class="card-desc"><code>rgb(129, 140, 248)</code> — decimal red, green, blue values 0–255. Add an alpha channel for transparency: <code>rgba(129, 140, 248, 0.5)</code>.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">px (pixels)</div>
+            <div class="card-desc">Fixed size — <code>16px</code> is always 16 pixels regardless of screen or settings. Good for borders and shadows; avoid for font sizes.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">rem</div>
+            <div class="card-desc">Relative to the <strong>root</strong> font size (usually 16px). <code>1rem = 16px</code>. Use for font sizes and spacing — respects user browser settings.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">em</div>
+            <div class="card-desc">Relative to the <strong>parent</strong> element's font size. Can compound unexpectedly when nested. Use <code>rem</code> for most cases instead.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">% (percent)</div>
+            <div class="card-desc">Relative to the parent element's size. <code>width: 50%</code> makes an element half the width of its container. Essential for responsive layouts.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>💡 Best practice:</strong> Use <code>rem</code> for font sizes and spacing, <code>%</code> or <code>fr</code> for layout widths, and <code>px</code> only for fine details like borders. This makes your site accessible and easier to scale.
+        </div>
 
         <h3 id="css-selectors">Selectors & Rules</h3>
         <p>A CSS rule has two parts: a <strong>selector</strong> (which elements to target) and a <strong>declaration
@@ -762,6 +1032,93 @@
           interactive and dynamic.
         </p>
 
+        <h3 id="js-how">How JavaScript Runs</h3>
+        <p>JavaScript is an <strong>interpreted</strong> language — the browser reads and executes it line by line, top to bottom. It runs in the browser's built-in JavaScript engine (V8 in Chrome, SpiderMonkey in Firefox). No compilation step is needed.</p>
+
+        <div class="code-window" role="region" aria-label="Adding JavaScript to a page">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">adding-js.html</span>
+          </div>
+          <pre><code><span class="cm">&lt;!-- 1. External file (recommended) — use defer so HTML loads first --&gt;</span>
+<span class="t">&lt;script</span> <span class="at">defer</span> <span class="at">src</span>=<span class="vl">"script.js"</span><span class="t">&gt;&lt;/script&gt;</span>
+
+<span class="cm">&lt;!-- 2. Inline script — JS written directly in the HTML file --&gt;</span>
+<span class="t">&lt;script&gt;</span>
+  <span class="fn">console</span>.log(<span class="st">"Page loaded!"</span>);
+<span class="t">&lt;/script&gt;</span>
+
+<span class="cm">&lt;!-- 3. Inline event handler — avoid this approach, hard to maintain --&gt;</span>
+<span class="t">&lt;button</span> <span class="at">onclick</span>=<span class="vl">"alert('clicked')"</span><span class="t">&gt;</span>Click<span class="t">&lt;/button&gt;</span></code></pre>
+        </div>
+
+        <div class="card-grid" role="list">
+          <div class="info-card" role="listitem">
+            <div class="card-tag">The console</div>
+            <div class="card-desc"><code>console.log()</code> prints values to the browser's DevTools console (F12). It's your best debugging tool — use it constantly while learning.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">defer attribute</div>
+            <div class="card-desc">Tells the browser to download the script but wait until the HTML is fully parsed before running it. This ensures your JS can find all the HTML elements it needs.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Statements &amp; semicolons</div>
+            <div class="card-desc">Each instruction is a <strong>statement</strong>. Statements end with a semicolon <code>;</code>. JavaScript can often infer them (ASI), but writing them explicitly avoids subtle bugs.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Case sensitivity</div>
+            <div class="card-desc">JavaScript is case-sensitive. <code>myVariable</code>, <code>MyVariable</code>, and <code>MYVARIABLE</code> are three completely different things. By convention, use <strong>camelCase</strong>.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Variables</div>
+            <div class="card-desc">Used to store data such as text, numbers, or objects. Use <code>const</code> for values that won't change and <code>let</code> for values that can be updated.</div>
+          </div>
+          <div class="info-card" role="listitem">
+            <div class="card-tag">Functions</div>
+            <div class="card-desc">Reusable blocks of code that perform a specific task. Functions help organize logic and avoid repeating code.</div>
+          </div>
+        </div>
+
+        <h3 id="js-datatypes">Data Types</h3>
+        <p>Every value in JavaScript has a <strong>type</strong>. JavaScript is <em>dynamically typed</em> — you don't declare the type explicitly; the engine figures it out at runtime.</p>
+
+        <div class="code-window" role="region" aria-label="JavaScript data types">
+          <div class="code-bar">
+            <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+            <span class="code-title">types.js</span>
+          </div>
+          <pre><code><span class="cm">// String — text, wrapped in quotes</span>
+<span class="kw">const</span> name    = <span class="st">"SkillLance"</span>;
+<span class="kw">const</span> greeting = <span class="st">`Hello, ${name}!`</span>;  <span class="cm">// template literal — can embed expressions</span>
+
+<span class="cm">// Number — integers and decimals (no separate int/float types)</span>
+<span class="kw">const</span> score   = <span class="nm">95</span>;
+<span class="kw">const</span> pi      = <span class="nm">3.14</span>;
+
+<span class="cm">// Boolean — only two possible values</span>
+<span class="kw">const</span> passed  = <span class="kw">true</span>;
+<span class="kw">const</span> failed  = <span class="kw">false</span>;
+
+<span class="cm">// Array — ordered list of values, zero-indexed</span>
+<span class="kw">const</span> colours = [<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>];
+<span class="fn">console</span>.log(colours[<span class="nm">0</span>]);  <span class="cm">// "red"</span>
+
+<span class="cm">// Object — key/value pairs, like a record</span>
+<span class="kw">const</span> user = {
+  name:  <span class="st">"Alex"</span>,
+  score: <span class="nm">95</span>,
+  passed: <span class="kw">true</span>
+};
+<span class="fn">console</span>.log(user.name);   <span class="cm">// "Alex"</span>
+
+<span class="cm">// null — intentionally empty value</span>
+<span class="cm">// undefined — variable declared but not yet assigned</span></code></pre>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>💡 typeof:</strong> Not sure what type a value is? Use <code>typeof myValue</code> — it returns a string like <code>"string"</code>, <code>"number"</code>, <code>"boolean"</code>, or <code>"object"</code>. Handy for debugging.
+        </div>
+
         <h3 id="js-vars">Variables, Functions & Data Types</h3>
         <p>
           Modern JavaScript uses <code>const</code> for values that don't change, and <code>let</code> for values that
@@ -906,9 +1263,9 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
 
         <div class="next-quiz-card">
           <div class="next-quiz-card-left">
-            <div class="next-quiz-tag">// quiz.html</div>
+            <div class="next-quiz-tag">Time to practice?</div>
             <h3 class="next-quiz-heading">Test Your Knowledge</h3>
-            <p class="next-quiz-desc">10 randomised questions across HTML, CSS, and JavaScript. You need 70% to pass — good enough to prove you've actually read this page.</p>
+            <p class="next-quiz-desc">10 questions across HTML, CSS, and JavaScript. You need 70% to pass — good enough to prove you've actually read this page.</p>
             <a href="quiz.html" class="next-quiz-btn">
               Start the Quiz <span class="arr">→</span>
             </a>
