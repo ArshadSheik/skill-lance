@@ -187,19 +187,8 @@ function initTocTracker() {
     });
   }
 
-  // ── Scroll progress bar ─────────────────────────────────────────────────
-  const progressFill = document.getElementById('toc-progress-fill');
-  const progressPct  = document.getElementById('toc-progress-pct');
 
-  function updateProgress() {
-    const docH    = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = docH > 0 ? Math.min(100, Math.round((window.scrollY / docH) * 100)) : 0;
-    if (progressFill) progressFill.style.width = scrolled + '%';
-    if (progressPct)  progressPct.textContent  = scrolled + '%';
-  }
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
 
   // ── Active section highlighting ─────────────────────────────────────────
   const tocLinks = document.querySelectorAll('.toc-links a, .toc-section-link, .toc-quiz-link');

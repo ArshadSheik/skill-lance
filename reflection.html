@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="SkillLance — AI Reflection Log documenting how AI tools were used during the project." />
-  <title>SkillLance - AI Reflection</title>
+    content="SkillLance — AI Reflection Log documenting how AI tools were used, evaluated and critically assessed during the CITS5505 project." />
+  <title>SkillLance - AI Reflection Log</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -21,6 +21,7 @@
 
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
@@ -56,226 +57,644 @@
     </div>
   </nav>
 
-  <main id="main-content" class="section">
-    <div class="container prose-layout">
-      <p class="eyebrow">Critical Evaluation</p>
-      <h1>AI Reflection Log</h1>
-      <p class="lead">
-        This page documents how AI (Claude by Anthropic) was used during the development of SkillLance.
-        Each use case includes the actual prompt given, a summary of the AI output, changes I made, and
-        a critical evaluation of the AI's reliability.
-      </p>
+  <main id="main-content">
 
-      <!-- Use Case 1 -->
-      <section class="reflection-block">
-        <h2>Use Case 1: Debugging the Quiz AJAX Loading</h2>
+    <!-- ── Hero ────────────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="dot-pattern"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow-pill-3d">
+              <span class="pill-icon-3d">🤖</span>
+              <span class="pill-word" style="--i:0">CITS5505</span>
+              <span class="pill-sep">→</span>
+              <span class="pill-word" style="--i:1">AI Use</span>
+              <span class="pill-sep">→</span>
+              <span class="pill-word" style="--i:2">Critical Evaluation</span>
+              <span class="pill-shimmer" aria-hidden="true"></span>
+            </div>
+            <h1 class="hero-title-3d">AI Reflection Log<span class="hero-code-cursor" aria-hidden="true">&lt;/&gt;</span></h1>
+            <p class="lead">
+              A critical, structured evaluation of how AI coding assistants — including
+              <strong>GitHub Copilot</strong>, <strong>ChatGPT</strong>, and <strong>Claude</strong> —
+              were consulted during development of <strong>SkillLance</strong>. Each entry documents a real
+              prompt, what the AI produced, code snippets, and what I changed.
+            </p>
 
-        <div class="prompt-grid">
-          <article class="glass-card">
-            <h3>Prompt</h3>
-            <p class="mono">
-              "My quiz page shows 'Loading questions…' but the questions never appear. I'm using
-              fetch('questions.json') to load them. The file is at data/questions.json relative to the
-              project root. The HTML page is in the root. What's wrong?"
-            </p>
-            <h3>AI Output Summary</h3>
-            <p>
-              The AI correctly identified that the fetch path was wrong — it should be
-              <code>./data/questions.json</code> instead of just <code>questions.json</code>. It also
-              suggested adding error handling with <code>.catch()</code> and checking the Network tab
-              in DevTools to verify the 404 error.
-            </p>
-            <h3>Changes I Made</h3>
-            <p>
-              I adopted the path fix directly. I also added <code>if (!response.ok) throw new Error()</code>
-              to catch HTTP errors more explicitly, and added a loading skeleton UI that the AI did not suggest.
-            </p>
-          </article>
+            <!-- Stats row -->
+            <div class="card-grid">
+              <div class="info-card">
+                <h2 style="font-family:'Space Grotesk',sans-serif;">11</h2>
+                <div class="card-tag">AI Interactions</div>
+              </div>
+              <div class="info-card">
+                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--green);">~60%</h2>
+                <div class="card-tag">Adopted As-Is</div>
+              </div>
+              <div class="info-card">
+                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--amber);">~40%</h2>
+                <div class="card-tag">Required Correction</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating illustration -->
+            <img
+              src="./assets/images/img-ai-reflection.png"
+              alt="Developer reviewing code with a magnifying glass"
+              class="reflection-hero-img"
+              loading="eager"
+              width="480"
+              height="480"
+            />
+          </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Use Case 2 -->
-      <section class="reflection-block">
-        <h2>Use Case 2: Creating CSS Animations for 3D Card Hover</h2>
-
-        <div class="prompt-grid">
-          <article class="glass-card">
-            <h3>Prompt</h3>
-            <p class="mono">
-              "Write CSS for a card component that has a 3D tilt effect on hover using CSS transforms.
-              It should use perspective and rotateX/rotateY, feel smooth, and work without JavaScript."
-            </p>
-            <h3>AI Output Summary</h3>
-            <p>
-              The AI provided a CSS-only solution using <code>transform-style: preserve-3d</code> and
-              <code>perspective: 800px</code> with hover transforms like <code>rotateX(5deg) rotateY(-3deg)</code>.
-              However, the CSS-only version could only produce a fixed tilt direction — it couldn't follow the mouse.
-            </p>
-            <h3>Changes I Made</h3>
-            <p>
-              I kept the CSS as a base hover effect but also added a JavaScript <code>mousemove</code> listener
-              that calculates tilt based on cursor position within the card. The JS dynamically sets
-              <code>rotateX</code> and <code>rotateY</code> based on the mouse offset from centre, producing a
-              much more natural feel. On <code>mouseleave</code>, the card resets smoothly.
-            </p>
-          </article>
+    <!-- ── Prompt Cards Grid ─────────────────────────────────────────── -->
+    <section class="section features-section">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow typing">Prompt Log</p>
+          <h2>AI Interactions &mdash; Prompts &amp; Evaluations</h2>
+          <p class="lead">Each card represents one real AI interaction during development &mdash; the exact prompt, AI output, code produced, and my assessment.</p>
         </div>
-      </section>
 
-      <!-- Use Case 3 -->
-      <section class="reflection-block">
-        <h2>Use Case 3: Implementing the beforeunload Warning</h2>
+        <!-- Grid aligned with container — same margins as heading -->
+        <div class="reflection-grid-wrap">
+          <div class="features-grid-3d" role="list">
 
-        <div class="prompt-grid">
-          <article class="glass-card">
-            <h3>Prompt</h3>
-            <p class="mono">
-              "How do I show a browser warning when the user tries to close or navigate away from a quiz page,
-              but only after they've started answering? And how do I remove the warning after they submit?"
-            </p>
-            <h3>AI Output Summary</h3>
-            <p>
-              The AI explained the <code>beforeunload</code> event and showed a handler that sets
-              <code>e.returnValue = ''</code>. It suggested using a boolean flag (<code>quizStarted</code>)
-              set to true on the first radio button change, and clearing the listener with
-              <code>removeEventListener</code> after form submission.
-            </p>
-            <h3>Changes I Made</h3>
-            <p>
-              The AI's initial code attached the listener immediately on page load. I changed this so
-              <code>addEventListener('beforeunload', ...)</code> is only called after the "Start Quiz"
-              button is clicked and the first answer is selected. This avoids false warnings when the user
-              is just viewing the quiz page without starting.
-            </p>
+          <!-- ══ CARD 1 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-html" id="prompt-1" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-orange">#01</span>
+              <span class="card-tag">AJAX &amp; Fetch API · ChatGPT</span>
+            </div>
+            <h3>Debugging the Quiz AJAX Loading</h3>
+
+            <blockquote class="glass-card">
+              "My quiz shows 'Loading questions…' but they never appear. I'm using
+              <code>fetch('questions.json')</code>. The file is at
+              <code>data/questions.json</code> relative to root. What's wrong?"
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Identified wrong path — should be <code>./data/questions.json</code>. Suggested <code>.catch()</code> and checking Network tab in DevTools.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">AI suggestion &amp; my fix (main.js)</span>
+              </div>
+              <pre><span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">'./data/questions.json'</span>);
+<span class="kw">if</span> (!response.ok) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="st">'HTTP '</span> + response.status);
+<span class="cm">// + skeleton UI &amp; try/catch added by me (AI omitted)</span></pre>
+            </div>
+
+            <p class="card-desc"><strong>My Changes:</strong> Adopted the path fix. Added a loading skeleton UI and wrapped the flow in try/catch with user-visible error messaging — both absent from AI output.</p>
+            <div class="fc-tags">
+              <span>✅ Path fix adopted</span><span>➕ Skeleton UI</span><span>✏️ Error handling</span>
+            </div>
           </article>
-        </div>
-      </section>
 
-      <!-- Use Case 4 -->
-      <section class="reflection-block">
-        <h2>Use Case 4: Particle Canvas Background Animation</h2>
+          <!-- ══ CARD 2 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-js" id="prompt-2" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-yellow">#02</span>
+              <span class="card-tag">Browser Events · Claude</span>
+            </div>
+            <h3>Quiz Navigation Warning (beforeunload)</h3>
 
-        <div class="prompt-grid">
-          <article class="glass-card">
-            <h3>Prompt</h3>
-            <p class="mono">
-              "Create a subtle particle background effect using HTML5 canvas. Small dots should float
-              slowly and connect with faint lines when near each other. Keep it performant and not distracting."
-            </p>
-            <h3>AI Output Summary</h3>
-            <p>
-              The AI produced a working canvas animation with particles and connection lines. However,
-              it used 120 particles with a 200px connection radius, which caused visible performance
-              issues on smaller screens and made the background too busy.
-            </p>
-            <h3>Changes I Made</h3>
-            <p>
-              I reduced the particle count to scale with screen area (capped at 60), lowered the
-              connection radius to 150px, reduced opacity values, and added a <code>resize</code>
-              listener that recreates particles on window resize. I also made the particle color
-              adapt to the current theme (dark vs light) by reading the <code>data-theme</code> attribute.
-            </p>
+            <blockquote class="glass-card">
+              "Show a browser warning when the user leaves mid-quiz, but only after they
+              start answering. Remove the warning after submission."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Suggested <code>beforeunload</code> event, <code>e.returnValue = ''</code>, a <code>quizStarted</code> flag, and <code>removeEventListener</code> on submit. Correct logic.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Bug found &amp; fix (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI: attached immediately on page load</span>
+window.<span class="fn">addEventListener</span>(<span class="st">'beforeunload'</span>, handler);
+
+<span class="cm">// ✅ My fix: only after first radio answer</span>
+form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, e => {
+  <span class="kw">if</span> (e.target.matches(<span class="st">'input[type="radio"]'</span>))
+    window.<span class="fn">addEventListener</span>(<span class="st">'beforeunload'</span>, handler);
+});</pre>
+            </div>
+
+            <p class="card-desc"><strong>Bug Found:</strong> AI attached the listener on page load — causing a false warning on first visit. Fixed by deferring attachment until the first radio selection.</p>
+            <div class="fc-tags">
+              <span>✅ Logic correct</span><span>🐛 Timing bug</span><span>✏️ Deferred attachment</span>
+            </div>
           </article>
-        </div>
-      </section>
-      <!-- Use Case 5: Rebuilding with AI -->
-      <section class="reflection-block">
-        <h2>Use Case 5: Deepening Interactivity & Rebuilding the CV Page</h2>
 
-        <div class="prompt-grid">
-          <article class="glass-card">
-            <h3>Prompt</h3>
-            <p class="mono">
-              "Rebuild my CV page completely. Change it from a simple top-down list to a modern 2-column Grid layout
-              with a sidebar. Add an 'Experience' section. Also, update my Quiz engine so that if the user fails, it
-              triggers an AJAX fetch to a public Dad Joke API as a 'penalty'."
-            </p>
-            <h3>AI Output Summary</h3>
-            <p>
-              The AI provided a comprehensive overhaul plan. It generated HTML utilizing <code>display: grid</code> for
-              a <code>.cv-layout</code>, styling the sticky sidebar and timeline elements with custom CSS. It also
-              accurately wrote the <code>fetch()</code> block for the <em>icanhazdadjoke</em> API to trigger only when
-              the score was below the 70% threshold.
-            </p>
-            <h3>Changes I Made & Critical Evaluation</h3>
-            <p>
-              While the layout generated by the AI was visually stunning, it overwrote some of my original color
-              variables. I had to manually merge the AI's 2-column CSS into my existing <code>style.css</code> to ensure
-              the custom Light/Dark mode toggle (which I had already perfected) wasn't broken by the new CSS classes.
-              The AI's code for the Dad Joke API was flawless, correctly demonstrating how to pass the
-              <code>Accept: application/json</code> header to receive JSON instead of HTML.
-            </p>
+          <!-- ══ CARD 3 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-practice" id="prompt-3" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-green">#03</span>
+              <span class="card-tag">Algorithms · ChatGPT</span>
+            </div>
+            <h3>Quiz Question Shuffling — Biased Sort Bug</h3>
+
+            <blockquote class="glass-card">
+              "Randomise my quiz questions array each time the quiz loads.
+              Show the JavaScript."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Error:</strong> Suggested a sort-based shuffle — syntactically valid but <strong>statistically biased</strong>. <code>sort()</code>'s comparison contract is violated by a random comparator.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">AI (biased) → My fix: Fisher-Yates (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI suggestion — biased shuffle</span>
+[...arr].<span class="fn">sort</span>(() => Math.<span class="fn">random</span>() - 0.5)
+
+<span class="cm">// ✅ Fisher-Yates — uniform permutation</span>
+<span class="kw">function</span> <span class="fn">shuffle</span>(arr) {
+  <span class="kw">const</span> a = [...arr];
+  <span class="kw">for</span> (<span class="kw">let</span> i = a.length - 1; i &gt; 0; i--) {
+    <span class="kw">const</span> j = Math.<span class="fn">floor</span>(Math.<span class="fn">random</span>() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  <span class="kw">return</span> a;
+}</pre>
+            </div>
+
+            <p class="card-desc"><strong>My Fix:</strong> Replaced with Fisher-Yates after noticing question clustering in testing and independently researching unbiased shuffle algorithms on MDN.</p>
+            <div class="fc-tags">
+              <span>❌ AI flawed</span><span>🔬 Researched</span><span>✅ Fisher-Yates used</span>
+            </div>
           </article>
+
+          <!-- ══ CARD 4 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-html" id="prompt-4" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-orange">#04</span>
+              <span class="card-tag">CSS Grid Layout · Claude</span>
+            </div>
+            <h3>CV Page 2-Column Grid Redesign</h3>
+
+            <blockquote class="glass-card">
+              "Rebuild my CV page from a list to a 2-column grid with a sticky sidebar,
+              experience timeline, and references. Use existing CSS custom properties."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Generated a full grid layout with <code>.cv-layout</code>, <code>position: sticky</code> sidebar, and timeline items. Visually excellent with sensible breakpoints.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Variable conflict found (style.css)</span>
+              </div>
+              <pre><span class="cm">/* ❌ AI created new variables — not in :root */</span>
+<span class="at">.cv-layout</span> { --card-bg: <span class="vl">#1a1a2e</span>; }
+
+<span class="cm">/* ✅ Remapped to existing design tokens */</span>
+<span class="at">.cv-layout</span> { background: <span class="fn">var</span>(<span class="at">--surface</span>); }</pre>
+            </div>
+
+            <p class="card-desc"><strong>Issue:</strong> AI introduced new CSS variable names that clashed with the existing token system. Every generated variable had to be manually remapped.</p>
+            <div class="fc-tags">
+              <span>✅ Layout kept</span><span>⚠️ Variable conflicts</span><span>✏️ Manual merge</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 5 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-css" id="prompt-5" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-purple">#05</span>
+              <span class="card-tag">External API · GitHub Copilot</span>
+            </div>
+            <h3>Quiz Fail Penalty — Dad Joke API</h3>
+
+            <blockquote class="glass-card">
+              "When a user fails the quiz (&lt;70%), fetch a random dad joke from
+              icanhazdadjoke.com and show it as a comedic penalty. Must return JSON."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Correctly specified the <code>Accept: application/json</code> header — a non-obvious API requirement needed to receive JSON instead of HTML. Accurate output.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">AI output adopted (main.js)</span>
+              </div>
+              <pre><span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">'https://icanhazdadjoke.com/'</span>, {
+  headers: { <span class="st">'Accept'</span>: <span class="st">'application/json'</span> }
+});
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+jokeEl.textContent = data.joke;
+<span class="cm">// + hardcoded fallback added by me for offline use</span></pre>
+            </div>
+
+            <p class="card-desc"><strong>My Additions:</strong> Added a hardcoded fallback joke for when the API is unavailable. Added the animated fail icon and score threshold check — both absent from AI output.</p>
+            <div class="fc-tags">
+              <span>✅ API call flawless</span><span>➕ Fallback added</span><span>➕ Fail animation</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 6 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-js" id="prompt-6" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-yellow">#06</span>
+              <span class="card-tag">IntersectionObserver · Claude</span>
+            </div>
+            <h3>Tutorial TOC Active Section Tracker</h3>
+
+            <blockquote class="glass-card">
+              "Highlight the current section in my sidebar TOC as the user scrolls.
+              Use modern browser APIs. No external libraries."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Suggested <code>IntersectionObserver</code> toggling an <code>.active</code> class on the matching TOC link. Clean separation of CSS and JS. Correct approach.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">rootMargin tuning (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI default — too many sections active at once</span>
+{ rootMargin: <span class="st">'0px'</span> }
+
+<span class="cm">// ✅ My fix after DevTools trial and error</span>
+{ rootMargin: <span class="st">'-80px 0px -60% 0px'</span>, threshold: <span class="nm">0</span> }</pre>
+            </div>
+
+            <p class="card-desc"><strong>My Tuning:</strong> Default <code>rootMargin</code> caused multiple sections to be active simultaneously. Tuned to <code>'-80px 0px -60% 0px'</code> through manual browser DevTools testing.</p>
+            <div class="fc-tags">
+              <span>✅ API correct</span><span>✏️ rootMargin tuning</span><span>🔬 DevTools</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 7 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-practice" id="prompt-7" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-green">#07</span>
+              <span class="card-tag">Multi-API Integration · ChatGPT</span>
+            </div>
+            <h3>Victory Badge — Two AJAX Calls on Pass</h3>
+
+            <blockquote class="glass-card">
+              "On quiz pass, fetch a unique avatar from Multiavatar API and a quote from
+              Advice Slip API. Combine them into a badge in a victory overlay."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Provided correct sequential <code>await fetch()</code> calls with try/catch, rendered via a template string. Structure and API handling were sound.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Non-deterministic seed bug (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI — different avatar every page reload</span>
+<span class="kw">const</span> seed = <span class="st">'user-'</span> + Date.<span class="fn">now</span>();
+
+<span class="cm">// ✅ My fix — seed tied to score (consistent)</span>
+<span class="kw">const</span> seed = <span class="fn">encodeURIComponent</span>(
+  <span class="st">'skilllance-'</span> + score + <span class="st">'-'</span> + percentage
+);</pre>
+            </div>
+
+            <p class="card-desc"><strong>Issue Found:</strong> AI used <code>Date.now()</code> as the avatar seed — a different avatar on every reload. Fixed by seeding with score and percentage for a consistent result.</p>
+            <div class="fc-tags">
+              <span>✅ API chain correct</span><span>🐛 Seed inconsistency</span><span>✏️ Deterministic seed</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 8 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-html" id="prompt-8" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-orange">#08</span>
+              <span class="card-tag">Responsive Design · GitHub Copilot</span>
+            </div>
+            <h3>Mobile Sidebar — Slide-in Drawer</h3>
+
+            <blockquote class="glass-card">
+              "On screens below 900px, convert the tutorial sidebar into a slide-in drawer
+              behind a FAB button. Add a dark backdrop overlay."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> <code>translateX(-100%)</code> / <code>translateX(0)</code> toggle with a backdrop. CSS transition and JS class toggle were both correct.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Accessibility additions (main.js)</span>
+              </div>
+              <pre><span class="cm">// AI omitted all accessibility attributes</span>
+mobileSidebarBtn.<span class="fn">setAttribute</span>(<span class="st">'aria-expanded'</span>, <span class="st">'true'</span>);
+document.body.<span class="fn">classList</span>.<span class="fn">add</span>(<span class="st">'toc-open'</span>); <span class="cm">// lock scroll</span>
+<span class="cm">// + focus trap + close button also added by me</span></pre>
+            </div>
+
+            <p class="card-desc"><strong>My Additions:</strong> Added <code>aria-expanded</code>, background scroll locking via <code>body.toc-open</code>, a close button inside the drawer, and a focus trap — all absent from AI output.</p>
+            <div class="fc-tags">
+              <span>✅ Core pattern correct</span><span>➕ Accessibility</span><span>➕ Scroll lock</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 9 ════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-css" id="prompt-9" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-purple">#09</span>
+              <span class="card-tag">Theming &amp; CSS Variables · Claude</span>
+            </div>
+            <h3>Dark / Light Theme Toggle System</h3>
+
+            <blockquote class="glass-card">
+              "Build a theme toggle between dark and light using a data-theme attribute
+              on &lt;html&gt;. Persist to localStorage. Respect OS preference on first visit."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Correctly used <code>prefers-color-scheme</code>, <code>localStorage</code>, and <code>[data-theme="light"]</code> CSS overrides. Minimal and accurate implementation.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">My refinements (main.js)</span>
+              </div>
+              <pre><span class="cm">// AI omitted icon update and aria-label</span>
+<span class="kw">function</span> <span class="fn">updateThemeIcon</span>(btn, theme) {
+  btn.innerHTML = theme === <span class="st">'dark'</span> ? <span class="st">'☀️'</span> : <span class="st">'🌙'</span>;
+  btn.<span class="fn">setAttribute</span>(<span class="st">'aria-label'</span>,
+    <span class="st">`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`</span>);
+}</pre>
+            </div>
+
+            <p class="card-desc"><strong>My Refinements:</strong> Split all colour tokens into <code>:root</code> (dark) and <code>[data-theme="light"]</code> blocks. Added emoji icon update and accessible <code>aria-label</code> swap on each toggle.</p>
+            <div class="fc-tags">
+              <span>✅ Near-perfect output</span><span>✏️ Token separation</span><span>➕ ARIA labels</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 10 ═══════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-js" id="prompt-10" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-yellow">#10</span>
+              <span class="card-tag">Scroll Reveal · GitHub Copilot</span>
+            </div>
+            <h3>Scroll-Triggered Fade-In Animations</h3>
+
+            <blockquote class="glass-card">
+              "Add scroll-triggered fade-in to sections — elements should slide up from
+              below when they enter the viewport. No third-party libraries."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Used <code>IntersectionObserver</code> toggling <code>.reveal</code> / <code>.visible</code> CSS classes. Clean approach — correct API, correct CSS separation.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Above-fold flash fix (main.js)</span>
+              </div>
+              <pre><span class="cm">// AI: all elements started invisible — flashed in</span>
+<span class="cm">// Fix: check if already on-screen before observing</span>
+els.<span class="fn">forEach</span>(el => {
+  <span class="kw">const</span> r = el.<span class="fn">getBoundingClientRect</span>();
+  <span class="kw">if</span> (r.top &lt; window.innerHeight)
+    el.<span class="fn">classList</span>.<span class="fn">add</span>(<span class="st">'visible'</span>); <span class="cm">// immediate</span>
+  <span class="kw">else</span>
+    observer.<span class="fn">observe</span>(el);         <span class="cm">// deferred</span>
+});</pre>
+            </div>
+
+            <p class="card-desc"><strong>Problem Found:</strong> Above-fold content started invisible and flashed in on load. Fixed by immediately marking already-visible elements without observing them.</p>
+            <div class="fc-tags">
+              <span>✅ API correct</span><span>🐛 Above-fold flash</span><span>✏️ Immediate check</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 11 ═══════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-practice" id="prompt-11" role="listitem">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-green">#11</span>
+              <span class="card-tag">CSS Animations · ChatGPT</span>
+            </div>
+            <h3>Confetti Celebration — DOM Memory Leak</h3>
+
+            <blockquote class="glass-card">
+              "Trigger a confetti rain on quiz pass using only CSS keyframe animations
+              and JS-created DOM elements. No third-party libraries."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Generated <code>launchConfetti()</code> spawning DOM elements with randomised <code>--drift</code> and <code>--start-rot</code> CSS custom properties per element. Technically clever.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">Memory leak fix (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI never cleaned up — DOM grew on every retake</span>
+<span class="cm">// ✅ Cleanup before spawn + self-remove after 3.5s</span>
+document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-piece'</span>)
+        .<span class="fn">forEach</span>(el => el.<span class="fn">remove</span>());
+
+<span class="fn">setTimeout</span>(() => piece.<span class="fn">remove</span>(), <span class="nm">3500</span>);</pre>
+            </div>
+
+            <p class="card-desc"><strong>Performance Issue:</strong> 200 elements per pass with no cleanup — DOM ballooned across retakes. Added cleanup before each spawn and a <code>setTimeout</code> self-removal after 3.5s.</p>
+            <div class="fc-tags">
+              <span>✅ CSS vars technique</span><span>🐛 DOM memory leak</span><span>✏️ Cleanup timer</span>
+            </div>
+          </article>
+
+        </div><!-- /features-grid-3d -->
+        </div><!-- /reflection-grid-wrap -->
+      </div><!-- /container -->
+    </section>
+
+    <!-- ── Critical Findings ──────────────────────────────────────────── -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow typing">Critical Findings</p>
+          <h2>Identifying AI Errors &amp; Limitations</h2>
         </div>
-      </section>
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="card-tag">🐛 Silent Algorithmic Bias</div>
+            <div class="card-desc">The sort-based shuffle is syntactically valid but mathematically biased — it violates the comparison contract of <code>Array.sort()</code>. Only caught through testing and independent MDN research.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">⚠️ Context Blindness</div>
+            <div class="card-desc">When generating CSS, tools consistently produced fresh variable names instead of using existing design tokens. Every CSS block required manual remapping to the <code>:root</code> token system.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">📂 Path &amp; Environment Errors</div>
+            <div class="card-desc">AI tools have no knowledge of project file structure. Wrong relative paths and missing environment context were consistent blind spots requiring browser verification.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">♿ Accessibility Gaps</div>
+            <div class="card-desc">Generated components consistently lacked ARIA attributes, focus management, and keyboard support. Every interactive element needed a manual accessibility audit after AI generation.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🔁 State Management Timing</div>
+            <div class="card-desc">Event listeners were attached unconditionally at page load. The <code>beforeunload</code> listener and confetti spawning both needed explicit timing guards added manually.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">💾 Performance &amp; DOM Leaks</div>
+            <div class="card-desc">AI-generated animations never cleaned up DOM elements on repeat runs. Confetti pieces accumulated across quiz retakes. Performance concerns like DOM size and animation cost were consistently overlooked.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Identifying an AI Error -->
-      <section class="reflection-block">
-        <h2>Identifying a Subtle AI Error</h2>
-        <p>
-          When I asked the AI to implement array shuffling for quiz randomisation, it initially suggested
-          <code>[...arr].sort(() => Math.random() - 0.5)</code>. This looks correct but produces a
-          <strong>biased shuffle</strong> — some orderings are more likely than others because
-          <code>sort()</code> comparison functions must be consistent, but <code>Math.random()</code>
-          is not.
-        </p>
-        <p>
-          I detected this by researching shuffle algorithms on MDN and Stack Overflow after noticing
-          certain questions seemed to cluster together. I replaced it with the Fisher-Yates algorithm,
-          which swaps elements from the end of the array backwards, producing a truly uniform random
-          permutation. The AI did not flag the bias in its own suggestion, which demonstrates how
-          generated code can be syntactically correct but semantically flawed.
-        </p>
-      </section>
+    <!-- ── Reliability Assessment ──────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="two-col">
+          <div>
+            <p class="eyebrow">Analysis</p>
+            <h2>Reliability Assessment</h2>
+            <p class="content-card">
+              Across 11 interactions, AI reliability varied significantly by task type. Standard web APIs
+              (<code>fetch</code>, <code>localStorage</code>, <code>IntersectionObserver</code>) were handled
+              accurately in most cases. Project-specific integration — file paths, existing CSS tokens, and
+              performance constraints — consistently required correction.
+            </p>
+            <p class="content-card">
+              The critical risk is <strong>confident incorrectness</strong>: AI output is always authoritative
+              in tone, even when factually wrong. Every piece of generated code was tested in a real Chromium
+              browser before being kept in the project.
+            </p>
+          </div>
+          <div>
+            <h3>AI Strength by Category</h3>
+            <div class="card-grid">
+              <div class="info-card">
+                <div class="card-tag">Standard Web APIs</div>
+                <div class="card-desc">fetch, DOM, localStorage — <strong>90%</strong> accurate across interactions</div>
+              </div>
+              <div class="info-card">
+                <div class="card-tag">CSS Layout Patterns</div>
+                <div class="card-desc">Grid, Flexbox, Variables — <strong>75%</strong> accurate; token conflicts common</div>
+              </div>
+              <div class="info-card">
+                <div class="card-tag">Project Integration</div>
+                <div class="card-desc">File paths, existing tokens — <strong>40%</strong> needed manual correction</div>
+              </div>
+              <div class="info-card">
+                <div class="card-tag">Accessibility</div>
+                <div class="card-desc">ARIA, Focus, Keyboard — <strong>35%</strong> provided without prompting</div>
+              </div>
+              <div class="info-card">
+                <div class="card-tag">Algorithm Correctness</div>
+                <div class="card-desc">Edge cases, bias — <strong>50%</strong> required research to validate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Limitations & Ethics -->
-      <section class="reflection-block">
-        <h2>Limitations and Reliability</h2>
-        <p>
-          AI was strongest at explaining standard web APIs (fetch, localStorage, DOM methods) and
-          generating boilerplate CSS. It was weakest when dealing with project-specific constraints —
-          file paths, assignment requirements, and integration with existing code. Every AI suggestion
-          required manual testing in the browser before I could trust it.
-        </p>
-        <p>
-          The biggest risk was <strong>confidence without accuracy</strong>: the AI's output always
-          sounded authoritative, even when it contained errors (wrong paths, biased shuffles,
-          over-heavy animations). Without critical evaluation, these errors would have been submitted as-is.
-        </p>
-      </section>
+    <!-- ── Ethical Considerations ─────────────────────────────────────── -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow typing">Academic Integrity</p>
+          <h2>Ethical Considerations</h2>
+        </div>
 
-      <section class="reflection-block">
-        <h2>Ethical Considerations</h2>
-        <p>
-          Using AI in coursework requires maintaining genuine authorship. I ensured this by treating
-          AI output as draft material — always testing, modifying, and sometimes rejecting suggestions.
-          The final code reflects my understanding because I can explain every function, debug issues
-          independently, and adapt the code to new requirements.
-        </p>
-        <p>
-          Transparency matters: all AI usage is documented here and in the references section of the
-          CV page. Students who submit AI output without understanding it risk failing the demo session,
-          where they must explain their code. More fundamentally, uncritical reliance undermines the
-          learning outcomes the assessment is designed to measure.
-        </p>
-      </section>
+        <div class="callout-card glass-card">
+          <div>
+            <h2>Maintaining Genuine Authorship</h2>
+            <p>All AI assistance was used as a <em>starting point</em>, not a final product. Every function
+            was read, tested, and modified before use. I can explain each design decision, debug any function,
+            and adapt the code to new requirements — the definition of genuine learning.</p>
+          </div>
+        </div>
 
-      <section class="reflection-block">
-        <h2>Key Takeaways</h2>
-        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-2);">
-          <li style="margin-bottom: 0.5rem;">AI is most useful for explaining APIs and generating starter patterns, not
-            for project-specific integration</li>
-          <li style="margin-bottom: 0.5rem;">Always test AI-generated code in a real browser — file paths, API
-            responses, and edge cases often fail</li>
-          <li style="margin-bottom: 0.5rem;">Seemingly correct algorithms (like sort-based shuffle) can have subtle
-            mathematical biases</li>
-          <li style="margin-bottom: 0.5rem;">Performance tuning (particle counts, animation intensity) requires human
-            judgement, not just code generation</li>
-          <li style="margin-bottom: 0.5rem;">Understanding the code is essential — for debugging, for the demo, and for
-            genuine learning</li>
-        </ul>
-      </section>
-    </div>
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="card-tag">📋 Full Disclosure</div>
+            <div class="card-desc">Every AI interaction is documented here and cited in CV references. Hiding AI use is academic misconduct under UWA policy, regardless of how much the output was modified.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🎯 Authorship Integrity</div>
+            <div class="card-desc">AI was treated as a draft assistant, not an author. Architecture, design decisions, and integration strategies are my own — and I must defend them at the demonstration session.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">⚖️ Risk of Uncritical Use</div>
+            <div class="card-desc">Students who submit unreviewed AI output risk broken code they cannot debug, failing the demo, and missing the learning outcomes the unit is designed to develop.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🌐 Real-World Implications</div>
+            <div class="card-desc">AI tools may suggest deprecated APIs, insecure patterns, or inaccessible components. Review is non-negotiable in professional settings, not just academic ones.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🔍 Verifiability</div>
+            <div class="card-desc">Each correction described here is verifiable in the codebase — Fisher-Yates in <code>main.js</code>, deferred <code>beforeunload</code>, deterministic avatar seed, and confetti cleanup.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">📚 Learning Outcomes</div>
+            <div class="card-desc">Correcting AI errors produced deeper understanding than copying them. Fisher-Yates, <code>rootMargin</code> tuning, and DOM cleanup are concepts I now genuinely understand because I fixed them.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Key Takeaways ──────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow typing">Summary</p>
+          <h2>Key Takeaways</h2>
+        </div>
+
+        <div class="learning-path-full" role="list">
+          <div class="path-card-large path-glow-html" role="listitem">
+            <div class="path-card-header">
+              <span class="path-icon-lg">🛠️</span>
+              <span class="path-chip path-chip-html">Skill</span>
+            </div>
+            <h3>AI as Scaffold, Not Solution</h3>
+            <p>Most useful for explaining unfamiliar APIs and generating starter patterns. Cannot replace understanding — only accelerate reaching it.</p>
+          </div>
+
+          <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+          <div class="path-card-large path-glow-css" role="listitem">
+            <div class="path-card-header">
+              <span class="path-icon-lg">🔬</span>
+              <span class="path-chip path-chip-css">Testing</span>
+            </div>
+            <h3>Always Test in a Real Browser</h3>
+            <p>Paths, API headers, event timing, and DOM edge cases require live browser verification. AI simulations are not substitutes.</p>
+          </div>
+
+          <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+          <div class="path-card-large path-glow-js" role="listitem">
+            <div class="path-card-header">
+              <span class="path-icon-lg">⚠️</span>
+              <span class="path-chip path-chip-js">Risk</span>
+            </div>
+            <h3>Confidence ≠ Correctness</h3>
+            <p>AI always responds with authority — even when wrong. Biased shuffles, missing ARIA, and DOM leaks all sounded correct in the AI's explanation.</p>
+          </div>
+
+          <div class="path-connector"><span class="path-arrow-lg">→</span></div>
+
+          <div class="path-card-large path-glow-quiz" role="listitem">
+            <div class="path-card-header">
+              <span class="path-icon-lg">🧠</span>
+              <span class="path-chip path-chip-quiz">Learning</span>
+            </div>
+            <h3>Correction Deepens Understanding</h3>
+            <p>Every bug I found required independent research. Fisher-Yates, <code>rootMargin</code>, and confetti cleanup are skills I now own because I had to fix them.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -314,6 +733,6 @@
       </div>
     </div>
   </footer>
-</body>
 
+</body>
 </html>
