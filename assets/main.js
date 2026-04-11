@@ -1,21 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   SKILLLANCE — Main JavaScript v2
-   Features: Theme, 3D animations, Tutorial demos, Quiz engine, CV, Floating orbs
+   SKILLLANCE — Main JavaScript
+   Features: Theme toggle, Mobile nav, 3D tilt, Tutorial demos,
+             ToC tracker, Quiz engine, CV interactions, Confetti, Victory overlay
 ═══════════════════════════════════════════════════════════════════════════ */
 
 // ── Initialize on DOM Ready ────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  initAnimatedGrid();
-  initGeoShapes();
-  initParticles();
-  initFloatingOrbs();
   initTheme();
   initMobileNav();
   initTutorialDemos();
   initTocTracker();
   initQuizPage();
   initCvInteractions();
-  initFloatingDecor();
   init3DTilt();
   // Scroll reveal — run synchronously so above-fold content is never hidden
   initScrollReveal();
@@ -26,14 +22,7 @@ window.addEventListener('load', () => {
   initScrollReveal();
 });
 
-// ── Floating Background Orbs ───────────────────────────────────────────────
-function initFloatingOrbs() {
-  if (document.querySelector('.floating-orbs')) return;
-  const container = document.createElement('div');
-  container.className = 'floating-orbs';
-  container.innerHTML = '<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>';
-  document.body.prepend(container);
-}
+
 
 // ── Theme Toggle ───────────────────────────────────────────────────────────
 function initTheme() {
@@ -124,27 +113,7 @@ function init3DTilt() {
   }
 }
 
-// ── Floating Decorative Buttons (Tutorial) ─────────────────────────────────
-function initFloatingDecor() {
-  if (document.body.dataset.page !== 'tutorial') return;
-  if (document.querySelector('.floating-decor')) return;
 
-  const decor = document.createElement('div');
-  decor.className = 'floating-decor';
-  decor.setAttribute('aria-hidden', 'true');
-  decor.innerHTML = `
-    <a href="#html" class="float-btn" title="Jump to HTML">🧱</a>
-    <a href="#css" class="float-btn" title="Jump to CSS">🎨</a>
-    <a href="#js" class="float-btn" title="Jump to JS">⚡</a>
-  `;
-  document.body.appendChild(decor);
-
-  // Make them clickable
-  decor.querySelectorAll('a').forEach(a => {
-    a.style.pointerEvents = 'auto';
-    a.style.textDecoration = 'none';
-  });
-}
 
 // ── TOC Active State Tracker ───────────────────────────────────────────────
 function initTocTracker() {
@@ -651,9 +620,9 @@ function initQuizPage() {
         <div class="metric-box"><span>Status</span><strong class="${passed ? 'pass' : 'fail'}">${passed ? 'PASS ✓' : 'FAIL ✗'}</strong></div>
       </div>
       <p style="margin-top:1rem;color:var(--text-2);font-size:0.9rem">
-        Pass threshold: ${PASS_THRESHOLD}%. ${passed ? 'Well done!' : 'Review the tutorial and try again.'}
+        <strong>Feedback: </strong>Pass threshold is ${PASS_THRESHOLD}%. ${passed ? 'Well done!👏🎉' : 'Review the tutorial and try again ⏳'}
       </p>
-      <button type="button" class="btn btn-secondary" id="retake-quiz-btn" style="margin-top:1rem;width:100%">Retake Quiz</button>
+      <button type="button" class="btn btn-secondary" id="retake-quiz-btn" style="margin-top:1rem;width:100%">Retake Quiz 🔄️</button>
     `;
 
     // Animate score ring
@@ -772,7 +741,7 @@ function initQuizPage() {
         <div class="reward-fail-anim">
           <span class="fail-icon">📚</span>
           <p class="fail" style="font-size:1.05rem;margin-bottom:0.5rem">Not quite there — ${percentage}%</p>
-          <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:0.5rem">You need ${PASS_THRESHOLD}% to pass. Review the <a href="tutorial.html">tutorial</a> and try again!</p>
+          <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:0.5rem">You need ${PASS_THRESHOLD}% to pass⚠️. <br>Review the <a href="tutorial.html">tutorial</a> and try again!🔄️</p>
           <div style="margin-top:1rem;padding:1rem;background:var(--surface-2);border-left:4px solid var(--coral);border-radius:0 8px 8px 0;">
             <p style="font-size:0.85rem;color:var(--coral);margin-bottom:0.5rem;font-weight:bold;">YOUR PENALTY (A terrible joke):</p>
             <p style="color:var(--text);font-style:italic;">"${escapeHtml(joke)}"</p>
@@ -783,7 +752,7 @@ function initQuizPage() {
         <div class="reward-fail-anim">
           <span class="fail-icon">📚</span>
           <p class="fail" style="font-size:1.05rem;margin-bottom:0.5rem">Not quite there — ${percentage}%</p>
-          <p style="color:var(--text-2);font-size:0.9rem">You need ${PASS_THRESHOLD}% to pass. Review the <a href="tutorial.html">tutorial</a> and try again!</p>
+          <p style="color:var(--text-2);font-size:0.9rem">You need ${PASS_THRESHOLD}% to pass⚠️. <br>Review the <a href="tutorial.html">tutorial</a> and try again!🔄️</p>
         </div>`;
       }
     }
@@ -891,127 +860,7 @@ function escapeHtmlCV(str) {
   return div.innerHTML;
 }
 
-// ── Animated SVG Grid Background ───────────────────────────────────────────
-function initAnimatedGrid() {
-  if (document.querySelector('.animated-grid-bg')) return;
-  const grid = document.createElement('div');
-  grid.className = 'animated-grid-bg';
-  grid.setAttribute('aria-hidden', 'true');
-  grid.innerHTML = `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-        </pattern>
-        <linearGradient id="grid-fade" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.3"/>
-          <stop offset="50%" style="stop-color:var(--accent);stop-opacity:0.05"/>
-          <stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.2"/>
-        </linearGradient>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid-pattern)" style="color:var(--accent)"/>
-    </svg>
-  `;
-  document.body.prepend(grid);
-}
 
-// ── Geometric Floating Shapes ──────────────────────────────────────────────
-function initGeoShapes() {
-  if (document.querySelector('.geo-shapes')) return;
-  const container = document.createElement('div');
-  container.className = 'geo-shapes';
-  container.setAttribute('aria-hidden', 'true');
-  for (let i = 0; i < 5; i++) {
-    const shape = document.createElement('div');
-    shape.className = 'geo-shape';
-    container.appendChild(shape);
-  }
-  document.body.prepend(container);
-}
-
-// ── Particle System (Canvas) ───────────────────────────────────────────────
-function initParticles() {
-  if (document.getElementById('particle-canvas')) return;
-
-  const canvas = document.createElement('canvas');
-  canvas.id = 'particle-canvas';
-  canvas.setAttribute('aria-hidden', 'true');
-  document.body.prepend(canvas);
-
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let animFrame;
-  let w, h;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-
-  function createParticles() {
-    particles = [];
-    const count = Math.min(Math.floor((w * h) / 25000), 60);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.3 + 0.1,
-      });
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-    const color = isDark ? '129,140,248' : '99,102,241';
-
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0) p.x = w;
-      if (p.x > w) p.x = 0;
-      if (p.y < 0) p.y = h;
-      if (p.y > h) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${color},${p.opacity})`;
-      ctx.fill();
-    });
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(${color},${0.06 * (1 - dist / 150)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    animFrame = requestAnimationFrame(draw);
-  }
-
-  resize();
-  createParticles();
-  draw();
-
-  window.addEventListener('resize', () => {
-    resize();
-    createParticles();
-  });
-}
 
 // ── Scroll Reveal ──────────────────────────────────────────────────────────
 function initScrollReveal() {
