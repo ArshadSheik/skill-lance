@@ -787,36 +787,81 @@ function initQuizPage() {
 
 // ── CV Page Interactions ───────────────────────────────────────────────────
 function initCvInteractions() {
-  // Highlight skills animation
-  const highlightBtn = document.getElementById('highlight-skills');
-  const targets = document.querySelectorAll('.skill-highlight-target');
 
-  highlightBtn?.addEventListener('click', () => {
-    targets.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.toggle('highlighted');
-      }, index * 120);
+  // ── 1. Animated Skill Bars (IntersectionObserver) ──────────────────────
+  const bars = document.querySelectorAll('.cv-bar-fill');
+  if (bars.length) {
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    bars.forEach(bar => barObserver.observe(bar));
+  }
+
+  // ── 2. Experience Tab Filter ────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.cv-tab');
+  const expItems = document.querySelectorAll('#experience-timeline .exp-item');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Update active tab state
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const filter = tab.dataset.filter;
+
+      // Show/hide experience items
+      expItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.removeAttribute('hidden');
+          // Animate back in
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(8px)';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            });
+          });
+        } else {
+          item.setAttribute('hidden', '');
+          item.style.opacity = '';
+          item.style.transform = '';
+          item.style.transition = '';
+        }
+      });
     });
   });
 
-  // Load motivational quote via AJAX
+  // ── 3. Load motivational quote via AJAX ────────────────────────────────
   const quoteBtn = document.getElementById('load-quote');
   const quoteOutput = document.getElementById('quote-output');
 
   quoteBtn?.addEventListener('click', async () => {
     if (!quoteOutput) return;
-    quoteOutput.innerHTML = '<div class="glass-card"><p>Loading inspiration…</p></div>';
+    quoteBtn.disabled = true;
+    quoteBtn.textContent = 'Fetching...';
+    quoteOutput.innerHTML = '<div class="glass-card"><p style="color:var(--text-2);font-size:0.85rem;">Loading...</p></div>';
 
     try {
-      // Using zenquotes proxy or fallback
       const res = await fetch('https://api.quotable.io/random');
       if (!res.ok) throw new Error('API error');
-
       const data = await res.json();
       quoteOutput.innerHTML = `
-        <div class="glass-card">
-          <p>"${escapeHtmlCV(data.content)}"</p>
-          <p><strong>— ${escapeHtmlCV(data.author)}</strong></p>
+        <div class="glass-card" style="margin-top:0.5rem;">
+          <p style="color:var(--text);font-style:italic;line-height:1.65;font-size:0.9rem;">"${escapeHtmlCV(data.content)}"</p>
+          <p style="color:var(--accent);font-family:'Fira Code',monospace;font-size:0.8rem;margin-top:0.5rem;">— ${escapeHtmlCV(data.author)}</p>
+          <p style="color:var(--text-3);font-size:0.7rem;margin-top:0.3rem;">Source: Quotable API (live fetch)</p>
         </div>
       `;
     } catch {
@@ -824,24 +869,41 @@ function initCvInteractions() {
         { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
         { quote: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
         { quote: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-        { quote: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde" },
         { quote: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+        { quote: "Data is the new oil, but refining it is the real work.", author: "Unknown" },
       ];
       const random = fallbacks[Math.floor(Math.random() * fallbacks.length)];
       quoteOutput.innerHTML = `
-        <div class="glass-card">
-          <p>"${random.quote}"</p>
-          <p><strong>— ${random.author}</strong></p>
+        <div class="glass-card" style="margin-top:0.5rem;">
+          <p style="color:var(--text);font-style:italic;line-height:1.65;font-size:0.9rem;">"${random.quote}"</p>
+          <p style="color:var(--accent);font-family:'Fira Code',monospace;font-size:0.8rem;margin-top:0.5rem;">— ${random.author}</p>
+          <p style="color:var(--text-3);font-size:0.7rem;margin-top:0.3rem;">Fallback quote (API unavailable)</p>
         </div>
       `;
+    } finally {
+      quoteBtn.disabled = false;
+      quoteBtn.textContent = 'Fetch Another';
     }
   });
 
-  // Animate skill pills entrance on CV page
-  document.querySelectorAll('.skill-pill').forEach((pill, i) => {
-    pill.style.animationDelay = (i * 0.05) + 's';
-  });
+  // ── 4. Scroll-reveal for CV sections ───────────────────────────────────
+  const revealTargets = document.querySelectorAll('.cv-section, .cv-sidebar-card');
+  if (revealTargets.length) {
+    const cvRevealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('cv-revealed');
+          cvRevealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealTargets.forEach(el => {
+      el.classList.add('cv-hidden');
+      cvRevealObserver.observe(el);
+    });
+  }
 }
+
 
 function escapeHtmlCV(str) {
   const div = document.createElement('div');

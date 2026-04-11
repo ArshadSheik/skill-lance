@@ -2578,7 +2578,8 @@ pre code {
 .references-list li {
   counter-increment: refs;
   display: flex;
-  gap: 0.75rem;
+  align-items: flex-start;
+  gap: 0.5rem;
   color: var(--text-2);
   font-size: 0.95rem;
   line-height: 1.7;
@@ -2590,6 +2591,7 @@ pre code {
   font-family: 'Fira Code', monospace;
   font-size: 0.85rem;
   flex-shrink: 0;
+  min-width: 2.5rem;
 }
 
 
@@ -6590,4 +6592,398 @@ pre code {
     max-width: 300px;
     margin: 0 auto;
   }
+}
+/* ---------------------------------------------------------------------------
+   CV PAGE
+--------------------------------------------------------------------------- */
+
+/* -- CV Hero Banner -------------------------------------------------------- */
+.cv-hero-banner {
+  position: relative;
+  padding: 4rem 0 3rem;
+  background: linear-gradient(135deg, rgba(129,140,248,0.08) 0%, rgba(6,182,212,0.05) 50%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.cv-hero-inner {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.cv-photo-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-bg), rgba(6,182,212,0.1));
+  border: 2px dashed var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: default;
+}
+
+.cv-photo-initials {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.cv-photo-hint {
+  font-size: 0.6rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-3);
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.cv-hero-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0.5rem 0 0.35rem;
+  background: linear-gradient(135deg, var(--text) 60%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cv-hero-title {
+  font-size: 1rem;
+  color: var(--text-2);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.cv-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cv-contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.cv-contact-chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* -- CV Layout --------------------------------------------------------------- */
+.cv-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.cv-sidebar {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.cv-sidebar-card,
+.cv-section {
+  padding: 1.75rem;
+}
+
+/* -- Experience Timeline --------------------------------------------------- */
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exp-item {
+  position: relative;
+  padding: 1.25rem 1rem 1.25rem 1.5rem;
+  border-left: 2px solid var(--border);
+  margin-left: 0.5rem;
+}
+
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 1.5rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-2);
+  border: 2px solid var(--surface);
+}
+
+.exp-current {
+  border-left-color: var(--accent);
+}
+
+.exp-current::before {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-bg);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.exp-header h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.exp-org {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-family: 'Fira Code', monospace;
+  margin: 0 0 0.5rem;
+}
+
+.exp-date {
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-3);
+  white-space: nowrap;
+  padding: 0.2rem 0.6rem;
+  background: var(--surface-2);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  height: fit-content;
+}
+
+.exp-badge-live {
+  background: rgba(129,140,248,0.12);
+  border-color: rgba(129,140,248,0.3);
+  color: var(--accent);
+}
+
+.exp-bullets {
+  margin: 0.5rem 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.exp-bullets li {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* -- Sidebar Timeline ------------------------------------------------------ */
+.timeline-item {
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--border);
+  position: relative;
+}
+
+.tl-dot {
+  position: absolute;
+  left: -5px;
+  top: 0.4rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+}
+
+.tl-org {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-family: 'Fira Code', monospace;
+  margin: 0.1rem 0;
+}
+
+.tl-date {
+  font-size: 0.76rem;
+  color: var(--text-3);
+  font-family: 'Fira Code', monospace;
+}
+
+/* -- Project Feature Boxes ------------------------------------------------ */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.feature-box {
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  transition: border-color 0.2s;
+}
+
+.feature-box:hover { border-color: var(--accent); }
+
+/* -- References List ------------------------------------------------------ */
+.references-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+.references-list a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* -- Responsive ----------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cv-layout { grid-template-columns: 280px 1fr; }
+}
+
+@media (max-width: 880px) {
+  .cv-hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .cv-photo-placeholder { margin: 0 auto; }
+  .cv-contact-row { justify-content: center; }
+  .cv-layout { grid-template-columns: 1fr; }
+  .cv-sidebar { position: static; }
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+/* -- CV Skill Bars ----------------------------------------------------------- */
+.cv-skill-bars { display: flex; flex-direction: column; gap: 0.85rem; }
+
+.cv-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  margin-bottom: 0.3rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.cv-bar-pct { color: var(--accent); font-weight: 600; }
+
+.cv-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.cv-bar-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #06b6d4);
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cv-bar-fill.animated { width: var(--pct); }
+
+/* -- CV Tabs ----------------------------------------------------------------- */
+.cv-tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 1.25rem;
+}
+
+.cv-tab {
+  padding: 0.35rem 0.9rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cv-tab.active,
+.cv-tab:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* -- Experience Timeline (CV) ------------------------------------------------ */
+.exp-item[hidden] { display: none; }
+
+/* -- CV About Body ----------------------------------------------------------- */
+.cv-about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.cv-about-body p {
+  color: var(--text-2);
+  line-height: 1.85;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+/* -- Cert / Achievement List ------------------------------------------------- */
+.cv-cert-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.cv-cert-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.cv-cert-icon { flex-shrink: 0; font-size: 1rem; }
+
+/* -- CV Scroll Reveal -------------------------------------------------------- */
+.cv-hidden {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.cv-revealed {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -4,35 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillLance — Portfolio and CV page." />
-  <title>SkillLance - CV &amp; Portfolio</title>
+  <meta name="description"
+    content="Arshad Sheik — IT professional, data engineer and MIT student at UWA. Curriculum Vitae for potential employers." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨🏻‍💻</text></svg>" />
+  <title>Arshad Sheik - CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <script defer src="./assets/main.js"></script>
 </head>
 
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- ── Navigation ─────────────────────────────────────────────────────── -->
   <nav class="site-nav">
     <div class="container nav-inner">
       <a href="./index.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
-          <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" />
+          <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
-              <stop stop-color="#818cf8" />
-              <stop offset="1" stop-color="#06b6d4" />
+              <stop stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
             </linearGradient>
           </defs>
         </svg>
@@ -47,204 +50,407 @@
       </div>
       <div class="nav-actions">
         <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu"
-          aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <main id="main-content" style="padding-top: 3rem; padding-bottom: 5rem;">
-    <div class="container cv-layout">
+  <main id="main-content">
 
-      <!-- LEFT COLUMN: Sticky Sidebar -->
-      <aside class="cv-sidebar">
-        <div class="glass-card cv-profile-card skill-highlight-target">
-          <div class="cv-avatar-wrap">
-            <img src="https://picsum.photos/seed/skilllance-avatar/400/400" alt="Professional portrait" width="400"
-              height="400" loading="lazy" />
+    <!-- ── Hero Banner ────────────────────────────────────────────────────── -->
+    <header class="cv-hero-banner" role="banner">
+      <div class="container">
+        <div class="cv-hero-inner">
+
+          <!-- Profile Photo -->
+          <figure class="cv-hero-photo-wrap" aria-label="Profile photo">
+            <img src="./assets/images/Profile.jpeg" alt="Arshad Sheik" class="cv-photo-img" />
+          </figure>
+
+          <!-- Name, title, contacts -->
+          <div class="cv-hero-text">
+            <div class="eyebrow-pill-3d">
+              <span class="pill-icon-3d">💼</span>
+              <span class="pill-word" style="--i:0">M.I.T Student @ UWA</span>
+              <span class="pill-sep">·</span>
+              <span class="pill-word" style="--i:1">McCusker Intern</span>
+              <span class="pill-sep">·</span>
+              <span class="pill-word" style="--i:2">Perth, WA</span>
+              <span class="pill-shimmer" aria-hidden="true"></span>
+            </div>
+            <h1 class="cv-hero-name" id="cv-typewriter" aria-label="Arshad Sheik">Arshad Sheik</h1>
+            <p class="cv-hero-title">
+              IT Professional &amp; Data Engineer &mdash; Master of IT @ The University of Western Australia (UWA)
+            </p>
+            <nav class="cv-contact-row" aria-label="Contact links">
+              <a href="mailto:arshadsheik4801@gmail.com" class="cv-contact-chip">
+                <span aria-hidden="true">✉️</span> arshadsheik4801@gmail.com
+              </a>
+              <a href="https://linkedin.com/in/arshad-sheik" target="_blank" rel="noopener noreferrer" class="cv-contact-chip">
+                <span aria-hidden="true">🔗</span> LinkedIn Profile
+              </a>
+              <a href="https://github.com/ArshadSheik" target="_blank" rel="noopener noreferrer" class="cv-contact-chip">
+                <span aria-hidden="true">🐙</span> GitHub Profile
+              </a>
+              <span class="cv-contact-chip"><span aria-hidden="true">📍</span> Perth, WA, Australia</span>
+              <span class="cv-contact-chip"><span aria-hidden="true">📞</span> +61 0404529517</span>
+            </nav>
+
+            <!-- Download button -->
+            <div style="margin-top:1.25rem;">
+              <a href="./assets/docs/Arshad-Sheik-Resume.pdf" download class="btn btn-primary" id="cv-download-btn">
+                Download PDF Resume
+              </a>
+            </div>
           </div>
-          <h1>Your Name</h1>
-          <p class="cv-headline">Aspiring Web Developer &amp; Computer Science Student at UWA</p>
-
-          <div class="cv-contact-list">
-            <div class="contact-item">
-              <span class="c-icon">📍</span> <span class="c-text">Perth, WA</span>
-            </div>
-            <div class="contact-item">
-              <span class="c-icon">📞</span> <span class="c-text">+61 XXX XXX XXX</span>
-            </div>
-            <div class="contact-item">
-              <span class="c-icon">✉️</span> <a href="mailto:email@example.com" class="c-text">email@example.com</a>
-            </div>
-            <div class="contact-item">
-              <span class="c-icon">🔗</span> <a href="#" class="c-text">linkedin.com/in/yourname</a>
-            </div>
-            <div class="contact-item">
-              <span class="c-icon">🐙</span> <a href="#" class="c-text">github.com/yourname</a>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-primary" id="highlight-skills"
-            style="width:100%; margin-top:1.5rem;">Highlight Strengths</button>
         </div>
+      </div>
+    </header>
 
-        <div class="glass-card cv-sidebar-card skill-highlight-target" style="margin-top:2rem;">
-          <h3>Education</h3>
+    <!-- ── Main Two-Column Layout ──────────────────────────────────────────── -->
+    <div class="container cv-layout" style="padding-top:2.5rem; padding-bottom:5rem;">
+
+      <!-- ══ LEFT SIDEBAR ═══════════════════════════════════════════════════ -->
+      <aside class="cv-sidebar" aria-label="CV sidebar">
+
+        <!-- Animated Skill Bars -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="skills-bar-heading">
+          <p class="eyebrow" id="skills-bar-heading">Proficiency</p>
+          <h2 style="font-size:1.1rem; margin-bottom:1rem;">Technical Skills</h2>
+          <div class="cv-skill-bars" id="cv-skill-bars">
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>Python</span><span class="cv-bar-pct">90%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="90" style="--pct:90%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>SQL (PostgreSQL / MySQL)</span><span class="cv-bar-pct">88%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="88" style="--pct:88%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>Snowflake / Data Warehousing</span><span class="cv-bar-pct">82%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="82" style="--pct:82%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>ETL / ELT Pipelines</span><span class="cv-bar-pct">85%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="85" style="--pct:85%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>Azure / AWS Cloud</span><span class="cv-bar-pct">75%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="75" style="--pct:75%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>Salesforce / Lumary</span><span class="cv-bar-pct">72%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="72" style="--pct:72%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>HTML / CSS / JavaScript</span><span class="cv-bar-pct">60%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="80" style="--pct:60%"></div></div>
+            </div>
+            <div class="cv-bar-row">
+              <div class="cv-bar-label"><span>Machine / Deep Learning</span><span class="cv-bar-pct">65%</span></div>
+              <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="70" style="--pct:65%"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AJAX Motivation Card (moved to sidebar) -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="ajax-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="ajax-heading">Live AJAX</p>
+          <h2 style="font-size:1.1rem; margin-bottom:0.5rem;">Daily Motivation</h2>
+          <p class="card-desc" style="font-size:0.82rem; margin-bottom:1rem;">
+            Fetches a quote live from a public API using the Fetch API &mdash; a real AJAX request to demonstrate JavaScript networking.
+          </p>
+          <button type="button" class="btn btn-primary" id="load-quote" style="width:100%;">
+            Fetch Quote
+          </button>
+          <div id="quote-output" class="quote-output" role="status" aria-live="polite" style="margin-top:0.75rem;"></div>
+        </section>
+
+        <!-- Education -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="edu-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="edu-heading">Education</p>
+          <h2 style="font-size:1.1rem; margin-bottom:1rem;">Academic Background</h2>
+
           <div class="timeline-item">
             <div class="tl-dot"></div>
-            <h4>Bachelor of Computer Science</h4>
+            <h4 style="font-size:0.92rem; margin:0 0 0.25rem;">Master of Information Technology</h4>
             <p class="tl-org">University of Western Australia</p>
-            <p class="tl-date">2023 – 2026 (expected)</p>
+            <p class="tl-date">2024 &ndash; Present (Expected 2025)</p>
+            <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;">Perth, WA &middot; Web Technologies, Databases, Networks, IT Project Management</p>
           </div>
-        </div>
 
-        <div class="glass-card cv-sidebar-card skill-highlight-target" style="margin-top:2rem;">
-          <h3>Technical Skills</h3>
-          <div class="skills-wrap">
-            <span class="skill-pill">HTML5</span>
-            <span class="skill-pill">CSS3 &amp; Grid</span>
-            <span class="skill-pill">Vanilla JavaScript</span>
-            <span class="skill-pill">AJAX &amp; Fetch</span>
-            <span class="skill-pill">DOM Manipulation</span>
-            <span class="skill-pill">Canvas Animations</span>
-            <span class="skill-pill">Web Accessibility</span>
-            <span class="skill-pill">Git</span>
+          <div class="timeline-item" style="margin-top:1.25rem;">
+            <div class="tl-dot"></div>
+            <h4 style="font-size:0.92rem; margin:0 0 0.25rem;">B.Tech &mdash; Computer Science Engineering</h4>
+            <p class="tl-org">Mahatma Gandhi Institute of Technology, JNTUH</p>
+            <p class="tl-date">2018 &ndash; 2022</p>
+            <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;">Hyderabad, India &middot; Published 2 peer-reviewed research papers in deep learning</p>
           </div>
-        </div>
-      </aside>
-
-      <!-- RIGHT COLUMN: Main Content -->
-      <div class="cv-main-content">
-
-        <section class="cv-section glass-card skill-highlight-target">
-          <p class="eyebrow">About Me</p>
-          <h2>Professional Profile</h2>
-          <p style="color:var(--text-2);line-height:1.85;margin-bottom:1rem">
-            I am a motivated computing student with a strong interest in front-end development,
-            interaction design, and practical software engineering. My work is shaped by two
-            priorities: first, solving real user problems with clear and maintainable code;
-            second, presenting information in a way that feels polished, accessible, and easy
-            to understand.
-          </p>
-          <p style="color:var(--text-2);line-height:1.85">
-            Through university projects and personal experimentation, I have developed experience
-            using HTML5, CSS3, and JavaScript to transform requirements into interactive interfaces
-            that feel consistent across pages and screen sizes. I thrive in environments that value
-            code quality, visual attention to detail, and a thoughtful user experience.
-          </p>
         </section>
 
-        <section class="cv-section glass-card skill-highlight-target">
-          <p class="eyebrow">Timeline</p>
+        <!-- Certifications -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="certs-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="certs-heading">Certifications</p>
+          <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Credentials</h2>
+          <ul class="cv-cert-list">
+            <li><span class="cv-cert-icon">🏅</span> Alteryx Machine Learning Core</li>
+            <li><span class="cv-cert-icon">☁️</span> Cloud Computing &mdash; NPTEL</li>
+            <li><span class="cv-cert-icon">🐍</span> Google IT Automation with Python</li>
+            <li><span class="cv-cert-icon">📊</span> Social Networks &mdash; NPTEL</li>
+            <li><span class="cv-cert-icon">🔬</span> Data Science for Engineers &mdash; NPTEL</li>
+          </ul>
+        </section>
+
+        <!-- Achievements -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="ach-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="ach-heading">Recognition</p>
+          <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Achievements</h2>
+          <ul class="cv-cert-list">
+            <li><span class="cv-cert-icon">📄</span> 2 published peer-reviewed research papers on deep learning (2022)</li>
+            <li><span class="cv-cert-icon">🌏</span> Scored 92% (Top 1) in NPTEL Certification - Cloud Computing Course.</li>
+            <li><span class="cv-cert-icon">🎓</span> Won 1st prise in a 3-Day Internal Hackathon conducted by SmartBridge at MGIT</li>
+          </ul>
+        </section>
+
+        <!-- Hobbies -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="hobbies-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="hobbies-heading">Beyond Code</p>
+          <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Interests &amp; Hobbies</h2>
+          <div class="skills-wrap">
+            <span class="skill-pill">Cricket</span>
+            <span class="skill-pill">Exploring Perth</span>
+            <span class="skill-pill">Machine Learning Research</span>
+            <span class="skill-pill">Open Source</span>
+            <span class="skill-pill">Data Visualisation</span>
+            <span class="skill-pill">Photography</span>
+            <span class="skill-pill">Cooking</span>
+          </div>
+        </section>
+
+        <!-- Languages -->
+        <section class="glass-card cv-sidebar-card" aria-labelledby="lang-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="lang-heading">Languages</p>
+          <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Communication</h2>
+          <ul class="cv-cert-list">
+            <li><span class="cv-cert-icon">🇦🇺</span> English &mdash; Professional Proficiency</li>
+            <li><span class="cv-cert-icon">🇮🇳</span> Telugu &mdash; Native</li>
+            <li><span class="cv-cert-icon">🇮🇳</span> Hindi &mdash; Conversational</li>
+          </ul>
+        </section>
+
+      </aside>
+      <!-- /sidebar -->
+
+      <!-- ══ RIGHT MAIN CONTENT ═════════════════════════════════════════════ -->
+      <div class="cv-main-content" role="region" aria-label="CV main content">
+
+        <!-- About Me (now in main content) -->
+        <section class="cv-section glass-card" aria-labelledby="about-heading">
+          <p class="eyebrow" id="about-heading">Professional Profile</p>
+          <h2>About Me</h2>
+          <div class="cv-about-body">
+            <p>I am an IT professional and data engineer currently pursuing <strong>Master of Information Technology at the University of Western Australia</strong>. With over two years of industry experience, I specialise in building scalable data pipelines, ETL workflows and cloud-based solutions using Python, SQL, Azure, Snowflake and AWS. I am driven by a genuine passion for turning complex data challenges into clean, efficient and maintainable systems.</p>
+
+            <p>My career began at <strong>Merilytics</strong> in Hyderabad, where I joined as a Database Intern and quickly built a strong foundation in relational database management, query optimisation and data integrity at scale. I progressed into a Data Engineer I role at the same firm, designing automated ingestion and transformation workflows across multiple client environments. I later joined <strong>Accordion</strong> as a Data Engineer II, where I took ownership of end-to-end ETL and ELT pipelines for financial sector clients, leveraging Python, SQL and Azure. In this role I optimised Snowflake data warehouse schemas to significantly improve reporting performance, reduced query complexity by <strong>56%</strong> and cut execution time by <strong>65%</strong> through advanced Python techniques including multiprocessing and multithreading. I also led the development of a <strong>Retool-based automation platform</strong>, managing the complete backend infrastructure and integrating Snowflake and AWS services to streamline operations and enhance delivery efficiency.</p>
+
+            <p>As a team lead at Accordion, I managed multiple workstreams simultaneously, onboarded and mentored new engineers, and consistently delivered critical client solutions on time and to a high standard. This experience sharpened both my technical depth and my ability to lead with clarity under pressure.</p>
+
+            <p>Since relocating to Perth, I have been contributing to the <strong>McCusker Internship Programme at Interchange WA</strong> as an IT-Data Intern. I support client and case management across Salesforce and Lumary platforms and lead data mapping and transformation tasks for a live migration to the Nightingale system. Collaborating closely with non-technical stakeholders throughout this project has strengthened my ability to communicate complex problems clearly and deliver solutions that are grounded in real organisational needs.</p>
+
+            <p>Alongside my data engineering career, I have developed a strong interest in web development and software engineering. At UWA, I built <strong>SkillLance</strong> entirely from scratch using HTML5, CSS3 and vanilla JavaScript, an interactive web learning platform that deepened my understanding of responsive design, accessibility, asynchronous programming and front-end architecture. This project reflects my belief that great engineering extends beyond data systems into every layer of technology.</p>
+
+            <p>I hold a <strong>Bachelor of Technology in Computer Science Engineering</strong> from Mahatma Gandhi Institute of Technology (JNTUH), during which I published two peer-reviewed research papers in deep learning, covering retinal image analysis for diabetic retinopathy detection and real-time helmet detection for road safety. I complement this academic background with industry certifications in <strong>machine learning (Alteryx), cloud computing (NPTEL), Python automation (Google) and data science (NPTEL)</strong>.</p>
+
+            <p>I am actively seeking graduate opportunities in <strong>data engineering, cloud infrastructure or software development</strong> across Australia. I bring a collaborative mindset, a commitment to clean and well-documented work, and a continuous drive to grow alongside the technologies and teams I work with.</p>
+          </div>
+        </section>
+
+        <!-- Experience with Tab Filter -->
+        <section class="cv-section glass-card" aria-labelledby="exp-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="exp-heading">Career Timeline</p>
           <h2>Professional Experience</h2>
 
+          <!-- Tab controls -->
+          <div class="cv-tabs" role="tablist" aria-label="Filter experience by type">
+            <button class="cv-tab active" role="tab" aria-selected="true" data-filter="all" id="tab-all">All</button>
+            <button class="cv-tab" role="tab" aria-selected="false" data-filter="data" id="tab-data">Data Engineering</button>
+            <button class="cv-tab" role="tab" aria-selected="false" data-filter="intern" id="tab-intern">Internships</button>
+            <button class="cv-tab" role="tab" aria-selected="false" data-filter="other" id="tab-other">Other</button>
+          </div>
+
+          <div class="experience-timeline" id="experience-timeline" role="list">
+
+            <article class="exp-item exp-current" data-category="intern" role="listitem"
+              aria-labelledby="exp1-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp1-title">IT-Data Intern</h3>
+                  <p class="exp-org">Interchange WA &nbsp;&middot;&nbsp; McCusker Internship (SVLG5001)</p>
+                </div>
+                <span class="exp-date exp-badge-live">2025 &ndash; Present</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Working across Salesforce and Lumary platforms to support client and case management workflows.</li>
+                <li>Leading data mapping and transformation tasks as part of a live migration to the Nightingale system, maintaining data integrity throughout.</li>
+                <li>Collaborating with non-technical stakeholders to gather requirements, validate migrated records and identify data quality issues early.</li>
+                <li>Applying data engineering experience to automate validation checks and reduce manual review overhead.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item" data-category="data" role="listitem" aria-labelledby="exp2-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp2-title">Data Engineer II</h3>
+                  <p class="exp-org">Accordion &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                </div>
+                <span class="exp-date">Feb 2023 &ndash; Dec 2023</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Designed and maintained end-to-end ETL and ELT pipelines for financial data clients using Python, SQL and Azure services.</li>
+                <li>Optimised Snowflake data warehouse schemas, cutting average query execution time on large financial datasets.</li>
+                <li>Delivered reliable data marts and reporting layers used in executive decision-making across client organisations.</li>
+                <li>Contributed to team code reviews and maintained documentation standards across the data engineering practice.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item" data-category="data" role="listitem" aria-labelledby="exp3-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp3-title">Data Engineer I</h3>
+                  <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                </div>
+                <span class="exp-date">Aug 2022 &ndash; Jan 2023</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Developed automated data ingestion and transformation workflows using Python and SQL across multiple client data environments.</li>
+                <li>Implemented database optimisation strategies including indexing and query rewriting to improve reporting performance.</li>
+                <li>Participated in Agile sprint planning, retrospectives and supported junior engineers with debugging and code quality.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item" data-category="intern" role="listitem" aria-labelledby="exp4-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp4-title">Database Intern</h3>
+                  <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                </div>
+                <span class="exp-date">Jan 2022 &ndash; Jul 2022</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Assisted in database management including schema design, data integrity checks and query optimisation.</li>
+                <li>Developed foundational experience with large relational datasets in PostgreSQL and MySQL.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item" data-category="other" role="listitem" aria-labelledby="exp5-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp5-title">Cybersecurity Intern</h3>
+                  <p class="exp-org">Talakunchi Networks &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                </div>
+                <span class="exp-date">Oct 2021</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Gained hands-on exposure to network security fundamentals, vulnerability scanning and security audit procedures.</li>
+              </ul>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- Featured Project: SkillLance -->
+        <section class="cv-section glass-card" aria-labelledby="proj-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="proj-heading">Portfolio</p>
+          <h2>Featured Project &mdash; SkillLance</h2>
+          <p class="card-desc" style="line-height:1.85; margin-bottom:1.25rem;">
+            SkillLance is this very web application, built for CITS5505 Agile Web Development Project at UWA. It is a four-page
+            interactive learning platform covering HTML, CSS and JavaScript, with a live quiz engine, an AI interaction
+            reflection log and this CV page. It demonstrates front-end web development skills applied to a real,
+            deployable product.
+          </p>
+          <div class="project-grid">
+            <div class="feature-box">📖 Tab-based tutorial with live &ldquo;Try It&rdquo; code editors</div>
+            <div class="feature-box">🎯 AJAX quiz with score history and a confetti victory overlay</div>
+            <div class="feature-box">🤖 AI reflection log documenting real interactions and limitations</div>
+            <div class="feature-box">♿ Full ARIA, keyboard navigation and semantic HTML5 throughout</div>
+            <div class="feature-box">🎨 Custom dark/light theme system using CSS variables and localStorage</div>
+            <div class="feature-box">📱 Responsive grid layout tested at mobile, tablet and desktop widths</div>
+          </div>
+          <div style="margin-top:1.25rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+            <span class="card-tag" style="margin:0;">Stack:</span>
+            <span class="skill-pill">HTML5</span>
+            <span class="skill-pill">CSS3</span>
+            <span class="skill-pill">Vanilla JS</span>
+            <span class="skill-pill">Fetch API</span>
+            <span class="skill-pill">IntersectionObserver</span>
+            <span class="skill-pill">localStorage</span>
+          </div>
+        </section>
+
+        <!-- Research Publications -->
+        <section class="cv-section glass-card" aria-labelledby="pub-heading" style="margin-top:1.5rem;">
+          <p class="eyebrow" id="pub-heading">Research</p>
+          <h2>Published Papers</h2>
           <div class="experience-timeline">
-            <div class="exp-item">
+            <article class="exp-item" role="listitem" aria-labelledby="pub1-title">
               <div class="exp-header">
-                <h3>Frontend Developer Intern</h3>
-                <span class="exp-date">Nov 2025 – Feb 2026</span>
+                <h3 id="pub1-title" style="font-size:0.95rem;">Deep Learning for Neovascularization Detection from Retinal Images</h3>
+                <span class="exp-date">2022</span>
               </div>
-              <p class="exp-org">TechNova Solutions, Perth</p>
-              <ul class="exp-bullets">
-                <li>Collaborated with the design team to implement responsive landing pages using Vanilla JS and CSS
-                  Grid.</li>
-                <li>Improved website accessibility scores from 78 to 99 on Google Lighthouse by enforcing semantic
-                  HTML5.</li>
-                <li>Participated in daily agile stand-ups and managed version control via Git.</li>
-              </ul>
-            </div>
-
-            <div class="exp-item">
+              <p class="card-desc" style="margin-top:0.4rem; font-size:0.85rem;">
+                Applied convolutional neural network architectures to detect retinal neovascularization from fundus images,
+                contributing to early diagnosis of diabetic retinopathy with high precision recall.
+              </p>
+            </article>
+            <article class="exp-item" role="listitem" aria-labelledby="pub2-title" style="margin-top:0.5rem;">
               <div class="exp-header">
-                <h3>Peer Mentor (Computer Science)</h3>
-                <span class="exp-date">Feb 2025 – Nov 2025</span>
+                <h3 id="pub2-title" style="font-size:0.95rem;">Detection of Non-Helmet Riders using Deep Learning Techniques</h3>
+                <span class="exp-date">2022</span>
               </div>
-              <p class="exp-org">University of Western Australia</p>
-              <ul class="exp-bullets">
-                <li>Guided first-year students through introductory programming units (Python/Java).</li>
-                <li>Organized weekly study sessions focusing on algorithm fundamentals and debugging techniques.</li>
-                <li>Received a 95% positive feedback rating from mentored students for clear technical communication.
-                </li>
-              </ul>
-            </div>
-
-            <div class="exp-item">
-              <div class="exp-header">
-                <h3>Freelance Web Designer</h3>
-                <span class="exp-date">Jan 2024 – Present</span>
-              </div>
-              <p class="exp-org">Self-Employed</p>
-              <ul class="exp-bullets">
-                <li>Designed and deployed custom portfolio websites for local freelance artists and photographers.</li>
-                <li>Built dynamic contact forms and galleries fetching data natively without front-end frameworks.</li>
-              </ul>
-            </div>
+              <p class="card-desc" style="margin-top:0.4rem; font-size:0.85rem;">
+                Trained a real-time object detection model to identify motorcycle riders without helmets from live traffic
+                camera feeds, supporting automated road safety enforcement.
+              </p>
+            </article>
           </div>
         </section>
 
-        <section class="cv-section glass-card skill-highlight-target">
-          <p class="eyebrow">Portfolio</p>
-          <h2>Featured Project: SkillLance</h2>
-          <p style="color:var(--text-2);line-height:1.85;margin-bottom:1rem">
-            This website itself demonstrates my capabilities. Built for CITS5505 Web Technologies,
-            it is a four-page interactive web application featuring:
-          </p>
-          <div class="project-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem">
-            <div class="feature-box">📖 Interactive live code editors</div>
-            <div class="feature-box">🎯 AJAX-loaded quiz with saving</div>
-            <div class="feature-box">🤖 Critical AI reflection logging</div>
-            <div class="feature-box">✨ Dynamic 3D tilt &amp; Canvas particles</div>
-          </div>
-          <p style="color:var(--text-2);line-height:1.85">
-            <strong style="color:var(--text)">Technologies:</strong> HTML5, CSS3 (custom variables, Grid/Flexbox,
-            keyframes),
-            vanilla JavaScript (Fetch API, DOM manipulation, localStorage, IntersectionObserver).
-          </p>
-        </section>
-
-        <!-- AJAX Demo -->
-        <section class="cv-section section-alt" style="border-radius:16px; padding:2rem;">
-          <div class="ajax-box">
-            <div>
-              <p class="eyebrow" style="margin-bottom:0.2rem">Interactive AJAX Display</p>
-              <h2 style="margin-bottom:0.5rem;font-size:1.5rem">Career Motivation</h2>
-              <p style="color:var(--text-2)">Fetches a daily motivational quote directly from a public API.</p>
-            </div>
-            <button type="button" class="btn btn-primary" id="load-quote"
-              style="margin-top:1rem;margin-bottom:1.5rem">Load Motivation API</button>
-          </div>
-          <div id="quote-output" class="quote-output"></div>
-        </section>
-
-        <!-- References -->
-        <section id="references" class="cv-section glass-card" style="margin-top:2rem">
-          <p class="eyebrow">References</p>
+        <!-- References (compulsory per rubric) -->
+        <section id="references" class="cv-section glass-card" style="margin-top:1.5rem;" aria-labelledby="ref-heading">
+          <p class="eyebrow" id="ref-heading">Academic Integrity</p>
           <h2>Sources Consulted</h2>
-          <ol class="references-list"
-            style="margin-left: 1.5rem; color: var(--text-2); display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
-            <li>The University of Western Australia Library. <em>An Introduction to Referencing at UWA</em>. Available
-              at: <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener"
-                style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>UWA CITS5505 unit materials and assessment description. Available at: <a
-                href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener"
-                style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>MDN Web Docs. HTML, CSS and JavaScript guides. Available at: <a href="https://developer.mozilla.org/"
-                target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>Advice Slip API. Random advice endpoint. Available at: <a href="https://api.adviceslip.com/"
-                target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>Quotable API. Random quote endpoint. Available at: <a href="https://api.quotable.io/" target="_blank"
-                rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>I Can Haz Dad Joke API. Random joke endpoint. Available at: <a href="https://icanhazdadjoke.com/"
-                target="_blank" rel="noopener" style="color:var(--accent)">link</a> (Accessed: April 2026).</li>
-            <li>AI assistance (Claude / Anthropic) used for code generation & debugging. Outputs critically evaluated.
-            </li>
+          <p class="card-desc" style="margin-bottom:1.25rem;">
+            The following sources were used in the preparation of this assignment. References are formatted in
+            accordance with the <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank"
+            rel="noopener" style="color:var(--accent);">UWA Harvard referencing guide</a>.
+          </p>
+          <ol class="references-list">
+            <li>Anthropic. (2026). <em>Claude</em> (April 2026 version) [Large language model]. <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai/</a></li>
+            <li>Advice Slip. (n.d.). <em>Advice Slip API</em>. <a href="https://api.adviceslip.com/" target="_blank" rel="noopener">https://api.adviceslip.com/</a></li>
+            <li>AllOrigins. (n.d.). <em>AllOrigins — open CORS proxy service</em>. <a href="https://allorigins.win/" target="_blank" rel="noopener">https://allorigins.win/</a></li>
+            <li>CITS5505 Unit Coordination Team. (2026). <em>CITS5505 Agile web development — unit materials and assessment specification</em>. The University of Western Australia. <a href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener">https://teaching.csse.uwa.edu.au/units/CITS5505/</a></li>
+            <li>Forismatic. (n.d.). <em>Forismatic API — inspirational quote service</em>. <a href="https://forismatic.com/en/api/" target="_blank" rel="noopener">https://forismatic.com/en/api/</a></li>
+            <li>Google LLC. (n.d.). <em>Google Fonts</em>. Google. <a href="https://fonts.google.com/" target="_blank" rel="noopener">https://fonts.google.com/</a></li>
+            <li>icanhazdadjoke. (n.d.). <em>The largest selection of dad jokes on the internet</em>. <a href="https://icanhazdadjoke.com/" target="_blank" rel="noopener">https://icanhazdadjoke.com/</a></li>
+            <li>Lorem Picsum. (n.d.). <em>Lorem Picsum — the Lorem Ipsum for photos</em>. <a href="https://picsum.photos/" target="_blank" rel="noopener">https://picsum.photos/</a></li>
+            <li>Microsoft. (2026). <em>GitHub Copilot</em> (April 2026 version) [AI coding assistant]. <a href="https://github.com/features/copilot" target="_blank" rel="noopener">https://github.com/features/copilot</a></li>
+            <li>Mozilla Developer Network. (2024). <em>Web technology for developers</em>. Mozilla. <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">https://developer.mozilla.org/</a></li>
+            <li>Multiavatar. (n.d.). <em>Multiavatar — 12 billion unique multilingual avatars</em>. <a href="https://multiavatar.com/" target="_blank" rel="noopener">https://multiavatar.com/</a></li>
+            <li>OpenAI. (2026). <em>ChatGPT</em> (April 2026 version) [Large language model]. <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li>
+            <li>Quotable. (n.d.). <em>Quotable — open-source quotations API</em>. <a href="https://api.quotable.io/" target="_blank" rel="noopener">https://api.quotable.io/</a></li>
+            <li>University of Western Australia Library. (2024). <em>Referencing at UWA</em>. UWA. <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener">https://guides.library.uwa.edu.au/referencinguwa</a></li>
+            <li>World Wide Web Consortium. (2014). <em>HTML5 — A vocabulary and associated APIs for HTML and XHTML</em>. W3C. <a href="https://www.w3.org/TR/html5/" target="_blank" rel="noopener">https://www.w3.org/TR/html5/</a></li>
+            <li>World Wide Web Consortium. (2018). <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. W3C. <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">https://www.w3.org/TR/WCAG21/</a></li>
           </ol>
         </section>
 
-      </div>
-    </div>
+      </div><!-- /cv-main-content -->
+    </div><!-- /cv-layout -->
   </main>
 
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="footer-glow"></div>
     <div class="footer-wave-bg" aria-hidden="true"></div>
@@ -254,15 +460,12 @@
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
             <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
-            <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
+            <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
             <defs>
               <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#818cf8" />
-                <stop offset="1" stop-color="#06b6d4" />
+                <stop stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
               </linearGradient>
             </defs>
           </svg>
@@ -270,7 +473,7 @@
         </a>
       </div>
       <div class="footer-copy">
-        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
+        <p>&copy; 2026 Arshad Sheik &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
       </div>
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
@@ -281,6 +484,6 @@
       </div>
     </div>
   </footer>
-</body>
 
+</body>
 </html>
