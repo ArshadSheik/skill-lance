@@ -534,17 +534,20 @@ function initQuizPage() {
   // Render questions dynamically via DOM manipulation
   function renderQuestions(items) {
     container.innerHTML = items.map((item, index) => `
-      <fieldset class="question-card" id="qcard-${index}">
-        <legend><strong>Q${index + 1}.</strong> ${escapeHtml(item.question)}</legend>
+      <div class="question-card" id="qcard-${index}" role="group" aria-labelledby="qlabel-${index}">
+        <div class="question-header">
+          <span class="question-num">Q${index + 1}</span>
+          <p class="question-text" id="qlabel-${index}">${escapeHtml(item.question)}</p>
+        </div>
         <div class="option-list">
           ${item.options.map((option, oi) => `
             <label class="option-item" id="opt-${index}-${oi}">
-              <input type="radio" name="q${index}" value="${escapeHtml(option)}" />
+              <input type="radio" name="q${index}" value="${escapeHtml(option)}" aria-describedby="qlabel-${index}" />
               <span>${escapeHtml(option)}</span>
             </label>
           `).join('')}
         </div>
-      </fieldset>
+      </div>
     `).join('');
   }
 
@@ -650,7 +653,7 @@ function initQuizPage() {
       <p style="margin-top:1rem;color:var(--text-2);font-size:0.9rem">
         Pass threshold: ${PASS_THRESHOLD}%. ${passed ? 'Well done!' : 'Review the tutorial and try again.'}
       </p>
-      <button type="button" class="btn btn-secondary" id="retake-quiz-btn" style="margin-top:1rem;width:100%">Retake Quiz (New Shuffle)</button>
+      <button type="button" class="btn btn-secondary" id="retake-quiz-btn" style="margin-top:1rem;width:100%">Retake Quiz</button>
     `;
 
     // Animate score ring
@@ -669,48 +672,93 @@ function initQuizPage() {
       beforeUnloadAttached = false;
     });
 
-    if (passed && typeof window.launchConfetti === 'function') window.launchConfetti();
+    // ── Compute tier (shared by overlay + sidebar reward) ─────────────────
+    const tier = percentage === 100 ? { label: 'PERFECT', color: '#fbbf24', glow: '#fbbf2480', star: '⭐' }
+               : percentage >= 90   ? { label: 'GOLD',    color: '#f59e0b', glow: '#f59e0b80', star: '🥇' }
+               : percentage >= 80   ? { label: 'SILVER',  color: '#94a3b8', glow: '#94a3b880', star: '🥈' }
+                                    : { label: 'BRONZE',  color: '#fb923c', glow: '#fb923c80', star: '🥉' };
+
+    if (passed && typeof window.launchConfetti === 'function') {
+      window.launchConfetti();
+      // Show overlay immediately with spinner — avatar/inscription will hot-swap in once fetched
+      showVictoryOverlay({ score, total: questions.length, percentage, tier });
+    }
 
     // Save attempt to localStorage
     saveAttempt({ score, total: questions.length, percentage, passed, date: new Date().toLocaleString() });
     renderHistory();
 
-    // Reward: AJAX fetch from public API (only on pass)
+    // ── Reward: two AJAX calls on pass ────────────────────────────────────
     if (passed) {
-      rewardContent.innerHTML = '<p>🎉 Fetching your reward…</p>';
+      rewardContent.innerHTML = `
+        <div class="badge-loading">
+          <span class="badge-spinner"></span>
+          <p style="color:var(--text-2);font-size:0.85rem;margin-top:0.75rem">Forging your badge…</p>
+        </div>`;
+
+      // ── AJAX call 1: Advice Slip API — badge inscription ────────────────
+      let inscription = null;
       try {
-        // Fetch motivational content — cache-bust adviceslip + fallback to quotable mirror
-        let advice = null;
+        const adviceRes = await fetch('https://api.adviceslip.com/advice?t=' + Date.now(), { cache: 'no-store' });
+        if (!adviceRes.ok) throw new Error('adviceslip ' + adviceRes.status);
+        const adviceData = await adviceRes.json();
+        inscription = (adviceData.slip && adviceData.slip.advice) ? adviceData.slip.advice : null;
+      } catch { /* fall through to next */ }
+
+      // Fallback chain: ninja quotes via allorigins
+      if (!inscription) {
         try {
-          const res = await fetch('https://api.adviceslip.com/advice?t=' + Date.now(), { cache: 'no-store' });
-          if (!res.ok) throw new Error('adviceslip ' + res.status);
-          const data = await res.json();
-          advice = (data.slip && data.slip.advice) ? data.slip.advice : null;
-        } catch {
-          // fallback: forismatic inspirational quotes (JSONP-free endpoint via allorigins)
-          try {
-            const fb = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'), { cache: 'no-store' });
-            const fbData = await fb.json();
-            const parsed = JSON.parse(fbData.contents);
-            if (parsed && parsed.quoteText) advice = parsed.quoteText.trim();
-          } catch { /* ignore */ }
-        }
-        if (!advice) advice = 'Keep pushing forward — every expert was once a beginner!';
-        rewardContent.innerHTML = `
-          <div class="reward-trophy">
-            <span class="trophy-icon">🏆</span>
-            <p class="pass" style="font-size:1.1rem;margin-bottom:0.75rem"><strong>Champion! You passed!</strong></p>
-            <p style="color:var(--text-2);font-size:0.9rem;font-style:italic;margin-bottom:0.5rem">"${escapeHtml(advice)}"</p>
-            <p style="color:var(--text-3);font-size:0.75rem">— Advice Slip API</p>
-          </div>`;
-      } catch {
-        rewardContent.innerHTML = `
-          <div class="reward-trophy">
-            <span class="trophy-icon">🏆</span>
-            <p class="pass"><strong>Champion! You passed!</strong></p>
-            <p style="color:var(--text-2);font-size:0.9rem">The reward API is unavailable, but your achievement stands!</p>
-          </div>`;
+          const fbRes = await fetch(
+            'https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'),
+            { cache: 'no-store' }
+          );
+          const fbData = await fbRes.json();
+          const fbParsed = JSON.parse(fbData.contents);
+          if (fbParsed && fbParsed.quoteText) inscription = fbParsed.quoteText.trim().replace(/\\'/g, "'");
+        } catch { /* ignore */ }
       }
+      if (!inscription) inscription = 'Every expert was once a beginner. Keep building.';
+
+      // ── AJAX call 2: Multiavatar API — unique badge avatar SVG ──────────
+      // Seed locked to score only (no Date.now()) so overlay + sidebar share the same avatar
+      const avatarSeed = encodeURIComponent('skilllance-' + score + '-' + percentage);
+      const avatarUrl = 'https://api.multiavatar.com/' + avatarSeed + '.svg';
+
+      // ── Hot-swap the victory overlay avatar + inscription once ready ─────
+      updateVictoryOverlayBadge({ avatarUrl, inscription, score, total: questions.length, percentage, tier });
+
+      // ── Render the same badge in the sidebar reward panel ────────────────
+      rewardContent.innerHTML = `
+        <div class="earned-badge" style="--badge-color:${tier.color};--badge-glow:${tier.glow};">
+          <div class="badge-tier-label">${tier.star} ${tier.label} TIER</div>
+
+          <div class="badge-medal-wrap">
+            <div class="badge-ring-outer">
+              <div class="badge-ring-inner">
+                <img
+                  src="${avatarUrl}"
+                  alt="Your unique Web Dev badge avatar"
+                  class="badge-avatar-img"
+                  width="80" height="80"
+                  onerror="this.outerHTML='<span style=\\'font-size:3rem;line-height:1\\'>🏆</span>'"
+                />
+              </div>
+            </div>
+            <div class="badge-shine" aria-hidden="true"></div>
+          </div>
+
+          <div class="badge-name-plate">
+            <p class="badge-title">Web Dev Skills 101</p>
+            <p class="badge-subtitle">Certified Passer · ${score}/${questions.length} · ${percentage}%</p>
+          </div>
+
+          <div class="badge-inscription-wrap">
+            <p class="badge-inscription">"${escapeHtml(inscription)}"</p>
+            <p class="badge-api-credit">— Advice Slip API &amp; Multiavatar API</p>
+          </div>
+
+          <div class="badge-stamp">ISSUED ${new Date().toLocaleDateString('en-AU', { day:'numeric', month:'short', year:'numeric' }).toUpperCase()}</div>
+        </div>`;
     } else {
       rewardContent.innerHTML = '<p>😔 Oh no! Fetching your penalty...</p>';
       try {
@@ -1011,6 +1059,137 @@ function initScrollReveal() {
       observer.observe(el);
     }
   });
+}
+
+// ── Victory Overlay (Quiz Pass) ────────────────────────────────────────────
+function showVictoryOverlay({ score, total, percentage, tier }) {
+  // Remove any existing overlay
+  document.getElementById('victory-overlay')?.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'victory-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Quiz passed — victory screen');
+
+  overlay.innerHTML = `
+    <div class="victory-backdrop"></div>
+    <div class="victory-modal" style="--badge-color:${tier.color};--badge-glow:${tier.glow};">
+      <button class="victory-close" id="victory-close-btn" aria-label="Close victory screen">✕</button>
+
+      <div class="victory-rays" aria-hidden="true">
+        ${Array.from({length: 12}, (_, i) => `<div class="victory-ray" style="--i:${i}"></div>`).join('')}
+      </div>
+
+      <div class="victory-top">
+        <div class="victory-stars" aria-hidden="true">
+          <span class="vs vs-1">✦</span>
+          <span class="vs vs-2">★</span>
+          <span class="vs vs-3">✦</span>
+        </div>
+        <p class="victory-eyebrow">Quiz Complete</p>
+        <h2 class="victory-title">You Passed! 🎉</h2>
+        <p class="victory-score-line">
+          <span class="victory-score-num">${score}<span class="victory-score-den">/${total}</span></span>
+          <span class="victory-score-pct">${percentage}%</span>
+        </p>
+      </div>
+
+      <div class="victory-badge-wrap" id="victory-badge-wrap">
+        <div class="victory-badge-ring-outer">
+          <div class="victory-badge-ring-inner">
+            <div class="victory-badge-avatar-placeholder" id="victory-avatar-slot">
+              <span class="badge-spinner" style="width:44px;height:44px;border-width:3px;"></span>
+            </div>
+          </div>
+        </div>
+        <div class="victory-badge-shine" aria-hidden="true"></div>
+        <div class="victory-badge-pulse" aria-hidden="true"></div>
+      </div>
+
+      <div class="victory-tier-pill">
+        ${tier.star} ${tier.label} TIER
+      </div>
+
+      <p class="victory-subtitle">Your badge is being forged in the sidebar →</p>
+
+      <div class="victory-actions">
+        <button type="button" class="btn btn-primary victory-continue-btn" id="victory-continue-btn">
+          Awesome! Continue →
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  // Trap focus on the overlay
+  requestAnimationFrame(() => {
+    overlay.classList.add('victory-visible');
+    document.getElementById('victory-continue-btn')?.focus();
+  });
+
+  function closeOverlay() {
+    overlay.classList.remove('victory-visible');
+    overlay.classList.add('victory-hiding');
+    setTimeout(() => overlay.remove(), 500);
+  }
+
+  document.getElementById('victory-close-btn')?.addEventListener('click', closeOverlay);
+  document.getElementById('victory-continue-btn')?.addEventListener('click', closeOverlay);
+
+  // Close on backdrop click
+  overlay.querySelector('.victory-backdrop')?.addEventListener('click', closeOverlay);
+
+  // Close on Escape key
+  function onKeyDown(e) {
+    if (e.key === 'Escape') { closeOverlay(); document.removeEventListener('keydown', onKeyDown); }
+  }
+  document.addEventListener('keydown', onKeyDown);
+
+  // Auto-dismiss after 7 seconds
+  const autoTimer = setTimeout(() => {
+    if (document.getElementById('victory-overlay')) closeOverlay();
+  }, 7000);
+
+  overlay.querySelector('.victory-continue-btn')?.addEventListener('click', () => clearTimeout(autoTimer));
+}
+
+// ── Hot-swap the victory overlay avatar once AJAX resolves ────────────────
+function updateVictoryOverlayBadge({ avatarUrl, inscription, score, total, percentage, tier }) {
+  const slot = document.getElementById('victory-avatar-slot');
+  if (!slot) return; // overlay already closed — nothing to do
+
+  // Swap spinner → real avatar image (same as sidebar badge)
+  slot.innerHTML = `
+    <img
+      src="${avatarUrl}"
+      alt="Your unique Web Dev badge avatar"
+      class="badge-avatar-img"
+      width="90" height="90"
+      style="width:90px;height:90px;border-radius:50%;object-fit:cover;
+             animation:victoryAvatarPop 0.45s cubic-bezier(0.34,1.56,0.64,1) both;"
+      onerror="this.outerHTML='<span style=\\'font-size:2.5rem;line-height:1\\'>${tier.star}</span>'"
+    />`;
+
+  // Also inject inscription below the tier pill if overlay is still open
+  const modal = document.querySelector('.victory-modal');
+  if (!modal) return;
+
+  // Remove any existing inscription block to avoid duplicates
+  modal.querySelector('.victory-inscription-live')?.remove();
+
+  const subtitleEl = modal.querySelector('.victory-subtitle');
+  if (subtitleEl) {
+    const insc = document.createElement('div');
+    insc.className = 'victory-inscription-live';
+    insc.innerHTML = `
+      <div class="victory-insc-inner">
+        <p class="victory-insc-text">"${inscription}"</p>
+        <p class="victory-insc-credit">— Advice Slip API</p>
+      </div>`;
+    subtitleEl.insertAdjacentElement('beforebegin', insc);
+  }
 }
 
 // ── Confetti Celebration (Quiz Pass) ───────────────────────────────────────
