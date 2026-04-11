@@ -1,152 +1,132 @@
 [
   {
-    "question": "What is the main purpose of HTML in a webpage?",
-    "options": [
-      "To style the page",
-      "To structure content",
-      "To store data permanently",
-      "To connect to a database"
-    ],
-    "answer": "To structure content"
+    "question": "What is the very first line that must appear in every HTML file?",
+    "options": ["<html lang=\"en\">", "<head>", "<!DOCTYPE html>", "<meta charset=\"UTF-8\" />"],
+    "answer": "<!DOCTYPE html>"
   },
   {
-    "question": "Which HTML element is most suitable for primary page navigation?",
-    "options": [
-      "<nav>",
-      "<aside>",
-      "<figure>",
-      "<mark>"
-    ],
-    "answer": "<nav>"
+    "question": "Which element displays the page title in the browser tab?",
+    "options": ["<meta charset>", "<meta viewport>", "<title>", "<link rel=\"stylesheet\">"],
+    "answer": "<title>"
   },
   {
-    "question": "What does CSS primarily control?",
-    "options": [
-      "Visual presentation",
-      "Server configuration",
-      "Database queries",
-      "File compression"
-    ],
-    "answer": "Visual presentation"
+    "question": "Which element is used for the primary content of a webpage, with only one allowed per page?",
+    "options": ["<section>", "<article>", "<div>", "<main>"],
+    "answer": "<main>"
   },
   {
-    "question": "Which CSS property adds space inside an element's border?",
+    "question": "What is the purpose of the alt attribute in an <img> element?",
     "options": [
-      "margin",
-      "padding",
-      "outline",
-      "display"
+      "Sets the size of the image",
+      "Provides a tooltip when hovering",
+      "Describes the image for accessibility",
+      "Links the image to another page"
     ],
-    "answer": "padding"
+    "answer": "Describes the image for accessibility"
   },
   {
-    "question": "What does JavaScript commonly do in the browser?",
+    "question": "Why should JavaScript <script> tags without defer be placed at the bottom of the <body>?",
     "options": [
-      "Adds interactivity",
-      "Compiles CSS into HTML",
-      "Replaces all HTML",
-      "Creates hardware drivers"
+      "Scripts only work inside the body",
+      "It ensures the HTML is fully loaded before JavaScript runs",
+      "The head element does not support scripts",
+      "Scripts in the head cause syntax errors"
     ],
-    "answer": "Adds interactivity"
+    "answer": "It ensures the HTML is fully loaded before JavaScript runs"
   },
   {
-    "question": "Which JavaScript method is commonly used to react to a click?",
+    "question": "What is the correct order of the CSS box model from outermost to innermost?",
     "options": [
-      "querySelectorAll",
-      "addEventListener",
-      "parseInt",
-      "setAttribute"
+      "Margin, border, padding, content",
+      "Padding, margin, border, content",
+      "Content, padding, border, margin",
+      "Border, margin, content, padding"
     ],
-    "answer": "addEventListener"
+    "answer": "Margin, border, padding, content"
   },
   {
-    "question": "Why is semantic HTML useful?",
+    "question": "What is the rem unit in CSS relative to?",
     "options": [
-      "It makes the internet faster by itself",
-      "It improves structure and accessibility",
-      "It removes the need for CSS",
-      "It prevents all bugs"
+      "The parent element's font size",
+      "The browser window height",
+      "The root element's font size",
+      "The nearest positioned ancestor"
     ],
-    "answer": "It improves structure and accessibility"
+    "answer": "The root element's font size"
   },
   {
-    "question": "What does AJAX allow a webpage to do?",
+    "question": "Which CSS method is recommended when you want one file to style the entire website?",
     "options": [
-      "Print paper forms",
-      "Reload the operating system",
-      "Fetch data without a full page reload",
-      "Disable JavaScript"
+      "Inline style attribute",
+      "Internal <style> block",
+      "External stylesheet linked with <link>",
+      "CSS inside JavaScript"
     ],
-    "answer": "Fetch data without a full page reload"
+    "answer": "External stylesheet linked with <link>"
   },
   {
-    "question": "If a quiz app stores previous attempts in local storage, what kind of data can it keep?",
+    "question": "Which CSS selector has the highest specificity?",
     "options": [
-      "Small text-based values in the browser",
-      "Unlimited video files",
-      "Only passwords",
-      "Only CSS files"
+      "Element selector (p { })",
+      "Class selector (.card { })",
+      "ID selector (#hero { })",
+      "Descendant selector (nav a { })"
     ],
-    "answer": "Small text-based values in the browser"
+    "answer": "ID selector (#hero { })"
   },
   {
-    "question": "Which statement best describes the relationship between HTML, CSS and JavaScript?",
+    "question": "What is the main difference between Flexbox and CSS Grid?",
     "options": [
-      "HTML styles, CSS calculates, JavaScript stores hardware settings",
-      "HTML structures, CSS styles, JavaScript adds behaviour",
-      "HTML runs databases, CSS writes servers, JavaScript prints pages",
-      "HTML and CSS are identical"
+      "Flexbox is for colours; Grid is for fonts",
+      "Flexbox is one-dimensional, while Grid is two-dimensional",
+      "Flexbox works only in Chrome",
+      "Grid is older than Flexbox"
     ],
-    "answer": "HTML structures, CSS styles, JavaScript adds behaviour"
+    "answer": "Flexbox is one-dimensional, while Grid is two-dimensional"
   },
   {
-    "question": "What is the purpose of the alt attribute in an <img> tag?",
+    "question": "What does it mean that JavaScript is an interpreted language?",
     "options": [
-      "To add a tooltip on hover",
-      "To provide alternative text for accessibility",
-      "To set the image size",
-      "To link to another page"
+      "It must be compiled before running",
+      "The browser reads and executes it line by line",
+      "It only runs on a server",
+      "It requires a separate runtime"
     ],
-    "answer": "To provide alternative text for accessibility"
+    "answer": "The browser reads and executes it line by line"
   },
   {
-    "question": "Which CSS unit is relative to the font-size of the root element?",
-    "options": [
-      "px",
-      "em",
-      "rem",
-      "%"
-    ],
-    "answer": "rem"
+    "question": "Which keyword should be used for a variable whose value may change?",
+    "options": ["const", "var", "let", "define"],
+    "answer": "let"
   },
   {
-    "question": "What does the DOM stand for?",
+    "question": "What does DOM stand for?",
     "options": [
-      "Document Object Model",
       "Data Output Method",
-      "Direct Object Manipulation",
-      "Digital Outline Mode"
+      "Document Object Model",
+      "Dynamic Object Manager",
+      "Direct Output Mode"
     ],
     "answer": "Document Object Model"
   },
   {
-    "question": "Which CSS property is used to create flexible layouts?",
+    "question": "Which method is used to select an element using a CSS selector?",
     "options": [
-      "float",
-      "flexbox",
-      "position",
-      "display: flex"
+      "document.getElementById()",
+      "document.getElementByClass()",
+      "document.querySelector()",
+      "document.findElement()"
     ],
-    "answer": "display: flex"
+    "answer": "document.querySelector()"
   },
   {
-    "question": "What is the correct way to declare a JavaScript variable that can be reassigned?",
+    "question": "What does the defer attribute do in a <script> tag?",
     "options": [
-      "const x = 5",
-      "let x = 5",
-      "var x = 5",
-      "Both let and var"
+      "Runs the script immediately",
+      "Blocks page loading",
+      "Waits until the HTML is fully parsed before running",
+      "Prevents DOM access"
     ],
-    "answer": "Both let and var"
+    "answer": "Waits until the HTML is fully parsed before running"
   }
 ]
