@@ -1,41 +1,105 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   SKILLLANCE — Design System
-   Theme: Dark default with light toggle
-   Fonts: Syne (display) · DM Sans (body) · Fira Code (mono)
+   SkillLance — style.css
+   Global Design System & Component Stylesheet
+   ═══════════════════════════════════════════════════════════════════════════
+   Author      : Arshad Sheik (Student ID: 25101735)
+   Unit        : CITS5505 Agile Web Development, Sem 1 2026
+   Institution : The University of Western Australia (UWA)
+   Description : Single shared stylesheet for all four SkillLance pages
+                 (tutorial.html, quiz.html, reflection.html, cv.html).
+                 Organised into clearly labelled numbered sections:
+                   • §1  Design tokens — :root CSS custom properties for
+                         dark (default) and light themes via [data-theme]
+                   • §2  Reset & base — box-model reset, body, links, img
+                   • §3  Subtle background — fixed radial gradient overlay
+                   • §4  Accessibility — skip-link focus behaviour
+                   • §5  Layout utilities — .container, .section, .hero,
+                         .two-col, .card-grid, .section-intro
+                   • §6  Navigation — sticky glassmorphism nav, logo,
+                         hamburger toggle, animated underline glow
+                   • §7  Typography — heading scale, eyebrow pill, code,
+                         pre blocks
+                   • §8  Buttons — .btn-primary, .btn-secondary, .btn-lg
+                   • §9  Shared cards — .card, .glass-card, .callout-card
+                 ── TUTORIAL PAGE ──────────────────────────────────────────
+                   • Tutorial hero, IDE 3D animation, pill breadcrumb,
+                     learning path cards, TOC sidebar (drawer on mobile),
+                     try-it editors, box model interactive, CSS playground,
+                     JS counter, mirror demo, event logger, selector demo
+                 ── QUIZ PAGE ───────────────────────────────────────────────
+                   • Start screen, question cards, score ring SVG,
+                     result/reward panels, loading skeleton, attempt
+                     history list, victory overlay, confetti keyframes
+                 ── REFLECTION PAGE ─────────────────────────────────────────
+                   • Features grid 3D, prompt cards (fc-html/js/css/
+                     practice colour variants), reflection hero image
+                 ── CV PAGE ─────────────────────────────────────────────────
+                   • Hero banner (photo frame, rings, orbital orbs, sheen),
+                     hero text, contact chips, stats row, skill bar charts,
+                     experience timeline, tab filter, tech tag filter,
+                     two-column sticky sidebar layout, FABs, scroll
+                     progress bar, print styles
+                 ── SHARED ──────────────────────────────────────────────────
+                   • Scroll-reveal (.reveal / .visible), footer, responsive
+                     media queries covering 360 px – 1100 px breakpoints
+   Fonts       : Syne (headings) · DM Sans (body) · Fira Code (mono)
+                 Space Grotesk (display numbers) · IBM Plex Sans/Mono (UI)
+   Theme       : Dark by default; light mode via [data-theme="light"] on
+                 <html>; colour-scheme swap is persisted to localStorage
+                 by main.js and respects prefers-color-scheme on first visit
+   Pages       : tutorial.html · quiz.html · reflection.html · cv.html
 ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── 1. Design Tokens ──────────────────────────────────────────────────── */
 :root {
+  /* ── Background scale (darkest → lightest surface layer) */
   --bg: #0d0f17;
   --bg-alt: #141620;
   --surface: #181a24;
   --surface-2: #22253a;
   --surface-3: #2a2d45;
+
+  /* ── Border / divider lines */
   --border: #2c2f44;
   --border-2: #3d4160;
+
+  /* ── Text palette (primary → muted → subtle) */
   --text: #e8eaf6;
   --text-2: #9095b8;
   --text-3: #5c6190;
+
+  /* ── Brand accent — indigo/violet used for interactive elements */
   --accent: #818cf8;
   --accent-hover: #a5b4fc;
   --accent-bg: rgba(129, 140, 248, 0.12);
   --accent-txt: #a5b4fc;
+
+  /* ── Semantic colours — success, error, warning */
   --green: #22c55e;
   --green-bg: rgba(34, 197, 94, 0.12);
   --coral: #f87171;
   --coral-bg: rgba(248, 113, 113, 0.12);
   --amber: #fbbf24;
   --amber-bg: rgba(251, 191, 36, 0.12);
+
+  /* ── Code block surfaces */
   --code-bg: #0d0e1a;
   --code-text: #cdd6f4;
+
+  /* ── UI chrome — nav, footer */
   --nav-bg: rgba(13, 15, 23, 0.92);
   --footer-bg: #0a0c12;
+
+  /* ── Elevation & glassmorphism */
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.4);
   --glass: rgba(24, 26, 36, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Light theme overrides — all tokens redefined so the entire UI
+   flips without any selector specificity battles. Applied by
+   main.js toggling data-theme="light" on the <html> element.  */
 [data-theme="light"] {
   --bg: #f0f4ff;
   --bg-alt: #f8faff;
@@ -487,20 +551,6 @@ pre code {
   color: var(--accent);
 }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--text-2);
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.btn-ghost:hover {
-  color: var(--accent);
-  background: var(--accent-bg);
-  transform: none;
-  box-shadow: none;
-}
-
 .btn-lg {
   padding: 1.1rem 2.5rem;
   font-size: 1.05rem;
@@ -533,19 +583,6 @@ pre code {
 
 .glass-card:hover {
   border-color: var(--border-2);
-}
-
-/* ── 10. Section Layouts ───────────────────────────────────────────────── */
-.section-grid {
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.section-heading h2 {
-  position: sticky;
-  top: 100px;
 }
 
 .content-card {
@@ -600,11 +637,6 @@ pre code {
 
 .section-intro .lead {
   max-width: none;
-}
-
-/* ── 11. Callout Section ───────────────────────────────────────────────── */
-.callout-section {
-  background: linear-gradient(135deg, var(--accent-bg), transparent);
 }
 
 .callout-card {
@@ -1105,31 +1137,8 @@ pre code {
   background: var(--accent-bg);
 }
 
-.path-card-quiz {
-  border-color: var(--accent);
-}
-
-.path-card-top {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .path-icon {
   font-size: 1.25rem;
-}
-
-.path-card-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.path-time {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.68rem;
-  color: var(--text-3);
-  margin-top: auto;
 }
 
 .path-arrow {
@@ -1549,6 +1558,90 @@ pre code {
   position: relative;
 }
 
+/* ── Dual-pane code layout (AI Output vs My Final Code) ────────────────── */
+.code-panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.code-pane {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s ease;
+}
+
+.code-pane-ai {
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+.code-pane-ai:hover {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.code-pane-final {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.code-pane-final:hover {
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.code-pane-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.code-pane-ai .code-pane-label {
+  background: rgba(248, 113, 113, 0.08);
+  color: #f87171;
+  border-bottom-color: rgba(248, 113, 113, 0.2);
+}
+
+.code-pane-final .code-pane-label {
+  background: rgba(34, 197, 94, 0.08);
+  color: #22c55e;
+  border-bottom-color: rgba(34, 197, 94, 0.2);
+}
+
+.code-pane pre {
+  border: none;
+  border-radius: 0;
+  flex: 1;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+/* Syntax spans inherit from parent .code-window refs — add for .code-pane */
+.code-pane .t  { color: #f87171; }
+.code-pane .at { color: #fbbf24; }
+.code-pane .vl { color: #22c55e; }
+.code-pane .cm { color: #5c6190; font-style: italic; }
+.code-pane .kw { color: #c084fc; }
+.code-pane .fn { color: #60a5fa; }
+.code-pane .st { color: #22c55e; }
+.code-pane .nm { color: #fb923c; }
+
+@media (max-width: 640px) {
+  .code-panes {
+    grid-template-columns: 1fr;
+  }
+}
+
 .code-window::before {
   content: '';
   position: absolute;
@@ -1688,7 +1781,7 @@ pre code {
 .alert-info    { background: var(--accent-bg); border-color: var(--accent); color: var(--text); }
 .alert-success { background: var(--green-bg);  border-color: var(--green); }
 .alert-warn    { background: var(--amber-bg);  border-color: var(--amber); }
-.alert-danger  { background: var(--coral-bg);  border-color: var(--coral); }
+
 
 /* ── Selector Demo ─────────────────────────────────────────────────────── */
 .selector-demo {
@@ -1758,11 +1851,6 @@ pre code {
 .ctrl input[type="color"]  { width: 100%; height: 38px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 4px; cursor: pointer; }
 .ctrl select               { padding: 0.5rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; }
 
-.ctrl-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
 
 .bm-live-area {
   display: flex;
@@ -2169,25 +2257,6 @@ pre code {
 .log-ev, .log-type   { color: var(--amber); margin-right: 0.5rem; }
 .log-msg             { color: var(--code-text); }
 
-/* ── CTA Banner (quiz link at end of tutorial) ─────────────────────────── */
-.cta-banner {
-  background: linear-gradient(135deg, #6366f1, #06b6d4);
-  padding: 3rem;
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1), transparent 60%);
-}
-
-.cta-banner h2 { color: #fff; margin-bottom: 0.75rem; position: relative; }
-.cta-banner p  { color: rgba(255, 255, 255, 0.85); margin-bottom: 1.5rem; max-width: 500px; margin-inline: auto; position: relative; }
 
 /* ── Tutorial Path Cards 3D (Tutorial hero) ─────────────────────────────── */
 .tutorial-path-cards-3d {
@@ -2266,34 +2335,6 @@ pre code {
 .t-path-card a.tpc-main-title         { color: inherit; text-decoration: none; }
 .t-path-card a.tpc-main-title:hover   { color: var(--accent); }
 
-.tpc-sublinks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.85rem;
-  grid-column: 1 / -1;
-  grid-row: 2;
-}
-
-.tpc-sublinks a {
-  font-size: 0.82rem;
-  color: var(--text-2);
-  text-decoration: none;
-  transition: all 0.2s;
-  display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
-}
-
-.tpc-sublinks a::before {
-  content: '›';
-  color: var(--accent);
-  font-weight: 700;
-  transition: color 0.2s;
-  flex-shrink: 0;
-}
-
-.tpc-sublinks a:hover { color: var(--accent); }
 
 .tpc-title {
   font-family: 'Space Grotesk', sans-serif;
@@ -2321,18 +2362,6 @@ pre code {
   margin: 0;
 }
 
-.tpc-arrow {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  color: var(--accent);
-  opacity: 0.6;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 1;
-}
-
-.t-path-card:hover .tpc-arrow { opacity: 1; transform: translateX(4px); }
 
 .t-path-card.tpc-quiz {
   border-color: var(--green);
@@ -2734,38 +2763,11 @@ pre code {
    REFLECTION PAGE
 ═══════════════════════════════════════════════════════════════════════════ */
 
-.prose-layout {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.prose-layout h1 { margin-bottom: 1rem; }
-.prose-layout>.lead { margin-bottom: 3rem; }
 
 .reflection-block { margin-bottom: 3rem; }
 .reflection-block h2 { font-size: 1.5rem; margin-bottom: 1rem; }
 .reflection-block p  { color: var(--text-2); margin-bottom: 1rem; line-height: 1.85; }
 
-.prompt-grid {
-  display: grid;
-  gap: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.prompt-grid article h3 { font-size: 1rem; margin-bottom: 0.75rem; }
-
-.prompt-grid .mono {
-  display: block;
-  padding: 1rem;
-  background: var(--surface-2);
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.prompt-grid article>p:last-child { color: var(--text-2); font-size: 0.95rem; margin: 0; }
 
 
 /* Reflection grid */
@@ -2805,8 +2807,6 @@ pre code {
 .feature-card-3d h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.65rem; }
 .feature-card-3d p  { color: var(--text-2); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; }
 
-.fc-icon-wrap { margin-bottom: 1rem; }
-.fc-icon-wrap svg { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1)); }
 
 .fc-html     { border-left: 3px solid #fb923c; }
 .fc-css      { border-left: 3px solid #818cf8; }
@@ -3121,10 +3121,6 @@ pre code {
 
 .cv-photo-tilt:hover .cv-photo-sheen { opacity: 1; }
 
-/* ── Stat Counter Placeholder (will be replaced) ─── */
-.cv-photo-placeholder,
-.cv-photo-initials,
-.cv-photo-hint { display: none; }
 
 .cv-hero-name {
   font-family: 'Space Grotesk', sans-serif;
@@ -3139,22 +3135,6 @@ pre code {
   display: inline-block;
 }
 
-/* Typewriter blinking cursor */
-.cv-type-cursor {
-  display: inline-block;
-  width: 3px;
-  height: clamp(1.6rem, 3.5vw, 2.4rem);
-  background: #818cf8;
-  border-radius: 2px;
-  vertical-align: middle;
-  margin-left: 4px;
-  animation: cvCursorBlink 0.9s step-end infinite;
-}
-
-@keyframes cvCursorBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
 
 .cv-hero-title {
   font-size: 1rem;
@@ -3177,12 +3157,12 @@ pre code {
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  min-width: 115px;
-  flex: 1;
+  min-width: 100px;
+  flex: 1 1 100px;
   max-width: 180px;
   position: relative;
   overflow: hidden;
@@ -3319,12 +3299,28 @@ pre code {
 /* -- CV Layout --------------------------------------------------------------- */
 .cv-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 2rem;
   align-items: start;
 }
 
-.cv-sidebar { position: sticky; top: 5.5rem; }
+.cv-sidebar {
+  position: sticky;
+  top: 5.5rem;
+  max-height: calc(100vh - 6.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+}
+
+/* Webkit scrollbar for cv sidebar */
+.cv-sidebar::-webkit-scrollbar { width: 4px; }
+.cv-sidebar::-webkit-scrollbar-track { background: transparent; }
+.cv-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 4px;
+}
 
 .cv-sidebar-card,
 .cv-section { padding: 1.75rem; }
@@ -3565,21 +3561,10 @@ pre code {
   color: var(--accent-txt);
 }
 
-.skill-highlight-target.highlighted {
-  animation: skillPulse 1s ease 2 alternate;
-  border-color: var(--accent);
-  box-shadow: 0 0 30px var(--accent-bg);
-}
-
-@keyframes skillPulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
 
 /* -- CV About Body --------------------------------------------------------- */
 .cv-about-body { display: flex; flex-direction: column; gap: 0.85rem; }
-.cv-about-body p { color: var(--text-2); line-height: 1.85; font-size: 0.95rem; text-align: justify; }
+.cv-about-body p { color: var(--text-2); line-height: 1.85; font-size: 0.95rem; text-align: left; }
 
 /* -- Cert / Achievement List ----------------------------------------------- */
 .cv-cert-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
@@ -3595,22 +3580,6 @@ pre code {
 
 .cv-cert-icon { flex-shrink: 0; font-size: 1rem; }
 
-/* -- AJAX Quote Box --------------------------------------------------------- */
-.ajax-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-.ajax-box div h2 { margin-bottom: 0.5rem; }
-.ajax-box div p  { color: var(--text-2); margin: 0; }
-
-.quote-output { min-height: 80px; }
-.quote-output .glass-card { padding: 1.5rem; }
-.quote-output p { color: var(--text-2); font-style: italic; margin-bottom: 0.75rem; }
-.quote-output p:last-child { font-style: normal; color: var(--text); margin: 0; }
 
 /* -- CV Scroll Reveal ------------------------------------------------------- */
 .cv-hidden   { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
@@ -4341,9 +4310,7 @@ pre code {
 .info-card:nth-child(7) { animation-delay: 0.35s; }
 .info-card:nth-child(8) { animation-delay: 0.4s; }
 
-/* Animated gradient border on hero card (tutorial hero) */
-.hero-card,
-.cta-banner,
+/* Animated gradient border */
 .callout-card {
   position: relative;
 }
@@ -4381,29 +4348,45 @@ pre code {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — Mobile-first, fully tested across all breakpoints
 ═══════════════════════════════════════════════════════════════════════════ */
 
+/* ── 1100px — Large tablet / small desktop ─────────────────────────────── */
 @media (max-width: 1100px) {
   .page-wrap                   { grid-template-columns: 200px 1fr; gap: 2rem; }
   .page-wrap.sidebar-collapsed { grid-template-columns: 44px 1fr; }
   .toc-sidebar                 { width: 200px; min-width: 200px; }
   .toc-sidebar.collapsed       { width: 44px; min-width: 44px; }
+  .cv-layout                   { grid-template-columns: 260px 1fr; gap: 1.5rem; }
 }
 
+/* ── 1024px — Tablet landscape ─────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .quiz-layout { grid-template-columns: 1fr; }
   .side-panel  { position: static; flex-direction: row; flex-wrap: wrap; }
-  .side-panel > * { flex: 1; min-width: 280px; }
-  .cv-layout   { grid-template-columns: 280px 1fr; }
+  .side-panel > * { flex: 1; min-width: min(280px, 100%); }
+  .cv-layout   { grid-template-columns: 240px 1fr; gap: 1.5rem; }
 }
 
+/* ── 992px — Stack CV sidebar below main content ───────────────────────── */
 @media (max-width: 992px) {
-  .cv-layout  { grid-template-columns: 1fr; gap: 2.5rem; }
-  .cv-sidebar { position: static !important; }
+  .cv-layout  {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  /* Move sidebar BELOW main content on mobile for better reading order */
+  .cv-sidebar {
+    position: static !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    order: 2;
+  }
+  .cv-main-content {
+    order: 1;
+  }
 }
 
-/* Tablet: sidebar becomes a slide-in drawer */
+/* ── 900px — Tutorial sidebar becomes slide-in drawer ──────────────────── */
 @media (max-width: 900px) {
   .page-wrap                      { grid-template-columns: 1fr; }
   .page-wrap.sidebar-collapsed    { grid-template-columns: 1fr; }
@@ -4432,17 +4415,23 @@ pre code {
   .footer-inner                              { flex-direction: column !important; text-align: center; }
 }
 
+/* ── 880px — CV hero stacks vertically ─────────────────────────────────── */
 @media (max-width: 880px) {
-  .cv-hero-inner        { grid-template-columns: 1fr; text-align: center; }
-  .cv-photo-placeholder { margin: 0 auto; }
+  .cv-hero-inner        { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .cv-hero-photo-wrap   { margin: 0 auto; }
+  .cv-hero-banner       { padding: 3rem 0 2rem; }
   .cv-contact-row       { justify-content: center; }
   .project-grid         { grid-template-columns: 1fr; }
+  .cv-hero-text         { text-align: center; }
+  .cv-available-badge   { margin: 0 auto 0.75rem; }
+  .eyebrow-pill-3d      { margin-left: auto; margin-right: auto; }
+  /* Download button centre on mobile */
+  #cv-download-btn      { display: block; text-align: center; margin: 0 auto; width: fit-content; }
 }
 
+/* ── 768px — Mobile portrait ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .section               { padding: 3rem 0; }
-  .section-grid          { grid-template-columns: 1fr; gap: 1.5rem; }
-  .section-heading h2    { position: static; }
   .hero-grid             { grid-template-columns: 1fr; gap: 2rem; }
   .cta-side-anim         { display: none; }
   .learning-path-full    { flex-wrap: wrap; }
@@ -4466,6 +4455,7 @@ pre code {
     padding: 1rem;
     gap: 0.5rem;
     box-shadow: var(--shadow-lg);
+    z-index: 199;
   }
   .page-wrap                   { grid-template-columns: 1fr; }
   .page-wrap.sidebar-collapsed { grid-template-columns: 1fr; }
@@ -4476,16 +4466,66 @@ pre code {
   .connect-arrow               { display: none; }
   .mirror-grid                 { grid-template-columns: 1fr; }
   .path-arrow                  { transform: rotate(90deg); }
-  .ajax-box                    { flex-direction: column; align-items: flex-start; }
-  .cta-banner                  { padding: 2rem; }
+
   .tutorial-path-cards-3d      { grid-template-columns: 1fr; }
   .features-grid-3d            { grid-template-columns: 1fr; }
   .footer-stack-mini           { display: none; }
   .reflection-grid-wrap .features-grid-3d { grid-template-columns: 1fr; }
   .reflection-hero-img         { max-width: 300px; margin: 0 auto; }
-  .footer-inner                { flex-direction: column; text-align: center; }
+  .footer-inner                { flex-direction: column; text-align: center; gap: 1rem; }
+
+  /* ── CV Page mobile fixes ─────────────────────────────────── */
+  .hero                        { padding: 2.75rem 0 2rem; }
+  .cv-hero-banner              { padding: 2.5rem 0 1.75rem; }
+  .cv-section                  { padding: 1.5rem; }
+  .cv-sidebar-card             { padding: 1.25rem; }
+  .cv-main-content             { gap: 1.5rem; }
+
+  /* Stats row: wrap nicely on mobile */
+  .cv-stats-row {
+    padding: 1.5rem 0 0.75rem;
+    gap: 0.75rem;
+  }
+  .cv-stat-card {
+    min-width: 90px;
+    flex: 1 1 90px;
+    padding: 1rem 0.75rem;
+  }
+  .cv-stat-num { font-size: 1.75rem; }
+  .cv-stat-label { font-size: 0.62rem; }
+
+  /* Experience header: stack on narrow screens */
+  .exp-header {
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: flex-start;
+  }
+  .exp-date { align-self: flex-start; white-space: normal; }
+
+  /* Project grid → 1 col */
+  .project-grid { grid-template-columns: 1fr; }
+
+  /* References: allow links to wrap */
+  .references-list { padding-left: 0; }
+  .references-list li { flex-wrap: wrap; word-break: break-word; }
+  .references-list a  { word-break: break-all; }
+
+  /* Callout stats panel */
+  .callout-stats-panel {
+    border-left: none !important;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    flex-direction: row !important;
+    justify-content: space-around;
+    padding: 1.25rem 0 0 !important;
+  }
+
+  /* FABs: keep accessible but compact */
+  .cv-fab-group { bottom: 1.25rem; right: 1.25rem; gap: 0.5rem; }
+  .cv-fab-label { display: none; } /* hide label text on mobile to save space */
 }
 
+/* ── 720px ──────────────────────────────────────────────────────────────── */
 @media (max-width: 720px) {
   .css-explorer-body { padding: 1rem; }
   .css-explorer-top  { grid-template-columns: 1fr; gap: 1rem; }
@@ -4493,13 +4533,67 @@ pre code {
   .css-explorer-preview  { min-height: 260px; height: 260px; width: 100%; }
 }
 
+/* ── 640px ──────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .next-quiz-card { grid-template-columns: 1fr; }
   .next-quiz-card-right { border-left: none; border-top: 1px solid var(--border); padding: 1.25rem 2rem; }
+
+  /* CV contact chips: full-width row */
+  .cv-contact-chip {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
 }
 
+/* ── 560px — Medium-small phones ───────────────────────────────────────── */
+@media (max-width: 560px) {
+  .eyebrow-pill-3d {
+    flex-wrap: wrap;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.65rem;
+    gap: 0.28rem;
+    justify-content: center;
+    line-height: 1.5;
+  }
+  .pill-sep             { display: none; }
+  .hero-title-3d        { font-size: clamp(1.55rem, 7vw, 2.1rem); }
+  .lead                 { font-size: 0.95rem; }
+  .section              { padding: 2.5rem 0; }
+  .hero                 { padding: 2.25rem 0 1.75rem; }
+  .cv-hero-banner       { padding: 2rem 0 1.5rem; }
+
+  /* CV photo: shrink and hide orbs at small screens */
+  .cv-hero-photo-wrap   { width: 160px; height: 160px; }
+  .cv-photo-tilt        { width: 160px; height: 160px; }
+  .cv-photo-ring        { inset: -8px; }
+  .cv-photo-pulse       { inset: -16px; }
+  .cv-photo-orbs        { display: none; }
+  .cv-hero-name         { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .cv-hero-title        { font-size: 0.9rem; }
+
+  .cv-section           { padding: 1.25rem; }
+  .cv-sidebar-card      { padding: 1rem; }
+  .cv-main-content      { gap: 1.25rem; }
+  .card-grid            { grid-template-columns: 1fr; }
+  .code-window pre      { font-size: 0.72rem; overflow-x: auto; }
+  .glass-card           { padding: 1.25rem; }
+  .features-grid-3d     { grid-template-columns: 1fr; }
+  .callout-card         { padding: 1.25rem; }
+
+  /* Stats: wrap to 2×3 grid on small phones */
+  .cv-stats-row         { gap: 0.5rem; }
+  .cv-stat-card         { min-width: 80px; flex: 1 1 80px; padding: 0.875rem 0.5rem; }
+  .cv-stat-num          { font-size: 1.5rem; }
+
+  /* Experience bullets slightly smaller */
+  .exp-bullets li       { font-size: 0.83rem; }
+
+  /* Skill bar label wrap */
+  .cv-bar-label         { font-size: 0.72rem; flex-wrap: wrap; gap: 0.2rem; }
+}
+
+/* ── 480px — Small phones ───────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .hero-actions,
   .quiz-actions { flex-direction: column; }
   .quiz-actions .btn { width: 100%; }
   .counter-btns  { flex-direction: column; }
@@ -4508,9 +4602,85 @@ pre code {
   .victory-badge-wrap { width: 120px; height: 120px; }
   .victory-badge-ring-outer { width: 110px; height: 110px; }
   .victory-badge-avatar-placeholder { width: 70px; height: 70px; }
+
+  .hero                 { padding: 2rem 0 1.75rem; }
+  .cv-hero-banner       { padding: 1.75rem 0 1.25rem; }
+  .section              { padding: 2rem 0; }
+  .cv-section           { padding: 1rem; }
+  .cv-sidebar-card      { padding: 0.875rem; }
+  .hero-title-3d        { font-size: clamp(1.4rem, 8vw, 2rem); }
+  .callout-stats-panel  { flex-direction: column !important; align-items: center; gap: 1rem !important; }
+  .callout-card         { padding: 1.5rem; }
+  .nav-logo span        { display: none; }
+
+  .cv-hero-photo-wrap   { width: 140px; height: 140px; }
+  .cv-photo-tilt        { width: 140px; height: 140px; }
+  .cv-fab-group         { bottom: 1rem; right: 1rem; }
+
+  /* Download button full width */
+  #cv-download-btn      { width: 100%; text-align: center; padding: 0.875rem 1rem; }
+
+  /* Contact chips wrap better */
+  .cv-contact-row       { gap: 0.4rem; }
+  .cv-contact-chip      { font-size: 0.68rem; padding: 0.28rem 0.55rem; }
+
+  /* About text */
+  .cv-about-body p      { font-size: 0.88rem; }
+
+  /* Cert list */
+  .cv-cert-list li      { font-size: 0.8rem; }
 }
 
+/* ── 400px ──────────────────────────────────────────────────────────────── */
 @media (max-width: 400px) {
   .css-explorer-controls { grid-template-columns: 1fr; }
   .css-explorer-preview  { min-height: 220px; height: 220px; }
+
+  /* Stats row: 2 per row */
+  .cv-stat-card {
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: none;
+  }
+
+  /* Skill pills: tighter */
+  .skill-pill { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+}
+
+/* ── 360px — Very small phones ──────────────────────────────────────────── */
+@media (max-width: 360px) {
+  html              { font-size: 14px; }
+  .container        { width: calc(100% - 1.5rem); }
+  .eyebrow-pill-3d  { font-size: 0.56rem; padding: 0.22rem 0.5rem; }
+  .cv-section       { padding: 0.875rem; }
+  .cv-sidebar-card  { padding: 0.75rem; }
+  .glass-card       { padding: 1rem; }
+  .section          { padding: 1.75rem 0; }
+  .hero             { padding: 1.75rem 0 1.5rem; }
+  .cv-hero-photo-wrap { width: 120px; height: 120px; }
+  .cv-photo-tilt      { width: 120px; height: 120px; }
+  .cv-hero-name       { font-size: clamp(1.4rem, 8vw, 2rem); }
+
+  /* References list: very compact */
+  .references-list    { font-size: 0.78rem; }
+  .references-list li::before { min-width: 2rem; font-size: 0.75rem; }
+}
+
+/* ── Print styles (bonus: nice CV print) ────────────────────────────────── */
+@media print {
+  .site-nav,
+  .cv-scroll-progress,
+  .cv-fab-group,
+  .cv-photo-orbs,
+  .cv-photo-ring,
+  .cv-photo-pulse,
+  .site-footer        { display: none !important; }
+
+  body                { background: white !important; color: black !important; }
+  .cv-layout          { grid-template-columns: 240px 1fr !important; gap: 1rem !important; }
+  .cv-sidebar         { position: static !important; order: 1 !important; }
+  .cv-main-content    { order: 2 !important; }
+  .glass-card,
+  .cv-section,
+  .cv-sidebar-card    { box-shadow: none !important; border: 1px solid #ddd !important; background: white !important; }
+  a                   { color: #4f46e5 !important; text-decoration: underline; }
 }

@@ -1,36 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
   <meta charset="UTF-8">
+<!--
+  ============================================================
+  SkillLance — quiz.html
+  Interactive Quiz Page
+  ============================================================
+  Author      : Arshad Sheik (Student ID: 25101735)
+  Unit        : CITS5505 Agile Web Development, Sem 1 2026
+  Institution : The University of Western Australia (UWA)
+  Description : A 10-question web-development quiz that:
+                  • Loads questions dynamically via AJAX (Fetch API)
+                    from data/questions.json
+                  • Randomises question order on every attempt using
+                    a Fisher-Yates shuffle (implemented in main.js)
+                  • Warns the user before navigating away mid-quiz
+                    via the 'beforeunload' event
+                  • Calculates and displays score, percentage and
+                    pass/fail result on submission
+                  • Fetches reward content from a public API on pass
+                  • Persists attempt history in localStorage so users
+                    can track progress across sessions
+  Dependencies: assets/style.css, assets/main.js,
+                data/questions.json, Google Fonts (CDN)
+  ============================================================
+-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="SkillLance Quiz — Test your HTML, CSS, and JavaScript knowledge with a randomized, AJAX-loaded quiz.">
   <title>SkillLance - Quiz</title>
+
+  <!-- ── Google Fonts ────────────────────────────────────────────────────
+       Preconnect hints are added first to establish early TCP connections
+       with the fonts servers before the stylesheet requests are made,
+       improving perceived load performance.
+  ──────────────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Primary typefaces: Syne (headings), DM Sans (body), Fira Code (code) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Secondary typefaces: Space Grotesk (stats/numbers), IBM Plex Sans/Mono -->
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Shared stylesheet for the entire SkillLance application -->
   <link rel="stylesheet" href="./assets/style.css">
+
+  <!-- Main JS: defer ensures HTML is fully parsed before execution.
+       Handles quiz logic, AJAX calls, scoring, and localStorage. -->
   <script defer src="./assets/main.js"></script>
 </head>
 
+<!-- data-page attribute lets main.js and style.css apply page-specific
+     behaviour and styles without separate script/stylesheet files. -->
 <body data-page="quiz">
+
+  <!-- ── Accessibility: Skip link ────────────────────────────────────────
+       Allows keyboard and screen-reader users to jump directly to the
+       main content area, bypassing the repeated navigation bar.
+  ──────────────────────────────────────────────────────────────────── -->
   <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- ── Site-wide Navigation ────────────────────────────────────────────
+       Shared across all four pages. Contains:
+         • Brand logo (SVG, links back to tutorial.html)
+         • Page links with .active class on current page
+         • Dark/light theme toggle button
+         • Hamburger toggle for mobile responsive menu
+  ──────────────────────────────────────────────────────────────────── -->
   <nav class="site-nav">
     <div class="container nav-inner">
+
+      <!-- Brand logo: inline SVG with gradient brackets and slash symbol -->
       <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <!-- Left angle bracket ( < ) -->
           <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round" />
+          <!-- Right angle bracket ( > ) -->
           <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round" />
+          <!-- Forward slash ( / ) -->
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
@@ -41,24 +99,37 @@
         </svg>
         SkillLance
       </a>
-      <div class="nav-links">
 
+      <!-- Primary navigation links; .active marks the current page -->
+      <div class="nav-links">
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html" class="active">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
         <a href="./cv.html">CV</a>
       </div>
+
       <div class="nav-actions">
+        <!-- Theme toggle: emoji updates (☀️/🌙) and aria-label are
+             managed dynamically by main.js based on the current theme -->
         <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+
+        <!-- Hamburger menu toggle for mobile viewports.
+             aria-expanded is updated by main.js when the menu opens/closes. -->
         <button type="button" class="nav-toggle" aria-label="Toggle menu"
           aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
+  <!-- ── Main Content ─────────────────────────────────────────────────── -->
   <main id="main-content" class="section">
     <div class="container quiz-layout">
+
+      <!-- ── Left Column: Quiz intro + question form ─────────────────── -->
       <section class="quiz-intro">
+
+        <!-- Animated breadcrumb pill: shows the learning journey flow
+             (Learn → Practice → Reflect → Grow) -->
         <div class="eyebrow-pill-3d">
           <span class="pill-icon-3d">🧠</span>
           <span class="pill-word" style="--i:0">Learn</span>
@@ -73,6 +144,7 @@
           <span class="pill-word" style="--i:3">Grow</span>
           <span class="pill-shimmer" aria-hidden="true"></span>
         </div><br>
+
         <p class="eyebrow">Practice Assessment</p>
         <h1>HTML, CSS &amp; JavaScript Quiz</h1>
         <p class="lead">
@@ -80,13 +152,17 @@
           Score 70% or higher to earn your badge and unlock a special reward!
         </p>
 
+        <!-- Quiz meta-information card: pass mark, question count, reward -->
         <div class="quiz-controls card">
           <p><span>Pass mark</span> <strong>70%</strong></p>
           <p><span>Questions</span> <strong>10 (randomised each attempt)</strong></p>
           <p><span>Reward</span> <strong>🏆 Trophy + advice slip on pass!</strong></p>
         </div>
 
-        <!-- Start Quiz Screen (visible by default) -->
+        <!-- ── Start Screen ─────────────────────────────────────────────
+             Visible by default. Hidden by main.js when the user clicks
+             "Start Quiz", at which point the quiz-form is revealed.
+        ──────────────────────────────────────────────────────────────── -->
         <div id="quiz-start-screen" class="quiz-start-screen">
           <div class="start-icon-ring"><span>🎯</span></div>
           <h2>Ready to test your knowledge?</h2>
@@ -95,43 +171,88 @@
           <button type="button" class="btn btn-primary btn-lg" id="start-quiz-btn">Start Quiz</button>
         </div>
 
-        <!-- Quiz Form (hidden until Start is clicked) -->
+        <!-- ── Quiz Form ────────────────────────────────────────────────
+             Hidden until "Start Quiz" is clicked (display:none).
+             main.js:
+               1. Fetches questions from data/questions.json via AJAX
+               2. Shuffles them with Fisher-Yates
+               3. Renders radio-button questions into #quiz-container
+               4. Attaches 'beforeunload' warning on first answer
+               5. Calculates and displays score on submit
+               6. Clears 'beforeunload' listener after successful submit
+             novalidate: prevents native browser validation — all
+             validation is handled by custom JS.
+        ──────────────────────────────────────────────────────────────── -->
         <form id="quiz-form" novalidate style="display:none">
+
+          <!-- ARIA live region: announces loading/error state to
+               screen readers without requiring user focus -->
           <div id="quiz-status" class="status-banner" aria-live="polite">Loading questions…</div>
+
+          <!-- Dynamically populated by main.js with question cards.
+               Each question is rendered as a fieldset with radio inputs. -->
           <div id="quiz-container"></div>
+
           <div class="quiz-actions">
+            <!-- Submit triggers score calculation in main.js -->
             <button type="submit" class="btn btn-primary btn-lg">Submit Quiz</button>
           </div>
         </form>
       </section>
 
+      <!-- ── Right Column: Score panel, reward, and attempt history ─── -->
       <aside class="side-panel">
+
+        <!-- Current result panel: populated by main.js after submission.
+             Shows score, percentage, animated SVG score ring, and pass/fail. -->
         <section class="glass-card">
           <h2>Current Result</h2>
           <div id="result-content">
             <p>Start the quiz to see your score here.</p>
           </div>
         </section>
+
+        <!-- Reward panel: populated by main.js on a passing score.
+             Fetches an advice slip from the Advice Slip public API and
+             a unique avatar from the Multiavatar API via AJAX. -->
         <section class="glass-card">
           <h2>Reward</h2>
           <div id="reward-content">
             <p>Pass the quiz to unlock a special reward!</p>
           </div>
         </section>
+
+        <!-- Attempt history panel: reads from localStorage and renders
+             past attempts (score, percentage, date/time) as a list.
+             Allows users to track improvement over time. -->
         <section class="glass-card">
           <h2>Attempt History</h2>
+          <!-- Populated dynamically by main.js from localStorage -->
           <ul id="attempt-history" class="attempt-history"></ul>
+          <!-- Clears all stored attempts from localStorage -->
           <button type="button" class="clear-history-btn" id="clear-history">Clear History</button>
         </section>
       </aside>
+
     </div>
   </main>
 
+  <!-- ── Site-wide Footer ─────────────────────────────────────────────────
+       Shared across all four pages. Contains:
+         • Brand logo (links back to tutorial.html)
+         • Copyright notice with unit and institution information
+         • Decorative 3D stacked HTML/CSS/JS layer illustration
+       .footer-glow and .footer-wave-bg are purely decorative CSS elements.
+  ──────────────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
+    <!-- Decorative radial gradient glow behind footer content -->
     <div class="footer-glow"></div>
+    <!-- Decorative animated SVG wave background (aria-hidden: decorative) -->
     <div class="footer-wave-bg" aria-hidden="true"></div>
+
     <div class="container footer-inner">
       <div class="footer-brand">
+        <!-- Footer logo (duplicate SVG with unique gradient ID 'flbg') -->
         <a href="./tutorial.html" class="footer-logo">
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
@@ -151,9 +272,14 @@
           <span>SkillLance</span>
         </a>
       </div>
+
+      <!-- Copyright and unit attribution -->
       <div class="footer-copy">
         <p>&copy; 2026 SkillLance &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia</p>
       </div>
+
+      <!-- Decorative 3D stacked layer graphic (HTML → CSS → JS).
+           aria-hidden: purely visual; carries no meaningful content. -->
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
           <div class="stack-layer layer-js"><span class="layer-icon">⚡</span> JS</div>
@@ -163,6 +289,6 @@
       </div>
     </div>
   </footer>
-</body>
 
+</body>
 </html>

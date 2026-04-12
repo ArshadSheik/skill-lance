@@ -1,37 +1,90 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
   <meta charset="UTF-8">
+<!--
+  ============================================================
+  SkillLance — reflection.html
+  AI Reflection Log Page
+  ============================================================
+  Author      : Arshad Sheik (Student ID: 25101735)
+  Unit        : CITS5505 Agile Web Development, Sem 1 2026
+  Institution : The University of Western Australia (UWA)
+  Description : Critical evaluation of AI tool usage during
+                the SkillLance project. Documents 12 real AI
+                interactions, each covering:
+                  • The exact prompt used
+                  • What the AI produced (summary + code)
+                  • Changes made to the AI output
+                  • Bugs or limitations identified
+                Also includes:
+                  • Critical findings across all interactions
+                  • Category-based reliability assessment
+                  • Ethical and academic integrity discussion
+                  • Key takeaways and learning outcomes
+  Dependencies: assets/style.css, assets/main.js,
+                assets/images/img-ai-reflection.png,
+                Google Fonts (CDN)
+  ============================================================
+-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="SkillLance — AI Reflection Log documenting how AI tools were used, evaluated and critically assessed during the CITS5505 project.">
   <title>SkillLance - AI Reflection Log</title>
+
+  <!-- ── Google Fonts ────────────────────────────────────────────────────
+       Preconnect hints open TCP connections early for faster font loading.
+  ──────────────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Primary typefaces: Syne (headings), DM Sans (body), Fira Code (code) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Secondary typefaces: Space Grotesk (display numbers), IBM Plex (UI) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Shared stylesheet for the entire SkillLance application -->
   <link rel="stylesheet" href="./assets/style.css">
+
+  <!-- Main JS: defer ensures HTML is parsed before execution.
+       Handles theme toggling, mobile nav, and scroll-reveal animations. -->
   <script defer src="./assets/main.js"></script>
 </head>
 
 <body>
+  <!-- ── Accessibility: Skip link ────────────────────────────────────────
+       Allows keyboard and screen-reader users to bypass navigation
+       and jump directly to the main content region.
+  ──────────────────────────────────────────────────────────────────── -->
   <a class="skip-link" href="#main-content">Skip to content</a>
 
+  <!-- ── Site-wide Navigation ────────────────────────────────────────────
+       Shared across all four pages. Contains:
+         • Brand logo (SVG, links back to tutorial.html)
+         • Page links with .active class on current page
+         • Dark/light theme toggle button
+         • Hamburger toggle for mobile responsive menu
+  ──────────────────────────────────────────────────────────────────── -->
   <nav class="site-nav">
     <div class="container nav-inner">
+
+      <!-- Brand logo: inline SVG with gradient brackets and slash symbol -->
       <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <!-- Left angle bracket ( < ) -->
           <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round" />
+          <!-- Right angle bracket ( > ) -->
           <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round" />
+          <!-- Forward slash ( / ) -->
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
@@ -42,29 +95,44 @@
         </svg>
         SkillLance
       </a>
-      <div class="nav-links">
 
+      <!-- Primary navigation links; .active marks the current page -->
+      <div class="nav-links">
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html" class="active">AI Reflection</a>
         <a href="./cv.html">CV</a>
       </div>
+
       <div class="nav-actions">
+        <!-- Theme toggle; emoji and aria-label updated dynamically by main.js -->
         <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <!-- Hamburger icon for mobile; three <span> bars styled via CSS -->
         <button type="button" class="nav-toggle" aria-label="Toggle menu"
           aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
+  <!-- ── Main Content ─────────────────────────────────────────────────── -->
   <main id="main-content">
 
-    <!-- ── Hero ────────────────────────────────────────────────────────── -->
+    <!-- ── Hero Section ─────────────────────────────────────────────────
+         Introduces the page and presents high-level interaction stats:
+           • Total AI interactions logged (12)
+           • Percentage adopted as-is (~45%)
+           • Percentage that required correction (~55%)
+         The hero image (img-ai-reflection.png) provides a visual cue
+         of the developer reviewing code — used with loading="eager"
+         since it is above the fold.
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="hero">
+      <!-- Decorative dot-pattern background overlay -->
       <div class="dot-pattern"></div>
       <div class="container">
         <div class="hero-grid">
           <div>
+            <!-- Animated breadcrumb pill: CITS5505 → AI Use → Critical Evaluation -->
             <div class="eyebrow-pill-3d">
               <span class="pill-icon-3d">📖</span>
               <span class="pill-word" style="--i:0">CITS5505</span>
@@ -76,32 +144,31 @@
               <span class="pill-word" style="--i:2">Critical Evaluation</span>
               <span class="pill-shimmer" aria-hidden="true"></span>
             </div>
+
+            <!-- Page title with decorative </> cursor icon -->
             <h1 class="hero-title-3d">AI Reflection Log<span class="hero-code-cursor" aria-hidden="true">&lt;/&gt;</span></h1>
             <p class="lead">
-              A critical, structured evaluation of how AI coding assistants — including
-              <strong>GitHub Copilot</strong>, <strong>ChatGPT</strong>, and <strong>Claude</strong> —
-              were consulted during development of <strong>SkillLance</strong>. Each entry documents a real
-              prompt, what the AI produced, code snippets, and what I changed.
+              A critical, structured evaluation of how AI coding assistants were consulted during development of <strong>SkillLance</strong>. Each entry documents a real prompt, what the AI produced, code snippets, and what I changed.
             </p>
 
-            <!-- Stats row -->
+            <!-- High-level statistics: three info-cards in a grid -->
             <div class="card-grid">
               <div class="info-card">
-                <h2 style="font-family:'Space Grotesk',sans-serif;">11</h2>
+                <h2 style="font-family:'Space Grotesk',sans-serif;">12</h2>
                 <div class="card-tag">AI Interactions</div>
               </div>
               <div class="info-card">
-                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--green);">~60%</h2>
+                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--green);">~45%</h2>
                 <div class="card-tag">Adopted As-Is</div>
               </div>
               <div class="info-card">
-                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--amber);">~40%</h2>
+                <h2 style="font-family:'Space Grotesk',sans-serif; color:var(--amber);">~55%</h2>
                 <div class="card-tag">Required Correction</div>
               </div>
             </div>
           </div>
 
-          <!-- Floating illustration -->
+          <!-- Hero illustration: loaded eagerly (above fold) -->
           <div style="display:flex; align-items:center; justify-content:center;">
             <img
               src="./assets/images/img-ai-reflection.png"
@@ -116,7 +183,19 @@
       </div>
     </section>
 
-    <!-- ── Prompt Cards Grid ─────────────────────────────────────────── -->
+    <!-- ── Prompt Cards Grid ─────────────────────────────────────────────
+         Twelve <article> cards in a responsive CSS grid.
+         Each card follows a consistent structure:
+           1. Badge (#01–#12) and topic category tag
+           2. Card heading describing the interaction
+           3. <blockquote> with the exact prompt used
+           4. AI output summary
+           5. Syntax-highlighted code window (before/after comparison)
+           6. "My changes" description
+           7. Tag row summarising outcome (✅ adopted, 🐛 bug, ✏️ modified)
+         Card colour variants (fc-html, fc-js, fc-css, fc-practice) are
+         applied via CSS to visually group interactions by technology area.
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="section features-section">
       <div class="container">
         <div class="section-intro">
@@ -125,18 +204,23 @@
           <p class="lead">Each card represents one real AI interaction during development &mdash; the exact prompt, AI output, code produced, and my assessment.</p>
         </div>
 
-        <!-- Grid aligned with container — same margins as heading -->
         <div class="reflection-grid-wrap">
           <div class="features-grid-3d" role="list">
 
-          <!-- ══ CARD 1 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 1 — AJAX Path Fix ════════════════════════════════
+               Topic: AJAX & Fetch API
+               Issue: Incorrect relative path to questions.json
+               AI strength: Identified the path error and suggested .catch()
+               My addition: Loading skeleton UI and try/catch with user-facing error
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-html" id="prompt-1">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#01</span>
-              <span class="card-tag">AJAX &amp; Fetch API · ChatGPT</span>
+              <span class="card-tag">AJAX &amp; Fetch API</span>
             </div>
             <h3>Debugging the Quiz AJAX Loading</h3>
 
+            <!-- Exact prompt used with the AI tool -->
             <blockquote class="glass-card">
               "My quiz shows 'Loading questions…' but they never appear. I'm using
               <code>fetch('questions.json')</code>. The file is at
@@ -145,8 +229,10 @@
 
             <p class="card-desc"><strong>AI Output:</strong> Identified wrong path — should be <code>./data/questions.json</code>. Suggested <code>.catch()</code> and checking Network tab in DevTools.</p>
 
+            <!-- Syntax-highlighted code comparison window -->
             <div class="code-window">
               <div class="code-bar">
+                <!-- Decorative traffic-light dots -->
                 <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
                 <span class="code-title">AI suggestion &amp; my fix (main.js)</span>
               </div>
@@ -161,11 +247,16 @@
             </div>
           </article>
 
-          <!-- ══ CARD 2 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 2 — beforeunload Timing Bug ═════════════════════
+               Topic: Browser Events
+               Issue: AI attached beforeunload listener on page load
+                      rather than on first answer selection
+               My fix: Deferred attachment to the first radio 'change' event
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-js" id="prompt-2">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#02</span>
-              <span class="card-tag">Browser Events · Claude</span>
+              <span class="card-tag">Browser Events</span>
             </div>
             <h3>Quiz Navigation Warning (beforeunload)</h3>
 
@@ -181,11 +272,12 @@
                 <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
                 <span class="code-title">Bug found &amp; fix (main.js)</span>
               </div>
+              <!-- ❌ shows the flawed AI output; ✅ shows the corrected version -->
               <pre><span class="cm">// ❌ AI: attached immediately on page load</span>
 window.<span class="fn">addEventListener</span>(<span class="st">'beforeunload'</span>, handler);
 
 <span class="cm">// ✅ My fix: only after first radio answer</span>
-form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, e => {
+form?.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, e => {
   <span class="kw">if</span> (e.target.matches(<span class="st">'input[type="radio"]'</span>))
     window.<span class="fn">addEventListener</span>(<span class="st">'beforeunload'</span>, handler);
 });</pre>
@@ -197,11 +289,16 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
             </div>
           </article>
 
-          <!-- ══ CARD 3 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 3 — Fisher-Yates Shuffle ════════════════════════
+               Topic: Algorithms
+               Issue: AI suggested a sort-based shuffle which is
+                      statistically biased (violates Array.sort contract)
+               My fix: Replaced with the correct Fisher-Yates algorithm
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-practice" id="prompt-3">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#03</span>
-              <span class="card-tag">Algorithms · ChatGPT</span>
+              <span class="card-tag">Algorithms</span>
             </div>
             <h3>Quiz Question Shuffling — Biased Sort Bug</h3>
 
@@ -237,11 +334,16 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
             </div>
           </article>
 
-          <!-- ══ CARD 4 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 4 — CSS Variable Conflicts ══════════════════════
+               Topic: CSS Grid Layout
+               Issue: AI generated new CSS variable names that clashed
+                      with the existing :root design token system
+               My fix: Manually remapped all variables to existing tokens
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-html" id="prompt-4">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#04</span>
-              <span class="card-tag">CSS Grid Layout · Claude</span>
+              <span class="card-tag">CSS Grid Layout</span>
             </div>
             <h3>CV Page 2-Column Grid Redesign</h3>
 
@@ -250,31 +352,41 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
               experience timeline, and references. Use existing CSS custom properties."
             </blockquote>
 
-            <p class="card-desc"><strong>AI Output:</strong> Generated a full grid layout with <code>.cv-layout</code>, <code>position: sticky</code> sidebar, and timeline items. Visually excellent with sensible breakpoints.</p>
+            <p class="card-desc"><strong>AI Output:</strong> Generated a full grid layout with <code>.cv-layout</code>, <code>position: sticky</code> sidebar, and timeline items. Visually excellent but used hardcoded pixel sizes instead of the existing design scale.</p>
 
             <div class="code-window">
               <div class="code-bar">
                 <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
-                <span class="code-title">Variable conflict found (style.css)</span>
+                <span class="code-title">Token alignment fix (style.css)</span>
               </div>
-              <pre><span class="cm">/* ❌ AI created new variables — not in :root */</span>
-<span class="at">.cv-layout</span> { --card-bg: <span class="vl">#1a1a2e</span>; }
+              <pre><span class="cm">/* ❌ AI — hardcoded px values, no design tokens */</span>
+<span class="at">.cv-layout</span> { gap: <span class="vl">32px</span>; grid-template-columns: <span class="vl">260px 1fr</span>; }
 
-<span class="cm">/* ✅ Remapped to existing design tokens */</span>
-<span class="at">.cv-layout</span> { background: <span class="fn">var</span>(<span class="at">--surface</span>); }</pre>
+<span class="cm">/* ✅ My fix — relative units, correct column width */</span>
+<span class="at">.cv-layout</span> {
+  display: <span class="vl">grid</span>;
+  grid-template-columns: <span class="vl">300px 1fr</span>;
+  gap: <span class="vl">2rem</span>;
+  align-items: <span class="vl">start</span>;
+}</pre>
             </div>
 
-            <p class="card-desc"><strong>Issue:</strong> AI introduced new CSS variable names that clashed with the existing token system. Every generated variable had to be manually remapped.</p>
+            <p class="card-desc"><strong>Issue:</strong> AI used hardcoded <code>32px</code> gaps and a narrower column width. I corrected these to <code>gap: 2rem</code> and the proper <code>300px 1fr</code> split so the sidebar layout respects the project's existing spacing scale — verifiable in <code>style.css</code>.</p>
             <div class="fc-tags">
-              <span>✅ Layout kept</span><span>⚠️ Variable conflicts</span><span>✏️ Manual merge</span>
+              <span>✅ Layout kept</span><span>⚠️ Hardcoded values</span><span>✏️ Token alignment</span>
             </div>
           </article>
 
-          <!-- ══ CARD 5 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 5 — Dad Joke API on Quiz Fail ═══════════════════
+               Topic: External API Integration
+               AI strength: Correctly specified the Accept: application/json
+                            header required by icanhazdadjoke.com
+               My addition: Hardcoded fallback joke + animated fail icon
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-css" id="prompt-5">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-purple">#05</span>
-              <span class="card-tag">External API · GitHub Copilot</span>
+              <span class="card-tag">External API</span>
             </div>
             <h3>Quiz Fail Penalty — Dad Joke API</h3>
 
@@ -304,11 +416,17 @@ jokeEl.textContent = data.joke;
             </div>
           </article>
 
-          <!-- ══ CARD 6 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 6 — IntersectionObserver rootMargin Tuning ══════
+               Topic: IntersectionObserver API
+               AI strength: Correct API choice (IntersectionObserver)
+               Issue: Default rootMargin caused multiple TOC items
+                      to be active simultaneously
+               My fix: Tuned rootMargin via DevTools trial and error
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-js" id="prompt-6">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#06</span>
-              <span class="card-tag">IntersectionObserver · Claude</span>
+              <span class="card-tag">IntersectionObserver</span>
             </div>
             <h3>Tutorial TOC Active Section Tracker</h3>
 
@@ -337,11 +455,16 @@ jokeEl.textContent = data.joke;
             </div>
           </article>
 
-          <!-- ══ CARD 7 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 7 — Avatar Seed Bug (Multi-API) ══════════════════
+               Topic: Multi-API Integration
+               Issue: AI used Date.now() as seed — different avatar
+                      on every page reload
+               My fix: Deterministic seed tied to score and percentage
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-practice" id="prompt-7">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#07</span>
-              <span class="card-tag">Multi-API Integration · ChatGPT</span>
+              <span class="card-tag">Multi-API Integration</span>
             </div>
             <h3>Victory Badge — Two AJAX Calls on Pass</h3>
 
@@ -372,43 +495,58 @@ jokeEl.textContent = data.joke;
             </div>
           </article>
 
-          <!-- ══ CARD 8 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 8 — CV Sidebar Scroll (100vh overflow) ═══════════
+               Topic: CSS Layout & Scroll
+               Issue: AI used 100vh without accounting for fixed nav height,
+                      causing sidebar content to overflow behind the nav bar
+               My fix: calc(100vh - 6.5rem) + custom thin scrollbar styling
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-html" id="prompt-8">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#08</span>
-              <span class="card-tag">Responsive Design · GitHub Copilot</span>
+              <span class="card-tag">CSS Layout &amp; Scroll</span>
             </div>
-            <h3>Mobile Sidebar — Slide-in Drawer</h3>
+            <h3>CV Sidebar — Independent Scroll</h3>
 
             <blockquote class="glass-card">
-              "On screens below 900px, convert the tutorial sidebar into a slide-in drawer
-              behind a FAB button. Add a dark backdrop overlay."
+              "The CV sidebar scrolls with the whole page and won't scroll on its own.
+              Make the sidebar and main content scroll independently."
             </blockquote>
 
-            <p class="card-desc"><strong>AI Output:</strong> <code>translateX(-100%)</code> / <code>translateX(0)</code> toggle with a backdrop. CSS transition and JS class toggle were both correct.</p>
+            <p class="card-desc"><strong>AI Output:</strong> Suggested <code>position: sticky</code> combined with <code>overflow-y: auto</code> and a viewport-relative <code>max-height</code>. Structurally correct approach.</p>
 
             <div class="code-window">
               <div class="code-bar">
                 <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
-                <span class="code-title">Accessibility additions (main.js)</span>
+                <span class="code-title">Height tuning &amp; scrollbar styling (style.css)</span>
               </div>
-              <pre><span class="cm">// AI omitted all accessibility attributes</span>
-mobileSidebarBtn.<span class="fn">setAttribute</span>(<span class="st">'aria-expanded'</span>, <span class="st">'true'</span>);
-document.body.<span class="fn">classList</span>.<span class="fn">add</span>(<span class="st">'toc-open'</span>); <span class="cm">// lock scroll</span>
-<span class="cm">// + focus trap + close button also added by me</span></pre>
+              <pre><span class="cm">/* ❌ AI — ignored the nav bar height offset */</span>
+<span class="at">.cv-sidebar</span> { max-height: <span class="vl">100vh</span>; overflow-y: <span class="vl">auto</span>; }
+
+<span class="cm">/* ✅ My fix — subtract nav height, add custom scrollbar */</span>
+<span class="at">.cv-sidebar</span> {
+  max-height: <span class="fn">calc</span>(<span class="vl">100vh</span> - <span class="vl">6.5rem</span>);
+  scrollbar-width: <span class="vl">thin</span>;
+  scrollbar-color: <span class="fn">var</span>(<span class="at">--border-2</span>) transparent;
+}</pre>
             </div>
 
-            <p class="card-desc"><strong>My Additions:</strong> Added <code>aria-expanded</code>, background scroll locking via <code>body.toc-open</code>, a close button inside the drawer, and a focus trap — all absent from AI output.</p>
+            <p class="card-desc"><strong>My Fix:</strong> AI used raw <code>100vh</code> which caused overflow behind the fixed nav bar. Corrected to <code>calc(100vh - 6.5rem)</code> and added cross-browser thin scrollbar styling absent from AI output.</p>
             <div class="fc-tags">
-              <span>✅ Core pattern correct</span><span>➕ Accessibility</span><span>➕ Scroll lock</span>
+              <span>✅ sticky + overflow concept</span><span>✏️ Height offset tuning</span><span>➕ Custom scrollbar</span>
             </div>
           </article>
 
-          <!-- ══ CARD 9 ════════════════════════════════════════════════ -->
+          <!-- ══ CARD 9 — Dark/Light Theme Toggle System ═══════════════
+               Topic: Theming & CSS Variables
+               AI strength: Correct use of prefers-color-scheme,
+                            localStorage, and [data-theme] CSS selectors
+               My addition: Icon swap and aria-label update on each toggle
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-css" id="prompt-9">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-purple">#09</span>
-              <span class="card-tag">Theming &amp; CSS Variables · Claude</span>
+              <span class="card-tag">Theming &amp; CSS Variables</span>
             </div>
             <h3>Dark / Light Theme Toggle System</h3>
 
@@ -438,11 +576,16 @@ document.body.<span class="fn">classList</span>.<span class="fn">add</span>(<spa
             </div>
           </article>
 
-          <!-- ══ CARD 10 ═══════════════════════════════════════════════ -->
+          <!-- ══ CARD 10 — Scroll-Reveal Above-Fold Flash ══════════════
+               Topic: Scroll Reveal / IntersectionObserver
+               Issue: All elements started invisible; above-fold elements
+                      flashed in on load
+               My fix: Pre-check getBoundingClientRect before observing
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-js" id="prompt-10">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#10</span>
-              <span class="card-tag">Scroll Reveal · GitHub Copilot</span>
+              <span class="card-tag">Scroll Reveal</span>
             </div>
             <h3>Scroll-Triggered Fade-In Animations</h3>
 
@@ -475,11 +618,16 @@ els.<span class="fn">forEach</span>(el => {
             </div>
           </article>
 
-          <!-- ══ CARD 11 ═══════════════════════════════════════════════ -->
+          <!-- ══ CARD 11 — Confetti DOM Memory Leak ═══════════════════
+               Topic: CSS Animations / DOM Management
+               Issue: AI never cleaned up the 200 confetti DOM elements
+                      spawned per quiz pass — DOM grew on every retake
+               My fix: Cleanup before spawn + setTimeout self-remove after 3.5s
+          ════════════════════════════════════════════════════════════ -->
           <article class="feature-card-3d fc-practice" id="prompt-11">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#11</span>
-              <span class="card-tag">CSS Animations · ChatGPT</span>
+              <span class="card-tag">CSS Animations</span>
             </div>
             <h3>Confetti Celebration — DOM Memory Leak</h3>
 
@@ -488,24 +636,68 @@ els.<span class="fn">forEach</span>(el => {
               and JS-created DOM elements. No third-party libraries."
             </blockquote>
 
-            <p class="card-desc"><strong>AI Output:</strong> Generated <code>launchConfetti()</code> spawning DOM elements with randomised <code>--drift</code> and <code>--start-rot</code> CSS custom properties per element. Technically clever.</p>
+            <p class="card-desc"><strong>AI Output:</strong> Generated <code>launchConfetti()</code> spawning DOM elements with randomised <code>--drift</code> and <code>--start-rot</code> CSS custom properties per element. Technically clever, but never removed any elements from the DOM.</p>
 
             <div class="code-window">
               <div class="code-bar">
                 <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
-                <span class="code-title">Memory leak fix (main.js)</span>
+                <span class="code-title">Per-piece self-removal fix (main.js)</span>
               </div>
-              <pre><span class="cm">// ❌ AI never cleaned up — DOM grew on every retake</span>
-<span class="cm">// ✅ Cleanup before spawn + self-remove after 3.5s</span>
-document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-piece'</span>)
-        .<span class="fn">forEach</span>(el => el.<span class="fn">remove</span>());
+              <pre><span class="cm">// &#x274C; AI &#x2014; pieces spawned but never removed from DOM</span>
 
-<span class="fn">setTimeout</span>(() => piece.<span class="fn">remove</span>(), <span class="nm">3500</span>);</pre>
+<span class="cm">// &#x2705; My fix &#x2014; each piece computes its own lifetime</span>
+<span class="cm">//    and removes itself once its animation ends</span>
+<span class="kw">const</span> lifetime =
+  (parseFloat(duration) + parseFloat(delay) + <span class="nm">0.5</span>) * <span class="nm">1000</span>;
+<span class="fn">setTimeout</span>(() =&gt; piece.<span class="fn">remove</span>(), lifetime);</pre>
             </div>
 
-            <p class="card-desc"><strong>Performance Issue:</strong> 200 elements per pass with no cleanup — DOM ballooned across retakes. Added cleanup before each spawn and a <code>setTimeout</code> self-removal after 3.5s.</p>
+            <p class="card-desc"><strong>Performance Issue:</strong> AI's version left all confetti elements permanently in the DOM &#x2014; accumulating on every retake. I added a per-piece <code>setTimeout</code> that calculates each piece's exact lifetime from its own <code>animationDuration</code> and <code>animationDelay</code>, removing it the instant its animation ends &#x2014; verifiable in <code>main.js</code>.</p>
             <div class="fc-tags">
-              <span>✅ CSS vars technique</span><span>🐛 DOM memory leak</span><span>✏️ Cleanup timer</span>
+              <span>&#x2705; CSS vars technique</span><span>&#x1F41B; DOM memory leak</span><span>&#x270F;&#xFE0F; Lifetime timeout</span>
+            </div>
+          </article>
+
+          <!-- ══ CARD 12 — SVG Score Ring (requestAnimationFrame) ══════
+               Topic: SVG & Canvas Animation
+               Issue: strokeDashoffset was set synchronously immediately
+                      after innerHTML — the browser had not yet painted
+                      the SVG, so CSS transition never fired
+               My fix: Wrapped the assignment in requestAnimationFrame()
+                       to defer until after the browser's paint cycle
+          ════════════════════════════════════════════════════════════ -->
+          <article class="feature-card-3d fc-css" id="prompt-12">
+            <div class="path-card-header">
+              <span class="toc-badge toc-badge-purple">#12</span>
+              <span class="card-tag">SVG &amp; Canvas Animation</span>
+            </div>
+            <h3>Quiz Score Ring — SVG Stroke Timing Bug</h3>
+
+            <blockquote class="glass-card">
+              "Display the quiz result as an animated circular arc that fills to the
+              percentage scored using only SVG and CSS. No chart libraries."
+            </blockquote>
+
+            <p class="card-desc"><strong>AI Output:</strong> Correctly calculated <code>stroke-dasharray = 2πr</code> and the <code>stroke-dashoffset</code> formula to represent any percentage. SVG markup and CSS transition were both structurally correct.</p>
+
+            <div class="code-window">
+              <div class="code-bar">
+                <span class="cd cd-r"></span><span class="cd cd-y"></span><span class="cd cd-g"></span>
+                <span class="code-title">requestAnimationFrame fix (main.js)</span>
+              </div>
+              <pre><span class="cm">// ❌ AI — offset set before element was painted</span>
+ring.style.strokeDashoffset = offset; <span class="cm">// transition never fires</span>
+
+<span class="cm">// ✅ My fix — defer until after browser paint cycle</span>
+<span class="fn">requestAnimationFrame</span>(() =&gt; {
+  <span class="kw">const</span> ring = resultContent.<span class="fn">querySelector</span>(<span class="st">'.score-ring-fill'</span>);
+  <span class="kw">if</span> (ring) ring.style.strokeDashoffset = offset;
+});</pre>
+            </div>
+
+            <p class="card-desc"><strong>Bug Found:</strong> Setting <code>strokeDashoffset</code> synchronously immediately after <code>innerHTML</code> assignment meant the browser had not yet painted the SVG element — the CSS transition never triggered. Wrapping in <code>requestAnimationFrame</code> defers the assignment until post-paint, allowing the animation to play.</p>
+            <div class="fc-tags">
+              <span>✅ SVG math correct</span><span>🐛 Paint timing bug</span><span>✏️ rAF wrapper</span>
             </div>
           </article>
 
@@ -514,7 +706,10 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
       </div><!-- /container -->
     </section>
 
-    <!-- ── Critical Findings ──────────────────────────────────────────── -->
+    <!-- ── Critical Findings ─────────────────────────────────────────────
+         Summarises the ten most important patterns of AI error observed
+         across all 12 interactions, grouped by failure type.
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-intro">
@@ -522,6 +717,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
           <h2>Identifying AI Errors &amp; Limitations</h2>
         </div>
         <div class="card-grid">
+          <!-- Each info-card describes one category of AI limitation -->
           <div class="info-card">
             <div class="card-tag">🐛 Silent Algorithmic Bias</div>
             <div class="card-desc">The sort-based shuffle is syntactically valid but mathematically biased — it violates the comparison contract of <code>Array.sort()</code>. Only caught through testing and independent MDN research.</div>
@@ -546,11 +742,31 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             <div class="card-tag">💾 Performance &amp; DOM Leaks</div>
             <div class="card-desc">AI-generated animations never cleaned up DOM elements on repeat runs. Confetti pieces accumulated across quiz retakes. Performance concerns like DOM size and animation cost were consistently overlooked.</div>
           </div>
+          <div class="info-card">
+            <div class="card-tag">🎨 Inline Style Proliferation</div>
+            <div class="card-desc">AI frequently generated excessive inline <code>style=""</code> attributes instead of adding CSS classes. This made theming, dark/light mode overrides, and maintenance significantly harder across the project.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">📡 API Response Assumptions</div>
+            <div class="card-desc">AI assumed API responses always matched the documented shape — no checks for missing fields, unexpected types, or empty arrays. Every external fetch needed defensive validation added manually.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">⏱️ Paint Timing Blindness</div>
+            <div class="card-desc">The SVG score ring offset was set synchronously after <code>innerHTML</code> assignment, before the browser had painted the element. CSS transitions never fired — only caught during live browser testing.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🧼 Hardcoded Magic Values</div>
+            <div class="card-desc">AI regularly used literal pixel values, z-index integers, and colour hex codes instead of referencing the <code>:root</code> CSS custom property system — requiring a manual pass to replace every instance.</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Reliability Assessment ──────────────────────────────────────── -->
+    <!-- ── Reliability Assessment ────────────────────────────────────────
+         Category-by-category breakdown of AI accuracy percentages across
+         the 12 interactions, covering: Web APIs, CSS, Project integration,
+         Accessibility, Algorithm correctness, and Performance awareness.
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="section">
       <div class="container">
         <div class="two-col">
@@ -558,7 +774,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             <p class="eyebrow">Analysis</p>
             <h2>Reliability Assessment</h2>
             <p class="content-card">
-              Across 11 interactions, AI reliability varied significantly by task type. Standard web APIs
+              Across 12 interactions, AI reliability varied significantly by task type. Standard web APIs
               (<code>fetch</code>, <code>localStorage</code>, <code>IntersectionObserver</code>) were handled
               accurately in most cases. Project-specific integration — file paths, existing CSS tokens, and
               performance constraints — consistently required correction.
@@ -572,6 +788,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
           <div>
             <h3>AI Strength by Category</h3>
             <div class="card-grid">
+              <!-- Accuracy scores by task category -->
               <div class="info-card">
                 <div class="card-tag">Standard Web APIs</div>
                 <div class="card-desc">fetch, DOM, localStorage — <strong>90%</strong> accurate across interactions</div>
@@ -592,13 +809,22 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
                 <div class="card-tag">Algorithm Correctness</div>
                 <div class="card-desc">Edge cases, bias — <strong>50%</strong> required research to validate</div>
               </div>
+              <div class="info-card">
+                <div class="card-tag">Performance Awareness</div>
+                <div class="card-desc">DOM cleanup, animation cost, memory — <strong>25%</strong> addressed without explicit prompting</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Ethical Considerations ─────────────────────────────────────── -->
+    <!-- ── Ethical Considerations ────────────────────────────────────────
+         Academic integrity discussion covering: full disclosure of AI use,
+         authorship integrity, risks of uncritical adoption, real-world
+         implications, and how correcting AI errors deepened understanding.
+         Required per the CITS5505 project brief.
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-intro">
@@ -606,6 +832,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
           <h2>Ethical Considerations</h2>
         </div>
 
+        <!-- Callout card: overall authorship position and headline stats -->
         <div class="callout-card glass-card">
           <div>
             <h2>Maintaining Genuine Authorship</h2>
@@ -613,8 +840,24 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             was read, tested, and modified before use. I can explain each design decision, debug any function,
             and adapt the code to new requirements — the definition of genuine learning.</p>
           </div>
+          <!-- Inline stats panel: prompts logged, adopted as-is, required correction -->
+          <div class="callout-stats-panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;padding:1rem 1.5rem;border-left:1px solid var(--border);">
+            <div style="text-align:center;">
+              <div style="font-size:2.8rem;font-weight:800;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,#818cf8,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;">12</div>
+              <div style="font-size:0.7rem;color:var(--text-3);font-family:'Fira Code',monospace;text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;">Prompts Logged</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:2.8rem;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--green);line-height:1;">~45%</div>
+              <div style="font-size:0.7rem;color:var(--text-3);font-family:'Fira Code',monospace;text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;">Adopted As-Is</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:2.8rem;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--amber);line-height:1;">~55%</div>
+              <div style="font-size:0.7rem;color:var(--text-3);font-family:'Fira Code',monospace;text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;">Required Correction</div>
+            </div>
+          </div>
         </div>
 
+        <!-- Ten ethical consideration cards -->
         <div class="card-grid">
           <div class="info-card">
             <div class="card-tag">📋 Full Disclosure</div>
@@ -640,11 +883,31 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             <div class="card-tag">📚 Learning Outcomes</div>
             <div class="card-desc">Correcting AI errors produced deeper understanding than copying them. Fisher-Yates, <code>rootMargin</code> tuning, and DOM cleanup are concepts I now genuinely understand because I fixed them.</div>
           </div>
+          <div class="info-card">
+            <div class="card-tag">🤝 Transparent Authorship Model</div>
+            <div class="card-desc">Using AI openly and documenting every interaction demonstrates responsible scholarship. Concealing assistance — even when output is heavily modified — undermines the academic integrity framework.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🔐 Code Ownership &amp; Defence</div>
+            <div class="card-desc">I must be able to explain and defend every line at the project demonstration. AI-generated code that is adopted wholesale, without being understood, creates an unjustifiable position at assessment time.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">📊 Training Data Bias Awareness</div>
+            <div class="card-desc">AI models reflect patterns from their training data — which may include outdated APIs, deprecated browser behaviours, or patterns that do not meet current accessibility or security standards.</div>
+          </div>
+          <div class="info-card">
+            <div class="card-tag">🌱 AI as Learning Catalyst</div>
+            <div class="card-desc">When used critically, AI accelerates exposure to patterns and APIs that would otherwise take much longer to discover. The key is treating every suggestion as a starting hypothesis, not a final answer.</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Key Takeaways ──────────────────────────────────────────────── -->
+    <!-- ── Key Takeaways ──────────────────────────────────────────────────
+         Four-step visual summary of the reflection's conclusions,
+         presented as a connected card flow:
+           Scaffold → Test → Risk → Learning
+    ──────────────────────────────────────────────────────────────────── -->
     <section class="section">
       <div class="container">
         <div class="section-intro">
@@ -653,6 +916,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
         </div>
 
         <div class="learning-path-full" role="list">
+          <!-- Takeaway 1: AI as scaffold -->
           <div class="path-card-large path-glow-html">
             <div class="path-card-header">
               <span class="path-icon-lg">🛠️</span>
@@ -662,8 +926,10 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             <p>Most useful for explaining unfamiliar APIs and generating starter patterns. Cannot replace understanding — only accelerate reaching it.</p>
           </div>
 
+          <!-- Visual arrow connector between cards -->
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
+          <!-- Takeaway 2: Always test in a real browser -->
           <div class="path-card-large path-glow-css">
             <div class="path-card-header">
               <span class="path-icon-lg">🔬</span>
@@ -675,6 +941,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
+          <!-- Takeaway 3: Confidence ≠ correctness -->
           <div class="path-card-large path-glow-js">
             <div class="path-card-header">
               <span class="path-icon-lg">⚠️</span>
@@ -686,6 +953,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
+          <!-- Takeaway 4: Correction deepens understanding -->
           <div class="path-card-large path-glow-quiz">
             <div class="path-card-header">
               <span class="path-icon-lg">🧠</span>
@@ -700,6 +968,10 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
   </main>
 
+  <!-- ── Site-wide Footer ─────────────────────────────────────────────────
+       Shared across all four pages. Contains brand logo, copyright notice,
+       and decorative 3D HTML/CSS/JS stacked layer graphic.
+  ──────────────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="footer-glow"></div>
     <div class="footer-wave-bg" aria-hidden="true"></div>
@@ -727,6 +999,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
       <div class="footer-copy">
         <p>&copy; 2026 SkillLance &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia</p>
       </div>
+      <!-- Decorative 3D stacked layer graphic (aria-hidden: visual only) -->
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
           <div class="stack-layer layer-js"><span class="layer-icon">⚡</span> JS</div>
