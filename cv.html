@@ -2,31 +2,33 @@
 <html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Arshad Sheik — IT professional, data engineer and MIT student at UWA. Curriculum Vitae for potential employers." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨🏻‍💻</text></svg>" />
+    content="Arshad Sheik — IT professional, data engineer and MIT student at UWA. Curriculum Vitae for potential employers.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%3C%2Ftext%3E%3C%2Fsvg%3E">
   <title>Arshad Sheik - CV</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="./assets/style.css">
   <script defer src="./assets/main.js"></script>
 </head>
 
-<body>
+<body data-page="cv">
+  <!-- Scroll progress indicator -->
+  <div class="cv-scroll-progress" id="cv-scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- ── Navigation ─────────────────────────────────────────────────────── -->
   <nav class="site-nav">
     <div class="container nav-inner">
-      <a href="./index.html" class="nav-logo">
+      <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
@@ -35,22 +37,22 @@
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
-              <stop stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
+              <stop offset="0" stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
             </linearGradient>
           </defs>
         </svg>
         SkillLance
       </a>
       <div class="nav-links">
-        <a href="./index.html">Home</a>
+
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
         <a href="./cv.html" class="active">CV</a>
       </div>
       <div class="nav-actions">
-        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -64,22 +66,44 @@
       <div class="container">
         <div class="cv-hero-inner">
 
-          <!-- Profile Photo -->
-          <figure class="cv-hero-photo-wrap" aria-label="Profile photo">
-            <img src="./assets/images/Profile.jpeg" alt="Arshad Sheik" class="cv-photo-img" />
+          <!-- Profile Photo with animated ring & orbital tech badges -->
+          <figure class="cv-hero-photo-wrap" aria-label="Profile photo of Arshad Sheik">
+            <!-- Rotating conic-gradient ring -->
+            <div class="cv-photo-ring" aria-hidden="true"></div>
+            <!-- Pulsing glow rings -->
+            <div class="cv-photo-pulse" aria-hidden="true"></div>
+            <!-- Floating orbital tech icons -->
+            <div class="cv-photo-orbs" aria-hidden="true">
+              <span class="cv-orb cv-orb-1" title="Python">🐍</span>
+              <span class="cv-orb cv-orb-2" title="Cloud">☁️</span>
+              <span class="cv-orb cv-orb-3" title="Data">🗄️</span>
+              <span class="cv-orb cv-orb-4" title="JavaScript">⚡</span>
+            </div>
+            <!-- Tiltable photo with sheen overlay -->
+            <div class="cv-photo-tilt" id="cv-photo-tilt">
+              <img src="./assets/images/Profile.jpeg" alt="Arshad Sheik — IT Professional & Data Engineer" class="cv-photo-img">
+              <div class="cv-photo-sheen" aria-hidden="true"></div>
+            </div>
           </figure>
 
           <!-- Name, title, contacts -->
           <div class="cv-hero-text">
+            <!-- Open-to-work status badge -->
+            <div class="cv-available-badge" role="status" aria-label="Currently open to work">
+              <span class="cv-available-dot" aria-hidden="true"></span>
+              Open to Opportunities
+            </div>
             <div class="eyebrow-pill-3d">
               <span class="pill-icon-3d">💼</span>
               <span class="pill-word" style="--i:0">M.I.T Student @ UWA</span>
               <span class="pill-sep">·</span>
+              <span class="pill-icon-3d">👨🏻‍💼</span>
               <span class="pill-word" style="--i:1">McCusker Intern</span>
               <span class="pill-sep">·</span>
+              <span class="pill-icon-3d">🌏</span>
               <span class="pill-word" style="--i:2">Perth, WA</span>
               <span class="pill-shimmer" aria-hidden="true"></span>
-            </div>
+            </div><br>
             <h1 class="cv-hero-name" id="cv-typewriter" aria-label="Arshad Sheik">Arshad Sheik</h1>
             <p class="cv-hero-title">
               IT Professional &amp; Data Engineer &mdash; Master of IT @ The University of Western Australia (UWA)
@@ -108,6 +132,30 @@
         </div>
       </div>
     </header>
+
+    <!-- ── Animated Stats Row ───────────────────────────────────────────────── -->
+    <section class="cv-stats-row container" aria-label="Career highlights at a glance">
+      <div class="cv-stat-card">
+        <span class="cv-stat-num" data-target="2" data-suffix="+">0+</span>
+        <span class="cv-stat-label">Years Industry Experience</span>
+      </div>
+      <div class="cv-stat-card">
+        <span class="cv-stat-num" data-target="2">0</span>
+        <span class="cv-stat-label">Research Papers Published</span>
+      </div>
+      <div class="cv-stat-card">
+        <span class="cv-stat-num" data-target="5" data-suffix="+">0+</span>
+        <span class="cv-stat-label">Certifications Earned</span>
+      </div>
+      <div class="cv-stat-card">
+        <span class="cv-stat-num" data-target="3">0</span>
+        <span class="cv-stat-label">Cloud Platforms</span>
+      </div>
+      <div class="cv-stat-card">
+        <span class="cv-stat-num" data-target="56" data-suffix="%">0%</span>
+        <span class="cv-stat-label">Query Complexity Reduced</span>
+      </div>
+    </section>
 
     <!-- ── Main Two-Column Layout ──────────────────────────────────────────── -->
     <div class="container cv-layout" style="padding-top:2.5rem; padding-bottom:5rem;">
@@ -175,7 +223,7 @@
 
           <div class="timeline-item">
             <div class="tl-dot"></div>
-            <h4 style="font-size:0.92rem; margin:0 0 0.25rem;">Master of Information Technology</h4>
+            <h3 style="font-size:0.92rem; margin:0 0 0.25rem;">Master of Information Technology</h3>
             <p class="tl-org">University of Western Australia</p>
             <p class="tl-date">2024 &ndash; Present (Expected 2025)</p>
             <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;">Perth, WA &middot; Web Technologies, Databases, Networks, IT Project Management</p>
@@ -183,7 +231,7 @@
 
           <div class="timeline-item" style="margin-top:1.25rem;">
             <div class="tl-dot"></div>
-            <h4 style="font-size:0.92rem; margin:0 0 0.25rem;">B.Tech &mdash; Computer Science Engineering</h4>
+            <h3 style="font-size:0.92rem; margin:0 0 0.25rem;">B.Tech &mdash; Computer Science Engineering</h3>
             <p class="tl-org">Mahatma Gandhi Institute of Technology, JNTUH</p>
             <p class="tl-date">2018 &ndash; 2022</p>
             <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;">Hyderabad, India &middot; Published 2 peer-reviewed research papers in deep learning</p>
@@ -272,24 +320,40 @@
           <p class="eyebrow" id="exp-heading">Career Timeline</p>
           <h2>Professional Experience</h2>
 
-          <!-- Tab controls -->
-          <div class="cv-tabs" role="tablist" aria-label="Filter experience by type">
-            <button class="cv-tab active" role="tab" aria-selected="true" data-filter="all" id="tab-all">All</button>
-            <button class="cv-tab" role="tab" aria-selected="false" data-filter="data" id="tab-data">Data Engineering</button>
-            <button class="cv-tab" role="tab" aria-selected="false" data-filter="intern" id="tab-intern">Internships</button>
-            <button class="cv-tab" role="tab" aria-selected="false" data-filter="other" id="tab-other">Other</button>
+          <!-- Interactive tech skill tag filter -->
+          <div class="cv-tech-filter" role="group" aria-label="Highlight experience by technology">
+            <span class="cv-tech-filter-label">🔍 Highlight by skill:</span>
+            <div class="cv-tech-tags" id="cv-tech-tags">
+              <button type="button" class="cv-tech-tag" data-skill="Python">Python</button>
+              <button type="button" class="cv-tech-tag" data-skill="SQL">SQL</button>
+              <button type="button" class="cv-tech-tag" data-skill="Azure">Azure</button>
+              <button type="button" class="cv-tech-tag" data-skill="Snowflake">Snowflake</button>
+              <button type="button" class="cv-tech-tag" data-skill="ETL">ETL / ELT</button>
+              <button type="button" class="cv-tech-tag" data-skill="Salesforce">Salesforce</button>
+              <button type="button" class="cv-tech-tag" data-skill="AWS">AWS</button>
+              <button type="button" class="cv-tech-tag" data-skill="migration">Data Migration</button>
+              <button type="button" class="cv-tech-tag" data-skill="Agile">Agile</button>
+            </div>
           </div>
 
-          <div class="experience-timeline" id="experience-timeline" role="list">
+          <!-- Tab controls -->
+          <div class="cv-tabs" role="tablist" aria-label="Filter experience by type">
+            <button type="button" class="cv-tab active" role="tab" aria-selected="true" data-filter="all" id="tab-all" aria-controls="experience-timeline">All</button>
+            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="data" id="tab-data" aria-controls="experience-timeline">Data Engineering</button>
+            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="intern" id="tab-intern" aria-controls="experience-timeline">Internships</button>
+            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="other" id="tab-other" aria-controls="experience-timeline">Other</button>
+          </div>
 
-            <article class="exp-item exp-current" data-category="intern" role="listitem"
+          <div class="experience-timeline" id="experience-timeline" role="tabpanel" tabindex="0" aria-labelledby="tab-all">
+
+            <article class="exp-item exp-current" data-category="intern"
               aria-labelledby="exp1-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp1-title">IT-Data Intern</h3>
                   <p class="exp-org">Interchange WA &nbsp;&middot;&nbsp; McCusker Internship (SVLG5001)</p>
                 </div>
-                <span class="exp-date exp-badge-live">2025 &ndash; Present</span>
+                <span class="exp-date exp-badge-live"><time datetime="2025">2025</time> &ndash; <time>Present</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Working across Salesforce and Lumary platforms to support client and case management workflows.</li>
@@ -299,13 +363,13 @@
               </ul>
             </article>
 
-            <article class="exp-item" data-category="data" role="listitem" aria-labelledby="exp2-title">
+            <article class="exp-item" data-category="data" aria-labelledby="exp2-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp2-title">Data Engineer II</h3>
                   <p class="exp-org">Accordion &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date">Feb 2023 &ndash; Dec 2023</span>
+                <span class="exp-date"><time datetime="2023-02">Feb 2023</time> &ndash; <time datetime="2023-12">Dec 2023</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Designed and maintained end-to-end ETL and ELT pipelines for financial data clients using Python, SQL and Azure services.</li>
@@ -315,13 +379,13 @@
               </ul>
             </article>
 
-            <article class="exp-item" data-category="data" role="listitem" aria-labelledby="exp3-title">
+            <article class="exp-item" data-category="data" aria-labelledby="exp3-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp3-title">Data Engineer I</h3>
                   <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date">Aug 2022 &ndash; Jan 2023</span>
+                <span class="exp-date"><time datetime="2022-08">Aug 2022</time> &ndash; <time datetime="2023-01">Jan 2023</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Developed automated data ingestion and transformation workflows using Python and SQL across multiple client data environments.</li>
@@ -330,13 +394,13 @@
               </ul>
             </article>
 
-            <article class="exp-item" data-category="intern" role="listitem" aria-labelledby="exp4-title">
+            <article class="exp-item" data-category="intern" aria-labelledby="exp4-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp4-title">Database Intern</h3>
                   <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date">Jan 2022 &ndash; Jul 2022</span>
+                <span class="exp-date"><time datetime="2022-01">Jan 2022</time> &ndash; <time datetime="2022-07">Jul 2022</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Assisted in database management including schema design, data integrity checks and query optimisation.</li>
@@ -344,13 +408,13 @@
               </ul>
             </article>
 
-            <article class="exp-item" data-category="other" role="listitem" aria-labelledby="exp5-title">
+            <article class="exp-item" data-category="other" aria-labelledby="exp5-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp5-title">Cybersecurity Intern</h3>
                   <p class="exp-org">Talakunchi Networks &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date">Oct 2021</span>
+                <span class="exp-date"><time datetime="2021-10">Oct 2021</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Gained hands-on exposure to network security fundamentals, vulnerability scanning and security audit procedures.</li>
@@ -393,8 +457,8 @@
         <section class="cv-section glass-card" aria-labelledby="pub-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="pub-heading">Research</p>
           <h2>Published Papers</h2>
-          <div class="experience-timeline">
-            <article class="exp-item" role="listitem" aria-labelledby="pub1-title">
+          <div class="experience-timeline" role="list">
+            <article class="exp-item" aria-labelledby="pub1-title">
               <div class="exp-header">
                 <h3 id="pub1-title" style="font-size:0.95rem;">Deep Learning for Neovascularization Detection from Retinal Images</h3>
                 <span class="exp-date">2022</span>
@@ -404,7 +468,7 @@
                 contributing to early diagnosis of diabetic retinopathy with high precision recall.
               </p>
             </article>
-            <article class="exp-item" role="listitem" aria-labelledby="pub2-title" style="margin-top:0.5rem;">
+            <article class="exp-item" aria-labelledby="pub2-title" style="margin-top:0.5rem;">
               <div class="exp-header">
                 <h3 id="pub2-title" style="font-size:0.95rem;">Detection of Non-Helmet Riders using Deep Learning Techniques</h3>
                 <span class="exp-date">2022</span>
@@ -456,7 +520,7 @@
     <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="./index.html" class="footer-logo">
+        <a href="./tutorial.html" class="footer-logo">
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
             <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
@@ -465,7 +529,7 @@
             <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
             <defs>
               <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
+                <stop offset="0" stop-color="#818cf8" /><stop offset="1" stop-color="#06b6d4" />
               </linearGradient>
             </defs>
           </svg>
@@ -473,7 +537,7 @@
         </a>
       </div>
       <div class="footer-copy">
-        <p>&copy; 2026 Arshad Sheik &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
+        <p>&copy; 2026 Arshad Sheik &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia</p>
       </div>
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
@@ -484,6 +548,24 @@
       </div>
     </div>
   </footer>
+  <!-- Floating action buttons -->
+  <div class="cv-fab-group" id="cv-fab-group" aria-label="Quick actions">
+    <a href="./assets/docs/Arshad-Sheik-Resume.pdf" download class="cv-fab cv-fab-download" id="cv-fab-download"
+       aria-label="Download PDF Resume" title="Download Resume">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span class="cv-fab-label">Download Resume</span>
+    </a>
+    <button type="button" class="cv-fab cv-fab-top" id="cv-fab-top"
+            aria-label="Back to top" title="Back to top">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+  </div>
 
 </body>
 </html>

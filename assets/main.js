@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    SKILLLANCE — Main JavaScript
-   Features: Theme toggle, Mobile nav, 3D tilt, Tutorial demos,
+   Features: Theme toggle, Mobile nav, Tutorial demos,
              ToC tracker, Quiz engine, CV interactions, Confetti, Victory overlay
 ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTocTracker();
   initQuizPage();
   initCvInteractions();
-  init3DTilt();
   // Scroll reveal — run synchronously so above-fold content is never hidden
   initScrollReveal();
 });
@@ -65,52 +64,6 @@ function initMobileNav() {
       toggle?.setAttribute('aria-expanded', 'false');
     });
   });
-}
-
-// ── 3D Card Tilt Effect ────────────────────────────────────────────────────
-function init3DTilt() {
-  document.querySelectorAll('.path-card-large, .info-card, .path-card, .feature-card-3d').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-
-  // Hero card 3D parallax — deeper tilt effect
-  const heroCard = document.getElementById('hero-how-card');
-  if (heroCard) {
-    heroCard.addEventListener('mousemove', (e) => {
-      const rect = heroCard.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroCard.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px) scale(1.02)`;
-      heroCard.style.boxShadow = `${-x * 20}px ${y * 20}px 50px rgba(129,140,248,0.15), 0 0 40px rgba(129,140,248,0.08)`;
-    });
-    heroCard.addEventListener('mouseleave', () => {
-      heroCard.style.transform = '';
-      heroCard.style.boxShadow = '';
-    });
-  }
-
-  // Hero title subtle 3D effect on hover
-  const heroTitle = document.querySelector('.hero-title-3d');
-  if (heroTitle) {
-    heroTitle.addEventListener('mousemove', (e) => {
-      const rect = heroTitle.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroTitle.style.transform = `perspective(1200px) rotateY(${x * 4}deg) rotateX(${-y * 3}deg) translateZ(8px)`;
-    });
-    heroTitle.addEventListener('mouseleave', () => {
-      heroTitle.style.transform = '';
-    });
-  }
 }
 
 
@@ -787,6 +740,44 @@ function initQuizPage() {
 
 // ── CV Page Interactions ───────────────────────────────────────────────────
 function initCvInteractions() {
+  if (document.body.dataset.page !== 'cv') return;
+
+  // ── 0. Typewriter effect on the hero name (loops, keeps first char) ────
+  (function initCvTypewriter() {
+    const el = document.getElementById('cv-typewriter');
+    if (!el) return;
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+
+    let i = text.length; // start fully typed
+    let deleting = true;  // immediately begin delete cycle
+
+    function tick() {
+      if (!deleting) {
+        // Typing forward
+        el.textContent = text.slice(0, i + 1);
+        i++;
+        if (i === text.length) {
+          deleting = true;
+          setTimeout(tick, 2800); // pause fully typed
+          return;
+        }
+        setTimeout(tick, 110 + Math.random() * 60); // slower typing
+      } else {
+        // Deleting — stop at first character
+        el.textContent = text.slice(0, i - 1);
+        i--;
+        if (i === 1) {
+          deleting = false;
+          setTimeout(tick, 900); // pause at "A" before retyping
+          return;
+        }
+        setTimeout(tick, 55 + Math.random() * 30); // slower deleting
+      }
+    }
+
+    setTimeout(tick, 1000); // initial delay
+  })();
 
   // ── 1. Animated Skill Bars (IntersectionObserver) ──────────────────────
   const bars = document.querySelectorAll('.cv-bar-fill');
@@ -799,11 +790,56 @@ function initCvInteractions() {
         }
       });
     }, { threshold: 0.3 });
-
     bars.forEach(bar => barObserver.observe(bar));
   }
 
-  // ── 2. Experience Tab Filter ────────────────────────────────────────────
+  // ── 1b. Count-up animation for stat numbers ────────────────────────────
+  const statNums = document.querySelectorAll('.cv-stat-num');
+  if (statNums.length) {
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target  = parseInt(el.dataset.target, 10);
+        const suffix  = el.dataset.suffix || '';
+        const dur     = 1400;
+        const start   = performance.now();
+
+        function tick(now) {
+          const elapsed  = now - start;
+          const progress = Math.min(elapsed / dur, 1);
+          // Ease-out cubic
+          const eased  = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    statNums.forEach(n => countObserver.observe(n));
+  }
+
+  // ── 2. Profile photo 3D mouse tilt ────────────────────────────────────
+  (function initCvPhotoTilt() {
+    const wrap = document.getElementById('cv-photo-tilt');
+    if (!wrap) return;
+    const STRENGTH = 10;
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const nx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+      const ny = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+      wrap.style.transform =
+        `perspective(700px) rotateX(${-ny * STRENGTH}deg) rotateY(${nx * STRENGTH}deg)`;
+    });
+    wrap.addEventListener('mouseleave', () => {
+      wrap.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg)';
+    });
+  })();
+
+  // ── 3. Experience Tab Filter ────────────────────────────────────────────
+
   const tabs = document.querySelectorAll('.cv-tab');
   const expItems = document.querySelectorAll('#experience-timeline .exp-item');
 
@@ -843,7 +879,41 @@ function initCvInteractions() {
     });
   });
 
-  // ── 3. Load motivational quote via AJAX ────────────────────────────────
+  // ── 4. Tech Skill Tag Filter (highlights matching bullets) ────────────
+  const techTags  = document.querySelectorAll('#cv-tech-tags .cv-tech-tag');
+  const allBullets = document.querySelectorAll('.exp-bullets li');
+  let activeSkill  = null;
+
+  techTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      const skill = tag.dataset.skill.toLowerCase();
+
+      // Toggle off if already active
+      if (activeSkill === skill) {
+        activeSkill = null;
+        techTags.forEach(t => t.classList.remove('active'));
+        allBullets.forEach(li => li.classList.remove('skill-highlight'));
+        return;
+      }
+
+      // Activate this tag
+      activeSkill = skill;
+      techTags.forEach(t => t.classList.toggle('active', t.dataset.skill.toLowerCase() === skill));
+
+      // Highlight matching bullets, dim others
+      allBullets.forEach(li => {
+        const matches = li.textContent.toLowerCase().includes(skill);
+        li.classList.toggle('skill-highlight', matches);
+      });
+
+      // Scroll first match into view
+      const first = Array.from(allBullets).find(li => li.textContent.toLowerCase().includes(skill));
+      first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  // ── 5. Load motivational quote via AJAX ────────────────────────────────
+
   const quoteBtn = document.getElementById('load-quote');
   const quoteOutput = document.getElementById('quote-output');
 
@@ -902,7 +972,35 @@ function initCvInteractions() {
       cvRevealObserver.observe(el);
     });
   }
+
+  // ── 6. Scroll progress bar + FAB visibility ────────────────────────────
+  const progressBar = document.getElementById('cv-scroll-progress');
+  const fabGroup    = document.getElementById('cv-fab-group');
+  const fabTop      = document.getElementById('cv-fab-top');
+  const heroHeader  = document.querySelector('.cv-hero-banner');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    // Progress bar
+    if (progressBar && docHeight > 0) {
+      progressBar.style.width = `${(scrollTop / docHeight) * 100}%`;
+    }
+
+    // FAB appears after scrolling past hero
+    if (fabGroup && heroHeader) {
+      const threshold = heroHeader.offsetTop + heroHeader.offsetHeight - 80;
+      fabGroup.classList.toggle('cv-fab-visible', scrollTop > threshold);
+    }
+  }, { passive: true });
+
+  // Back to top
+  fabTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
+
 
 
 function escapeHtmlCV(str) {
@@ -916,9 +1014,9 @@ function escapeHtmlCV(str) {
 // ── Scroll Reveal ──────────────────────────────────────────────────────────
 function initScrollReveal() {
   const revealElements = document.querySelectorAll(
-    '.content-section, .glass-card, .info-card, .path-card-large, .demo-box, ' +
+    '.content-section, .glass-card, .info-card, .demo-box, ' +
     '.code-window, .question-card, .cv-sections article, .reflection-block, ' +
-    '.callout-card, .hero-card, .quiz-controls, .selector-demo .sel-row, ' +
+    '.callout-card, .quiz-controls, .selector-demo .sel-row, ' +
     '.alert, .tryit-wrap'
   );
 
@@ -1094,7 +1192,7 @@ function updateVictoryOverlayBadge({ avatarUrl, inscription, score, total, perce
 
 // ── Confetti Celebration (Quiz Pass) ───────────────────────────────────────
 function launchConfetti() {
-  const colors = ['#818cf8', '#06b6d4', '#22c55e', '#fbbf24', '#f87171', '#a78bfa', '#fb923c', '#f472b6', '#34d399'];
+  const colors = ['#4f46e5', '#0ea5e9', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#f97316', '#ec4899', '#10b981'];
   const shapes = ['circle', 'square', 'triangle', 'rect'];
   const TOTAL = 160;
 
@@ -1155,3 +1253,33 @@ function launchConfetti() {
 
 // Make confetti available globally for quiz
 window.launchConfetti = launchConfetti;
+
+// ── Hero Title 3D Tilt Effect ──────────────────────────────────────────────
+(function initHeroTilt() {
+  const el = document.getElementById('hero-title-3d');
+  if (!el) return;
+
+  const STRENGTH = 6;    // max degrees of tilt (subtle)
+  const LIFT     = -2;   // slight Z-lift on hover (in px)
+
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const cx   = rect.left + rect.width  / 2;
+    const cy   = rect.top  + rect.height / 2;
+
+    // Normalise mouse position to -1 … +1
+    const nx = (e.clientX - cx) / (rect.width  / 2);
+    const ny = (e.clientY - cy) / (rect.height / 2);
+
+    // rotateX based on vertical position (invert so leaning toward mouse)
+    const rotX =  -ny * STRENGTH;
+    const rotY =   nx * STRENGTH;
+
+    el.style.transform =
+      `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${LIFT}px)`;
+  });
+
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+  });
+})();
