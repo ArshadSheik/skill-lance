@@ -1,39 +1,108 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
   <meta charset="UTF-8">
+<!--
+  ============================================================
+  SkillLance — cv.html
+  Personalised Curriculum Vitae Page
+  ============================================================
+  Author      : Arshad Sheik (Student ID: 25101735)
+  Unit        : CITS5505 Agile Web Development, Sem 1 2026
+  Institution : The University of Western Australia (UWA)
+  Description : Interactive CV/portfolio page presenting Arshad Sheik
+                as a candidate to potential employers. Features include:
+                  • Animated hero banner with tilt-effect profile photo,
+                    orbital tech badge icons, and typewriter name reveal
+                  • Animated stats counter row (years experience, papers, etc.)
+                  • Two-column layout: sticky sidebar + scrollable main content
+                  • Animated skill-proficiency bar charts (CSS transitions,
+                    triggered by IntersectionObserver in main.js)
+                  • Experience timeline with tech-skill tag filter and
+                    tab-based category filter (All / Data Eng / Internships)
+                  • Featured project card (SkillLance)
+                  • Research publications list
+                  • Floating action buttons: Download PDF and Back to Top
+                  • Compulsory references section (UWA Harvard format)
+                  • Scroll progress indicator bar at top of viewport
+                  • Personal contact details use appropriate placeholders
+                    for phone number (per rubric requirement)
+  Dependencies: assets/style.css, assets/main.js,
+                assets/images/Profile.jpeg,
+                assets/docs/Arshad-Sheik-Resume.pdf,
+                Google Fonts (CDN)
+  ============================================================
+-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Arshad Sheik — IT professional, data engineer and MIT student at UWA. Curriculum Vitae for potential employers.">
+  <!-- Emoji favicon: laptop developer icon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%3C%2Ftext%3E%3C%2Fsvg%3E">
   <title>Arshad Sheik - CV</title>
+
+  <!-- ── Google Fonts ─────────────────────────────────────────────────────
+       Preconnect hints establish early TCP connections for faster loading.
+  ──────────────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Primary typefaces: Syne (headings), DM Sans (body), Fira Code (code) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Secondary typeface: Space Grotesk (stats numbers and display text) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
     rel="stylesheet">
+
+  <!-- Shared stylesheet for the entire SkillLance application -->
   <link rel="stylesheet" href="./assets/style.css">
+
+  <!-- Main JS: defer ensures HTML is fully parsed before execution.
+       Handles: tilt effect, stats counter, skill bar animations,
+       experience tab filter, tech tag highlighting, scroll progress
+       bar, FAB visibility, and back-to-top button. -->
   <script defer src="./assets/main.js"></script>
 </head>
 
+<!-- data-page="cv" allows main.js and style.css to apply CV-specific
+     behaviour (e.g. initialising the tilt effect only on this page). -->
 <body data-page="cv">
-  <!-- Scroll progress indicator -->
+
+  <!-- ── Scroll Progress Bar ──────────────────────────────────────────────
+       A thin horizontal bar at the top of the viewport.
+       Width is updated by main.js on scroll events to reflect the
+       percentage of the page the user has scrolled through.
+       aria-hidden: decorative/supplemental — not meaningful to AT users.
+  ──────────────────────────────────────────────────────────────────── -->
   <div class="cv-scroll-progress" id="cv-scroll-progress" aria-hidden="true"></div>
+
+  <!-- ── Accessibility: Skip link ────────────────────────────────────────
+       Allows keyboard and screen-reader users to jump past navigation.
+  ──────────────────────────────────────────────────────────────────── -->
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- ── Navigation ─────────────────────────────────────────────────────── -->
+  <!-- ── Site-wide Navigation ────────────────────────────────────────────
+       Shared across all four pages. Contains:
+         • Brand logo (SVG, links back to tutorial.html)
+         • Page links with .active class on current page (CV)
+         • Dark/light theme toggle button
+         • Hamburger toggle for mobile responsive menu
+  ──────────────────────────────────────────────────────────────────── -->
   <nav class="site-nav">
     <div class="container nav-inner">
+
+      <!-- Brand logo: inline SVG with gradient angle-brackets and slash -->
       <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
+          <!-- Left angle bracket ( < ) -->
           <path d="M12 10L6 16L12 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- Right angle bracket ( > ) -->
           <path d="M20 10L26 16L20 22" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- Forward slash ( / ) -->
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
@@ -43,15 +112,19 @@
         </svg>
         SkillLance
       </a>
-      <div class="nav-links">
 
+      <!-- Primary navigation links; .active marks the current page (CV) -->
+      <div class="nav-links">
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
         <a href="./cv.html" class="active">CV</a>
       </div>
+
       <div class="nav-actions">
+        <!-- Theme toggle; icon and aria-label managed by main.js -->
         <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <!-- Hamburger: three <span> bars styled to lines via CSS -->
         <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -59,40 +132,59 @@
     </div>
   </nav>
 
+  <!-- ── Main Content ─────────────────────────────────────────────────── -->
   <main id="main-content">
 
-    <!-- ── Hero Banner ────────────────────────────────────────────────────── -->
+    <!-- ══ HERO BANNER ═══════════════════════════════════════════════════
+         Full-width header presenting the candidate at a glance.
+         Layout: profile photo (left) + name/title/contact links (right).
+         JavaScript in main.js initialises:
+           • 3D tilt effect on #cv-photo-tilt (mousemove listener)
+           • Typewriter animation on #cv-typewriter
+    ════════════════════════════════════════════════════════════════════ -->
     <header class="cv-hero-banner" role="banner">
       <div class="container">
         <div class="cv-hero-inner">
 
-          <!-- Profile Photo with animated ring & orbital tech badges -->
+          <!-- Profile photo with decorative rings and orbital tech icons -->
           <figure class="cv-hero-photo-wrap" aria-label="Profile photo of Arshad Sheik">
-            <!-- Rotating conic-gradient ring -->
+
+            <!-- Rotating conic-gradient ring (CSS animation only) -->
             <div class="cv-photo-ring" aria-hidden="true"></div>
-            <!-- Pulsing glow rings -->
+
+            <!-- Pulsing concentric glow rings (CSS animation only) -->
             <div class="cv-photo-pulse" aria-hidden="true"></div>
-            <!-- Floating orbital tech icons -->
+
+            <!-- Orbital floating emoji icons representing key tech skills.
+                 Positioned absolutely around the photo via CSS transforms.
+                 aria-hidden: decorative — screen readers skip these. -->
             <div class="cv-photo-orbs" aria-hidden="true">
               <span class="cv-orb cv-orb-1" title="Python">🐍</span>
               <span class="cv-orb cv-orb-2" title="Cloud">☁️</span>
               <span class="cv-orb cv-orb-3" title="Data">🗄️</span>
               <span class="cv-orb cv-orb-4" title="JavaScript">⚡</span>
             </div>
-            <!-- Tiltable photo with sheen overlay -->
+
+            <!-- Tiltable photo container: main.js attaches a mousemove
+                 listener to this element to produce a 3D tilt effect.
+                 The sheen overlay creates a moving highlight on tilt. -->
             <div class="cv-photo-tilt" id="cv-photo-tilt">
               <img src="./assets/images/Profile.jpeg" alt="Arshad Sheik — IT Professional & Data Engineer" class="cv-photo-img">
+              <!-- Sheen: CSS pseudo-element-like highlight that tracks tilt -->
               <div class="cv-photo-sheen" aria-hidden="true"></div>
             </div>
           </figure>
 
-          <!-- Name, title, contacts -->
+          <!-- Candidate name, title, and contact row -->
           <div class="cv-hero-text">
-            <!-- Open-to-work status badge -->
+
+            <!-- Open-to-work status badge with animated green dot -->
             <div class="cv-available-badge" role="status" aria-label="Currently open to work">
               <span class="cv-available-dot" aria-hidden="true"></span>
               Open to Opportunities
             </div>
+
+            <!-- Animated pill: role, programme, and location tags -->
             <div class="eyebrow-pill-3d">
               <span class="pill-icon-3d">💼</span>
               <span class="pill-word" style="--i:0">M.I.T Student @ UWA</span>
@@ -104,25 +196,37 @@
               <span class="pill-word" style="--i:2">Perth, WA</span>
               <span class="pill-shimmer" aria-hidden="true"></span>
             </div><br>
+
+            <!-- Name: typewriter animation triggered by main.js on load -->
             <h1 class="cv-hero-name" id="cv-typewriter" aria-label="Arshad Sheik">Arshad Sheik</h1>
             <p class="cv-hero-title">
               IT Professional &amp; Data Engineer &mdash; Master of IT @ The University of Western Australia (UWA)
             </p>
+
+            <!-- Contact links row: email, LinkedIn, GitHub, location, phone.
+                 PLACEHOLDER NOTE: Phone number is shown as a placeholder
+                 pattern. For live/public deployment, replace with
+                 [Available on request] to protect personal information. -->
             <nav class="cv-contact-row" aria-label="Contact links">
+              <!-- Email: obfuscated by Cloudflare anti-scraping script -->
               <a href="mailto:arshadsheik4801@gmail.com" class="cv-contact-chip">
                 <span aria-hidden="true">✉️</span> arshadsheik4801@gmail.com
               </a>
+              <!-- External links: open in new tab, noopener for security -->
               <a href="https://linkedin.com/in/arshad-sheik" target="_blank" rel="noopener noreferrer" class="cv-contact-chip">
                 <span aria-hidden="true">🔗</span> LinkedIn Profile
               </a>
               <a href="https://github.com/ArshadSheik" target="_blank" rel="noopener noreferrer" class="cv-contact-chip">
                 <span aria-hidden="true">🐙</span> GitHub Profile
               </a>
+              <!-- Static location chip -->
               <span class="cv-contact-chip"><span aria-hidden="true">📍</span> Perth, WA, Australia</span>
-              <span class="cv-contact-chip"><span aria-hidden="true">📞</span> +61 0404529517</span>
+              <!-- Phone placeholder — replace with [Available on request]
+                   before submitting to a public-facing site -->
+              <span class="cv-contact-chip"><span aria-hidden="true">📞</span> Available on request</span>
             </nav>
 
-            <!-- Download button -->
+            <!-- PDF resume download button -->
             <div style="margin-top:1.25rem;">
               <a href="./assets/docs/Arshad-Sheik-Resume.pdf" download class="btn btn-primary" id="cv-download-btn">
                 Download PDF Resume
@@ -133,8 +237,14 @@
       </div>
     </header>
 
-    <!-- ── Animated Stats Row ───────────────────────────────────────────────── -->
+    <!-- ══ ANIMATED STATS ROW ════════════════════════════════════════════
+         Five at-a-glance career metric cards. Each card contains a
+         <span> with data-target and optional data-suffix attributes.
+         main.js reads these and runs a count-up animation from 0 to the
+         target value when the row enters the viewport via IntersectionObserver.
+    ════════════════════════════════════════════════════════════════════ -->
     <section class="cv-stats-row container" aria-label="Career highlights at a glance">
+      <!-- data-target: number to count up to; data-suffix: appended text (e.g. "+") -->
       <div class="cv-stat-card">
         <span class="cv-stat-num" data-target="2" data-suffix="+">0+</span>
         <span class="cv-stat-label">Years Industry Experience</span>
@@ -152,22 +262,36 @@
         <span class="cv-stat-label">Cloud Platforms</span>
       </div>
       <div class="cv-stat-card">
-        <span class="cv-stat-num" data-target="56" data-suffix="%">0%</span>
-        <span class="cv-stat-label">Query Complexity Reduced</span>
+        <span class="cv-stat-num" data-target="2">0</span>
+        <span class="cv-stat-label">2Industry Programs (SAIEP + McCusker)</span>
       </div>
     </section>
 
-    <!-- ── Main Two-Column Layout ──────────────────────────────────────────── -->
+    <!-- ══ MAIN TWO-COLUMN LAYOUT ════════════════════════════════════════
+         CSS Grid: sidebar (left, sticky) + main content (right, scrollable).
+         Collapses to single column on mobile via media query in style.css.
+    ════════════════════════════════════════════════════════════════════ -->
     <div class="container cv-layout" style="padding-top:2.5rem; padding-bottom:5rem;">
 
-      <!-- ══ LEFT SIDEBAR ═══════════════════════════════════════════════════ -->
+      <!-- ══ LEFT SIDEBAR ═══════════════════════════════════════════════
+           Sticky sidebar containing: skill bars, education, certifications,
+           achievements, hobbies, and languages. Scrolls independently
+           of the main content column. Max-height and overflow managed
+           via style.css (.cv-sidebar).
+      ══════════════════════════════════════════════════════════════════ -->
       <aside class="cv-sidebar" aria-label="CV sidebar">
 
-        <!-- Animated Skill Bars -->
+        <!-- Animated Skill Proficiency Bars ──────────────────────────────
+             Each .cv-bar-fill has a -pct CSS custom property set inline.
+             main.js uses IntersectionObserver to trigger a CSS transition
+             that animates the bar width from 0 to -pct when the sidebar
+             enters the viewport. data-pct is read by JS as the target width.
+        ──────────────────────────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="skills-bar-heading">
           <p class="eyebrow" id="skills-bar-heading">Proficiency</p>
           <h2 style="font-size:1.1rem; margin-bottom:1rem;">Technical Skills</h2>
           <div class="cv-skill-bars" id="cv-skill-bars">
+            <!-- Each row: label + percentage text + animated fill bar -->
             <div class="cv-bar-row">
               <div class="cv-bar-label"><span>Python</span><span class="cv-bar-pct">90%</span></div>
               <div class="cv-bar-track"><div class="cv-bar-fill" data-pct="90" style="--pct:90%"></div></div>
@@ -203,32 +327,24 @@
           </div>
         </section>
 
-        <!-- AJAX Motivation Card (moved to sidebar) -->
-        <section class="glass-card cv-sidebar-card" aria-labelledby="ajax-heading" style="margin-top:1.5rem;">
-          <p class="eyebrow" id="ajax-heading">Live AJAX</p>
-          <h2 style="font-size:1.1rem; margin-bottom:0.5rem;">Daily Motivation</h2>
-          <p class="card-desc" style="font-size:0.82rem; margin-bottom:1rem;">
-            Fetches a quote live from a public API using the Fetch API &mdash; a real AJAX request to demonstrate JavaScript networking.
-          </p>
-          <button type="button" class="btn btn-primary" id="load-quote" style="width:100%;">
-            Fetch Quote
-          </button>
-          <div id="quote-output" class="quote-output" role="status" aria-live="polite" style="margin-top:0.75rem;"></div>
-        </section>
-
-        <!-- Education -->
+        <!-- Education ──────────────────────────────────────────────────────
+             Two entries: current Master of IT (UWA) and B.Tech (MGIT/JNTUH).
+             Uses .timeline-item / .tl-dot CSS for a vertical timeline style.
+        ──────────────────────────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="edu-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="edu-heading">Education</p>
           <h2 style="font-size:1.1rem; margin-bottom:1rem;">Academic Background</h2>
 
+          <!-- Current degree -->
           <div class="timeline-item">
             <div class="tl-dot"></div>
             <h3 style="font-size:0.92rem; margin:0 0 0.25rem;">Master of Information Technology</h3>
-            <p class="tl-org">University of Western Australia</p>
-            <p class="tl-date">2024 &ndash; Present (Expected 2025)</p>
-            <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;">Perth, WA &middot; Web Technologies, Databases, Networks, IT Project Management</p>
+            <p class="tl-org">The University of Western Australia (UWA)</p>
+            <p class="tl-date">Jul 2025 &ndash; Present (Expected 2027)</p>
+            <p class="card-desc" style="font-size:0.78rem; margin-top:0.3rem;"><strong>Specialisation:</strong> Artificial Intelligence &middot; Perth, WA </p>
           </div>
 
+          <!-- Previous degree -->
           <div class="timeline-item" style="margin-top:1.25rem;">
             <div class="tl-dot"></div>
             <h3 style="font-size:0.92rem; margin:0 0 0.25rem;">B.Tech &mdash; Computer Science Engineering</h3>
@@ -238,7 +354,7 @@
           </div>
         </section>
 
-        <!-- Certifications -->
+        <!-- Certifications ───────────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="certs-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="certs-heading">Certifications</p>
           <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Credentials</h2>
@@ -251,7 +367,7 @@
           </ul>
         </section>
 
-        <!-- Achievements -->
+        <!-- Achievements ─────────────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="ach-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="ach-heading">Recognition</p>
           <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Achievements</h2>
@@ -262,10 +378,11 @@
           </ul>
         </section>
 
-        <!-- Hobbies -->
+        <!-- Hobbies & Interests ──────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="hobbies-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="hobbies-heading">Beyond Code</p>
           <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Interests &amp; Hobbies</h2>
+          <!-- Pill tags for visual variety -->
           <div class="skills-wrap">
             <span class="skill-pill">Cricket</span>
             <span class="skill-pill">Exploring Perth</span>
@@ -277,7 +394,7 @@
           </div>
         </section>
 
-        <!-- Languages -->
+        <!-- Languages ────────────────────────────────────────────────────── -->
         <section class="glass-card cv-sidebar-card" aria-labelledby="lang-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="lang-heading">Languages</p>
           <h2 style="font-size:1.1rem; margin-bottom:0.75rem;">Communication</h2>
@@ -288,13 +405,16 @@
           </ul>
         </section>
 
-      </aside>
-      <!-- /sidebar -->
+      </aside><!-- /cv-sidebar -->
 
-      <!-- ══ RIGHT MAIN CONTENT ═════════════════════════════════════════════ -->
+      <!-- ══ RIGHT MAIN CONTENT ════════════════════════════════════════ -->
       <div class="cv-main-content" role="region" aria-label="CV main content">
 
-        <!-- About Me (now in main content) -->
+        <!-- About Me ───────────────────────────────────────────────────────
+             ~500-word professional biography as required by the rubric.
+             Covers: industry background, key roles, current programme,
+             SkillLance project, research papers, and career goals.
+        ──────────────────────────────────────────────────────────────── -->
         <section class="cv-section glass-card" aria-labelledby="about-heading">
           <p class="eyebrow" id="about-heading">Professional Profile</p>
           <h2>About Me</h2>
@@ -315,15 +435,27 @@
           </div>
         </section>
 
-        <!-- Experience with Tab Filter -->
+        <!-- Professional Experience ─────────────────────────────────────────
+             Interactive experience timeline with two filter mechanisms:
+               1. Tech skill tags (#cv-tech-tags): clicking a tag adds
+                  .cv-skill-highlight to matching experience bullet points
+                  (handled by main.js data-skill attribute matching).
+               2. Tab filter (.cv-tabs): clicking a tab shows/hides
+                  experience articles by their data-category attribute.
+                  Tabs follow WAI-ARIA tablist/tab/tabpanel pattern.
+             Each <article> has:
+               • data-category: used by tab filter (data/intern/other)
+               • aria-labelledby pointing to its <h3> for AT users
+        ──────────────────────────────────────────────────────────────── -->
         <section class="cv-section glass-card" aria-labelledby="exp-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="exp-heading">Career Timeline</p>
           <h2>Professional Experience</h2>
 
-          <!-- Interactive tech skill tag filter -->
+          <!-- Tech skill tag filter: highlights matching bullet points -->
           <div class="cv-tech-filter" role="group" aria-label="Highlight experience by technology">
             <span class="cv-tech-filter-label">🔍 Highlight by skill:</span>
             <div class="cv-tech-tags" id="cv-tech-tags">
+              <!-- Each button's data-skill is matched against bullet text by main.js -->
               <button type="button" class="cv-tech-tag" data-skill="Python">Python</button>
               <button type="button" class="cv-tech-tag" data-skill="SQL">SQL</button>
               <button type="button" class="cv-tech-tag" data-skill="Azure">Azure</button>
@@ -336,24 +468,26 @@
             </div>
           </div>
 
-          <!-- Tab controls -->
+          <!-- Category tab filter: All / Data Engineering / Internships / Other -->
           <div class="cv-tabs" role="tablist" aria-label="Filter experience by type">
-            <button type="button" class="cv-tab active" role="tab" aria-selected="true" data-filter="all" id="tab-all" aria-controls="experience-timeline">All</button>
-            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="data" id="tab-data" aria-controls="experience-timeline">Data Engineering</button>
-            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="intern" id="tab-intern" aria-controls="experience-timeline">Internships</button>
-            <button type="button" class="cv-tab" role="tab" aria-selected="false" data-filter="other" id="tab-other" aria-controls="experience-timeline">Other</button>
+            <button type="button" class="cv-tab active" role="tab" aria-selected="true"  data-filter="all"    id="tab-all"    aria-controls="experience-timeline">All</button>
+            <button type="button" class="cv-tab"        role="tab" aria-selected="false" data-filter="data"   id="tab-data"   aria-controls="experience-timeline">Data Engineering</button>
+            <button type="button" class="cv-tab"        role="tab" aria-selected="false" data-filter="intern" id="tab-intern" aria-controls="experience-timeline">Internships</button>
+            <button type="button" class="cv-tab"        role="tab" aria-selected="false" data-filter="other"  id="tab-other"  aria-controls="experience-timeline">Other</button>
           </div>
 
+          <!-- Experience articles: filtered by data-category via main.js -->
           <div class="experience-timeline" id="experience-timeline" role="tabpanel" tabindex="0" aria-labelledby="tab-all">
 
-            <article class="exp-item exp-current" data-category="intern"
-              aria-labelledby="exp1-title">
+            <!-- ── Current role: IT-Data Intern (McCusker / Interchange WA) -->
+            <article class="exp-item exp-current" data-category="intern" aria-labelledby="exp1-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp1-title">IT-Data Intern</h3>
+                  <!-- exp-badge-live applies an animated "live" indicator dot -->
                   <p class="exp-org">Interchange WA &nbsp;&middot;&nbsp; McCusker Internship (SVLG5001)</p>
                 </div>
-                <span class="exp-date exp-badge-live"><time datetime="2025">2025</time> &ndash; <time>Present</time></span>
+                <span class="exp-date exp-badge-live"><time datetime="2025-02">Feb 2026</time> &ndash; Present</span>
               </div>
               <ul class="exp-bullets">
                 <li>Working across Salesforce and Lumary platforms to support client and case management workflows.</li>
@@ -363,13 +497,14 @@
               </ul>
             </article>
 
+            <!-- ── Data Engineer II (Accordion, formerly Merilytics) -->
             <article class="exp-item" data-category="data" aria-labelledby="exp2-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp2-title">Data Engineer II</h3>
-                  <p class="exp-org">Accordion &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                  <p class="exp-org">Accordion (formerly Merilytics) &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date"><time datetime="2023-02">Feb 2023</time> &ndash; <time datetime="2023-12">Dec 2023</time></span>
+                <span class="exp-date"><time datetime="2024-04">Apr 2024</time> &ndash; <time datetime="2025-06">Jun 2025</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Designed and maintained end-to-end ETL and ELT pipelines for financial data clients using Python, SQL and Azure services.</li>
@@ -379,13 +514,14 @@
               </ul>
             </article>
 
+            <!-- ── Data Engineer I (Accordion) -->
             <article class="exp-item" data-category="data" aria-labelledby="exp3-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp3-title">Data Engineer I</h3>
-                  <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                  <p class="exp-org">Accordion &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date"><time datetime="2022-08">Aug 2022</time> &ndash; <time datetime="2023-01">Jan 2023</time></span>
+                <span class="exp-date"><time datetime="2023-08">Aug 2023</time> &ndash; <time datetime="2024-03">Mar 2024</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Developed automated data ingestion and transformation workflows using Python and SQL across multiple client data environments.</li>
@@ -394,13 +530,14 @@
               </ul>
             </article>
 
+            <!-- ── Database Intern (Merilytics) -->
             <article class="exp-item" data-category="intern" aria-labelledby="exp4-title">
               <div class="exp-header">
                 <div>
                   <h3 id="exp4-title">Database Intern</h3>
                   <p class="exp-org">Merilytics &nbsp;&middot;&nbsp; Hyderabad, India</p>
                 </div>
-                <span class="exp-date"><time datetime="2022-01">Jan 2022</time> &ndash; <time datetime="2022-07">Jul 2022</time></span>
+                <span class="exp-date"><time datetime="2023-02">Feb 2023</time> &ndash; <time datetime="2023-07">Jul 2023</time></span>
               </div>
               <ul class="exp-bullets">
                 <li>Assisted in database management including schema design, data integrity checks and query optimisation.</li>
@@ -408,6 +545,7 @@
               </ul>
             </article>
 
+            <!-- ── Cybersecurity Intern (Talakunchi Networks) -->
             <article class="exp-item" data-category="other" aria-labelledby="exp5-title">
               <div class="exp-header">
                 <div>
@@ -421,10 +559,62 @@
               </ul>
             </article>
 
-          </div>
+            <!-- ── Mentor (Ignite Mentoring, Perth) -->
+            <article class="exp-item" data-category="other" aria-labelledby="exp6-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp6-title">Mentor</h3>
+                  <p class="exp-org">Ignite Mentoring &nbsp;&middot;&nbsp; Perth, WA, Australia</p>
+                </div>
+                <span class="exp-date"><time datetime="2025-09">Sep 2025</time></span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Mentored high school students (Years 7–12) building self-confidence, teamwork and problem-solving skills.</li>
+                <li>Facilitated weekly small-group sessions under the Resilience and Careers programmes.</li>
+                <li>Contributed to programme planning and adapted sessions dynamically based on student needs.</li>
+                <li>Empowered students to identify their strengths and plan future education and career pathways.</li>
+              </ul>
+            </article>
+
+            <!-- ── Student Consultant (SAIEP, Perth) -->
+            <article class="exp-item" data-category="other" aria-labelledby="exp7-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp7-title">Student Consultant</h3>
+                  <p class="exp-org">Study Australia Industry Experience Program (SAIEP) &nbsp;&middot;&nbsp; Perth, WA</p>
+                </div>
+                <span class="exp-date"><time datetime="2025-09">Sep 2025</time></span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Participated in a 2-week intensive industry consulting project, delivering actionable insights for a real-world client.</li>
+                <li>Conducted secondary research and in-depth analysis to develop practical, evidence-based recommendations.</li>
+                <li>Prepared and presented a final client report, iterating on solutions based on stakeholder feedback.</li>
+              </ul>
+            </article>
+
+            <!-- ── Volunteer & Event Coordinator (University initiatives) -->
+            <article class="exp-item" data-category="other" aria-labelledby="exp8-title">
+              <div class="exp-header">
+                <div>
+                  <h3 id="exp8-title">Volunteer &amp; Event Coordinator</h3>
+                  <p class="exp-org">University &amp; Community Initiatives &nbsp;&middot;&nbsp; Hyderabad, India</p>
+                </div>
+                <span class="exp-date"><time datetime="2019-10">Oct 2019</time> – <time datetime="2025-06">Jun 2025</time></span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Coordinated M.G.I.T. Annual Day and Idea Incubator Club activities across multiple academic years.</li>
+                <li>Served as Internshala Student Partner and Campus Ambassador for GECF.</li>
+                <li>Managed large-scale events with over 1,000 attendees, ensuring smooth logistics and audience engagement.</li>
+              </ul>
+            </article>
+
+          </div><!-- /experience-timeline -->
         </section>
 
-        <!-- Featured Project: SkillLance -->
+        <!-- Featured Project: SkillLance ────────────────────────────────────
+             Highlights the SkillLance application itself as portfolio evidence.
+             Shows a feature grid and the full technology stack as pill tags.
+        ──────────────────────────────────────────────────────────────── -->
         <section class="cv-section glass-card" aria-labelledby="proj-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="proj-heading">Portfolio</p>
           <h2>Featured Project &mdash; SkillLance</h2>
@@ -434,6 +624,7 @@
             reflection log and this CV page. It demonstrates front-end web development skills applied to a real,
             deployable product.
           </p>
+          <!-- Feature grid: six key project highlights -->
           <div class="project-grid">
             <div class="feature-box">📖 Tab-based tutorial with live &ldquo;Try It&rdquo; code editors</div>
             <div class="feature-box">🎯 AJAX quiz with score history and a confetti victory overlay</div>
@@ -442,6 +633,7 @@
             <div class="feature-box">🎨 Custom dark/light theme system using CSS variables and localStorage</div>
             <div class="feature-box">📱 Responsive grid layout tested at mobile, tablet and desktop widths</div>
           </div>
+          <!-- Technology stack pill tags -->
           <div style="margin-top:1.25rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
             <span class="card-tag" style="margin:0;">Stack:</span>
             <span class="skill-pill">HTML5</span>
@@ -453,11 +645,16 @@
           </div>
         </section>
 
-        <!-- Research Publications -->
+        <!-- Research Publications ────────────────────────────────────────────
+             Two peer-reviewed papers published during B.Tech (2022):
+               1. Deep learning for diabetic retinopathy detection
+               2. Helmet-detection for road safety enforcement
+        ──────────────────────────────────────────────────────────────── -->
         <section class="cv-section glass-card" aria-labelledby="pub-heading" style="margin-top:1.5rem;">
           <p class="eyebrow" id="pub-heading">Research</p>
           <h2>Published Papers</h2>
           <div class="experience-timeline" role="list">
+            <!-- Publication 1 -->
             <article class="exp-item" aria-labelledby="pub1-title">
               <div class="exp-header">
                 <h3 id="pub1-title" style="font-size:0.95rem;">Deep Learning for Neovascularization Detection from Retinal Images</h3>
@@ -468,6 +665,7 @@
                 contributing to early diagnosis of diabetic retinopathy with high precision recall.
               </p>
             </article>
+            <!-- Publication 2 -->
             <article class="exp-item" aria-labelledby="pub2-title" style="margin-top:0.5rem;">
               <div class="exp-header">
                 <h3 id="pub2-title" style="font-size:0.95rem;">Detection of Non-Helmet Riders using Deep Learning Techniques</h3>
@@ -481,7 +679,15 @@
           </div>
         </section>
 
-        <!-- References (compulsory per rubric) -->
+        <!-- References ───────────────────────────────────────────────────────
+             Compulsory section per the CITS5505 rubric.
+             All sources used in preparation of this assignment are listed
+             in UWA Harvard referencing format, as specified at:
+             https://guides.library.uwa.edu.au/referencinguwa
+             Includes: AI tools (Claude, ChatGPT, Copilot), public APIs used
+             (Advice Slip, icanhazdadjoke, Multiavatar, Forismatic, AllOrigins),
+             and technical/academic resources (MDN, W3C, Google Fonts, UWA).
+        ──────────────────────────────────────────────────────────────── -->
         <section id="references" class="cv-section glass-card" style="margin-top:1.5rem;" aria-labelledby="ref-heading">
           <p class="eyebrow" id="ref-heading">Academic Integrity</p>
           <h2>Sources Consulted</h2>
@@ -490,20 +696,19 @@
             accordance with the <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank"
             rel="noopener" style="color:var(--accent);">UWA Harvard referencing guide</a>.
           </p>
+          <!-- Ordered list: Harvard format, alphabetical by author/title -->
           <ol class="references-list">
             <li>Anthropic. (2026). <em>Claude</em> (April 2026 version) [Large language model]. <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai/</a></li>
             <li>Advice Slip. (n.d.). <em>Advice Slip API</em>. <a href="https://api.adviceslip.com/" target="_blank" rel="noopener">https://api.adviceslip.com/</a></li>
             <li>AllOrigins. (n.d.). <em>AllOrigins — open CORS proxy service</em>. <a href="https://allorigins.win/" target="_blank" rel="noopener">https://allorigins.win/</a></li>
             <li>CITS5505 Unit Coordination Team. (2026). <em>CITS5505 Agile web development — unit materials and assessment specification</em>. The University of Western Australia. <a href="https://teaching.csse.uwa.edu.au/units/CITS5505/" target="_blank" rel="noopener">https://teaching.csse.uwa.edu.au/units/CITS5505/</a></li>
-            <li>Forismatic. (n.d.). <em>Forismatic API — inspirational quote service</em>. <a href="https://forismatic.com/en/api/" target="_blank" rel="noopener">https://forismatic.com/en/api/</a></li>
+            <li>Forismatic. (n.d.). <em>Forismatic API — quote data source</em>. <a href="https://forismatic.com/en/api/" target="_blank" rel="noopener">https://forismatic.com/en/api/</a></li>
             <li>Google LLC. (n.d.). <em>Google Fonts</em>. Google. <a href="https://fonts.google.com/" target="_blank" rel="noopener">https://fonts.google.com/</a></li>
             <li>icanhazdadjoke. (n.d.). <em>The largest selection of dad jokes on the internet</em>. <a href="https://icanhazdadjoke.com/" target="_blank" rel="noopener">https://icanhazdadjoke.com/</a></li>
-            <li>Lorem Picsum. (n.d.). <em>Lorem Picsum — the Lorem Ipsum for photos</em>. <a href="https://picsum.photos/" target="_blank" rel="noopener">https://picsum.photos/</a></li>
             <li>Microsoft. (2026). <em>GitHub Copilot</em> (April 2026 version) [AI coding assistant]. <a href="https://github.com/features/copilot" target="_blank" rel="noopener">https://github.com/features/copilot</a></li>
             <li>Mozilla Developer Network. (2024). <em>Web technology for developers</em>. Mozilla. <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">https://developer.mozilla.org/</a></li>
             <li>Multiavatar. (n.d.). <em>Multiavatar — 12 billion unique multilingual avatars</em>. <a href="https://multiavatar.com/" target="_blank" rel="noopener">https://multiavatar.com/</a></li>
             <li>OpenAI. (2026). <em>ChatGPT</em> (April 2026 version) [Large language model]. <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li>
-            <li>Quotable. (n.d.). <em>Quotable — open-source quotations API</em>. <a href="https://api.quotable.io/" target="_blank" rel="noopener">https://api.quotable.io/</a></li>
             <li>University of Western Australia Library. (2024). <em>Referencing at UWA</em>. UWA. <a href="https://guides.library.uwa.edu.au/referencinguwa" target="_blank" rel="noopener">https://guides.library.uwa.edu.au/referencinguwa</a></li>
             <li>World Wide Web Consortium. (2014). <em>HTML5 — A vocabulary and associated APIs for HTML and XHTML</em>. W3C. <a href="https://www.w3.org/TR/html5/" target="_blank" rel="noopener">https://www.w3.org/TR/html5/</a></li>
             <li>World Wide Web Consortium. (2018). <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. W3C. <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">https://www.w3.org/TR/WCAG21/</a></li>
@@ -514,13 +719,18 @@
     </div><!-- /cv-layout -->
   </main>
 
-  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <!-- ── Site-wide Footer ─────────────────────────────────────────────────
+       CV page footer uses "Arshad Sheik" in copyright notice (other pages
+       use "SkillLance"). Contains brand logo, copyright, and decorative
+       3D stacked layer graphic.
+  ──────────────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="footer-glow"></div>
     <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="./tutorial.html" class="footer-logo">
+          <!-- Footer SVG uses gradient ID 'flbg' (unique per page to avoid conflicts) -->
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
             <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
@@ -539,6 +749,7 @@
       <div class="footer-copy">
         <p>&copy; 2026 Arshad Sheik &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia</p>
       </div>
+      <!-- Decorative 3D stacked layer graphic (aria-hidden: visual only) -->
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
           <div class="stack-layer layer-js"><span class="layer-icon">⚡</span> JS</div>
@@ -548,10 +759,20 @@
       </div>
     </div>
   </footer>
-  <!-- Floating action buttons -->
-  <div class="cv-fab-group" id="cv-fab-group" aria-label="Quick actions">
+
+  <!-- ── Floating Action Buttons ──────────────────────────────────────────
+       Two persistent FABs that appear after the user scrolls down:
+         1. Download Resume (PDF) — links to assets/docs/Arshad-Sheik-Resume.pdf
+         2. Back to Top — smooth-scrolls to page top via main.js
+       Visibility is controlled by main.js: FABs become visible after
+       scrolling past a threshold and hidden when near the top.
+       aria-label provides accessible names for each button.
+  ──────────────────────────────────────────────────────────────────────── -->
+  <div class="cv-fab-group" id="cv-fab-group" role="group" aria-label="Quick actions">
+    <!-- Download Resume FAB -->
     <a href="./assets/docs/Arshad-Sheik-Resume.pdf" download class="cv-fab cv-fab-download" id="cv-fab-download"
        aria-label="Download PDF Resume" title="Download Resume">
+      <!-- Download arrow icon (SVG) -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
@@ -559,8 +780,11 @@
       </svg>
       <span class="cv-fab-label">Download Resume</span>
     </a>
+
+    <!-- Back to Top FAB — main.js attaches a click listener to scroll to 0,0 -->
     <button type="button" class="cv-fab cv-fab-top" id="cv-fab-top"
             aria-label="Back to top" title="Back to top">
+      <!-- Upward chevron icon (SVG) -->
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="18 15 12 9 6 15"/>
       </svg>

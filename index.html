@@ -1,11 +1,31 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  SkillLance — index.html
+  Entry point / redirect stub
+  ============================================================
+  Author      : Arshad Sheik (Student ID: 25101735)
+  Unit        : CITS5505 Agile Web Development, Sem 1 2026
+  Institution : The University of Western Australia (UWA)
+  Description : Root index page. Immediately redirects the
+                visitor to the main Tutorial page so that
+                opening the project root (e.g. on GitHub Pages)
+                lands on the correct starting page.
+  ============================================================
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Meta-refresh redirect: 0-second delay sends the browser
+       straight to tutorial.html without any visible flash. -->
   <meta http-equiv="refresh" content="0; url=./tutorial.html">
+
   <title>SkillLance</title>
 </head>
 <body>
+  <!-- Fallback anchor for browsers/bots that ignore meta-refresh
+       (e.g. search engine crawlers, curl, older user agents). -->
   <p>Redirecting to <a href="./tutorial.html">SkillLance</a>…</p>
 </body>
 </html>

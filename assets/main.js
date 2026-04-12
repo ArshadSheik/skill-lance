@@ -1,22 +1,103 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   SKILLLANCE — Main JavaScript
-   Features: Theme toggle, Mobile nav, Tutorial demos,
-             ToC tracker, Quiz engine, CV interactions, Confetti, Victory overlay
-═══════════════════════════════════════════════════════════════════════════ */
+   SkillLance — main.js
+   Shared Interactive JavaScript for All Pages
+   ═══════════════════════════════════════════════════════════════════════════
+   Author      : Arshad Sheik (Student ID: 25101735)
+   Unit        : CITS5505 Agile Web Development, Sem 1 2026
+   Institution : The University of Western Australia (UWA)
+   Description : Single deferred script (loaded via <script defer>) powering
+                 all four SkillLance pages. Page-specific features are
+                 activated using data-page attributes on <body> so that
+                 irrelevant code paths are silently skipped.
+                 Key modules initialised on DOMContentLoaded:
+                   • initTheme()
+                       Dark/light toggle using [data-theme] on <html>.
+                       Reads localStorage on load; falls back to
+                       prefers-color-scheme; persists on every toggle.
+                       Updates button emoji and aria-label each time.
+                   • initMobileNav()
+                       Hamburger menu open/close. Manages .open class on
+                       .nav-links and aria-expanded on the toggle button.
+                       Auto-closes on any nav-link click.
+                   • initTocTracker()   (tutorial page only)
+                       IntersectionObserver-based TOC active-section
+                       highlighter with rootMargin '-80px 0px -60% 0px'.
+                       Also manages mobile slide-in sidebar drawer,
+                       overlay backdrop, and collapse/expand with
+                       localStorage persistence.
+                   • initTutorialDemos()   (tutorial page only)
+                       HTML Try-It live editor (srcdoc iframe), Box Model
+                       interactive sliders, CSS Property Playground,
+                       JS Counter demo, Text Mirror, and Event Logger.
+                   • initQuizPage()   (quiz page only)
+                       Full AJAX quiz engine:
+                         – fetch('./data/questions.json') with loading
+                           skeleton and try/catch error UI
+                         – Fisher-Yates shuffle, 10-question slice
+                         – beforeunload navigation guard (deferred to
+                           first radio selection via form 'change' event)
+                         – Score calculation and per-question feedback
+                         – SVG animated score ring via requestAnimationFrame
+                         – Dad joke API penalty on fail (<70%)
+                         – Advice Slip + Multiavatar badge on pass (≥70%)
+                         – Confetti via launchConfetti() on pass
+                         – Victory overlay via showVictoryOverlay()
+                         – Attempt history stored in localStorage
+                   • initCvInteractions()   (CV page only)
+                       Typewriter effect on hero name (loop: type → delete
+                       → pause at first char → retype). Animated skill
+                       bars triggered by IntersectionObserver. Count-up
+                       animation for stat cards. 3D mouse-tilt on profile
+                       photo. Tab filter for experience categories. Tech
+                       skill tag highlighter for bullet points. Scroll
+                       progress bar and FAB visibility threshold.
+                   • initScrollReveal()   (all pages)
+                       IntersectionObserver fade-in for .reveal elements.
+                       Pre-checks getBoundingClientRect so above-fold
+                       content is never hidden on load.
+                 Helper functions:
+                   • launchConfetti()
+                       Spawns two waves of CSS-animated confetti pieces
+                       with randomised colour, shape, size, drift, and
+                       rotation. Each piece self-removes via a per-piece
+                       setTimeout keyed to its own animation lifetime.
+                   • showVictoryOverlay()
+                       Injects a modal dialog with tier badge, score, and
+                       a spinner that hot-swaps to the Multiavatar image
+                       once the AJAX response resolves.
+                   • updateVictoryOverlayBadge()
+                       Hot-swaps the spinner in the victory overlay with
+                       the fetched avatar and badge inscription.
+                   • updateThemeIcon()
+                       Updates .theme-btn emoji and aria-label to match
+                       the current theme without re-creating the element.
+   External APIs (quiz page only):
+                   • ./data/questions.json        — local AJAX quiz data
+                   • api.adviceslip.com/advice    — badge inscription text
+                   • api.forismatic.com (via allorigins) — fallback quote
+                   • api.multiavatar.com/<seed>   — unique badge avatar SVG
+                   • icanhazdadjoke.com           — penalty dad joke on fail
+   Dependencies: assets/style.css (CSS class hooks used by JS),
+                 data/questions.json (quiz engine fetch target),
+                 Google Fonts CDN (font availability checked via CSS)
+════════════════════════════════════════════════════════════════════════════ */
 
 // ── Initialize on DOM Ready ────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Every init function guards itself with a data-page or element check,
+  // so it is safe to call all of them on every page — irrelevant ones exit early.
   initTheme();
   initMobileNav();
   initTutorialDemos();
   initTocTracker();
   initQuizPage();
   initCvInteractions();
-  // Scroll reveal — run synchronously so above-fold content is never hidden
+  // Scroll reveal must run after all other inits so element classes are set
   initScrollReveal();
 });
 
-// Also re-check on full load (fonts/images may shift layout)
+// Re-run reveal after full load because late-loading fonts/images can shift
+// element positions, potentially putting above-fold content below the viewport.
 window.addEventListener('load', () => {
   initScrollReveal();
 });
@@ -28,22 +109,27 @@ function initTheme() {
   const root = document.documentElement;
   const toggle = document.querySelector('[data-theme-toggle]');
 
+  // Priority: saved preference → OS preference → default dark
   const savedTheme = localStorage.getItem('skilllance-theme');
   let theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
+  // Apply on load before first paint to avoid flash of wrong theme
   root.setAttribute('data-theme', theme);
   updateThemeIcon(toggle, theme);
 
   toggle?.addEventListener('click', () => {
     theme = theme === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('skilllance-theme', theme);
+    root.setAttribute('data-theme', theme);       // CSS vars switch instantly
+    localStorage.setItem('skilllance-theme', theme); // persist across sessions
     updateThemeIcon(toggle, theme);
   });
 }
 
+// Updates button content and accessible label to match current theme.
+// Called both on init and on every click — avoids duplicating the logic.
 function updateThemeIcon(toggle, theme) {
   if (!toggle) return;
+  // Show the opposite emoji: dark mode shows ☀️ (switch to light), and vice versa
   toggle.innerHTML = theme === 'dark' ? '☀️' : '🌙';
   toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
 }
@@ -53,11 +139,14 @@ function initMobileNav() {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
 
+  // Toggle the .open class which CSS uses to slide the menu into view
   toggle?.addEventListener('click', () => {
     links?.classList.toggle('open');
+    // Keep aria-expanded in sync so screen readers announce menu state
     toggle.setAttribute('aria-expanded', links?.classList.contains('open'));
   });
 
+  // Close the menu automatically when any link is clicked (mobile UX)
   links?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       links.classList.remove('open');
@@ -413,7 +502,7 @@ function initQuizPage() {
     status.style.background = '';
 
     // Show loading skeleton
-    container.innerHTML = Array.from({length: 5}, () => `
+    container.innerHTML = Array.from({ length: 5 }, () => `
       <div class="question-card" style="padding:1.5rem">
         <div class="skeleton" style="height:24px;width:80%;margin-bottom:1rem"></div>
         <div class="skeleton" style="height:44px;width:100%;margin-bottom:0.5rem"></div>
@@ -585,9 +674,9 @@ function initQuizPage() {
 
     // ── Compute tier (shared by overlay + sidebar reward) ─────────────────
     const tier = percentage === 100 ? { label: 'PERFECT', color: '#fbbf24', glow: '#fbbf2480', star: '⭐' }
-               : percentage >= 90   ? { label: 'GOLD',    color: '#f59e0b', glow: '#f59e0b80', star: '🥇' }
-               : percentage >= 80   ? { label: 'SILVER',  color: '#94a3b8', glow: '#94a3b880', star: '🥈' }
-                                    : { label: 'BRONZE',  color: '#fb923c', glow: '#fb923c80', star: '🥉' };
+      : percentage >= 90 ? { label: 'GOLD', color: '#f59e0b', glow: '#f59e0b80', star: '🥇' }
+        : percentage >= 80 ? { label: 'SILVER', color: '#94a3b8', glow: '#94a3b880', star: '🥈' }
+          : { label: 'BRONZE', color: '#fb923c', glow: '#fb923c80', star: '🥉' };
 
     if (passed && typeof window.launchConfetti === 'function') {
       window.launchConfetti();
@@ -668,7 +757,7 @@ function initQuizPage() {
             <p class="badge-api-credit">— Advice Slip API &amp; Multiavatar API</p>
           </div>
 
-          <div class="badge-stamp">ISSUED ${new Date().toLocaleDateString('en-AU', { day:'numeric', month:'short', year:'numeric' }).toUpperCase()}</div>
+          <div class="badge-stamp">ISSUED ${new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase()}</div>
         </div>`;
     } else {
       rewardContent.innerHTML = '<p>😔 Oh no! Fetching your penalty...</p>';
@@ -723,11 +812,11 @@ function initQuizPage() {
       }
       historyList.innerHTML = attempts.map(a => {
         // Validate each field — guard against malformed/missing data
-        const score      = (typeof a.score      === 'number') ? a.score      : '?';
-        const total      = (typeof a.total      === 'number') ? a.total      : 10;
+        const score = (typeof a.score === 'number') ? a.score : '?';
+        const total = (typeof a.total === 'number') ? a.total : 10;
         const percentage = (typeof a.percentage === 'number') ? a.percentage : '?';
-        const passed     = (typeof a.passed     === 'boolean') ? a.passed    : false;
-        const date       = (typeof a.date       === 'string' && a.date) ? a.date : 'Unknown';
+        const passed = (typeof a.passed === 'boolean') ? a.passed : false;
+        const date = (typeof a.date === 'string' && a.date) ? a.date : 'Unknown';
         return `<li><strong>${score}/${total} (${percentage}%)</strong>
         <span>${passed ? '✓ Passed' : '✗ Failed'} — ${date}</span></li>`;
       }).join('');
@@ -800,16 +889,16 @@ function initCvInteractions() {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
-        const target  = parseInt(el.dataset.target, 10);
-        const suffix  = el.dataset.suffix || '';
-        const dur     = 1400;
-        const start   = performance.now();
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const dur = 1400;
+        const start = performance.now();
 
         function tick(now) {
-          const elapsed  = now - start;
+          const elapsed = now - start;
           const progress = Math.min(elapsed / dur, 1);
           // Ease-out cubic
-          const eased  = 1 - Math.pow(1 - progress, 3);
+          const eased = 1 - Math.pow(1 - progress, 3);
           el.textContent = Math.round(eased * target) + suffix;
           if (progress < 1) requestAnimationFrame(tick);
         }
@@ -828,8 +917,8 @@ function initCvInteractions() {
     const STRENGTH = 10;
     wrap.addEventListener('mousemove', (e) => {
       const rect = wrap.getBoundingClientRect();
-      const nx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
-      const ny = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+      const nx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const ny = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
       wrap.style.transform =
         `perspective(700px) rotateX(${-ny * STRENGTH}deg) rotateY(${nx * STRENGTH}deg)`;
     });
@@ -880,9 +969,9 @@ function initCvInteractions() {
   });
 
   // ── 4. Tech Skill Tag Filter (highlights matching bullets) ────────────
-  const techTags  = document.querySelectorAll('#cv-tech-tags .cv-tech-tag');
+  const techTags = document.querySelectorAll('#cv-tech-tags .cv-tech-tag');
   const allBullets = document.querySelectorAll('.exp-bullets li');
-  let activeSkill  = null;
+  let activeSkill = null;
 
   techTags.forEach(tag => {
     tag.addEventListener('click', () => {
@@ -912,49 +1001,6 @@ function initCvInteractions() {
     });
   });
 
-  // ── 5. Load motivational quote via AJAX ────────────────────────────────
-
-  const quoteBtn = document.getElementById('load-quote');
-  const quoteOutput = document.getElementById('quote-output');
-
-  quoteBtn?.addEventListener('click', async () => {
-    if (!quoteOutput) return;
-    quoteBtn.disabled = true;
-    quoteBtn.textContent = 'Fetching...';
-    quoteOutput.innerHTML = '<div class="glass-card"><p style="color:var(--text-2);font-size:0.85rem;">Loading...</p></div>';
-
-    try {
-      const res = await fetch('https://api.quotable.io/random');
-      if (!res.ok) throw new Error('API error');
-      const data = await res.json();
-      quoteOutput.innerHTML = `
-        <div class="glass-card" style="margin-top:0.5rem;">
-          <p style="color:var(--text);font-style:italic;line-height:1.65;font-size:0.9rem;">"${escapeHtmlCV(data.content)}"</p>
-          <p style="color:var(--accent);font-family:'Fira Code',monospace;font-size:0.8rem;margin-top:0.5rem;">— ${escapeHtmlCV(data.author)}</p>
-          <p style="color:var(--text-3);font-size:0.7rem;margin-top:0.3rem;">Source: Quotable API (live fetch)</p>
-        </div>
-      `;
-    } catch {
-      const fallbacks = [
-        { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-        { quote: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
-        { quote: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-        { quote: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
-        { quote: "Data is the new oil, but refining it is the real work.", author: "Unknown" },
-      ];
-      const random = fallbacks[Math.floor(Math.random() * fallbacks.length)];
-      quoteOutput.innerHTML = `
-        <div class="glass-card" style="margin-top:0.5rem;">
-          <p style="color:var(--text);font-style:italic;line-height:1.65;font-size:0.9rem;">"${random.quote}"</p>
-          <p style="color:var(--accent);font-family:'Fira Code',monospace;font-size:0.8rem;margin-top:0.5rem;">— ${random.author}</p>
-          <p style="color:var(--text-3);font-size:0.7rem;margin-top:0.3rem;">Fallback quote (API unavailable)</p>
-        </div>
-      `;
-    } finally {
-      quoteBtn.disabled = false;
-      quoteBtn.textContent = 'Fetch Another';
-    }
-  });
 
   // ── 4. Scroll-reveal for CV sections ───────────────────────────────────
   const revealTargets = document.querySelectorAll('.cv-section, .cv-sidebar-card');
@@ -975,9 +1021,9 @@ function initCvInteractions() {
 
   // ── 6. Scroll progress bar + FAB visibility ────────────────────────────
   const progressBar = document.getElementById('cv-scroll-progress');
-  const fabGroup    = document.getElementById('cv-fab-group');
-  const fabTop      = document.getElementById('cv-fab-top');
-  const heroHeader  = document.querySelector('.cv-hero-banner');
+  const fabGroup = document.getElementById('cv-fab-group');
+  const fabTop = document.getElementById('cv-fab-top');
+  const heroHeader = document.querySelector('.cv-hero-banner');
 
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -1003,16 +1049,13 @@ function initCvInteractions() {
 
 
 
-function escapeHtmlCV(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
 
 
 
 // ── Scroll Reveal ──────────────────────────────────────────────────────────
 function initScrollReveal() {
+  // All element types that should fade in as the user scrolls.
+  // Adding a new component here is enough to make it animate on every page.
   const revealElements = document.querySelectorAll(
     '.content-section, .glass-card, .info-card, .demo-box, ' +
     '.code-window, .question-card, .cv-sections article, .reflection-block, ' +
@@ -1022,32 +1065,35 @@ function initScrollReveal() {
 
   if (!revealElements.length) return;
 
-  // Use a generous viewport extension so elements near the fold are visible immediately
+  // Extra buffer so elements near the viewport edge are visible immediately
   const viewportHeight = window.innerHeight;
-  const BUFFER = 120; // px of extra buffer below fold
+  const BUFFER = 120; // px below the fold treated as "already visible"
 
   revealElements.forEach(el => {
-    // Skip if already processed
+    // data-revealInit prevents double-processing when initScrollReveal
+    // is called a second time on the 'load' event
     if (el.dataset.revealInit) return;
     el.dataset.revealInit = '1';
 
     if (!el.classList.contains('reveal') && !el.classList.contains('reveal-left') && !el.classList.contains('reveal-right')) {
       const rect = el.getBoundingClientRect();
-      // Immediately show anything in viewport + buffer zone
+      // Elements already in (or near) the viewport get .visible immediately
+      // so they don't flash in — only off-screen elements are deferred.
       if (rect.top < viewportHeight + BUFFER && rect.bottom > 0) {
         el.classList.add('reveal', 'visible');
       } else {
-        el.classList.add('reveal');
+        el.classList.add('reveal'); // off-screen: wait for IntersectionObserver
       }
     }
   });
 
-  // rootMargin: pre-reveal elements 100px before they enter view (no bottom cut-off)
+  // threshold: 0.01 = triggers as soon as 1% of the element enters the viewport
+  // rootMargin '0px' = no top buffer needed since above-fold is pre-handled above
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // one-shot: no need to watch after reveal
       }
     });
   }, { threshold: 0.01, rootMargin: '0px 0px 0px 0px' });
@@ -1076,7 +1122,7 @@ function showVictoryOverlay({ score, total, percentage, tier }) {
       <button class="victory-close" id="victory-close-btn" aria-label="Close victory screen">✕</button>
 
       <div class="victory-rays" aria-hidden="true">
-        ${Array.from({length: 12}, (_, i) => `<div class="victory-ray" style="--i:${i}"></div>`).join('')}
+        ${Array.from({ length: 12 }, (_, i) => `<div class="victory-ray" style="--i:${i}"></div>`).join('')}
       </div>
 
       <div class="victory-top">
@@ -1191,12 +1237,16 @@ function updateVictoryOverlayBadge({ avatarUrl, inscription, score, total, perce
 }
 
 // ── Confetti Celebration (Quiz Pass) ───────────────────────────────────────
+// Pure CSS-animation confetti — no canvas, no third-party libraries.
+// Each piece is a <div> with inline CSS custom properties (--drift,
+// --start-rot) so every piece gets unique motion from a shared keyframe.
 function launchConfetti() {
+  // 9-colour palette chosen for visibility against both dark and light themes
   const colors = ['#4f46e5', '#0ea5e9', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#f97316', '#ec4899', '#10b981'];
   const shapes = ['circle', 'square', 'triangle', 'rect'];
   const TOTAL = 160;
 
-  // Launch in two waves for a burst effect
+  // Two staggered waves: 60 % instantly, 40 % after 600 ms for a burst feel
   spawnBatch(TOTAL * 0.6, 0);
   spawnBatch(TOTAL * 0.4, 600);
 
@@ -1206,11 +1256,11 @@ function launchConfetti() {
       piece.className = 'confetti-piece';
       const shape = shapes[Math.floor(Math.random() * shapes.length)];
       const color = colors[Math.floor(Math.random() * colors.length)];
-      const size = Math.random() * 12 + 6;
-      const duration = (Math.random() * 2.5 + 2.5).toFixed(2);
+      const size = Math.random() * 12 + 6;                        // 6–18 px
+      const duration = (Math.random() * 2.5 + 2.5).toFixed(2);   // 2.5–5 s
       const delay = (Math.random() * 1.8 + delayOffset / 1000).toFixed(2);
-      const startRotation = Math.floor(Math.random() * 360);
-      const drift = (Math.random() * 120 - 60).toFixed(1); // horizontal drift in px
+      const startRotation = Math.floor(Math.random() * 360);      // 0–359 °
+      const drift = (Math.random() * 120 - 60).toFixed(1);        // –60 to +60 px horizontal
 
       // Critical fix: set top so translateY(-100vh) starts from visible top
       piece.style.position = 'fixed';
@@ -1260,20 +1310,20 @@ window.launchConfetti = launchConfetti;
   if (!el) return;
 
   const STRENGTH = 6;    // max degrees of tilt (subtle)
-  const LIFT     = -2;   // slight Z-lift on hover (in px)
+  const LIFT = -2;   // slight Z-lift on hover (in px)
 
   el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
-    const cx   = rect.left + rect.width  / 2;
-    const cy   = rect.top  + rect.height / 2;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
 
     // Normalise mouse position to -1 … +1
-    const nx = (e.clientX - cx) / (rect.width  / 2);
+    const nx = (e.clientX - cx) / (rect.width / 2);
     const ny = (e.clientY - cy) / (rect.height / 2);
 
     // rotateX based on vertical position (invert so leaning toward mouse)
-    const rotX =  -ny * STRENGTH;
-    const rotY =   nx * STRENGTH;
+    const rotX = -ny * STRENGTH;
+    const rotY = nx * STRENGTH;
 
     el.style.transform =
       `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${LIFT}px)`;
