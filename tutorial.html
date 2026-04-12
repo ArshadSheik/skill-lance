@@ -2,22 +2,22 @@
 <html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice." />
+    content="SkillLance — Learn HTML, CSS, and JavaScript through interactive tutorials, quizzes, and hands-on practice.">
   <title>SkillLance - Tutorial</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="./assets/style.css">
   <script defer src="./assets/main.js"></script>
 </head>
 
@@ -26,7 +26,7 @@
 
   <nav class="site-nav">
     <div class="container nav-inner">
-      <a href="./index.html" class="nav-logo">
+      <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
@@ -37,7 +37,7 @@
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
-              <stop stop-color="#818cf8" />
+              <stop offset="0" stop-color="#818cf8" />
               <stop offset="1" stop-color="#06b6d4" />
             </linearGradient>
           </defs>
@@ -46,7 +46,7 @@
       </a>
 
       <div class="nav-links">
-        <a href="./index.html">Home</a>
+
         <a href="./tutorial.html" class="active">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html">AI Reflection</a>
@@ -54,8 +54,8 @@
       </div>
 
       <div class="nav-actions">
-        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
@@ -64,28 +64,35 @@
     </div>
   </nav>
 
-  <header class="hero tutorial-hero" role="banner">
+  <header class="hero tutorial-hero">
     <!-- Animated background layers -->
     <div class="dot-pattern"></div>
 
     <div class="container hero-grid" style="align-items: center; margin-bottom: 4rem;">
       <div>
         <div class="eyebrow-pill-3d">
-          <span class="pill-icon-3d">✦</span>
-          <span class="pill-word" style="--i:0">Learn</span>
+          <span class="pill-icon-3d">📖</span>
+          <span class="pill-word" style="--i:0">CITS5505</span>
           <span class="pill-sep">→</span>
-          <span class="pill-word" style="--i:1">Practice</span>
+          <span class="pill-icon-3d">👨🏻‍💻</span>
+          <span class="pill-word" style="--i:1">Agile Web Development</span>
           <span class="pill-sep">→</span>
-          <span class="pill-word" style="--i:2">Reflect</span>
+          <span class="pill-icon-3d">🗓</span>
+          <span class="pill-word" style="--i:2">SEM-1 2026</span>
           <span class="pill-sep">→</span>
-          <span class="pill-word" style="--i:3">Grow</span>
+          <span class="pill-icon-3d">🏫</span>
+          <span class="pill-word" style="--i:3">UWA</span>
           <span class="pill-shimmer" aria-hidden="true"></span>
         </div>
-        <h1 class="hero-title-3d">Learn the Web.<br><em>One Skill at a Time.<span
-              class="hero-code-cursor">&lt;/&gt;</span></em></h1>
-        <p class="lead">A structured, interactive guide to <strong>HTML</strong>, <strong>CSS</strong>, and
-          <strong>JavaScript</strong> — the three technologies behind every website on the internet. Edit live code, see
-          instant results.
+        <h1 class="hero-title-3d" id="hero-title-3d" data-tilt>Master the foundations of
+          <em>Web Development</em><span class="hero-code-cursor" aria-hidden="true">&lt;/&gt;</span>
+          <br>with HTML, CSS and JavaScript
+        </h1>
+        <p class="lead">
+          A structured, interactive guide to <strong>HTML</strong>, <strong>CSS</strong>, and
+          <strong>Javascript</strong>⚡the three technologies behind every website on the internet 🌐. Tweak live code,
+          see instant results, and actually feel how the web clicks into place. No setup, no installs, just you and the
+          browser 🚀
         </p>
       </div>
 
@@ -116,11 +123,11 @@
     </div>
 
     <div class="container">
-      <div class="learning-path" aria-label="Course learning path">
+      <div class="learning-path" role="navigation" aria-label="Course learning path">
         <p class="path-label glowing-label">Your Learning Path</p>
         <div class="path-cards tutorial-path-cards-3d">
 
-          <div class="t-path-card" aria-label="HTML section">
+          <div class="t-path-card" role="article" aria-label="HTML section">
             <div class="tpc-glow"></div>
             <div class="tpc-icon"
               style="color: #fb923c; border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.1)">🧱</div>
@@ -132,7 +139,7 @@
             </div>
           </div>
 
-          <div class="t-path-card" aria-label="CSS section">
+          <div class="t-path-card" role="article" aria-label="CSS section">
             <div class="tpc-glow"></div>
             <div class="tpc-icon"
               style="color: #818cf8; border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.1)">🎨</div>
@@ -144,7 +151,7 @@
             </div>
           </div>
 
-          <div class="t-path-card" aria-label="JavaScript section">
+          <div class="t-path-card" role="article" aria-label="JavaScript section">
             <div class="tpc-glow"></div>
             <div class="tpc-icon"
               style="color: #fbbf24; border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1)">⚡</div>
@@ -176,7 +183,7 @@
     <!-- ── Table of Contents Sidebar ─────────────────────────────────── -->
     <aside class="toc-sidebar" aria-label="Table of contents">
       <!-- Mobile close button (visible only in drawer mode) -->
-      <button class="toc-close-btn" id="toc-close" aria-label="Close table of contents">
+      <button type="button" class="toc-close-btn" id="toc-close" aria-label="Close table of contents">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
           stroke-linecap="round">
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -184,7 +191,7 @@
         </svg>
         Close
       </button>
-      <button class="toc-toggle-btn" id="toc-toggle" aria-label="Toggle sidebar" aria-expanded="true">
+      <button type="button" class="toc-toggle-btn" id="toc-toggle" aria-label="Toggle sidebar" aria-expanded="true">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
           stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -260,7 +267,7 @@
       <section class="content-section" id="html" aria-labelledby="html-h2">
         <div class="section-head">
           <div class="section-icon icon-html" aria-hidden="true">🧱</div>
-          <h2 id="html-h2">HTML — Structure</h2>
+          <h2 id="html-h2">HTML - Structure & Semantics</h2>
         </div>
 
         <p>
@@ -334,7 +341,8 @@
           <div class="info-card" role="listitem">
             <div class="card-tag">Is it an HTML tag?</div>
             <div class="card-desc">No. It starts with <code>&lt;!</code> not <code>&lt;</code>, so it is a
-              <strong>declaration</strong>, not an element. It has no closing tag and no attributes.</div>
+              <strong>declaration</strong>, not an element. It has no closing tag and no attributes.
+            </div>
           </div>
           <div class="info-card" role="listitem">
             <div class="card-tag">HTML5 vs older versions</div>
@@ -571,7 +579,7 @@
         <div class="tryit-wrap" role="region" aria-label="Interactive HTML editor">
           <div class="tryit-header">
             <span><span class="live-dot" aria-hidden="true"></span>Interactive HTML Editor</span>
-            <button class="tryit-run" id="html-run" aria-label="Run HTML code">▶ Run</button>
+            <button type="button" class="tryit-run" id="html-run" aria-label="Run HTML code">▶ Run</button>
           </div>
           <div class="tryit-body">
             <div class="tryit-editor">
@@ -639,7 +647,7 @@
 
   <span class="cm">&lt;!-- Email input (browser validates format) --&gt;</span>
   <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"email"</span><span class="t">&gt;</span>Email:<span class="t">&lt;/label&gt;</span>
-  <span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"email"</span> <span class="at">id</span>=<span class="vl">"email"</span> <span class="at">name</span>=<span class="vl">"email"</span> <span class="at">placeholder</span>=<span class="vl">"you@example.com"</span> <span class="t">/&gt;</span>
+  <span class="t">&lt;input</span> <span class="at">type</span>=<span class="vl">"email"</span> <span class="at">id</span>=<span class="vl">"email"</span> <span class="at">name</span>=<span class="vl">"email"</span> <span class="at">placeholder</span>=<span class="vl">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="463f293306233e272b362a236825292b">[email&#160;protected]</a>"</span> <span class="t">/&gt;</span>
 
   <span class="cm">&lt;!-- Dropdown select --&gt;</span>
   <span class="t">&lt;label</span> <span class="at">for</span>=<span class="vl">"country"</span><span class="t">&gt;</span>Country:<span class="t">&lt;/label&gt;</span>
@@ -660,7 +668,7 @@
       <section class="content-section" id="css" aria-labelledby="css-h2">
         <div class="section-head">
           <div class="section-icon icon-css" aria-hidden="true">🎨</div>
-          <h2 id="css-h2">CSS — Presentation</h2>
+          <h2 id="css-h2">CSS - Style & Layout</h2>
         </div>
 
         <p>
@@ -682,15 +690,16 @@
             <span class="code-title">adding-css.html</span>
           </div>
           <pre><code><span class="cm">&lt;!-- 1. External stylesheet (recommended) — keeps CSS in a separate file --&gt;</span>
-<span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"stylesheet"</span> <span class="at">href</span>=<span class="vl">"style.css"</span> <span class="t">/&gt;</span>
+            <span class="t">&lt;link</span> <span class="at">rel</span>=<span class="vl">"stylesheet"</span> <span class="at">href</span>=<span class="vl">"style.css"</span> <span class="t">/&gt;</span>
 
-<span class="cm">&lt;!-- 2. Internal &lt;style&gt; block — CSS lives inside the HTML file --&gt;</span>
-<span class="t">&lt;style&gt;</span>
-  <span class="at">h1</span> { <span class="at">color</span>: <span class="vl">red</span>; }
-<span class="t">&lt;/style&gt;</span>
+            <span class="cm">&lt;!-- 2. Internal &lt;style&gt; block — CSS lives inside the HTML file --&gt;</span>
+            <span class="t">&lt;style&gt;</span>
+              <span class="at">h1</span> { <span class="at">color</span>: <span class="vl">red</span>; }
+            <span class="t">&lt;/style&gt;</span>
 
-<span class="cm">&lt;!-- 3. Inline style — applied directly to one element (avoid for large projects) --&gt;</span>
-<span class="t">&lt;p</span> <span class="at">style</span>=<span class="vl">"color: blue; font-size: 18px;"</span><span class="t">&gt;</span>Inline styled text<span class="t">&lt;/p&gt;</span></code></pre>
+            <span class="cm">&lt;!-- 3. Inline style — applied directly to one element (avoid for large projects) --&gt;</span>
+            <span class="t">&lt;p</span> <span class="at">style</span>=<span class="vl">"color: blue; font-size: 18px;"</span><span class="t">&gt;</span>Inline styled text<span class="t">&lt;/p&gt;</span></code>
+          </pre>
         </div>
 
         <div class="card-grid" role="list">
@@ -728,7 +737,8 @@
 
         <h3 id="css-syntax">CSS Syntax</h3>
         <p>Every CSS rule follows the same pattern: a <strong>selector</strong> picks which elements to style, and a
-          <strong>declaration block</strong> contains one or more <code>property: value;</code> pairs.</p>
+          <strong>declaration block</strong> contains one or more <code>property: value;</code> pairs.
+        </p>
 
         <div class="code-window" role="region" aria-label="CSS syntax breakdown">
           <div class="code-bar">
@@ -760,7 +770,8 @@
           <div class="info-card" role="listitem">
             <div class="card-tag">Hex colours</div>
             <div class="card-desc"><code>#818cf8</code> — six hex digits encoding red, green, blue. Short form:
-              <code>#fff</code> = <code>#ffffff</code>. Most common in web design.</div>
+              <code>#fff</code> = <code>#ffffff</code>. Most common in web design.
+            </div>
           </div>
           <div class="info-card" role="listitem">
             <div class="card-tag">RGB &amp; RGBA</div>
@@ -775,7 +786,8 @@
           <div class="info-card" role="listitem">
             <div class="card-tag">rem</div>
             <div class="card-desc">Relative to the <strong>root</strong> font size (usually 16px).
-              <code>1rem = 16px</code>. Use for font sizes and spacing — respects user browser settings.</div>
+              <code>1rem = 16px</code>. Use for font sizes and spacing — respects user browser settings.
+            </div>
           </div>
           <div class="info-card" role="listitem">
             <div class="card-tag">em</div>
@@ -904,7 +916,7 @@
         <p>Adjust the controls below to change the CSS properties applied to the <code>.box</code> element. See the
           result and the generated code instantly.</p>
 
-        <div class="html-css-connect" aria-label="HTML and CSS connection diagram">
+        <div class="html-css-connect" role="img" aria-label="HTML and CSS connection diagram">
           <div class="connect-side">
             <div class="connect-label connect-label-html">HTML</div>
             <div class="code-window" style="margin:0">
@@ -1028,7 +1040,7 @@
       <section class="content-section" id="js" aria-labelledby="js-h2">
         <div class="section-head">
           <div class="section-icon icon-js" aria-hidden="true">⚡</div>
-          <h2 id="js-h2">JavaScript — Behaviour</h2>
+          <h2 id="js-h2">JavaScript - Logic & Behaviour</h2>
         </div>
 
         <p>
@@ -1084,7 +1096,8 @@
             <div class="card-tag">Case sensitivity</div>
             <div class="card-desc">JavaScript is case-sensitive. <code>myVariable</code>, <code>MyVariable</code>, and
               <code>MYVARIABLE</code> are three completely different things. By convention, use
-              <strong>camelCase</strong>.</div>
+              <strong>camelCase</strong>.
+            </div>
           </div>
           <div class="info-card" role="listitem">
             <div class="card-tag">Variables</div>
@@ -1208,13 +1221,16 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
             <span class="demo-dot" aria-hidden="true"></span>Counter — DOM Manipulation
           </div>
           <div class="demo-body">
-            <div class="counter-num" id="counter-num" aria-live="polite" aria-label="Current count: 0">0</div>
-            <div class="counter-btns" role="group" aria-label="Counter controls">
-              <button class="counter-btn btn-dec" id="btn-dec" aria-label="Decrement counter">− Decrement</button>
-              <button class="counter-btn btn-inc" id="btn-inc" aria-label="Increment counter">+ Increment</button>
-              <button class="counter-btn btn-rst" id="btn-rst" aria-label="Reset counter">Reset</button>
+            <div class="counter-num" id="counter-num" role="status" aria-live="polite" aria-label="Current count: 0">0
             </div>
-            <div class="console-line" aria-live="polite" aria-label="Live code output">
+            <div class="counter-btns" role="group" aria-label="Counter controls">
+              <button type="button" class="counter-btn btn-dec" id="btn-dec" aria-label="Decrement counter">−
+                Decrement</button>
+              <button type="button" class="counter-btn btn-inc" id="btn-inc" aria-label="Increment counter">+
+                Increment</button>
+              <button type="button" class="counter-btn btn-rst" id="btn-rst" aria-label="Reset counter">Reset</button>
+            </div>
+            <div class="console-line" role="status" aria-live="polite" aria-label="Live code output">
               <span class="console-prompt">// count =</span>
               <span class="console-val" id="console-val">0</span>
               <span class="console-prompt">; display.textContent = count;</span>
@@ -1236,12 +1252,13 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
                 <p style="font-size:.8rem;color:var(--text-3);margin-bottom:.4rem;font-family:'Fira Code',monospace">//
                   input element</p>
                 <input class="mirror-input" id="mirror-in" type="text" placeholder="Type something…"
-                  aria-label="Text input to mirror" />
+                  aria-label="Text input to mirror">
               </div>
               <div>
                 <p style="font-size:.8rem;color:var(--text-3);margin-bottom:.4rem;font-family:'Fira Code',monospace">//
                   output element (live DOM)</p>
-                <div class="mirror-output" id="mirror-out" aria-live="polite" aria-label="Live DOM output">your text
+                <div class="mirror-output" id="mirror-out" role="status" aria-live="polite"
+                  aria-label="Live DOM output">your text
                   here</div>
               </div>
             </div>
@@ -1261,10 +1278,11 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
           </div>
           <div class="demo-body">
             <div class="event-demo">
-              <button class="event-btn" id="ev-click">👆 Click me — fires "click" event</button>
-              <button class="event-btn" id="ev-hover">🖱️ Hover over me — fires "mouseenter" event</button>
-              <button class="event-btn" id="ev-dbl">👆👆 Double-click me — fires "dblclick" event</button>
-              <div class="event-log" id="event-log" aria-live="polite" aria-label="Event log">
+              <button type="button" class="event-btn" id="ev-click">👆 Click me — fires "click" event</button>
+              <button type="button" class="event-btn" id="ev-hover">🖱️ Hover over me — fires "mouseenter"
+                event</button>
+              <button type="button" class="event-btn" id="ev-dbl">👆👆 Double-click me — fires "dblclick" event</button>
+              <div class="event-log" id="event-log" role="log" aria-live="polite" aria-label="Event log">
                 <div class="log-line"><span class="log-ts">--:--:--</span><span class="log-ev">system </span><span
                     class="log-msg">Event log ready. Try the buttons above…</span></div>
               </div>
@@ -1317,7 +1335,7 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
     <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="./index.html" class="footer-logo">
+        <a href="./tutorial.html" class="footer-logo">
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
             <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
@@ -1328,7 +1346,7 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
             <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
             <defs>
               <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#818cf8" />
+                <stop offset="0" stop-color="#818cf8" />
                 <stop offset="1" stop-color="#06b6d4" />
               </linearGradient>
             </defs>
@@ -1337,7 +1355,8 @@ heading.classList.<span class="fn">toggle</span>(<span class="st">"active"</span
         </a>
       </div>
       <div class="footer-copy">
-        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia
+        </p>
       </div>
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">

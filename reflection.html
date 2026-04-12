@@ -2,20 +2,20 @@
 <html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="SkillLance — AI Reflection Log documenting how AI tools were used, evaluated and critically assessed during the CITS5505 project." />
+    content="SkillLance — AI Reflection Log documenting how AI tools were used, evaluated and critically assessed during the CITS5505 project.">
   <title>SkillLance - AI Reflection Log</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@400;500&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="./assets/style.css">
   <script defer src="./assets/main.js"></script>
 </head>
 
@@ -24,7 +24,7 @@
 
   <nav class="site-nav">
     <div class="container nav-inner">
-      <a href="./index.html" class="nav-logo">
+      <a href="./tutorial.html" class="nav-logo">
         <svg class="logo-icon-nav" width="24" height="24" viewBox="0 0 32 32" fill="none">
           <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lbg)" opacity="0.12" />
           <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#lbg)" stroke-width="1.5" />
@@ -35,7 +35,7 @@
           <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
           <defs>
             <linearGradient id="lbg" x1="0" y1="0" x2="32" y2="32">
-              <stop stop-color="#818cf8" />
+              <stop offset="0" stop-color="#818cf8" />
               <stop offset="1" stop-color="#06b6d4" />
             </linearGradient>
           </defs>
@@ -43,15 +43,15 @@
         SkillLance
       </a>
       <div class="nav-links">
-        <a href="./index.html">Home</a>
+
         <a href="./tutorial.html">Tutorial</a>
         <a href="./quiz.html">Quiz</a>
         <a href="./reflection.html" class="active">AI Reflection</a>
         <a href="./cv.html">CV</a>
       </div>
       <div class="nav-actions">
-        <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
-        <button class="nav-toggle" aria-label="Toggle menu"
+        <button type="button" class="theme-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu"
           aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -66,11 +66,13 @@
         <div class="hero-grid">
           <div>
             <div class="eyebrow-pill-3d">
-              <span class="pill-icon-3d">🤖</span>
+              <span class="pill-icon-3d">📖</span>
               <span class="pill-word" style="--i:0">CITS5505</span>
               <span class="pill-sep">→</span>
+              <span class="pill-icon-3d">🤖</span>
               <span class="pill-word" style="--i:1">AI Use</span>
               <span class="pill-sep">→</span>
+              <span class="pill-icon-3d">🔎</span>
               <span class="pill-word" style="--i:2">Critical Evaluation</span>
               <span class="pill-shimmer" aria-hidden="true"></span>
             </div>
@@ -100,6 +102,7 @@
           </div>
 
           <!-- Floating illustration -->
+          <div style="display:flex; align-items:center; justify-content:center;">
             <img
               src="./assets/images/img-ai-reflection.png"
               alt="Developer reviewing code with a magnifying glass"
@@ -107,8 +110,8 @@
               loading="eager"
               width="480"
               height="480"
-            />
-          </aside>
+            >
+          </div>
         </div>
       </div>
     </section>
@@ -127,7 +130,7 @@
           <div class="features-grid-3d" role="list">
 
           <!-- ══ CARD 1 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-html" id="prompt-1" role="listitem">
+          <article class="feature-card-3d fc-html" id="prompt-1">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#01</span>
               <span class="card-tag">AJAX &amp; Fetch API · ChatGPT</span>
@@ -159,7 +162,7 @@
           </article>
 
           <!-- ══ CARD 2 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-js" id="prompt-2" role="listitem">
+          <article class="feature-card-3d fc-js" id="prompt-2">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#02</span>
               <span class="card-tag">Browser Events · Claude</span>
@@ -195,7 +198,7 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
           </article>
 
           <!-- ══ CARD 3 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-practice" id="prompt-3" role="listitem">
+          <article class="feature-card-3d fc-practice" id="prompt-3">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#03</span>
               <span class="card-tag">Algorithms · ChatGPT</span>
@@ -235,7 +238,7 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
           </article>
 
           <!-- ══ CARD 4 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-html" id="prompt-4" role="listitem">
+          <article class="feature-card-3d fc-html" id="prompt-4">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#04</span>
               <span class="card-tag">CSS Grid Layout · Claude</span>
@@ -268,7 +271,7 @@ form.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, 
           </article>
 
           <!-- ══ CARD 5 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-css" id="prompt-5" role="listitem">
+          <article class="feature-card-3d fc-css" id="prompt-5">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-purple">#05</span>
               <span class="card-tag">External API · GitHub Copilot</span>
@@ -302,7 +305,7 @@ jokeEl.textContent = data.joke;
           </article>
 
           <!-- ══ CARD 6 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-js" id="prompt-6" role="listitem">
+          <article class="feature-card-3d fc-js" id="prompt-6">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#06</span>
               <span class="card-tag">IntersectionObserver · Claude</span>
@@ -335,7 +338,7 @@ jokeEl.textContent = data.joke;
           </article>
 
           <!-- ══ CARD 7 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-practice" id="prompt-7" role="listitem">
+          <article class="feature-card-3d fc-practice" id="prompt-7">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#07</span>
               <span class="card-tag">Multi-API Integration · ChatGPT</span>
@@ -370,7 +373,7 @@ jokeEl.textContent = data.joke;
           </article>
 
           <!-- ══ CARD 8 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-html" id="prompt-8" role="listitem">
+          <article class="feature-card-3d fc-html" id="prompt-8">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-orange">#08</span>
               <span class="card-tag">Responsive Design · GitHub Copilot</span>
@@ -402,7 +405,7 @@ document.body.<span class="fn">classList</span>.<span class="fn">add</span>(<spa
           </article>
 
           <!-- ══ CARD 9 ════════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-css" id="prompt-9" role="listitem">
+          <article class="feature-card-3d fc-css" id="prompt-9">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-purple">#09</span>
               <span class="card-tag">Theming &amp; CSS Variables · Claude</span>
@@ -436,7 +439,7 @@ document.body.<span class="fn">classList</span>.<span class="fn">add</span>(<spa
           </article>
 
           <!-- ══ CARD 10 ═══════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-js" id="prompt-10" role="listitem">
+          <article class="feature-card-3d fc-js" id="prompt-10">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-yellow">#10</span>
               <span class="card-tag">Scroll Reveal · GitHub Copilot</span>
@@ -473,7 +476,7 @@ els.<span class="fn">forEach</span>(el => {
           </article>
 
           <!-- ══ CARD 11 ═══════════════════════════════════════════════ -->
-          <article class="feature-card-3d fc-practice" id="prompt-11" role="listitem">
+          <article class="feature-card-3d fc-practice" id="prompt-11">
             <div class="path-card-header">
               <span class="toc-badge toc-badge-green">#11</span>
               <span class="card-tag">CSS Animations · ChatGPT</span>
@@ -650,7 +653,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
         </div>
 
         <div class="learning-path-full" role="list">
-          <div class="path-card-large path-glow-html" role="listitem">
+          <div class="path-card-large path-glow-html">
             <div class="path-card-header">
               <span class="path-icon-lg">🛠️</span>
               <span class="path-chip path-chip-html">Skill</span>
@@ -661,7 +664,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
-          <div class="path-card-large path-glow-css" role="listitem">
+          <div class="path-card-large path-glow-css">
             <div class="path-card-header">
               <span class="path-icon-lg">🔬</span>
               <span class="path-chip path-chip-css">Testing</span>
@@ -672,7 +675,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
-          <div class="path-card-large path-glow-js" role="listitem">
+          <div class="path-card-large path-glow-js">
             <div class="path-card-header">
               <span class="path-icon-lg">⚠️</span>
               <span class="path-chip path-chip-js">Risk</span>
@@ -683,7 +686,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
 
           <div class="path-connector"><span class="path-arrow-lg">→</span></div>
 
-          <div class="path-card-large path-glow-quiz" role="listitem">
+          <div class="path-card-large path-glow-quiz">
             <div class="path-card-header">
               <span class="path-icon-lg">🧠</span>
               <span class="path-chip path-chip-quiz">Learning</span>
@@ -702,7 +705,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
     <div class="footer-wave-bg" aria-hidden="true"></div>
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="./index.html" class="footer-logo">
+        <a href="./tutorial.html" class="footer-logo">
           <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#flbg)" opacity="0.12" />
             <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#flbg)" stroke-width="1.5" />
@@ -713,7 +716,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
             <path d="M18 8L14 24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
             <defs>
               <linearGradient id="flbg" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#818cf8" />
+                <stop offset="0" stop-color="#818cf8" />
                 <stop offset="1" stop-color="#06b6d4" />
               </linearGradient>
             </defs>
@@ -722,7 +725,7 @@ document.<span class="fn">querySelectorAll</span>(<span class="st">'.confetti-pi
         </a>
       </div>
       <div class="footer-copy">
-        <p>&copy; 2026 SkillLance &mdash; CITS5505 Web Technologies &middot; The University of Western Australia</p>
+        <p>&copy; 2026 SkillLance &mdash; CITS5505 Agile Web Development &middot; The University of Western Australia</p>
       </div>
       <div class="footer-stack-mini" aria-hidden="true">
         <div class="stack-3d stack-footer">
